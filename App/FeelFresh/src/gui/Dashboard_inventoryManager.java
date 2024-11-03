@@ -22,6 +22,8 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
      */
     public Dashboard_inventoryManager() {
         initComponents();
+        
+        this.setLocationRelativeTo(null);
     }
 
     /**
