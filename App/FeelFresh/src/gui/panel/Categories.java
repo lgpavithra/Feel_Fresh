@@ -29,7 +29,7 @@ public class Categories extends javax.swing.JPanel {
         addCategory_vp = new AddCategories(this);
         updateAndRemoveCategory_vp = new UpdateAndRemoveCategory(this);
         jPanel1.add(addCategory_vp);
-        loadCategories_vp();
+        loadCategories_vp("");
     }
 
     /**
@@ -163,9 +163,9 @@ public class Categories extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-   void loadCategories_vp() {
+   void loadCategories_vp(String q) {
       try {
-            ResultSet rs_vp = MYSQL.executeSearch("SELECT * FROM `category`");
+            ResultSet rs_vp = MYSQL.executeSearch("SELECT * FROM `category`" + q);
             DefaultTableModel dtm_vp = (DefaultTableModel)jTable1.getModel();
             dtm_vp.setRowCount(0);
             while (rs_vp.next()) {

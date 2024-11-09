@@ -17,6 +17,7 @@ public class AddCategories extends javax.swing.JPanel {
 
     /**
      * Creates new form AddCategories
+     *
      * @param c
      */
     public AddCategories(Categories c) {
@@ -39,6 +40,11 @@ public class AddCategories extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         uJTextfield1.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
+        uJTextfield1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                uJTextfield1KeyReleased(evt);
+            }
+        });
 
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -69,18 +75,18 @@ public class AddCategories extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         String category_vp = uJTextfield1.getText().trim();
         if (category_vp.isBlank()) {
             JOptionPane.showMessageDialog(this, "Please enter a category", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
 
-                if (MYSQL.executeSearch("SELECT * FROM `category` WHERE `name` = '"+category_vp+"'").next()) {
+                if (MYSQL.executeSearch("SELECT * FROM `category` WHERE `name` = '" + category_vp + "'").next()) {
                     JOptionPane.showMessageDialog(this, "The category is already existed.", "Warning", JOptionPane.WARNING_MESSAGE);
-                }else{
+                } else {
                     MYSQL.executeIUD("INSERT INTO `category` (`name`) VALUES ('" + category_vp + "')");
-                    categories_vp.loadCategories_vp();
+                    categories_vp.loadCategories_vp("");
                     uJTextfield1.setText("");
 
                 }
@@ -90,9 +96,14 @@ public class AddCategories extends javax.swing.JPanel {
                 e.printStackTrace();
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void uJTextfield1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_uJTextfield1KeyReleased
+//       Searching part
+        categories_vp.loadCategories_vp("WHERE `name` LIKE '%" + uJTextfield1.getText() + "%'");
+    }//GEN-LAST:event_uJTextfield1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
