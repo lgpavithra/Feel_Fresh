@@ -57,7 +57,7 @@ public class addProduct extends javax.swing.JPanel {
     vector.add("Select");
     
     
-     ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `brand` INNER JOIN `category_has_brand` ON `brand`.`id`=`category_has_brand`.`brand_id` WHERE `brand`.`id`=`category_has_brand`.`category_id`");
+     ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `brand` INNER JOIN `category_has_brand` ON `brand`.`id`=`category_has_brand`.`brand_id` ");
      //ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `brand` ");
      
      while(resultSet.next()){
