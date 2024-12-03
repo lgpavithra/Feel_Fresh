@@ -26,8 +26,10 @@ Teamwork by Legacy
 
 # Links
 Canva :
-<a/>https://www.canva.com/design/DAGSnoWWZNs/rovhSagnIz78-n7Ac61TQQ/edit?utm_content=DAGSnoWWZNs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton<a>
+<a>https://www.canva.com/design/DAGSnoWWZNs/rovhSagnIz78-n7Ac61TQQ/edit?utm_content=DAGSnoWWZNs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton</a>
 
+Git Guide :
+<a>https://drive.google.com/file/d/1w6sjJCEO6RlOFyV8RY4cKhbDYUl5CUVt/view?usp=sharing<a/>
 # Team
 
 
