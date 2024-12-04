@@ -31,6 +31,62 @@ Canva :
 Git Guide :
 <a>https://drive.google.com/file/d/1w6sjJCEO6RlOFyV8RY4cKhbDYUl5CUVt/view?usp=sharing<a/>
 # Team
+<table>
+<tr>
+  <th>Leader</th>
+</tr>
+<tr>
+ <td>MG Haritha Sandun Teekshana</td>
+</tr>
+<tr>
+ <th>Database Manager</th>
+</tr>
+<tr>
+ <td>MG Haritha Sandun Teekshana</td>
+</tr>
+<tr>
+ <th>Project Manager</th>
+</tr>
+<tr>
+ <td>LG Virajith Pavithra Wijewansha</td>
+</tr>
+<tr>
+ <th>UI Designer</th>
+</tr>
+<tr>
+ <td>WL Pawan Shanaka</td>
+</tr>
+<tr>
+ <th>Documentation Analyst</th>
+</tr>
+<tr>
+ <td>ARG Dulakshi Nayanathara</td>
+</tr>
+<tr>
+ <th>Software Developer</th>
+</tr>
+<tr>
+ <td>DL Thrushi Nirmani</td>
+</tr>
+<tr>
+ <td>Nimesh Kumara Ilangamge</td>
+</tr>
+ <tr>
+  <td>GS Sawandi Sulakshani Premarathne</td>
+ </tr>
+ <tr>
+  <td>MG Haritha Sandun Teekshana</td>
+ </tr>
+ <tr>
+  <td>AGR Dulakshi Nayanathara</td>
+ </tr>
+ <tr>
+  <td>WL Pawan Shanaka</td>
+ </tr>
+ <tr>
+  <td>LG Virajith Pavithra Wijewansha</td>
+ </tr>
+</table>
 
 
 
