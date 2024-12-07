@@ -6,6 +6,9 @@ package gui.panel.customerRegistration;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import com.mysql.cj.xdevapi.Result;
+import gui.panel.AddCategories;
+import gui.panel.UpdateAndRemoveCategory;
+import java.awt.BorderLayout;
 import model.MYSQL;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -15,6 +18,7 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,12 +27,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Customer extends javax.swing.JPanel {
 
-    /**
-     * Creates new form customer
-     */
+    private final CustomerUpdate updateCustomer_ni;
+
     public Customer() {
+
         initComponents();
         loadCustomer();
+
+        updateCustomer_ni = new CustomerUpdate(this);
+
     }
 
     private void loadCustomer() {
@@ -78,7 +85,7 @@ public class Customer extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -96,10 +103,15 @@ public class Customer extends javax.swing.JPanel {
         uJTextfield7 = new component.UJTextfield();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabel1.setText("Customer Registration");
@@ -121,7 +133,12 @@ public class Customer extends javax.swing.JPanel {
             }
         });
         jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
             jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
@@ -171,6 +188,15 @@ public class Customer extends javax.swing.JPanel {
         jLabel3.setText("Last Name");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new java.awt.BorderLayout(5, 0));
+
+        jButton3.setText("Clear All");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton3, java.awt.BorderLayout.LINE_END);
 
         jButton2.setText("Create Account");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -178,33 +204,7 @@ public class Customer extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        jButton1.setText("Clear All");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        jPanel3.add(jButton2, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -219,7 +219,7 @@ public class Customer extends javax.swing.JPanel {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(17, 17, 17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(uJTextfield3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(uJTextfield3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addComponent(uJTextfield5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -238,7 +238,9 @@ public class Customer extends javax.swing.JPanel {
                             .addComponent(uJTextfield4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(uJTextfield6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(uJTextfield2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -265,12 +267,11 @@ public class Customer extends javax.swing.JPanel {
                         .addComponent(uJTextfield5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(uJTextfield6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(uJTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uJTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(9, 9, 9))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -281,8 +282,10 @@ public class Customer extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 429, Short.MAX_VALUE))
+                    .addComponent(jPane1))
                 .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
@@ -290,10 +293,10 @@ public class Customer extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                .addComponent(jPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addGap(7, 7, 7))
         );
 
@@ -314,10 +317,7 @@ public class Customer extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
-//reset 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        reset();
-    }//GEN-LAST:event_jButton1ActionPerformed
+
 //Create Account 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
@@ -368,7 +368,7 @@ public class Customer extends javax.swing.JPanel {
                     MYSQL.executeIUD("INSERT INTO `customer` (`nic`,`first_name`,`last_name`,`email`,`reg_date`,`avail_points`,`no`,`line1`,`line2`,`status_id`)VALUES('" + nic_ni + "','" + firstName_ni + "','" + larstName_ni + "','" + email_ni + "','" + registerDate_ni + "','0','" + addressNo_ni + "','" + addressLine1_ni + "','" + addressLine2_ni + "','" + 1 + "')");
                     JOptionPane.showMessageDialog(this, "Customer Account Create Success", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
 
-                    reset();
+                    reset_ni();
                     loadCustomer();
 
                 }
@@ -379,11 +379,129 @@ public class Customer extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
+//creal All
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        reset_ni();
+    }//GEN-LAST:event_jButton3ActionPerformed
+//
+   
 
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+        if (evt.getClickCount() >= 2) {
+            jPanel3.removeAll();
+            jPanel3.add(updateCustomer_ni);
+            SwingUtilities.updateComponentTreeUI(jPanel3);
+
+           int row = jTable1.getSelectedRow();
+
+            String nic_ni = String.valueOf(jTable1.getValueAt(row, 0));
+            uJTextfield1.setText(nic_ni);
+            uJTextfield1.setEditable(false);
+
+            String firstName_ni = String.valueOf(jTable1.getValueAt(row, 1));
+            uJTextfield3.setText(firstName_ni);
+
+            String larstName_ni = String.valueOf(jTable1.getValueAt(row, 2));
+            uJTextfield4.setText(larstName_ni);
+
+            String email_ni = String.valueOf(jTable1.getValueAt(row, 3));
+            uJTextfield2.setText(email_ni);
+
+            String addressNo_ni = String.valueOf(jTable1.getValueAt(row, 4));
+            uJTextfield5.setText(addressNo_ni);
+
+            String addressLine1_ni = String.valueOf(jTable1.getValueAt(row, 5));
+            uJTextfield6.setText(addressLine1_ni);
+
+            String addressLine2_ni = String.valueOf(jTable1.getValueAt(row, 6));
+            uJTextfield7.setText(addressLine2_ni);
+
+        } else {
+            setDefault_ni();
+        }
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        setDefault_ni();
+
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    //default Set Create Account And Clear Button 
+    private void setDefault_ni() {
+        jPanel3.removeAll();
+        jPanel3.add(jButton2, BorderLayout.CENTER);
+        jPanel3.add(jButton3, BorderLayout.EAST);
+        SwingUtilities.updateComponentTreeUI(jPanel3);
+        reset_ni();
+    }
+//update customer
+    void updateCustomer_ni() {
+
+                   int row = jTable1.getSelectedRow();
+
+        String nic_ni = uJTextfield1.getText();
+        String email_ni = uJTextfield2.getText();
+        String firstName_ni = uJTextfield3.getText();
+        String larstName_ni = uJTextfield4.getText();
+        String addressNo_ni = uJTextfield5.getText();
+        String addressLine1_ni = uJTextfield6.getText();
+        String addressLine2_ni = uJTextfield7.getText();
+
+
+        if (nic_ni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter NIC Number.", "WARNING", JOptionPane.WARNING_MESSAGE);
+
+        } else if (email_ni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please  Enter Email.", "WARNING", JOptionPane.WARNING_MESSAGE);
+
+        } else if (!email_ni.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
+            JOptionPane.showMessageDialog(this, "Invalid Email.", "WARNING", JOptionPane.WARNING_MESSAGE);
+
+        } else if (firstName_ni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter First Name.", "WARNING", JOptionPane.WARNING_MESSAGE);
+
+        } else if (larstName_ni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Last Name.", "WARNING", JOptionPane.WARNING_MESSAGE);
+
+        } else if (addressNo_ni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Address No.", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else if (addressLine1_ni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Address Line 1.", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else if (addressLine2_ni.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Address Line 2.", "Warning", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+
+            try {
+//                data chek
+                ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `customer` WHERE `nic` = '" + nic_ni + "'and`first_name` = '"+firstName_ni+"'and `last_name` ='"+larstName_ni+"' and `email` = '" + email_ni + "' and `no` = '"+addressNo_ni+"'and`line1`= '"+addressLine1_ni+"'and `line2`= '"+addressLine2_ni+"' ");
+
+                if (resultSet.next()) {
+                    JOptionPane.showMessageDialog(this, "Customer details allready register", "WARNING", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+                    //data inserte
+                    MYSQL.executeIUD("UPDATE `customer`SET `first_name`= '" + firstName_ni + "',`last_name`= '" + larstName_ni + "',`email` = '" + email_ni + "',`no` = '" + addressNo_ni + "',`line1` = '" + addressLine1_ni + "',`line2`= '" + addressLine2_ni + "'WHERE `nic` = '" + nic_ni + "'");
+                    JOptionPane.showMessageDialog(this, "Customer Account Update Success", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
+
+                    reset_ni();
+                    loadCustomer();
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -392,10 +510,10 @@ public class Customer extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
@@ -406,9 +524,19 @@ public class Customer extends javax.swing.JPanel {
     private component.UJTextfield uJTextfield7;
     // End of variables declaration//GEN-END:variables
 
-    private void reset() {
+    private void reset_ni() {
         uJTextfield1.grabFocus();
         uJTextfield1.setText("");
+        uJTextfield2.setText("");
+        uJTextfield3.setText("");
+        uJTextfield4.setText("");
+        uJTextfield5.setText("");
+        uJTextfield6.setText("");
+        uJTextfield7.setText("");
+    }
+    
+     void resetcustomerUpdate_ni() {
+        uJTextfield2.grabFocus();
         uJTextfield2.setText("");
         uJTextfield3.setText("");
         uJTextfield4.setText("");
