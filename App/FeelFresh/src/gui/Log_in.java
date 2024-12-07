@@ -280,9 +280,7 @@ public class Log_in extends javax.swing.JFrame {
             } else if (password.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please Enter your password.", "Warning", JOptionPane.WARNING_MESSAGE);
                 jPasswordField1.grabFocus();
-            } else if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")) {
-                JOptionPane.showMessageDialog(this, "Please enter minimum eight characters, at least one letter and one number", "Warning", JOptionPane.WARNING_MESSAGE);
-                jPasswordField1.grabFocus();
+          
             } else {
                 ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `user` "
                         + " INNER JOIN `user_type` ON `user`.`user_type_id` = `user_type`.`id` "
