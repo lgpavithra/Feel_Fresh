@@ -284,11 +284,15 @@ public class Log_in extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please enter minimum eight characters, at least one letter and one number", "Warning", JOptionPane.WARNING_MESSAGE);
                 jPasswordField1.grabFocus();
             } else {
-                ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `user`WHERE `nic`='" + Username + "' AND `password`='" + password + "'");
+                ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `user` INNER JOIN `user_type` ON `user`.`user_type_id` = `user_type`.`id` WHERE `nic`='" + Username + "' AND `password`='" + password + "'");
                 if (resultSet.next()) {
 
-                    Main_Dashbord main_Dashbord = new Main_Dashbord();
-                    main_Dashbord.setVisible(true);
+                    if (resultSet.getString("user_type.name").equals("Inventory Manager")) {
+                        new Dashboard_inventoryManager().setVisible(true);
+                    } else {
+                        Main_Dashbord main_Dashbord = new Main_Dashbord();
+                        main_Dashbord.setVisible(true);
+                    }
                     this.dispose();
 
                     setUsername(Username);
