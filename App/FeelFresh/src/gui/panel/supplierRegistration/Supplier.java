@@ -4,15 +4,22 @@
  */
 package gui.panel.supplierRegistration;
 
+
 import java.awt.BorderLayout;
+
+
 import javax.swing.JOptionPane;
 import model.MYSQL;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.SwingUtilities;
+
+import java.util.Vector;
+
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,6 +39,17 @@ public class Supplier extends javax.swing.JPanel {
 
     private void loadSupplier_ni() {
 
+    /**
+     * Creates new form Supplier
+     */
+    public Supplier() {
+        initComponents();
+        loadSupplier_ni();
+    }
+    
+     private void loadSupplier_ni() {
+
+
         try {
 
             ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `supplier`");
@@ -43,7 +61,9 @@ public class Supplier extends javax.swing.JPanel {
 
                 Vector<String> vector = new Vector<>();
 
+
                 vector.add(resultSet.getString("id"));
+
                 vector.add(resultSet.getString("first_name"));
                 vector.add(resultSet.getString("last_name"));
                 vector.add(resultSet.getString("email"));
@@ -69,6 +89,11 @@ public class Supplier extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+
+
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
         uJTextfield6 = new component.UJTextfield();
         uJTextfield4 = new component.UJTextfield();
         uJTextfield2 = new component.UJTextfield();
@@ -85,6 +110,7 @@ public class Supplier extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -92,6 +118,20 @@ public class Supplier extends javax.swing.JPanel {
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
+
+
+        jButton1.setText("Create Account");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Clear All");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+
             }
         });
 
@@ -128,17 +168,26 @@ public class Supplier extends javax.swing.JPanel {
 
             },
             new String [] {
+
                 "ID", "First Name", "Last Name", "Email", "Address No", "Address Line 1", "Address Line 2"
             }
         ) {
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
+
+                "First Name", "Last Name", "Email", "Address No", "Address Line 1", "Address Line 2"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -151,19 +200,27 @@ public class Supplier extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
+        jScrollPane1.setViewportView(jTable1);
+
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
+
+                .addComponent(jScrollPane1)
+
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -186,10 +243,16 @@ public class Supplier extends javax.swing.JPanel {
         });
         jPanel3.add(jButton1, java.awt.BorderLayout.CENTER);
 
+
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -197,6 +260,11 @@ public class Supplier extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -224,8 +292,19 @@ public class Supplier extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(uJTextfield4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(uJTextfield2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+
                             .addComponent(uJTextfield6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
+
+                            .addComponent(uJTextfield6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(300, 300, 300)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,6 +326,7 @@ public class Supplier extends javax.swing.JPanel {
                         .addComponent(uJTextfield4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -256,6 +336,18 @@ public class Supplier extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uJTextfield6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uJTextfield5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
@@ -317,7 +409,11 @@ public class Supplier extends javax.swing.JPanel {
                     MYSQL.executeIUD("INSERT INTO `supplier` (`first_name`,`last_name`,`email`,`reg_date`,`no`,`line1`,`line2`)VALUES('" + firstName_ni + "','" + larstName_ni + "','" + email_ni + "','" + registerDate_ni + "','" + addressNo_ni + "','" + addressLine1_ni + "','" + addressLine2_ni + "')");
                     JOptionPane.showMessageDialog(this, "Supplier Account Create Success", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
 
+
                     reset_ni();
+
+                    reset();
+
                     loadSupplier_ni();
 
                 }
@@ -330,6 +426,7 @@ public class Supplier extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 //button reset 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         reset_ni();
     }//GEN-LAST:event_jButton2ActionPerformed
 //update customer details text filde add
@@ -444,6 +541,10 @@ public class Supplier extends javax.swing.JPanel {
 
     }
 
+       reset();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -457,6 +558,7 @@ public class Supplier extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -470,6 +572,19 @@ public class Supplier extends javax.swing.JPanel {
 
     private void reset_ni() {
 
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private component.UJTextfield uJTextfield1;
+    private component.UJTextfield uJTextfield2;
+    private component.UJTextfield uJTextfield3;
+    private component.UJTextfield uJTextfield4;
+    private component.UJTextfield uJTextfield5;
+    private component.UJTextfield uJTextfield6;
+    // End of variables declaration//GEN-END:variables
+
+    private void reset() {
+
+
         uJTextfield1.grabFocus();
         uJTextfield1.setText("");
         uJTextfield2.setText("");
@@ -479,6 +594,7 @@ public class Supplier extends javax.swing.JPanel {
         uJTextfield6.setText("");
 
     }
+
 
 
 }
