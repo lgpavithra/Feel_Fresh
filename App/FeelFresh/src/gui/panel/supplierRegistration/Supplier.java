@@ -101,16 +101,21 @@ public class Supplier extends javax.swing.JPanel {
 
         uJTextfield2.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
         jLabel3.setText("Last Name");
 
+        jLabel5.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
         jLabel5.setText("Address No");
 
+        jLabel7.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
         jLabel7.setText("Address Line 2");
 
         uJTextfield5.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
         jLabel6.setText("Address Line 1");
 
+        jLabel4.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
         jLabel4.setText("Email");
 
         jLabel2.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
@@ -156,16 +161,16 @@ public class Supplier extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         jPanel3.setLayout(new java.awt.BorderLayout(5, 0));
@@ -192,30 +197,27 @@ public class Supplier extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(uJTextfield5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(uJTextfield5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(uJTextfield3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
+                                    .addComponent(uJTextfield3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -225,7 +227,7 @@ public class Supplier extends javax.swing.JPanel {
                             .addComponent(uJTextfield4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(uJTextfield2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(uJTextfield6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,8 +338,7 @@ public class Supplier extends javax.swing.JPanel {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 
         if (evt.getClickCount() == 2) {
-            
-            System.out.println("ahgarhgho");
+
             jPanel3.removeAll();
             jPanel3.add(supplierUpdate_ni);
             SwingUtilities.updateComponentTreeUI(jPanel3);
@@ -371,13 +372,13 @@ public class Supplier extends javax.swing.JPanel {
 
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-       setDefault_ni();
+        setDefault_ni();
     }//GEN-LAST:event_jPanel1MouseClicked
 //updatesupplier 
 
     void updateSupplier_ni() {
         int row = jTable1.getSelectedRow();
-        
+
         String firstName_ni = uJTextfield1.getText();
         String larstName_ni = uJTextfield2.getText();
         String email_ni = uJTextfield3.getText();
@@ -385,7 +386,7 @@ public class Supplier extends javax.swing.JPanel {
         String addressLine1_ni = uJTextfield5.getText();
         String addressLine2_ni = uJTextfield6.getText();
         String id_ni = String.valueOf(jTable1.getValueAt(row, 0));
-        
+
         if (firstName_ni.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter First Name.", "WARNING", JOptionPane.WARNING_MESSAGE);
 
@@ -411,14 +412,14 @@ public class Supplier extends javax.swing.JPanel {
 
             try {
                 //data chek
-                ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `supplier` WHERE`first_name`= '"+firstName_ni+"' and `last_name` = '"+larstName_ni+"' and`email` = '" + email_ni + "'and`no` = '"+addressNo_ni+"'and `line1` = '"+addressLine1_ni+"' and `line2` = '"+addressLine2_ni+"'");
+                ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `supplier` WHERE`first_name`= '" + firstName_ni + "' and `last_name` = '" + larstName_ni + "' and`email` = '" + email_ni + "'and`no` = '" + addressNo_ni + "'and `line1` = '" + addressLine1_ni + "' and `line2` = '" + addressLine2_ni + "'");
 
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(this, "Supplier details allready register ", "WARNING", JOptionPane.WARNING_MESSAGE);
 
                 } else {
                     //data update
-                    MYSQL.executeIUD("UPDATE`supplier` SET`first_name`= '" + firstName_ni + "',`last_name`= '" + larstName_ni + "',`email`= '" + email_ni + "',`no`= '" + addressNo_ni + "',`line1` = '" + addressLine1_ni + "',`line2` = '" + addressLine2_ni + "' WHERE `id` = '"+id_ni+"'");
+                    MYSQL.executeIUD("UPDATE`supplier` SET`first_name`= '" + firstName_ni + "',`last_name`= '" + larstName_ni + "',`email`= '" + email_ni + "',`no`= '" + addressNo_ni + "',`line1` = '" + addressLine1_ni + "',`line2` = '" + addressLine2_ni + "' WHERE `id` = '" + id_ni + "'");
                     JOptionPane.showMessageDialog(this, "Supplier Account Update Success", "INFORMATION", JOptionPane.INFORMATION_MESSAGE);
 
                     reset_ni();
@@ -431,9 +432,10 @@ public class Supplier extends javax.swing.JPanel {
         }
 
     }
+
     //reset clear button
-    void supplierUpdateReset_ni(){
-    reset_ni();
+    void supplierUpdateReset_ni() {
+        reset_ni();
     }
 
     //set customer crate account button mouseclick one and border click 
@@ -481,6 +483,5 @@ public class Supplier extends javax.swing.JPanel {
         uJTextfield6.setText("");
 
     }
-
 
 }
