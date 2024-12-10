@@ -24,6 +24,26 @@ Teamwork by Legacy
       </tr>
     </table>
 
+<h3>Font sizes</h3>
+
+<h6>JLabel</h6>
+<ul>
+ <li>Default font size = Quicksand 12 plain</li>
+ <li>Headings = Poppins 18 plain</li>
+</ul>
+
+
+<h6>JButton</h6>
+<ul>
+ <li>JButton = </li>
+</ul>
+
+
+<h3>Dimensions</h3>
+<h6>JButton</h6>
+<ul>
+ <li>JButton = w[72 or custom] h[23]</li>
+</ul>
 
 # Links
 Canva :
