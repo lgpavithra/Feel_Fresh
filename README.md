@@ -35,7 +35,7 @@ Teamwork by Legacy
 
 <h6>JButton</h6>
 <ul>
- <li>JButton = </li>
+ <li>JButton = Segoe UI 12 plain </li>
 </ul>
 
 
