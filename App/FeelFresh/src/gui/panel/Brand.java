@@ -34,7 +34,7 @@ public class Brand extends javax.swing.JPanel {
         addBrand_vp = new AddBrand(this);
         updateAndRemoveBrand_vp = new UpdateAndRemoveBrand(this);
         jPanel1.add(addBrand_vp);
-        loadBrand_vp();
+        loadBrand_vp("");
     }
 
     /**
@@ -172,9 +172,9 @@ public class Brand extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    void loadBrand_vp() {
+    void loadBrand_vp(String q) {
         try {
-            ResultSet rs_vp = MYSQL.executeSearch("SELECT * FROM `brand`");
+            ResultSet rs_vp = MYSQL.executeSearch("SELECT * FROM `brand`" +q);
             DefaultTableModel dtm_vp = (DefaultTableModel) jTable1.getModel();
             dtm_vp.setRowCount(0);
             while (rs_vp.next()) {

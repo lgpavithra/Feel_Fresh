@@ -89,7 +89,7 @@ public class UpdateAndRemoveCategory extends javax.swing.JPanel {
             if (JOptionPane.showConfirmDialog(this, "Do you want to delete \"" + uJTextfield1.getText() + "\"", "Warning", JOptionPane.INFORMATION_MESSAGE) == 0) {
 
                 MYSQL.executeIUD(" DELETE FROM `category` WHERE `name` = '" + uJTextfield1.getText() + "' ");
-                category_vp.loadCategories_vp();
+                category_vp.loadCategories_vp("");
                 reset_vp();
             }
 
@@ -110,7 +110,7 @@ public class UpdateAndRemoveCategory extends javax.swing.JPanel {
                 if (JOptionPane.showConfirmDialog(this, "Do you want to update \"" + uJTextfield1.getText() + "\"", "Warning", JOptionPane.INFORMATION_MESSAGE) == 0) {
 
                     MYSQL.executeIUD(" UPDATE `category` SET `name` = '" + uJTextfield1.getText() + "' WHERE `name` = '" + currentCategory_vp + "' ");
-                    category_vp.loadCategories_vp();
+                    category_vp.loadCategories_vp("");
                     reset_vp();
                 }
 

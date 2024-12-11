@@ -39,6 +39,11 @@ public class AddBrand extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         uJTextfield1.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
+        uJTextfield1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                uJTextfield1KeyReleased(evt);
+            }
+        });
 
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +85,7 @@ public class AddBrand extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "The brand is already existed.", "Warning", JOptionPane.WARNING_MESSAGE);
                 }else{
                     MYSQL.executeIUD("INSERT INTO `brand` (`name`) VALUES ('" + brand_vp + "')");
-                    this.brand_vp.loadBrand_vp();
+                    this.brand_vp.loadBrand_vp("");
                     uJTextfield1.setText("");
 
                 }
@@ -93,6 +98,14 @@ public class AddBrand extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void uJTextfield1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_uJTextfield1KeyReleased
+//        Searching part
+        
+       brand_vp.loadBrand_vp("WHERE `name` LIKE '%"+uJTextfield1.getText()+"%'");
+        
+        
+    }//GEN-LAST:event_uJTextfield1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

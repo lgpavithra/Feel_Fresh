@@ -89,7 +89,7 @@ public class UpdateAndRemoveBrand extends javax.swing.JPanel {
             if (JOptionPane.showConfirmDialog(this, "Do you want to delete \"" + uJTextfield1.getText() + "\"", "Warning", JOptionPane.INFORMATION_MESSAGE) == 0) {
 
                 MYSQL.executeIUD(" DELETE FROM `brand` WHERE `name` = '" + uJTextfield1.getText() + "' ");
-                brand_vp.loadBrand_vp();
+                brand_vp.loadBrand_vp("");
                 reset_vp();
             }
 
@@ -110,7 +110,7 @@ public class UpdateAndRemoveBrand extends javax.swing.JPanel {
                 if (JOptionPane.showConfirmDialog(this, "Do you want to update \"" + uJTextfield1.getText() + "\"", "Warning", JOptionPane.INFORMATION_MESSAGE) == 0) {
 
                     MYSQL.executeIUD(" UPDATE `brand` SET `name` = '" + uJTextfield1.getText() + "' WHERE `name` = '" + currentBrand_vp + "' ");
-                    brand_vp.loadBrand_vp();
+                    brand_vp.loadBrand_vp("");
                     reset_vp();
                 }
 
