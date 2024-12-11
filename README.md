@@ -87,9 +87,6 @@ Git Guide :
  <th>Software Developer</th>
 </tr>
 <tr>
- <td>DL Thrushi Nirmani</td>
-</tr>
-<tr>
  <td>Nimesh Kumara Ilangamge</td>
 </tr>
  <tr>
