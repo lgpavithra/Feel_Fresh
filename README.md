@@ -93,7 +93,7 @@ Git Guide :
   <td>GS Sawandi Sulakshani Premarathne</td>
  </tr>
  <tr>
-  <td>MG Haritha Sandun Teekshana</td>
+  <td>MG Haritha Sandun Theekshana</td>
  </tr>
  <tr>
   <td>AGR Dulakshi Nayanathara</td>
