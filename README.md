@@ -57,13 +57,13 @@ Git Guide :
   <th>Leader</th>
 </tr>
 <tr>
- <td>MG Haritha Sandun Teekshana</td>
+ <td>MG Haritha Sandun Theekshana</td>
 </tr>
 <tr>
  <th>Database Manager</th>
 </tr>
 <tr>
- <td>MG Haritha Sandun Teekshana</td>
+ <td>MG Haritha Sandun Theekshana</td>
 </tr>
 <tr>
  <th>Project Manager</th>
