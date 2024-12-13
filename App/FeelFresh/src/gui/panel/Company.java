@@ -16,47 +16,37 @@ import model.MYSQL;
  */
 public class Company extends javax.swing.JPanel {
 
- 
     public Company() {
         initComponents();
-        
+
         loadCompany_ps();
     }
 
-    
-     private void loadCompany_ps() {
-   
-     try{
-     
-       ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `company` INNER JOIN `company_has_supplier` ON `company`.`id`=`company_has_supplier`.`company_id` ");
-     
-      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-      model.setRowCount(0);
-     
-      while (resultSet.next()){
-      Vector<String> vector = new Vector<>();
-       vector.add(resultSet.getString("id"));
-       vector.add(resultSet.getString("company_name"));
-       vector.add(resultSet.getString("hotline"));
-      
-     
-      model.addRow(vector);
-      
-      
-      
-      }
-      
-     
-     }catch(Exception e){
-      e.printStackTrace();
-     }
-   
-   
-   
-   
-   
-   
-   }
+    private void loadCompany_ps() {
+//         System.out.println("load company");
+        try {
+
+            ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `company` ");
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            while (resultSet.next()) {
+                Vector<String> vector = new Vector<>();
+                vector.add(resultSet.getString("id"));
+                vector.add(resultSet.getString("company_name"));
+                vector.add(resultSet.getString("hotline"));
+
+                model.addRow(vector);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,29 +99,30 @@ public class Company extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(uJTextfield2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(uJTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                        .addGap(117, 117, 117))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(167, 167, 167))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(uJTextfield2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -172,16 +163,16 @@ public class Company extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -195,7 +186,7 @@ public class Company extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -205,30 +196,29 @@ public class Company extends javax.swing.JPanel {
     }//GEN-LAST:event_uJTextfield2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     String name  = uJTextfield1.getText();
-     String hotline  = uJTextfield2.getText();
-     
-       
-       
-      if(name.isEmpty()) {
-          JOptionPane.showMessageDialog(this, "Please enter company name", "Warning", JOptionPane.WARNING_MESSAGE);
-      } if(hotline.isEmpty()) {
-          JOptionPane.showMessageDialog(this, "Please enter hotline number", "Warning", JOptionPane.WARNING_MESSAGE);
-      }  {
-           try{
-           
-        
-            MYSQL.executeIUD("INSERT INTO `company`(`company_name`,`hotline`)VALUES('"+name+"','"+hotline+"')");
-            
-            reset_ps();
-          
-           
-           
-           }catch(Exception e){
-             e.printStackTrace();
-           }
-        
-      }
+        String name = uJTextfield1.getText().trim();
+        String hotline = uJTextfield2.getText().trim();
+
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter company name", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (hotline.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter hotline number", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (!hotline.matches("^(?:0|94|\\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\\d)\\d{6}$")) {
+            JOptionPane.showMessageDialog(this, "Please enter a Valid hotline", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+
+                MYSQL.executeIUD("INSERT INTO `company`(`company_name`,`hotline`)VALUES('" + name + "','" + hotline + "')");
+
+                reset_ps();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        loadCompany_ps();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -247,12 +237,12 @@ public class Company extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void reset_ps() {
-       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-         uJTextfield1.setText("");
-         uJTextfield2.setText("");
-      
-      uJTextfield1.grabFocus();
-      //uJTextfield1.setEditable(true);
-      
+        // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        uJTextfield1.setText("");
+        uJTextfield2.setText("");
+
+        uJTextfield1.grabFocus();
+        //uJTextfield1.setEditable(true);
+
     }
 }
