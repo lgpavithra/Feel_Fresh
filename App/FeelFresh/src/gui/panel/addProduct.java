@@ -211,7 +211,7 @@ public class addProduct extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel3)
                                         .addGap(27, 27, 27)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -235,7 +235,7 @@ public class addProduct extends javax.swing.JPanel {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -273,15 +273,15 @@ public class addProduct extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                .addGap(23, 23, 23))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -328,7 +328,7 @@ public class addProduct extends javax.swing.JPanel {
            }
         
       }
-                
+      loadCustomers();          
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void uJTextfield1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uJTextfield1ActionPerformed
@@ -340,7 +340,7 @@ public class addProduct extends javax.swing.JPanel {
       String name  = uJTextfield1.getText();
       String category  = String.valueOf(jComboBox2.getSelectedItem()); 
       String brand  = String.valueOf(jComboBox1.getSelectedItem());   
-       
+       int row = jTable1.getSelectedRow();
       
        
       if(name.isEmpty()) {
@@ -352,8 +352,8 @@ public class addProduct extends javax.swing.JPanel {
       }else {
            try{
            
-        
-            MYSQL.executeIUD("UPDATE `product` SET `name`='"+name+"',`category_id`='"+categoryMap.get(category)+"',`brand_id`='"+brandMap.get(brand)+"'");
+               
+            MYSQL.executeIUD("UPDATE `product` SET `name`='"+name+"',`category_id`='"+categoryMap.get(category)+"',`brand_id`='"+brandMap.get(brand)+"' WHERE `id` = '"+String.valueOf(jTable1.getValueAt(row ,0))+"'  ");
             
             reset();
           
@@ -377,7 +377,8 @@ public class addProduct extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-          int row = jTable1.getSelectedRow();
+        jButton1.setEnabled(false);
+        int row = jTable1.getSelectedRow();
         
        // String id = String.valueOf(jTable1.getValueAt(row ,0));
         String name = String.valueOf(jTable1.getValueAt(row ,1));
@@ -415,13 +416,13 @@ public class addProduct extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 private void reset() {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    
+      jButton1.setEnabled(true);
       uJTextfield1.setText("");
       jComboBox2.setSelectedIndex(0);
       jComboBox1.setSelectedIndex(0);
       uJTextfield1.grabFocus();
       uJTextfield1.setEditable(true);
-      
+      loadCustomers();
     }
 
 }
