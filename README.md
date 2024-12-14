@@ -47,10 +47,14 @@ Teamwork by Legacy
 
 # Links
 Canva :
-<a>https://www.canva.com/design/DAGSnoWWZNs/rovhSagnIz78-n7Ac61TQQ/edit?utm_content=DAGSnoWWZNs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton</a>
+<a href = "https://www.canva.com/design/DAGSnoWWZNs/rovhSagnIz78-n7Ac61TQQ/edit?utm_content=DAGSnoWWZNs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Canva Page</a>
 
 Git Guide :
-<a>https://drive.google.com/file/d/1w6sjJCEO6RlOFyV8RY4cKhbDYUl5CUVt/view?usp=sharing<a/>
+<a href = "https://drive.google.com/file/d/1w6sjJCEO6RlOFyV8RY4cKhbDYUl5CUVt/view?usp=sharing">Git Guide Download</a>
+
+Feel Fresh Logo : 
+<a href = "https://drive.google.com/drive/folders/12BWkS1KnN1W02kgYGh8ybHbC6-wOC3WN">Feel Fresh Logo Download</a>
+
 # Team
 <table>
 <tr>
