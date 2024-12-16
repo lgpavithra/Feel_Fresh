@@ -61,6 +61,8 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         panalRound2 = new desingcode.PanalRound();
         jLabel2 = new javax.swing.JLabel();
+        ControllerLoaderRight = new javax.swing.JPanel();
+        ControllerLoaderLeft = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,9 +187,9 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                 .addComponent(panalRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -221,21 +223,52 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Home");
 
+        ControllerLoaderRight.setBackground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout ControllerLoaderRightLayout = new javax.swing.GroupLayout(ControllerLoaderRight);
+        ControllerLoaderRight.setLayout(ControllerLoaderRightLayout);
+        ControllerLoaderRightLayout.setHorizontalGroup(
+            ControllerLoaderRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 230, Short.MAX_VALUE)
+        );
+        ControllerLoaderRightLayout.setVerticalGroup(
+            ControllerLoaderRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        ControllerLoaderLeft.setBackground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout ControllerLoaderLeftLayout = new javax.swing.GroupLayout(ControllerLoaderLeft);
+        ControllerLoaderLeft.setLayout(ControllerLoaderLeftLayout);
+        ControllerLoaderLeftLayout.setHorizontalGroup(
+            ControllerLoaderLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 230, Short.MAX_VALUE)
+        );
+        ControllerLoaderLeftLayout.setVerticalGroup(
+            ControllerLoaderLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout panalRound2Layout = new javax.swing.GroupLayout(panalRound2);
         panalRound2.setLayout(panalRound2Layout);
         panalRound2Layout.setHorizontalGroup(
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panalRound2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(ControllerLoaderLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ControllerLoaderRight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panalRound2Layout.setVerticalGroup(
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ControllerLoaderRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panalRound2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(ControllerLoaderLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -388,12 +421,14 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ControllerLoaderLeft;
+    private javax.swing.JPanel ControllerLoaderRight;
     private javax.swing.JButton jButtonBrandCategory;
     private javax.swing.JButton jButtonCompany;
     private javax.swing.JButton jButtonHome;
     private javax.swing.JButton jButtonProduct;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
