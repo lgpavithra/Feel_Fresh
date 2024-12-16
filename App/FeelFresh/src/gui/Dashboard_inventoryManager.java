@@ -9,6 +9,7 @@ import gui.panel.Brand;
 import gui.panel.BrandAndCategories;
 import gui.panel.Categories;
 import gui.panel.Company;
+import gui.panel.LinkBrandCategoryBtn;
 import gui.panel.Welcome;
 
 import gui.panel.addProduct;
@@ -27,6 +28,11 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard_inventoryManager
      */
+    
+    
+    
+    
+    
     public Dashboard_inventoryManager() {
         initComponents();
 
@@ -65,6 +71,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         ControllerLoaderLeft = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(0, 470));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -224,42 +231,22 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jLabel2.setText("Home");
 
         ControllerLoaderRight.setBackground(new java.awt.Color(102, 102, 102));
-
-        javax.swing.GroupLayout ControllerLoaderRightLayout = new javax.swing.GroupLayout(ControllerLoaderRight);
-        ControllerLoaderRight.setLayout(ControllerLoaderRightLayout);
-        ControllerLoaderRightLayout.setHorizontalGroup(
-            ControllerLoaderRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
-        );
-        ControllerLoaderRightLayout.setVerticalGroup(
-            ControllerLoaderRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        ControllerLoaderRight.setLayout(new java.awt.BorderLayout());
 
         ControllerLoaderLeft.setBackground(new java.awt.Color(102, 102, 102));
-
-        javax.swing.GroupLayout ControllerLoaderLeftLayout = new javax.swing.GroupLayout(ControllerLoaderLeft);
-        ControllerLoaderLeft.setLayout(ControllerLoaderLeftLayout);
-        ControllerLoaderLeftLayout.setHorizontalGroup(
-            ControllerLoaderLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
-        );
-        ControllerLoaderLeftLayout.setVerticalGroup(
-            ControllerLoaderLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        ControllerLoaderLeft.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout panalRound2Layout = new javax.swing.GroupLayout(panalRound2);
         panalRound2.setLayout(panalRound2Layout);
         panalRound2Layout.setHorizontalGroup(
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panalRound2Layout.createSequentialGroup()
-                .addComponent(ControllerLoaderLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ControllerLoaderLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ControllerLoaderRight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(ControllerLoaderRight, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         panalRound2Layout.setVerticalGroup(
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,19 +286,25 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
     private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
         changePanel_vp(new Welcome());
+        changeControllerPanel("Welcome");
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
 
     private void jButtonProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProductActionPerformed
         changePanel_vp(new addProduct());
+        changeControllerPanel("Product");
     }//GEN-LAST:event_jButtonProductActionPerformed
 
     private void jButtonCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompanyActionPerformed
         changePanel_vp(new Company());
+        
+        changeControllerPanel("Company");
     }//GEN-LAST:event_jButtonCompanyActionPerformed
 
     private void jButtonBrandCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrandCategoryActionPerformed
         changePanel_vp(new BrandAndCategories());
+
+        changeControllerPanel("Brand & Category");
     }//GEN-LAST:event_jButtonBrandCategoryActionPerformed
 
     private int expanded_width_vp;
@@ -336,7 +329,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                         e.printStackTrace();
                     }
                 }
-                
+
                 //remove text
                 toggleTextIcon(true);
 
@@ -441,4 +434,20 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     private desingcode.PanalRound panalRound1;
     private desingcode.PanalRound panalRound2;
     // End of variables declaration//GEN-END:variables
+
+    private void changeControllerPanel(String loadWindowName) {
+        boolean hasControllers;
+
+        ControllerLoaderLeft.removeAll();
+        ControllerLoaderRight.removeAll();
+        if (loadWindowName.equals("Brand & Category")) {
+            ControllerLoaderRight.add(new LinkBrandCategoryBtn(), BorderLayout.CENTER);
+        } 
+
+        SwingUtilities.updateComponentTreeUI(this);
+
+    }
+    
+    
+    
 }
