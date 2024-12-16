@@ -28,6 +28,11 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard_inventoryManager
      */
+    
+    
+    
+    
+    
     public Dashboard_inventoryManager() {
         initComponents();
 
@@ -442,4 +447,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
 
     }
+    
+    
+    
 }

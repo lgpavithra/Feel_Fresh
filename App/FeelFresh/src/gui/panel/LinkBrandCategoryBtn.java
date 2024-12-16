@@ -5,6 +5,10 @@
 package gui.panel;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import gui.dialog.LinkBrandCategoryDialog;
+import java.awt.Frame;
+import javax.swing.JFrame;
+
 
 /**
  *
@@ -15,10 +19,13 @@ public class LinkBrandCategoryBtn extends javax.swing.JPanel {
     /**
      * Creates new form LinkBrandCategoryBtn
      */
+    
+    
+    
     public LinkBrandCategoryBtn() {
         initComponents();
-
-       jButton1.putClientProperty(FlatClientProperties.STYLE, "arc:0");
+        
+        jButton1.putClientProperty(FlatClientProperties.STYLE, "arc:0");
     }
 
     /**
@@ -65,7 +72,9 @@ public class LinkBrandCategoryBtn extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+
+        new LinkBrandCategoryDialog((JFrame) this.getParent().getParent().getParent().getParent().getParent().getParent(), true).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
