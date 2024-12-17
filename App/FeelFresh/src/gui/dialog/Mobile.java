@@ -35,18 +35,17 @@ public class Mobile extends javax.swing.JDialog {
     }
 
     private void loadMobile(String Nic_HS) {
-
         try {
-            ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM user_has_mobile WHERE user_nic='" + Nic_HS + "'");
+            ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `user_mobile` WHERE `user_nic`='" + Nic_HS + "'");
 
             if (resultSet_HS.next()) {
-                uJTextfield1.setText(resultSet_HS.getString("mobile_number"));
+                uJTextfield1.setText(resultSet_HS.getString("mobile"));
             }
             if (resultSet_HS.next()) {
-                uJTextfield2.setText(resultSet_HS.getString("mobile_number"));
+                uJTextfield2.setText(resultSet_HS.getString("mobile"));
             }
             if (resultSet_HS.next()) {
-                uJTextfield3.setText(resultSet_HS.getString("mobile_number"));
+                uJTextfield3.setText(resultSet_HS.getString("mobile"));
             }
 
         } catch (Exception e) {
