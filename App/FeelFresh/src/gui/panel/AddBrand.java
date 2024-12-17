@@ -4,6 +4,7 @@
  */
 package gui.panel;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import javax.swing.JOptionPane;
 import model.MYSQL;
 
@@ -22,6 +23,9 @@ public class AddBrand extends javax.swing.JPanel {
     public AddBrand(Brand c) {
         initComponents();
         this.brand_vp = c;
+        
+        
+        
     }
 
     /**
@@ -45,6 +49,9 @@ public class AddBrand extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 204, 153));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
