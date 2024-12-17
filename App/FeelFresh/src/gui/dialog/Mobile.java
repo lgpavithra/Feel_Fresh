@@ -4,7 +4,7 @@
  */
 package gui.dialog;
 
-import gui.panel.Employee_temp;
+import gui.panel.Employee;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import model.MYSQL;
@@ -19,9 +19,9 @@ public class Mobile extends javax.swing.JDialog {
      * Creates new form Mobile
      */
 //    Dashboard_HRManager HRemployeefrom;
-    Employee_temp employeePanal_HS;
+    Employee employeePanal_HS;
 
-    public Mobile(java.awt.Frame parent, boolean modal, String nic_HS, Employee_temp Ejp) {
+    public Mobile(java.awt.Frame parent, boolean modal, String nic_HS, Employee Ejp) {
         super(parent, modal);
         initComponents();
 

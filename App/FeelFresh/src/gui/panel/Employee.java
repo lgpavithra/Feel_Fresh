@@ -23,16 +23,16 @@ import model.MYSQL;
  *
  * @author Sandun
  */
-public class Employee_temp extends javax.swing.JPanel {
+public class Employee extends javax.swing.JPanel {
 
     /**
-     * Creates new form Employee_temp
+     * Creates new form Employee
      */
     private final UpdateEmployee updateEmployee_HS;
     public static HashMap<String, Integer> UserTypeMap_HS = new HashMap();
     HashMap<String, Integer> UserStatuseMap_HS = new HashMap();
 
-    public Employee_temp() {
+    public Employee() {
         initComponents();
         jButton1.putClientProperty("JButton.buttonType", "roundRect");
         LoadEmployee_HS();
