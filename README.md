@@ -45,6 +45,12 @@ Teamwork by Legacy
  <li>JButton = w[72 or custom] h[23]</li>
 </ul>
 
+<h3>Colors</h3>
+<h6>JButton</h6>
+<ul>
+ <li>Insert or add = [255,255,255]</li>
+</ul>
+
 # Links
 Canva :
 <a href = "https://www.canva.com/design/DAGSnoWWZNs/rovhSagnIz78-n7Ac61TQQ/edit?utm_content=DAGSnoWWZNs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Canva Page</a>
