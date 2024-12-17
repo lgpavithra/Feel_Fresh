@@ -9,8 +9,10 @@ import gui.panel.Brand;
 import gui.panel.BrandAndCategories;
 import gui.panel.Categories;
 import gui.panel.Company;
+
 import gui.panel.LinkBrandCategoryBtn;
 import gui.panel.Welcome;
+
 
 import gui.panel.addProduct;
 
@@ -85,10 +87,12 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButtonHome = new javax.swing.JButton();
         jButtonProduct = new javax.swing.JButton();
+
         jButtonCompany = new javax.swing.JButton();
         jButtonBrandCategory = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jToggleButton1 = new javax.swing.JToggleButton();
+
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -151,6 +155,13 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("supplier");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -159,6 +170,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -170,6 +182,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                         .addGap(1, 1, 1))
                     .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
+
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,8 +198,10 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonProduct)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+
                 .addComponent(jButtonCompany)
                 .addGap(118, 118, 118))
+
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -337,6 +352,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         windowName_vp("Company");
     }//GEN-LAST:event_jButtonCompanyActionPerformed
 
+
     private void jButtonBrandCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrandCategoryActionPerformed
         changePanel_vp(new BrandAndCategories());
 
@@ -413,6 +429,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
     }
 
+
     //
     /*this method requires a panel object what you want to apply to to the dashboard
     You can clean the dashboard by passing a null object to the changePanel_vp method*/
@@ -452,11 +469,13 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JPanel ControllerLoaderLeft;
     private javax.swing.JPanel ControllerLoaderRight;
     private javax.swing.JButton jButtonBrandCategory;
     private javax.swing.JButton jButtonCompany;
     private javax.swing.JButton jButtonHome;
+
     private javax.swing.JButton jButtonProduct;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
