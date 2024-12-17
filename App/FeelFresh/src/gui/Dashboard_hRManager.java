@@ -303,6 +303,8 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         changePanel_vp(new Company());
 
         changeControllerPanel("Company");
+        
+        windowName_vp("Company");
     }//GEN-LAST:event_jButtonCompanyActionPerformed
 
     private int expanded_width_vp;
@@ -359,6 +361,10 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
 
     private void jButtonEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmployeeActionPerformed
         ChangePanal_HS(new employee());
+        
+        changeControllerPanel("Employee");
+        
+        windowName_vp("Employee");
     }//GEN-LAST:event_jButtonEmployeeActionPerformed
     private void ChangePanal_HS(JPanel PanalFrome_HS) {
         jPanel2.removeAll();
@@ -454,6 +460,10 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
 
         SwingUtilities.updateComponentTreeUI(this);
 
+    }
+    
+      private void windowName_vp(String text) {
+       jLabel2.setText(text.trim());
     }
 
 }
