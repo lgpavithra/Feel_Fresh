@@ -318,24 +318,31 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
         changePanel_vp(new Welcome());
         changeControllerPanel("Welcome");
+        windowName_vp("Home");
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
 
     private void jButtonProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProductActionPerformed
         changePanel_vp(new addProduct());
         changeControllerPanel("Product");
+        
+        
+        windowName_vp("Product");
     }//GEN-LAST:event_jButtonProductActionPerformed
 
     private void jButtonCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompanyActionPerformed
         changePanel_vp(new Company());
         
         changeControllerPanel("Company");
+        windowName_vp("Company");
     }//GEN-LAST:event_jButtonCompanyActionPerformed
 
     private void jButtonBrandCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrandCategoryActionPerformed
         changePanel_vp(new BrandAndCategories());
 
         changeControllerPanel("Brand & Category");
+        
+        windowName_vp("Brand & Category");
     }//GEN-LAST:event_jButtonBrandCategoryActionPerformed
 
     private int expanded_width_vp;
@@ -438,7 +445,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+                        public void run() {
                 new Dashboard_inventoryManager().setVisible(true);
             }
         });
@@ -477,6 +484,10 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
         SwingUtilities.updateComponentTreeUI(this);
 
+    }
+
+    private void windowName_vp(String text) {
+       jLabel2.setText(text.trim());
     }
     
     
