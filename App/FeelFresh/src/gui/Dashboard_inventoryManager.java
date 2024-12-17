@@ -11,6 +11,7 @@ import gui.panel.Categories;
 import gui.panel.Company;
 
 import gui.panel.LinkBrandCategoryBtn;
+import gui.panel.SupplierRegistration;
 import gui.panel.Welcome;
 
 
@@ -87,12 +88,11 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButtonHome = new javax.swing.JButton();
         jButtonProduct = new javax.swing.JButton();
-
         jButtonCompany = new javax.swing.JButton();
         jButtonBrandCategory = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jToggleButton1 = new javax.swing.JToggleButton();
-
+        jButtonCompany1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -154,11 +154,14 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                 jToggleButton1ActionPerformed(evt);
             }
         });
+      
 
-        jButton2.setText("supplier");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCompany1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/supplier-24.png"))); // NOI18N
+        jButtonCompany1.setText("   Supplier");
+        jButtonCompany1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonCompany1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonCompany1ActionPerformed(evt);
             }
         });
 
@@ -170,7 +173,6 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,11 +180,11 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                             .addComponent(jButtonCompany, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jButtonCompany1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(1, 1, 1))
                     .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
-
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,10 +200,10 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonProduct)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-
                 .addComponent(jButtonCompany)
-                .addGap(118, 118, 118))
-
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCompany1)
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -413,6 +415,13 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(jPanel1);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
+    private void jButtonCompany1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany1ActionPerformed
+       changePanel_vp(new SupplierRegistration());
+        
+        changeControllerPanel("Supplier");
+        windowName_vp("Supplier");
+    }//GEN-LAST:event_jButtonCompany1ActionPerformed
+
     private void toggleTextIcon(boolean isSelected) {
 
         if (isSelected) {
@@ -469,13 +478,13 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-
     private javax.swing.JPanel ControllerLoaderLeft;
     private javax.swing.JPanel ControllerLoaderRight;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonBrandCategory;
     private javax.swing.JButton jButtonCompany;
+    private javax.swing.JButton jButtonCompany1;
     private javax.swing.JButton jButtonHome;
-
     private javax.swing.JButton jButtonProduct;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
