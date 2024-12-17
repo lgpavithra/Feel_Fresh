@@ -375,6 +375,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Male"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jRadioButton1.setActionCommand(&quot;1&quot;);"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JRadioButton" name="jRadioButton2">
               <Properties>
@@ -383,11 +386,17 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Female"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jRadioButton2.setActionCommand(&quot;2&quot;);"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add Mobiles"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -426,15 +435,18 @@
             <Component class="javax.swing.JTable" name="jTable2">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="0">
+                  <Table columnCount="11" rowCount="0">
                     <Column editable="false" title="NIC" type="java.lang.Object"/>
                     <Column editable="false" title="FIrst Name" type="java.lang.Object"/>
                     <Column editable="false" title="Last Name" type="java.lang.Object"/>
                     <Column editable="false" title="Email" type="java.lang.Object"/>
-                    <Column editable="false" title="Password" type="java.lang.Object"/>
-                    <Column editable="false" title="Gender" type="java.lang.Object"/>
                     <Column editable="false" title="User Type" type="java.lang.Object"/>
                     <Column editable="false" title="Status" type="java.lang.Object"/>
+                    <Column editable="false" title="Line 1" type="java.lang.Object"/>
+                    <Column editable="false" title="Line 2" type="java.lang.Object"/>
+                    <Column editable="false" title="No" type="java.lang.Object"/>
+                    <Column editable="false" title="Gender" type="java.lang.Object"/>
+                    <Column editable="false" title="Password" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -474,7 +486,22 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
+                    <Column maxWidth="-1" minWidth="4" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="50" minWidth="50" prefWidth="50" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -500,6 +527,12 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="jLabel13" min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel14" min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="jLabel15" min="-2" pref="23" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jPanel5" min="-2" pref="184" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -510,11 +543,23 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanel5" pref="32" max="32767" attributes="0"/>
-                      <Component id="jButton2" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanel5" pref="32" max="32767" attributes="0"/>
+                              <Component id="jButton2" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel13" alignment="3" max="32767" attributes="0"/>
+                              <Component id="jLabel14" alignment="3" max="32767" attributes="0"/>
+                              <Component id="jLabel15" min="-2" pref="16" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -549,6 +594,12 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="jLabel13">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel14">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel15">
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

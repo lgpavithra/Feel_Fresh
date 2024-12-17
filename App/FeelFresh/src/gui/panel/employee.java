@@ -4,9 +4,17 @@
  */
 package gui.panel;
 
+import gui.dialog.Mobile;
 import java.awt.BorderLayout;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
+import javax.swing.ButtonModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import model.MYSQL;
@@ -15,47 +23,106 @@ import model.MYSQL;
  *
  * @author Sandun
  */
-public class employee extends javax.swing.JPanel {
+public class Employee extends javax.swing.JPanel {
 
     /**
-     * Creates new form employee
+     * Creates new form Employee
      */
     private final UpdateEmployee updateEmployee_HS;
-
-    public employee() {
+    public static HashMap<String, Integer> UserTypeMap_HS = new HashMap();
+    HashMap<String, Integer> UserStatuseMap_HS = new HashMap();
+    
+    public Employee() {
         initComponents();
         jButton1.putClientProperty("JButton.buttonType", "roundRect");
         LoadEmployee_HS();
-
-        updateEmployee_HS = new UpdateEmployee();
+        jComboBox1.setEnabled(false);
+        LoadUserType();
+        LoadStatus();
+        updateEmployee_HS = new UpdateEmployee(this);
+        jLabel13.setVisible(false);
+        jLabel14.setVisible(false);
+        jLabel15.setVisible(false);
+        
     }
+    
+    public void setMoblie(String mobile[]) {
+        jLabel13.setText(mobile[0]);
+        jLabel14.setText(mobile[1]);
+        jLabel15.setText(mobile[2]);
+        
+    }
+    
+    private void LoadStatus() {
+        try {
+            ResultSet re_HS = MYSQL.executeSearch("SELECT * FROM `status`");
+            
+            Vector vector = new Vector();
+            
+            while (re_HS.next()) {
+                vector.add(re_HS.getString("name"));
+                UserStatuseMap_HS.put(re_HS.getString("name"), re_HS.getInt("id"));
+            }
+            
+            DefaultComboBoxModel model = new DefaultComboBoxModel(vector);
+            jComboBox1.setModel(model);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void LoadUserType() {
+        try {
+            ResultSet re_HS = MYSQL.executeSearch("SELECT * FROM `user_type`");
+            
+            Vector vector = new Vector();
+            vector.add("Select");
+            
+            while (re_HS.next()) {
+                vector.add(re_HS.getString("name"));
+                UserTypeMap_HS.put(re_HS.getString("name"), re_HS.getInt("id"));
 
+//                countryMap.put(rs.getString("country_name"), rs.getInt("c_id"));
+            }
+            
+            DefaultComboBoxModel model = new DefaultComboBoxModel(vector);
+            jComboBox2.setModel(model);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void LoadEmployee_HS() {
-
+        
         try {
             ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `user` INNER JOIN `status` ON "
                     + "`user`.status_id=`status`.`id` INNER JOIN `gender` ON `user`.`gender_id`=`gender`.`id` "
                     + "INNER JOIN `user_type` ON `user`.`user_type_id`=`user_type`.`id`");
             DefaultTableModel Tablemodel_HS = (DefaultTableModel) jTable2.getModel();
             Tablemodel_HS.setRowCount(0);
-
+            
             while (resultSet_HS.next()) {
                 Vector v = new Vector<>();
                 v.add(resultSet_HS.getString("nic"));
                 v.add(resultSet_HS.getString("first_name"));
                 v.add(resultSet_HS.getString("last_name"));
                 v.add(resultSet_HS.getString("email"));
-                v.add(resultSet_HS.getString("password"));
-                v.add(resultSet_HS.getString("gender.name"));
                 v.add(resultSet_HS.getString("user_type.name"));
                 v.add(resultSet_HS.getString("status.name"));
+                v.add(resultSet_HS.getString("line1"));
+                v.add(resultSet_HS.getString("line2"));
+                v.add(resultSet_HS.getString("no"));
+                v.add(resultSet_HS.getString("gender.name"));
+                v.add(resultSet_HS.getString("password"));
                 Tablemodel_HS.addRow(v);
             }
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
     }
 
     /**
@@ -102,6 +169,9 @@ public class employee extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Employee");
@@ -150,11 +220,18 @@ public class employee extends javax.swing.JPanel {
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Male");
+        jRadioButton1.setActionCommand("1");
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Female");
+        jRadioButton2.setActionCommand("2");
 
         jButton1.setText("Add Mobiles");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -299,11 +376,11 @@ public class employee extends javax.swing.JPanel {
 
             },
             new String [] {
-                "NIC", "FIrst Name", "Last Name", "Email", "Password", "Gender", "User Type", "Status"
+                "NIC", "FIrst Name", "Last Name", "Email", "User Type", "Status", "Line 1", "Line 2", "No", "Gender", "Password"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -317,6 +394,15 @@ public class employee extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(7).setMinWidth(4);
+            jTable2.getColumnModel().getColumn(9).setMinWidth(50);
+            jTable2.getColumnModel().getColumn(9).setPreferredWidth(50);
+            jTable2.getColumnModel().getColumn(9).setMaxWidth(50);
+            jTable2.getColumnModel().getColumn(10).setMinWidth(0);
+            jTable2.getColumnModel().getColumn(10).setPreferredWidth(0);
+            jTable2.getColumnModel().getColumn(10).setMaxWidth(0);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -357,7 +443,13 @@ public class employee extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -365,11 +457,19 @@ public class employee extends javax.swing.JPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -392,6 +492,177 @@ public class employee extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void EmployeeUpdate_HS(String EmpADDAndUpdate_HS) {
+        
+        String Fname_HS = uJTextfield1.getText();
+        String lname_HS = uJTextfield2.getText();
+        String NIC_HS = uJTextfield3.getText().trim();
+        String Email_HS = uJTextfield4.getText();
+        String Password_HS = String.valueOf(uJPasswordFiled1.getPassword());
+        ButtonModel gender_HS = buttonGroup1.getSelection();
+        String line1_HS = uJTextfield5.getText();
+        String Line2_HS = uJTextfield6.getText();
+        String NO_HS = uJTextfield7.getText();
+        String user_status_HS = String.valueOf(jComboBox1.getSelectedItem());
+        String UserType_HS = String.valueOf(jComboBox2.getSelectedItem());
+        String number1 = jLabel13.getText();
+        String number2 = jLabel14.getText();
+        String number3 = jLabel15.getText();
+        String registerDate_HS = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+//        System.out.println(Fname_HS);
+//        System.out.println(lname_HS);
+//        System.out.println(NIC_HS);
+//        System.out.println(Email_HS);
+//        System.out.println(Password_HS);
+////        System.out.println(gender_HS);
+////        System.out.println(genderId_HS);
+//        System.out.println(line1_HS);
+//        System.out.println(Line2_HS);
+//        System.out.println(NO_HS);
+//        System.out.println(user_status_HS);
+        if (Fname_HS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Employee First name.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJTextfield1.grabFocus();
+            
+        } else if (lname_HS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Last Name.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJTextfield2.grabFocus();
+            
+        } else if (NIC_HS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter NIC.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJTextfield3.grabFocus();
+            
+        } else if (!NIC_HS.matches("^[0-9]{9}[Vv]$") & !NIC_HS.matches("^[0-9]{12}$")) {
+            JOptionPane.showMessageDialog(this, "The NIC number is invalid.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJTextfield3.grabFocus();
+            
+        } else if (Email_HS.isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "Please Enter Email.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJTextfield4.grabFocus();
+            
+        } else if (!Email_HS.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
+            JOptionPane.showMessageDialog(this, "Invalid Email.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJTextfield4.grabFocus();
+            
+        } else if (Password_HS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Password.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJPasswordFiled1.grabFocus();
+        } else if (gender_HS == null) {
+            JOptionPane.showMessageDialog(this, "Please Select Gender.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            
+        } else if (line1_HS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Address Line 1.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJTextfield5.grabFocus();
+            
+        } else if (Line2_HS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Address Line 2.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJTextfield6.grabFocus();
+            
+        } else if (NO_HS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter Address Number.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJTextfield7.grabFocus();
+            
+        } else if (UserType_HS.equals("Select")) {
+            JOptionPane.showMessageDialog(this, "Please Select Usertype.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            jComboBox2.grabFocus();
+            
+        } else if (number1.isEmpty() & number2.isEmpty() & number3.isEmpty()) {
+            MobileViwe();
+        } else {
+            
+            try {
+                String genderId_HS = gender_HS.getActionCommand();
+                int UserTypeId_HS = UserTypeMap_HS.get(UserType_HS);
+                int UserStatusId_HS = UserStatuseMap_HS.get(user_status_HS);
+                
+                if (EmpADDAndUpdate_HS.equals("EmpAdd")) {
+                    ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `user` WHERE `user`.`nic`='" + NIC_HS + "'");
+                    if (resultSet_HS.next()) {
+                        JOptionPane.showMessageDialog(this, "This Employee Allredy Registered.", "WARNING", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        MYSQL.executeIUD("INSERT INTO `user` (`nic`,`first_name`,`last_name`,`email`,`reg_date`,`password`,`no`,"
+                                + "`line1`,`line2`,`status_id`,`user_type_id`,`gender_id`)"
+                                + " VALUES ('" + NIC_HS + "','" + Fname_HS + "','" + lname_HS + "','" + Email_HS + "','" + registerDate_HS + "','" + Password_HS + "',"
+                                + "'" + NO_HS + "','" + line1_HS + "','" + Line2_HS + "','1','" + UserTypeId_HS + "','" + genderId_HS + "');");
+                        
+                        long id = System.currentTimeMillis();
+                        String Mobileid = (String.valueOf(id));
+                        MYSQL.executeIUD("INSERT INTO `mobile` (`number`)\n"
+                                + "VALUES \n"
+                                + "    ('" + number1 + "'),\n"
+                                + "    ('" + number2 + "'),\n"
+                                + "    ('" + number3 + "');");
+                        MYSQL.executeIUD("INSERT INTO `user_has_mobile` (`user_nic`,`mobile_number`)"
+                                + " VALUES "
+                                + "    ('" + NIC_HS + "','" + number1 + "'),\n"
+                                + "    ('" + NIC_HS + "','" + number2 + "'),\n"
+                                + "    ('" + NIC_HS + "','" + number3 + "');");
+                        
+                        LoadEmployee_HS();
+                        Clean_All_HS();
+                    }
+                }
+                if (EmpADDAndUpdate_HS.equals("EmpUpdate")) {
+                    
+                    MYSQL.executeIUD("UPDATE `user` SET `first_name`='" + Fname_HS + "',`last_name`='" + lname_HS + "',`email`='" + Email_HS + "',"
+                            + "`password`='" + Password_HS + "',`no`='" + NO_HS + "',`line1`='" + line1_HS + "',`line2`='" + Line2_HS + "',`status_id`='" + UserStatusId_HS + "',"
+                            + "`user_type_id`='" + UserTypeId_HS + "',`gender_id`='" + genderId_HS + "' WHERE `nic`='" + NIC_HS + "'");
+                    
+                    ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM user_has_mobile WHERE user_nic='" + NIC_HS + "'");
+                                  
+                    
+                    if (!resultSet_HS.next() || resultSet_HS.next()) {
+                        String mobile1_HS = resultSet_HS.getString("mobile_number");
+                        System.out.println("djkb");
+                        if (!mobile1_HS.equals(number1)) {
+//                            updateMB_HS();
+                            System.out.println("Update 1 : " + number1);
+                        }
+                    }
+                    if (resultSet_HS.next()) {
+                        String mobile2_HS = resultSet_HS.getString("mobile_number");
+                        if (mobile2_HS.isEmpty() && !number2.isEmpty()) {
+                            System.out.println("insert 2 : " + number2);
+                            
+                        }
+                        if (!mobile2_HS.equals(number2)) {
+                            System.out.println("Update 2 : " + number2);
+                            
+                        }
+                        if (!mobile2_HS.isEmpty() && number2.isEmpty()) {
+                            System.out.println("delete 2 : " + number2);
+                            
+                        }
+                    }
+                    if (resultSet_HS.next()) {
+                        String mobile3_HS = resultSet_HS.getString("mobile_number");
+                        if (mobile3_HS.isEmpty() && !number3.isEmpty()) {
+                            System.out.println("insert 3 : " + number3);
+                            
+                        }
+                        if (!mobile3_HS.equals(number3)) {
+                            System.out.println("Update 3 : " + number3);
+                            
+                        }
+                        if (!mobile3_HS.isEmpty() && number3.isEmpty()) {
+                            System.out.println("delete 3 : " + number3);
+                            
+                        }
+                    }
+                    
+                    LoadEmployee_HS();
+                    Clean_All_HS();
+                }
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+    }
+    
     private void Clean_All_HS() {
         uJTextfield1.setText("");
         uJTextfield2.setText("");
@@ -405,11 +676,16 @@ public class employee extends javax.swing.JPanel {
         jComboBox1.setSelectedIndex(0);
         jComboBox2.setSelectedIndex(0);
         jTable2.clearSelection();
-
+        jTable2.setEnabled(true);
+        jComboBox1.setEnabled(false);
+        uJTextfield3.setEnabled(true);
+        jLabel13.setText("");
+        jLabel14.setText("");
+        jLabel15.setText("");
         jPanel5.removeAll();
         jPanel5.add(jButton3, BorderLayout.CENTER);
         SwingUtilities.updateComponentTreeUI(jPanel5);
-
+        
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -418,32 +694,77 @@ public class employee extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-
+        
         if (evt.getClickCount() == 2) {
-
+            
             jPanel5.removeAll();
             jPanel5.add(updateEmployee_HS);
-            SwingUtilities.updateComponentTreeUI(jPanel3);
-
-            int row = jTable2.getSelectedRow();
-
+            SwingUtilities.updateComponentTreeUI(jPanel5);
+            uJTextfield3.setEnabled(false);
+            jComboBox1.setEnabled(true);
+            jTable2.setEnabled(false);
+            
+            int Selectedrow_HS = jTable2.getSelectedRow();
+            
+            String NIC_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 0));
+            uJTextfield3.setText(NIC_HS);
+            
+            String Fname_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 1));
+            uJTextfield1.setText(Fname_HS);
+            String lname_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 2));
+            uJTextfield2.setText(lname_HS);
+            
+            String Email_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 3));
+            uJTextfield4.setText(Email_HS);
+            
+            String userType_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 4));
+            jComboBox2.setSelectedItem(userType_HS);
+            
+            String status_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 5));
+            jComboBox1.setSelectedItem(status_HS);
+            
+            String Line1_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 6));
+            uJTextfield5.setText(Line1_HS);
+            
+            String Line2_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 7));
+            uJTextfield6.setText(Line2_HS);
+            
+            String No_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 8));
+            uJTextfield7.setText(No_HS);
+            
+            String gender_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 9));
+            if (gender_HS.equals("Male")) {
+                jRadioButton1.setSelected(true);
+            }
+            if (gender_HS.equals("Female")) {
+                jRadioButton2.setSelected(true);
+            }
+            String Password_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 10));
+            uJPasswordFiled1.setText(Password_HS);
+            
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-
-        String Fname = uJTextfield1.getText();
-        String lname = uJTextfield2.getText();
-        String NIC = uJTextfield3.getText();
-        String Email = uJTextfield4.getText();
-        String Password = String.valueOf(uJPasswordFiled1.getPassword());
-        String line1 = uJTextfield5.getText();
-        String Line2 = uJTextfield6.getText();
-        String NO = uJTextfield7.getText();
-
+        EmployeeUpdate_HS("EmpAdd");
     }//GEN-LAST:event_jButton3ActionPerformed
+    
+    private void MobileViwe() {
+        String NIC_HS = uJTextfield3.getText().trim();
+        if (NIC_HS.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Select or Enter NIC.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            uJTextfield3.grabFocus();
+        } else {
+            new Mobile(null, true, NIC_HS, this).setVisible(true);
+        }
+    }
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+//ScheduleUpdate scheduleUpdate= new ScheduleUpdate(home, true, selectId);
+        MobileViwe();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -456,6 +777,9 @@ public class employee extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
