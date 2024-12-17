@@ -5,7 +5,7 @@
 package gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import gui.panel.Employee;
+import gui.panel.Employee_temp;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -102,7 +102,7 @@ public class Dashboard_HRManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ChangePanal_HS(new Employee());
+        ChangePanal_HS(new Employee_temp());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void ChangePanal_HS(JPanel PanalFrome_HS) {

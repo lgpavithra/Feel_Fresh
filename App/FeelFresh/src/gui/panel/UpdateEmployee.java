@@ -13,9 +13,9 @@ public class UpdateEmployee extends javax.swing.JPanel {
     /**
      * Creates new form AddEmployee
      */
-    private Employee emp_HS;
+    private Employee_temp emp_HS;
 
-    public UpdateEmployee(Employee EUpdate) {
+    public UpdateEmployee(Employee_temp EUpdate) {
         initComponents();
 
         emp_HS = EUpdate;
