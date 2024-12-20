@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.MYSQL;
 
 /**
@@ -26,8 +27,9 @@ public class SupplierRegistration extends javax.swing.JPanel {
     public SupplierRegistration() {
         initComponents();
         loadStatus_ps();
-        jComboBox1.setEnabled(false);
-        jButton2.setEnabled(false);
+        loadSupplier_ps();
+        //jComboBox1.setEnabled(false);
+        //jButton2.setEnabled(false);
     }
 
         private void loadStatus_ps(){
@@ -54,7 +56,37 @@ public class SupplierRegistration extends javax.swing.JPanel {
     } 
     
     
-    
+     private void loadSupplier_ps() {
+   
+     try{
+     
+       ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `supplier` INNER JOIN `status` ON `supplier`.`status_id`=`status`.`id`");
+     
+      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+      model.setRowCount(0);
+     
+      while (resultSet.next()){
+      Vector<String> vector = new Vector<>();
+       vector.add(resultSet.getString("id"));
+       vector.add(resultSet.getString("first_name"));
+       vector.add(resultSet.getString("last_name"));
+       vector.add(resultSet.getString("email"));
+       vector.add(resultSet.getString("reg_date"));
+       vector.add(resultSet.getString("no"));
+       vector.add(resultSet.getString("line1"));
+       vector.add(resultSet.getString("line2"));
+       vector.add(resultSet.getString("status.name"));
+     
+      model.addRow(vector);
+         
+      }
+      
+     
+     }catch(Exception e){
+      e.printStackTrace();
+     }
+   
+   }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,6 +118,8 @@ public class SupplierRegistration extends javax.swing.JPanel {
         uJTextfield1 = new component.UJTextfield();
         jLabel3 = new javax.swing.JLabel();
         uJTextfield2 = new component.UJTextfield();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -135,7 +169,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -188,7 +222,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -203,8 +237,32 @@ public class SupplierRegistration extends javax.swing.JPanel {
                     .addComponent(uJTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(uJTextfield2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "first name", "last name", "email", "reg_date", "no", "line 1", "line 2", "status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -242,6 +300,10 @@ public class SupplierRegistration extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(uJTextfield5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(25, 25, 25))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,7 +344,9 @@ public class SupplierRegistration extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(uJTextfield6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(uJTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 77, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -308,7 +372,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter email address", "Warning", JOptionPane.WARNING_MESSAGE);
         }else if(!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
                     + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
-                JOptionPane.showMessageDialog(this, "Please enter valid Invalid email", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter valid email", "Warning", JOptionPane.WARNING_MESSAGE);
        // }else if (mobile.isEmpty()) {
            // JOptionPane.showMessageDialog(this, "Please enter mobile number", "Warning", JOptionPane.WARNING_MESSAGE);
        // }else if (!mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
@@ -321,7 +385,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
             try {
 
                 MYSQL.executeIUD("INSERT INTO `supplier`(`first_name`,`last_name`,`email`,`reg_date`,`no`,`line1`,`line2`,`status_id`)VALUES('" + first_name + "','"+ last_name +"','"+ email +"','"+ date +"','"+ no +"','"+ line1 +"','"+ line2 +"','"+ 1 +"')");
-
+                loadSupplier_ps();
                 reset_ps();
 
             } catch (Exception e) {
@@ -338,8 +402,79 @@ public class SupplierRegistration extends javax.swing.JPanel {
     }//GEN-LAST:event_uJTextfield5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       String first_name = uJTextfield1.getText().trim();
+        String last_name = uJTextfield2.getText().trim();
+        String email = uJTextfield3.getText().trim();
+        String date =  new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        //String mobile = uJTextfield4.getText().trim();
+        String no = uJTextfield5.getText().trim();
+        String line1 = uJTextfield6.getText().trim();
+        String line2= uJTextfield7.getText().trim();
+        String status  = String.valueOf(jComboBox1.getSelectedItem()); 
+       
+          int row = jTable1.getSelectedRow();
+        
+        if (first_name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter first name", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (last_name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter last name", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter email address", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if(!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
+                    + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
+                JOptionPane.showMessageDialog(this, "Please enter valid email", "Warning", JOptionPane.WARNING_MESSAGE);
+       // }else if (mobile.isEmpty()) {
+           // JOptionPane.showMessageDialog(this, "Please enter mobile number", "Warning", JOptionPane.WARNING_MESSAGE);
+       // }else if (!mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
+             //   JOptionPane.showMessageDialog(this, "Please enter valid mobile", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (no.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter address no", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (line1.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter address", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+           try{
+           
+               
+            MYSQL.executeIUD("UPDATE `supplier` SET `first_name`='"+first_name+"',`last_name`='"+last_name+"',`email`='"+email+"',`no`='"+no+"',`line1`='"+line1+"',`line2`='"+line2+"',`status_id`='"+statusMap.get(status)+"' WHERE `id` = '"+String.valueOf(jTable1.getValueAt(row ,0))+"'");
+            loadSupplier_ps();
+            reset_ps();
+             jButton1.setEnabled(true);
+           
+           
+           }catch(Exception e){
+             e.printStackTrace();
+           }
+        
+      }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+         jButton1.setEnabled(false);
+        int row = jTable1.getSelectedRow();
+        
+        String first_name = String.valueOf(jTable1.getValueAt(row ,1));
+        String last_name = String.valueOf(jTable1.getValueAt(row ,2));
+        String email = String.valueOf(jTable1.getValueAt(row ,3));
+        String no = String.valueOf(jTable1.getValueAt(row ,5));
+        String line1 = String.valueOf(jTable1.getValueAt(row ,6));
+        String line2 = String.valueOf(jTable1.getValueAt(row ,7));
+        String status = String.valueOf(jTable1.getValueAt(row ,8));
+       
+        if (evt.getClickCount() == 2) {
+        uJTextfield1.setText(first_name);
+        uJTextfield2.setText(last_name);
+        uJTextfield3.setText(email);
+        uJTextfield5.setText(no);
+        uJTextfield6.setText(line1);
+        uJTextfield7.setText(line2);
+        jComboBox1.setSelectedItem(status);
+        }
+        
+        if (evt.getClickCount() == 1) {
+        reset_ps();
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -358,6 +493,8 @@ public class SupplierRegistration extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
     private component.UJTextfield uJTextfield3;
@@ -372,11 +509,12 @@ public class SupplierRegistration extends javax.swing.JPanel {
         uJTextfield1.setText("");
         uJTextfield2.setText("");
         uJTextfield3.setText("");
-       
         uJTextfield5.setText("");
         uJTextfield6.setText("");
         uJTextfield7.setText("");
+        jComboBox1.setSelectedIndex(0);
 
         uJTextfield1.grabFocus();
+        jTable1.clearSelection();
     }
 }
