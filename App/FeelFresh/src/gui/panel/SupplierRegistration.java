@@ -36,14 +36,10 @@ public class SupplierRegistration extends javax.swing.JPanel {
     
     Vector vector = new Vector<>();
     vector.add("Select");
+    vector.add("Active");
+    vector.add("Inactive");
     
-     ResultSet resultSet   =   MYSQL.executeSearch("SELECT * FROM `status`");
-     
-     while(resultSet.next()){
-     vector.add(resultSet.getString("name"));
-     statusMap.put(resultSet.getString("name"),resultSet.getString("id"));
-     }
-    
+
     jComboBox1.setModel(new DefaultComboBoxModel<>(vector));
     
     
