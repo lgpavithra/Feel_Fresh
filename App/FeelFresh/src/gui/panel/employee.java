@@ -33,9 +33,9 @@ public class employee extends javax.swing.JPanel {
     private void LoadEmployee_HS() {
 
         try {
-            ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `user` INNER JOIN `status` ON "
-                    + "`user`.status_id=`status`.`id` INNER JOIN `gender` ON `user`.`gender_id`=`gender`.`id` "
-                    + "INNER JOIN `user_type` ON `user`.`user_type_id`=`user_type`.`id`");
+            ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `user`  "
+                   
+                    );
             DefaultTableModel Tablemodel_HS = (DefaultTableModel) jTable2.getModel();
             Tablemodel_HS.setRowCount(0);
 

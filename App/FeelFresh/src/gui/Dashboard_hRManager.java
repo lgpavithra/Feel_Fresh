@@ -9,7 +9,6 @@ import gui.panel.Brand;
 import gui.panel.BrandAndCategories;
 import gui.panel.Categories;
 import gui.panel.Company;
-import gui.panel.LinkBrandCategoryBtn;
 import gui.panel.Welcome;
 
 import gui.panel.addProduct;
@@ -176,6 +175,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/150px-Feel-Fresh-logo.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Quicksand Medium", 0, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("12:25:30");
 
         jLabel4.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
@@ -202,14 +202,14 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(panalRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
         jPanel3Layout.setVerticalGroup(
@@ -449,15 +449,16 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
     private desingcode.PanalRound panalRound2;
     // End of variables declaration//GEN-END:variables
 
+    /*This method is intended for load more options for controller panel*/
     private void changeControllerPanel(String loadWindowName) {
         boolean hasControllers;
 
         ControllerLoaderLeft.removeAll();
         ControllerLoaderRight.removeAll();
-        if (loadWindowName.equals("Brand & Category")) {
-            ControllerLoaderRight.add(new LinkBrandCategoryBtn(), BorderLayout.CENTER);
-        }
+        
 
+        
+        
         SwingUtilities.updateComponentTreeUI(this);
 
     }

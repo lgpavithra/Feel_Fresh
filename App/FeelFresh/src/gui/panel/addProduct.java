@@ -59,7 +59,7 @@ public class addProduct extends javax.swing.JPanel {
     vector.add("Select");
     
     
-     ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `brand` INNER JOIN `category_has_brand` ON `brand`.`id`=`category_has_brand`.`brand_id` ");
+     ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `brand`");
      //ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `brand` ");
      
      while(resultSet.next()){
@@ -307,8 +307,8 @@ public class addProduct extends javax.swing.JPanel {
          String name  = uJTextfield1.getText();
      String brand  = String.valueOf(jComboBox1.getSelectedItem());   
      String category  = String.valueOf(jComboBox2.getSelectedItem());   
-        System.out.println(brandMap);
-        System.out.println(brand);
+//        System.out.println(brandMap);
+//        System.out.println(brand);
        
       if(name.isEmpty()) {
           JOptionPane.showMessageDialog(this, "Please enter roduct name", "Warning", JOptionPane.WARNING_MESSAGE);
