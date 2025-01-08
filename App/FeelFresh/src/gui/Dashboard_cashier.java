@@ -76,7 +76,6 @@ public class Dashboard_cashier extends javax.swing.JFrame {
         jButtonHome = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jButtonHome1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -112,15 +111,6 @@ public class Dashboard_cashier extends javax.swing.JFrame {
             }
         });
 
-        jButtonHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/home-28.png"))); // NOI18N
-        jButtonHome1.setText("   Home");
-        jButtonHome1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButtonHome1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonHome1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,10 +125,6 @@ public class Dashboard_cashier extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(14, 14, 14))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jButtonHome1)
-                .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,9 +135,7 @@ public class Dashboard_cashier extends javax.swing.JFrame {
                 .addComponent(jButtonHome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonHome1)
-                .addContainerGap())
+                .addGap(47, 47, 47))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -337,10 +321,6 @@ public class Dashboard_cashier extends javax.swing.JFrame {
         jToggleButton1.setBorder(null);
         SwingUtilities.updateComponentTreeUI(jPanel1);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
-
-    private void jButtonHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHome1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonHome1ActionPerformed
     private void ChangePanal_HS(JPanel PanalFrome_HS) {
         jPanel2.removeAll();
         if (PanalFrome_HS != null) {
@@ -404,7 +384,6 @@ public class Dashboard_cashier extends javax.swing.JFrame {
     private javax.swing.JPanel ControllerLoaderLeft;
     private javax.swing.JPanel ControllerLoaderRight;
     private javax.swing.JButton jButtonHome;
-    private javax.swing.JButton jButtonHome1;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
