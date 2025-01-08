@@ -149,8 +149,8 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel3" max="32767" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="jLabel3" pref="97" max="32767" attributes="0"/>
+                      <Component id="jLabel4" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
@@ -200,6 +200,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Quicksand Medium" size="18" style="0"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="12:25:30"/>
           </Properties>
         </Component>
@@ -257,9 +258,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="ControllerLoaderLeft" min="-2" pref="236" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" pref="51" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="35" max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="212" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" pref="52" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" pref="35" max="32767" attributes="0"/>
                   <Component id="ControllerLoaderRight" min="-2" pref="195" max="-2" attributes="0"/>
               </Group>
           </Group>
