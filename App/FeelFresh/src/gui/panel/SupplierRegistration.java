@@ -316,7 +316,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
         }  else {
             try {
 
-                MYSQL.executeIUD("INSERT INTO `supplier`(`first_name`,`last_name`,`email`,`reg_date`,`no`,`line1`,`line2`,`status_id`)VALUES('" + first_name + "','"+ last_name +"','"+ email +"','"+ date +"','"+ no +"','"+ line1 +"','"+ line2 +"','"+ 1 +"')");
+                MYSQL.executeIUD("INSERT INTO `supplier`(`first_name`,`last_name`,`email`,`reg_date`,`no`,`line1`,`line2`)VALUES('" + first_name + "','"+ last_name +"','"+ email +"','"+ date +"','"+ no +"','"+ line1 +"','"+ line2 +"')");
 
                 reset_ps();
 
