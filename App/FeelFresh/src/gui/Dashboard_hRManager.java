@@ -202,7 +202,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(panalRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -457,6 +457,8 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         ControllerLoaderRight.removeAll();
         
 
+        
+        
         SwingUtilities.updateComponentTreeUI(this);
 
     }
