@@ -74,7 +74,7 @@
                                   <Component id="jToggleButton1" min="-2" pref="32" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jButtonCompany1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jButtonSupplier" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                       </Group>
@@ -100,7 +100,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButtonCompany" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jButtonCompany1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonSupplier" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -170,8 +170,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
           </Events>
         </Component>
-        
-        <Component class="javax.swing.JButton" name="jButtonCompany1">
+        <Component class="javax.swing.JButton" name="jButtonSupplier">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/resources/icon/dashboard/inventory/supplier-24.png"/>
@@ -180,7 +179,7 @@
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCompany1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSupplierActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
