@@ -28,12 +28,12 @@ import javax.swing.Timer;
  *
  * @author lgpavithra
  */
-public class Dashboard_hRManager extends javax.swing.JFrame {
+public class Dashboard_cashier extends javax.swing.JFrame {
 
     /**
      * Creates new form Dashboard_inventoryManager
      */
-    public Dashboard_hRManager() {
+    public Dashboard_cashier() {
         initComponents();
 
         changePanel_vp(new Welcome());
@@ -74,10 +74,9 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButtonHome = new javax.swing.JButton();
-        jButtonCompany = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jButtonEmployee = new javax.swing.JButton();
+        jButtonHome1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -105,15 +104,6 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             }
         });
 
-        jButtonCompany.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
-        jButtonCompany.setText("   Company");
-        jButtonCompany.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButtonCompany.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCompanyActionPerformed(evt);
-            }
-        });
-
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/menu-20.png"))); // NOI18N
         jToggleButton1.setBorder(null);
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -122,12 +112,12 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             }
         });
 
-        jButtonEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/hR/employee-24.png"))); // NOI18N
-        jButtonEmployee.setText("   Employee");
-        jButtonEmployee.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButtonEmployee.addActionListener(new java.awt.event.ActionListener() {
+        jButtonHome1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/home-28.png"))); // NOI18N
+        jButtonHome1.setText("   Home");
+        jButtonHome1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonHome1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEmployeeActionPerformed(evt);
+                jButtonHome1ActionPerformed(evt);
             }
         });
 
@@ -139,15 +129,15 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonEmployee, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCompany, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(1, 1, 1)))
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(14, 14, 14))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jButtonHome1)
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,10 +149,8 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
                 .addComponent(jButtonHome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonCompany)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonHome1)
                 .addContainerGap())
         );
 
@@ -251,9 +239,9 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panalRound2Layout.createSequentialGroup()
                 .addComponent(ControllerLoaderLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 51, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 52, Short.MAX_VALUE)
                 .addComponent(ControllerLoaderRight, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panalRound2Layout.setVerticalGroup(
@@ -272,7 +260,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panalRound2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -297,14 +285,6 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         changeControllerPanel("Welcome");
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
-
-    private void jButtonCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompanyActionPerformed
-        changePanel_vp(new Company());
-
-        changeControllerPanel("Company");
-        
-        windowName_vp("Company");
-    }//GEN-LAST:event_jButtonCompanyActionPerformed
 
     private int expanded_width_vp;
     private int height_vp;
@@ -358,13 +338,9 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(jPanel1);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void jButtonEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmployeeActionPerformed
-        ChangePanal_HS(new employee());
-        
-        changeControllerPanel("Employee");
-        
-        windowName_vp("Employee");
-    }//GEN-LAST:event_jButtonEmployeeActionPerformed
+    private void jButtonHome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHome1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonHome1ActionPerformed
     private void ChangePanal_HS(JPanel PanalFrome_HS) {
         jPanel2.removeAll();
         if (PanalFrome_HS != null) {
@@ -378,14 +354,11 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
 
         if (isSelected) {
             jButtonHome.setText("");
-            jButtonEmployee.setText("");
-            jButtonCompany.setText("");
+         
         } else {
             jButtonHome.setText("Home");
-            jButtonEmployee.setText("Employee");
-            jButtonCompany.setText("Company");
+           
         }
-
     }
 
     //
@@ -422,7 +395,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Dashboard_hRManager().setVisible(true);
+                new Dashboard_cashier().setVisible(true);
             }
         });
     }
@@ -430,9 +403,8 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ControllerLoaderLeft;
     private javax.swing.JPanel ControllerLoaderRight;
-    private javax.swing.JButton jButtonCompany;
-    private javax.swing.JButton jButtonEmployee;
     private javax.swing.JButton jButtonHome;
+    private javax.swing.JButton jButtonHome1;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -448,6 +420,8 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
     private desingcode.PanalRound panalRound2;
     // End of variables declaration//GEN-END:variables
 
+    
+    
     /*This method is intended for load more options for controller panel*/
     private void changeControllerPanel(String loadWindowName) {
         boolean hasControllers;
