@@ -12,6 +12,7 @@ import gui.panel.Company;
 import gui.panel.Welcome;
 
 import gui.panel.addProduct;
+import gui.panel.cashier.Cashier;
 import gui.panel.employee;
 
 import java.awt.BorderLayout;
@@ -36,7 +37,7 @@ public class Dashboard_cashier extends javax.swing.JFrame {
     public Dashboard_cashier() {
         initComponents();
 
-        changePanel_vp(new Welcome());
+        changePanel_vp(new Cashier());
         this.setLocationRelativeTo(null);
 
         setDateTime();
@@ -72,10 +73,6 @@ public class Dashboard_cashier extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButtonHome = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -91,52 +88,6 @@ public class Dashboard_cashier extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(0, 470));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jButtonHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/home-28.png"))); // NOI18N
-        jButtonHome.setText("   Home");
-        jButtonHome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonHomeActionPerformed(evt);
-            }
-        });
-
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/menu-20.png"))); // NOI18N
-        jToggleButton1.setBorder(null);
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(14, 14, 14))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jToggleButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonHome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
-        );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setLayout(new java.awt.BorderLayout());
@@ -224,9 +175,9 @@ public class Dashboard_cashier extends javax.swing.JFrame {
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panalRound2Layout.createSequentialGroup()
                 .addComponent(ControllerLoaderLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 35, Short.MAX_VALUE)
+                .addGap(18, 102, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 35, Short.MAX_VALUE)
+                .addGap(18, 102, Short.MAX_VALUE)
                 .addComponent(ControllerLoaderRight, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panalRound2Layout.setVerticalGroup(
@@ -244,7 +195,6 @@ public class Dashboard_cashier extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -253,11 +203,10 @@ public class Dashboard_cashier extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(panalRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -265,64 +214,10 @@ public class Dashboard_cashier extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
-        changePanel_vp(new Welcome());
-        changeControllerPanel("Welcome");
-    }//GEN-LAST:event_jButtonHomeActionPerformed
-
 
     private int expanded_width_vp;
     private int height_vp;
-    private int min_width_vp = 58;
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-
-        if (jToggleButton1.isSelected()) {
-
-            expanded_width_vp = jPanel1.getWidth();
-            height_vp = jPanel1.getHeight();
-
-            Thread thread_vp = new Thread(() -> {
-
-                for (int i = expanded_width_vp; i >= min_width_vp; i -= 10) {
-                    jPanel1.setPreferredSize(new Dimension(i, height_vp));
-                    SwingUtilities.updateComponentTreeUI(jPanel1);
-
-                    try {
-                        Thread.sleep(10);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                //remove text
-                toggleTextIcon(true);
-
-            });
-            thread_vp.start();
-        } else {
-
-            Thread thread_vp = new Thread(() -> {
-
-                for (int i = min_width_vp; i <= expanded_width_vp; i += 10) {
-                    jPanel1.setPreferredSize(new Dimension(i, height_vp));
-                    SwingUtilities.updateComponentTreeUI(jPanel1);
-
-                    try {
-                        Thread.sleep(10);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                toggleTextIcon(false);
-
-            });
-            thread_vp.start();
-        }
-
-        jToggleButton1.setBorder(null);
-        SwingUtilities.updateComponentTreeUI(jPanel1);
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-    private void ChangePanal_HS(JPanel PanalFrome_HS) {
+    private int min_width_vp = 58;    private void ChangePanal_HS(JPanel PanalFrome_HS) {
         jPanel2.removeAll();
         if (PanalFrome_HS != null) {
             jPanel2.add(PanalFrome_HS, BorderLayout.CENTER);
@@ -333,13 +228,7 @@ public class Dashboard_cashier extends javax.swing.JFrame {
 
     private void toggleTextIcon(boolean isSelected) {
 
-        if (isSelected) {
-            jButtonHome.setText("");
-         
-        } else {
-            jButtonHome.setText("Home");
-           
-        }
+        
     }
 
     //
@@ -384,18 +273,14 @@ public class Dashboard_cashier extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ControllerLoaderLeft;
     private javax.swing.JPanel ControllerLoaderRight;
-    private javax.swing.JButton jButtonHome;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JToggleButton jToggleButton1;
     private desingcode.PanalRound panalRound1;
     private desingcode.PanalRound panalRound2;
     // End of variables declaration//GEN-END:variables
