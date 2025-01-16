@@ -60,7 +60,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
    
      try{
      
-       ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `supplier` INNER JOIN `status` ON `supplier`.`status_id`=`status`.`id`");
+       ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `supplier` INNER JOIN `status` ON `supplier`.`status_id`=`status`.`id`INNER JOIN `supplier_mobile`ON `supplier`.`id`=`supplier_mobile`.`supplier_id`");
      
       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
       model.setRowCount(0);
@@ -71,6 +71,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
        vector.add(resultSet.getString("first_name"));
        vector.add(resultSet.getString("last_name"));
        vector.add(resultSet.getString("email"));
+       vector.add(resultSet.getString("supplier_mobile.mobiler"));
        vector.add(resultSet.getString("reg_date"));
        vector.add(resultSet.getString("no"));
        vector.add(resultSet.getString("line1"));
@@ -105,8 +106,8 @@ public class SupplierRegistration extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        uJTextfield4 = new component.UJTextfield();
+        jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         uJTextfield5 = new component.UJTextfield();
         jLabel6 = new javax.swing.JLabel();
@@ -120,6 +121,8 @@ public class SupplierRegistration extends javax.swing.JPanel {
         uJTextfield2 = new component.UJTextfield();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -140,48 +143,29 @@ public class SupplierRegistration extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 153));
-        jButton1.setText("ADD");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Update");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(uJTextfield4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(uJTextfield4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
+
+        jLabel9.setText("mobile");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jLabel9)
+                .addGap(14, 14, 14)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(1, 1, 1))
         );
@@ -190,6 +174,10 @@ public class SupplierRegistration extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 12, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(19, 19, 19))
         );
 
         jLabel5.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
@@ -222,7 +210,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -245,11 +233,11 @@ public class SupplierRegistration extends javax.swing.JPanel {
 
             },
             new String [] {
-                "id", "first name", "last name", "email", "reg_date", "no", "line 1", "line 2", "status"
+                "id", "first name", "last name", "email", "mobile", "reg_date", "no", "line 1", "line 2", "status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -263,6 +251,21 @@ public class SupplierRegistration extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setBackground(new java.awt.Color(0, 204, 153));
+        jButton1.setText("ADD");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Update");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -293,15 +296,21 @@ public class SupplierRegistration extends javax.swing.JPanel {
                                     .addComponent(jLabel7)
                                     .addComponent(uJTextfield7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(uJTextfield5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(25, 25, 25))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addGap(35, 35, 35))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -344,22 +353,26 @@ public class SupplierRegistration extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(uJTextfield6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(uJTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        
+         int rows = jTable1.getRowCount();
+         int id = rows + 1;
         String first_name = uJTextfield1.getText().trim();
         String last_name = uJTextfield2.getText().trim();
         String email = uJTextfield3.getText().trim();
         String date =  new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        //String mobile = uJTextfield4.getText().trim();
+        String mobile = uJTextfield4.getText().trim();
         String no = uJTextfield5.getText().trim();
         String line1 = uJTextfield6.getText().trim();
         String line2= uJTextfield7.getText().trim();
@@ -373,10 +386,10 @@ public class SupplierRegistration extends javax.swing.JPanel {
         }else if(!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
                     + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
                 JOptionPane.showMessageDialog(this, "Please enter valid email", "Warning", JOptionPane.WARNING_MESSAGE);
-       // }else if (mobile.isEmpty()) {
-           // JOptionPane.showMessageDialog(this, "Please enter mobile number", "Warning", JOptionPane.WARNING_MESSAGE);
-       // }else if (!mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
-             //   JOptionPane.showMessageDialog(this, "Please enter valid mobile", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (mobile.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter mobile number", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (!mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
+                JOptionPane.showMessageDialog(this, "Please enter valid mobile", "Warning", JOptionPane.WARNING_MESSAGE);
         }else if (no.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter address no", "Warning", JOptionPane.WARNING_MESSAGE);
         }else if (line1.isEmpty()) {
@@ -384,7 +397,11 @@ public class SupplierRegistration extends javax.swing.JPanel {
         }  else {
             try {
 
+                
+                
                 MYSQL.executeIUD("INSERT INTO `supplier`(`first_name`,`last_name`,`email`,`reg_date`,`no`,`line1`,`line2`,`status_id`)VALUES('" + first_name + "','"+ last_name +"','"+ email +"','"+ date +"','"+ no +"','"+ line1 +"','"+ line2 +"','"+ 1 +"')");
+                
+                MYSQL.executeIUD("INSERT INTO `supplier_mobile`(`supplier_id`,`mobiler`)VALUES('"+id+"','"+ mobile +"')");
                 loadSupplier_ps();
                 reset_ps();
 
@@ -402,17 +419,20 @@ public class SupplierRegistration extends javax.swing.JPanel {
     }//GEN-LAST:event_uJTextfield5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       String first_name = uJTextfield1.getText().trim();
+       
+        
+        String first_name = uJTextfield1.getText().trim();
         String last_name = uJTextfield2.getText().trim();
         String email = uJTextfield3.getText().trim();
         String date =  new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        //String mobile = uJTextfield4.getText().trim();
+        String mobile = uJTextfield4.getText().trim();
         String no = uJTextfield5.getText().trim();
         String line1 = uJTextfield6.getText().trim();
         String line2= uJTextfield7.getText().trim();
         String status  = String.valueOf(jComboBox1.getSelectedItem()); 
        
           int row = jTable1.getSelectedRow();
+        
         
         if (first_name.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter first name", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -423,10 +443,10 @@ public class SupplierRegistration extends javax.swing.JPanel {
         }else if(!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
                     + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
                 JOptionPane.showMessageDialog(this, "Please enter valid email", "Warning", JOptionPane.WARNING_MESSAGE);
-       // }else if (mobile.isEmpty()) {
-           // JOptionPane.showMessageDialog(this, "Please enter mobile number", "Warning", JOptionPane.WARNING_MESSAGE);
-       // }else if (!mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
-             //   JOptionPane.showMessageDialog(this, "Please enter valid mobile", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (mobile.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter mobile number", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (!mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
+                JOptionPane.showMessageDialog(this, "Please enter valid mobile", "Warning", JOptionPane.WARNING_MESSAGE);
         }else if (no.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter address no", "Warning", JOptionPane.WARNING_MESSAGE);
         }else if (line1.isEmpty()) {
@@ -436,6 +456,8 @@ public class SupplierRegistration extends javax.swing.JPanel {
            
                
             MYSQL.executeIUD("UPDATE `supplier` SET `first_name`='"+first_name+"',`last_name`='"+last_name+"',`email`='"+email+"',`no`='"+no+"',`line1`='"+line1+"',`line2`='"+line2+"',`status_id`='"+statusMap.get(status)+"' WHERE `id` = '"+String.valueOf(jTable1.getValueAt(row ,0))+"'");
+           // MYSQL.executeIUD("UPDATE `supplier_mobile` SET `supplier_id`='"+id+"',`mobiler`='"+mobile+"'");
+            MYSQL.executeIUD("UPDATE `supplier_mobile` SET `mobiler`='"+mobile+"'");
             loadSupplier_ps();
             reset_ps();
              jButton1.setEnabled(true);
@@ -456,15 +478,17 @@ public class SupplierRegistration extends javax.swing.JPanel {
         String first_name = String.valueOf(jTable1.getValueAt(row ,1));
         String last_name = String.valueOf(jTable1.getValueAt(row ,2));
         String email = String.valueOf(jTable1.getValueAt(row ,3));
-        String no = String.valueOf(jTable1.getValueAt(row ,5));
-        String line1 = String.valueOf(jTable1.getValueAt(row ,6));
-        String line2 = String.valueOf(jTable1.getValueAt(row ,7));
-        String status = String.valueOf(jTable1.getValueAt(row ,8));
+        String mobile = String.valueOf(jTable1.getValueAt(row ,4));
+        String no = String.valueOf(jTable1.getValueAt(row ,6));
+        String line1 = String.valueOf(jTable1.getValueAt(row ,7));
+        String line2 = String.valueOf(jTable1.getValueAt(row ,8));
+        String status = String.valueOf(jTable1.getValueAt(row ,9));
        
         if (evt.getClickCount() == 2) {
         uJTextfield1.setText(first_name);
         uJTextfield2.setText(last_name);
         uJTextfield3.setText(email);
+        uJTextfield4.setText(mobile);
         uJTextfield5.setText(no);
         uJTextfield6.setText(line1);
         uJTextfield7.setText(line2);
@@ -489,6 +513,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -498,6 +523,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
     private component.UJTextfield uJTextfield3;
+    private component.UJTextfield uJTextfield4;
     private component.UJTextfield uJTextfield5;
     private component.UJTextfield uJTextfield6;
     private component.UJTextfield uJTextfield7;
@@ -509,6 +535,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
         uJTextfield1.setText("");
         uJTextfield2.setText("");
         uJTextfield3.setText("");
+        uJTextfield4.setText("");
         uJTextfield5.setText("");
         uJTextfield6.setText("");
         uJTextfield7.setText("");
