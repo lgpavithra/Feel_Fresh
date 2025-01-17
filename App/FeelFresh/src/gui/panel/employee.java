@@ -705,7 +705,7 @@ public class employee extends javax.swing.JPanel {
 
     private void insert_HS(String nic, String Mobile) {
         try {
-            MYSQL.executeIUD("INSERT INTO `employee_mobile` (`mobile`,`employee_nic`) VALUES ('" + nic + "','" + Mobile + "')");
+            MYSQL.executeIUD("INSERT INTO `employee_mobile` (`mobile`,`employee_nic`) VALUES ('" + Mobile + "','" + nic + "')");
 
         } catch (Exception e) {
             e.printStackTrace();
