@@ -31,6 +31,8 @@ public class UpdateEmployee extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 102));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Update");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

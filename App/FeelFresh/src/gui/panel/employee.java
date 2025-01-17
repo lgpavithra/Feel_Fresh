@@ -595,12 +595,12 @@ public class employee extends javax.swing.JPanel {
                 }
                 if (EmpADDAndUpdate_HS.equals("EmpUpdate")) {
 
-                    MYSQL.executeIUD("UPDATE `user` SET `first_name`='" + Fname_HS + "',`last_name`='" + lname_HS + "',`email`='" + email_HS + "',"
-                            //                            + "`password`='" + Password_HS + "',`no`='" + NO_HS + "',`line1`='" + line1_HS + "',`line2`='" + Line2_HS + "',`status_id`='" + UserStatusId_HS + "',"
-                            //                            + "`user_type_id`='" + UserTypeId_HS + "',`gender_id`='" + genderId_HS + "' "
+                    MYSQL.executeIUD("UPDATE `employee` SET `fname`='" + Fname_HS + "',`lname`='" + lname_HS + "',`email`='" + email_HS + "',"
+                            + "`gender`='" + genderId_HS + "',`no`='" + NO_HS + "',`line_1`='" + line1_HS + "',`line_2`='" + Line2_HS + "',"
+                            + "`status`='" + user_status_HS + "',`position_id`='" + UserPositionId_HS + "',`employment_type`='" + Employee_type_HS + "' "
                             + "WHERE `nic`='" + NIC_HS + "'");
 
-                    ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `user_mobile` WHERE user_nic='" + NIC_HS + "'");
+                    ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `employee_mobile` WHERE `employee_nic`='" + NIC_HS + "'");
 
 //                    void mobile1; 
                     if (resultSet_HS.next()) {
@@ -705,7 +705,7 @@ public class employee extends javax.swing.JPanel {
 
     private void insert_HS(String nic, String Mobile) {
         try {
-            MYSQL.executeIUD("INSERT INTO `user_mobile` (`user_nic`,`mobile`) VALUES ('" + nic + "','" + Mobile + "')");
+            MYSQL.executeIUD("INSERT INTO `employee_mobile` (`mobile`,`employee_nic`) VALUES ('" + nic + "','" + Mobile + "')");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -714,7 +714,7 @@ public class employee extends javax.swing.JPanel {
 
     private void UpdateMoible_HS(String nic, String Mobile) {
         try {
-            MYSQL.executeIUD("UPDATE `user_mobile` SET `mobile`='" + Mobile + "' WHERE `user_nic`='" + nic + "'");
+            MYSQL.executeIUD("UPDATE `employee_mobile` SET `mobile`='" + Mobile + "',`employee_nic`='" + nic + "'");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -723,7 +723,7 @@ public class employee extends javax.swing.JPanel {
 
     private void DeleteMoible_HS(String nic, String Mobile) {
         try {
-            MYSQL.executeIUD("DELETE FROM `user_mobile` WHERE `user_nic`='" + nic + "' AND  `mobile`='" + Mobile + "'");
+            MYSQL.executeIUD("DELETE FROM `employee_mobile` WHERE `mobile`='" + Mobile + "' AND `employee_nic`='" + nic + "'");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -735,15 +735,17 @@ public class employee extends javax.swing.JPanel {
         uJTextfield2.setText("");
         uJTextfield3.setText("");
         uJTextfield4.setText("");
-//        uJPasswordFiled1.setText("");
         uJTextfield5.setText("");
         uJTextfield6.setText("");
         uJTextfield7.setText("");
         buttonGroup1.clearSelection();
         jComboBox1.setSelectedIndex(0);
         jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
         jTable2.clearSelection();
+        jTable2.setEnabled(true);
         jComboBox1.setEnabled(false);
+        uJTextfield3.setEnabled(true);
         jLabel13.setText("");
         jLabel14.setText("");
         jLabel15.setText("");
@@ -782,31 +784,30 @@ public class employee extends javax.swing.JPanel {
             String Email_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 3));
             uJTextfield4.setText(Email_HS);
 
-            String userType_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 4));
-            jComboBox2.setSelectedItem(userType_HS);
-
-            String status_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 5));
-            jComboBox1.setSelectedItem(status_HS);
-
-            String Line1_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 6));
-            uJTextfield5.setText(Line1_HS);
-
-            String Line2_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 7));
-            uJTextfield6.setText(Line2_HS);
-
-            String No_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 8));
-            uJTextfield7.setText(No_HS);
-
             String gender_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 4));
-            System.out.println(gender_HS);
             if (gender_HS.equals("Male")) {
                 jRadioButton1.setSelected(true);
             }
             if (gender_HS.equals("Female")) {
                 jRadioButton2.setSelected(true);
             }
-            String Password_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 10));
-//            uJPasswordFiled1.setText(Password_HS);
+            String EmployeeType_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 5));
+            jComboBox3.setSelectedItem(EmployeeType_HS);
+
+            String Position_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 6));
+            jComboBox2.setSelectedItem(Position_HS);
+
+            String status_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 7));
+            jComboBox1.setSelectedItem(status_HS);
+
+            String Line1_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 8));
+            uJTextfield5.setText(Line1_HS);
+
+            String Line2_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 9));
+            uJTextfield6.setText(Line2_HS);
+
+            String No_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 10));
+            uJTextfield7.setText(No_HS);
 
         }
     }//GEN-LAST:event_jTable2MouseClicked

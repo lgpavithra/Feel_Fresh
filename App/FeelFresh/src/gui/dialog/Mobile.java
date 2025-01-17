@@ -94,7 +94,13 @@ public class Mobile extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Mobile : 1");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Close");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jLabel3.setText("Mobile : 1");
 
@@ -127,7 +133,7 @@ public class Mobile extends javax.swing.JDialog {
                         .addGap(0, 24, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panalRound1Layout.setVerticalGroup(
@@ -208,12 +214,16 @@ public class Mobile extends javax.swing.JDialog {
             mobile[2] = mobile3;
 
             employeePanal_HS.setMoblie(mobile);
-
             this.dispose();
 
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+       this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
