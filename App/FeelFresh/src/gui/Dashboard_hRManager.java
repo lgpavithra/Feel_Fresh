@@ -36,11 +36,10 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
     public Dashboard_hRManager() {
         initComponents();
 
+        setExtendedState(Dashboard_hRManager.MAXIMIZED_BOTH);
         changePanel_vp(new Welcome());
         this.setLocationRelativeTo(null);
-
         setDateTime();
-
     }
 
     private void setDateTime() {
@@ -53,14 +52,10 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             LocalTime time = LocalTime.now();
             String formattedDate = date.format(dateFormatter);
             String formattedTime = time.format(timeFormatter);
-
             jLabel3.setText(formattedTime);
             jLabel4.setText(formattedDate);
-
         });
-
         timer.start();
-
     }
 
     /**
@@ -92,7 +87,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         ControllerLoaderLeft = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(0, 470));
+        setMinimumSize(new java.awt.Dimension(0, 580));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -261,10 +256,12 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(ControllerLoaderRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panalRound2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panalRound2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addComponent(ControllerLoaderLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(ControllerLoaderLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -301,48 +298,35 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
 
     private void jButtonCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompanyActionPerformed
         changePanel_vp(new Company());
-
         changeControllerPanel("Company");
-        
         windowName_vp("Company");
     }//GEN-LAST:event_jButtonCompanyActionPerformed
-
-    private int expanded_width_vp;
+   private int expanded_width_vp;
     private int height_vp;
     private int min_width_vp = 58;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-
         if (jToggleButton1.isSelected()) {
-
             expanded_width_vp = jPanel1.getWidth();
             height_vp = jPanel1.getHeight();
-
             Thread thread_vp = new Thread(() -> {
-
                 for (int i = expanded_width_vp; i >= min_width_vp; i -= 10) {
                     jPanel1.setPreferredSize(new Dimension(i, height_vp));
                     SwingUtilities.updateComponentTreeUI(jPanel1);
-
                     try {
                         Thread.sleep(10);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-
                 //remove text
                 toggleTextIcon(true);
-
             });
             thread_vp.start();
         } else {
-
             Thread thread_vp = new Thread(() -> {
-
                 for (int i = min_width_vp; i <= expanded_width_vp; i += 10) {
                     jPanel1.setPreferredSize(new Dimension(i, height_vp));
                     SwingUtilities.updateComponentTreeUI(jPanel1);
-
                     try {
                         Thread.sleep(10);
                     } catch (Exception e) {
@@ -350,20 +334,16 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
                     }
                 }
                 toggleTextIcon(false);
-
             });
             thread_vp.start();
         }
-
         jToggleButton1.setBorder(null);
         SwingUtilities.updateComponentTreeUI(jPanel1);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButtonEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmployeeActionPerformed
         ChangePanal_HS(new employee());
-        
         changeControllerPanel("Employee");
-        
         windowName_vp("Employee");
     }//GEN-LAST:event_jButtonEmployeeActionPerformed
     private void ChangePanal_HS(JPanel PanalFrome_HS) {
@@ -372,11 +352,8 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             jPanel2.add(PanalFrome_HS, BorderLayout.CENTER);
         }
         SwingUtilities.updateComponentTreeUI(jPanel2);
-
     }
-
     private void toggleTextIcon(boolean isSelected) {
-
         if (isSelected) {
             jButtonHome.setText("");
             jButtonEmployee.setText("");
@@ -386,20 +363,16 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             jButtonEmployee.setText("Employee");
             jButtonCompany.setText("Company");
         }
-
     }
-
     //
     /*this method requires a panel object what you want to apply to to the dashboard
     You can clean the dashboard by passing a null object to the changePanel_vp method*/
     public void changePanel_vp(JPanel panelForm_vp) {
         jPanel2.removeAll();
-
         if (panelForm_vp != null) {
             jPanel2.add(panelForm_vp, BorderLayout.CENTER);
         }
         SwingUtilities.updateComponentTreeUI(jPanel2);
-
     }
 
 //     private void changePanel_ps(JPanel panelForm_ps) {
@@ -455,16 +428,13 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
 
         ControllerLoaderLeft.removeAll();
         ControllerLoaderRight.removeAll();
-        
 
-        
-        
         SwingUtilities.updateComponentTreeUI(this);
 
     }
-    
-      private void windowName_vp(String text) {
-       jLabel2.setText(text.trim());
+
+    private void windowName_vp(String text) {
+        jLabel2.setText(text.trim());
     }
 
 }
