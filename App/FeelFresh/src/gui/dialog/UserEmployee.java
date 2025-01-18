@@ -19,8 +19,7 @@ public class UserEmployee extends javax.swing.JDialog {
     /**
      * Creates new form UserEmployee
      */
-    private final UpdateUserEmployee updateUserEmployee_HS;
-
+//    private UpdateUserEmployee updateUserEmployee_HS;
     private String USerNIC_HS;
 
     public UserEmployee(java.awt.Frame parent, boolean modal, String nic_HS) {
@@ -31,36 +30,27 @@ public class UserEmployee extends javax.swing.JDialog {
         uJTextfield1.setEditable(false);
         jComboBox1.setEnabled(false);
         USerNIC_HS = nic_HS;
-        System.out.println("4545545");
         LoadUserEmployee(nic_HS);
 
-        System.out.println(nic_HS);
-        System.out.println("45");
-        updateUserEmployee_HS = new UpdateUserEmployee(this);
-        System.out.println("46");
-
+//        updateUserEmployee_HS = new UpdateUserEmployee(this);
     }
 
     private void LoadUserEmployee(String NIC_HS) {
-        System.out.println("HIHI");
         try {
-            System.out.println("55");
-
             uJTextfield1.setText(NIC_HS);
             ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `user` WHERE `employee_nic`='" + NIC_HS + "'");
-
             if (resultSet.next()) {
-                System.out.println("1");
-                jPanel1.removeAll();
-                jPanel1.add(updateUserEmployee_HS);
-                SwingUtilities.updateComponentTreeUI(jPanel1);
 
+                jPanel1.removeAll();
+
+                jPanel1.add(new UpdateUserEmployee(this));
+                SwingUtilities.updateComponentTreeUI(jPanel1);
                 jComboBox1.setEnabled(true);
 
                 uJPasswordFiled1.setText(resultSet.getString("password"));
                 jComboBox1.setSelectedItem(resultSet.getString("status"));
                 jComboBox2.setSelectedItem(resultSet.getString("user_type"));
-                
+
                 String Reg_datetime_HS = resultSet.getString("reg_date");
                 jLabel8.setText(Reg_datetime_HS);
                 String Update_datetime_HS = (resultSet.getString("upd_date"));
@@ -131,7 +121,7 @@ public class UserEmployee extends javax.swing.JDialog {
 
         jLabel5.setText("User Type");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Type", "Cashiers", "HR Manager", "Inventory Manager" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Type", "Cashiers", "HR Manager", "Inventory manager" }));
 
         jLabel6.setText("Registered : ");
 
@@ -141,6 +131,7 @@ public class UserEmployee extends javax.swing.JDialog {
 
         jLabel9.setText("2025-01-15 17:52:56");
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("Close");
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -149,26 +140,17 @@ public class UserEmployee extends javax.swing.JDialog {
         });
 
         jPanel1.setBackground(new java.awt.Color(252, 252, 252));
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jButton1.setBackground(new java.awt.Color(9, 183, 38));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Create System Access");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel1.add(jButton1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout panalRound1Layout = new javax.swing.GroupLayout(panalRound1);
         panalRound1.setLayout(panalRound1Layout);
@@ -235,10 +217,10 @@ public class UserEmployee extends javax.swing.JDialog {
                     .addComponent(jLabel7)
                     .addComponent(jLabel9))
                 .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,7 +238,7 @@ public class UserEmployee extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public void RegUPDUserEmployee(String REGUPDtype) {
+    public void RegUPDUserEmployee_HS(String REGUPDtype_HS) {
         String NIC_HS = uJTextfield1.getText();
         String Password_HS = String.valueOf(uJPasswordFiled1.getPassword()).trim();
         String userstatus_HS = String.valueOf(jComboBox1.getSelectedItem());
@@ -265,6 +247,8 @@ public class UserEmployee extends javax.swing.JDialog {
 //        System.out.println(Password_HS);
 //        System.out.println(userstatus_HS);
         System.out.println(usertype_HS);
+
+        System.out.println(REGUPDtype_HS);
 
         if (Password_HS.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter Password.", "WARNING", JOptionPane.WARNING_MESSAGE);
@@ -276,6 +260,21 @@ public class UserEmployee extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Please Select Usertype.", "WARNING", JOptionPane.WARNING_MESSAGE);
             jComboBox2.grabFocus();
         } else {
+            try {
+                if (REGUPDtype_HS.equals("Createaccess")) {
+                    MYSQL.executeIUD("INSERT INTO `user`(`password`,`status`,`user_type`,`employee_nic`) "
+                            + "VALUES ('" + Password_HS + "','" + userstatus_HS + "','" + usertype_HS + "','" + NIC_HS + "');");
+
+                }
+                if (REGUPDtype_HS.equals("Updateaccess")) {
+                    MYSQL.executeIUD("UPDATE `user` SET `password`='" + Password_HS + "',`status`='" + userstatus_HS + "',"
+                            + "`user_type`='" + usertype_HS + "' WHERE `employee_nic`='" + NIC_HS + "'");
+                }
+                this.dispose();
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
 
@@ -293,50 +292,13 @@ public class UserEmployee extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        RegUPDUserEmployee("Createaccess");
+        RegUPDUserEmployee_HS("Createaccess");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(UserEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(UserEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(UserEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(UserEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                UserEmployee dialog = new UserEmployee(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

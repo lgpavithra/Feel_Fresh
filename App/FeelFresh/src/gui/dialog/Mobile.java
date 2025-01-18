@@ -20,13 +20,10 @@ public class Mobile extends javax.swing.JDialog {
      */
 //    Dashboard_HRManager HRemployeefrom;
     employee employeePanal_HS;
-
     public Mobile(java.awt.Frame parent, boolean modal, String nic_HS, employee Ejp) {
         super(parent, modal);
         initComponents();
-
         employeePanal_HS = Ejp;
-
         jButton1.putClientProperty("JButton.buttonType", "roundRect");
         System.out.println(nic_HS);
         loadMobile(nic_HS);
@@ -37,7 +34,6 @@ public class Mobile extends javax.swing.JDialog {
     private void loadMobile(String Nic_HS) {
         try {
             ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `employee_mobile` WHERE `employee_nic`='" + Nic_HS + "'");
-
             if (resultSet_HS.next()) {
                 uJTextfield1.setText(resultSet_HS.getString("mobile"));
             }
@@ -47,11 +43,9 @@ public class Mobile extends javax.swing.JDialog {
             if (resultSet_HS.next()) {
                 uJTextfield3.setText(resultSet_HS.getString("mobile"));
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -180,7 +174,6 @@ public class Mobile extends javax.swing.JDialog {
     }//GEN-LAST:event_uJTextfield1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         String mobile1 = uJTextfield1.getText().trim();
         String mobile2 = uJTextfield2.getText().trim();
         String mobile3 = uJTextfield3.getText().trim();
@@ -190,34 +183,22 @@ public class Mobile extends javax.swing.JDialog {
         } else if (!mobile1.matches("^(?:0|94|\\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\\d)\\d{6}$")) {
             JOptionPane.showMessageDialog(this, "The first mobile number is invalid.", "WARNING", JOptionPane.WARNING_MESSAGE);
             uJTextfield1.grabFocus();
-
         } else if (!mobile2.isEmpty() && (!mobile2.matches("^(?:0|94|\\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\\d)\\d{6}$"))) {
-
             JOptionPane.showMessageDialog(this, "The second mobile phone number is invalid.", "WARNING", JOptionPane.WARNING_MESSAGE);
             uJTextfield2.grabFocus();
             System.out.println("not2");
-
-
         } else if (!mobile3.isEmpty() && (!mobile3.matches("^(?:0|94|\\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\\d)\\d{6}$"))) {
-
             JOptionPane.showMessageDialog(this, "The third mobile phone number is invalid.", "WARNING", JOptionPane.WARNING_MESSAGE);
             uJTextfield3.grabFocus();
             System.out.println("not");
-
-
         } else {
-
             String mobile[] = new String[3];
-
             mobile[0] = mobile1;
             mobile[1] = mobile2;
             mobile[2] = mobile3;
-
             employeePanal_HS.setMoblie(mobile);
             this.dispose();
-
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked

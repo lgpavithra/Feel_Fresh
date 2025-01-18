@@ -15,12 +15,13 @@ public class UpdateUserEmployee extends javax.swing.JPanel {
     /**
      * Creates new form UpdateUserEmployee
      */
-    private UserEmployee useremployee_HS;
+    private UserEmployee usemp_HS;
 
     public UpdateUserEmployee(UserEmployee UEUpdate) {
         initComponents();
+        usemp_HS = UEUpdate;
+        jButton1.putClientProperty("JButton.buttonType", "roundRect");
 
-        useremployee_HS = UEUpdate;
     }
 
     /**
@@ -34,6 +35,10 @@ public class UpdateUserEmployee extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(249, 249, 249));
+
+        jButton1.setBackground(new java.awt.Color(56, 99, 255));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Update System Access");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,7 +60,7 @@ public class UpdateUserEmployee extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        useremployee_HS.RegUPDUserEmployee("Updateaccess");
+        usemp_HS.RegUPDUserEmployee_HS("Updateaccess");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
