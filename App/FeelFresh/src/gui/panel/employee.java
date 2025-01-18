@@ -5,6 +5,7 @@
 package gui.panel;
 
 import gui.dialog.Mobile;
+import gui.dialog.UserEmployee;
 import java.awt.BorderLayout;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -33,8 +34,10 @@ public class employee extends javax.swing.JPanel {
     public employee() {
         initComponents();
         jButton1.putClientProperty("JButton.buttonType", "roundRect");
+        jButton4.putClientProperty("JButton.buttonType", "roundRect");
         LoadEmployee_HS();
         LoadPosition();
+        jButton4.setVisible(false);
         jComboBox1.setEnabled(false);
         updateEmployee_HS = new UpdateEmployee(this);
     }
@@ -134,6 +137,7 @@ public class employee extends javax.swing.JPanel {
         jRadioButton2 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jComboBox3 = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -144,6 +148,8 @@ public class employee extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+
+        jPanel1.setBackground(new java.awt.Color(252, 252, 252));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Employee");
@@ -177,6 +183,8 @@ public class employee extends javax.swing.JPanel {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel12.setText("User Status");
+
+        jPanel3.setBackground(new java.awt.Color(252, 252, 252));
 
         jLabel3.setText("Last Name");
 
@@ -258,6 +266,13 @@ public class employee extends javax.swing.JPanel {
             }
         });
 
+        jButton4.setText("System Access");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -305,13 +320,17 @@ public class employee extends javax.swing.JPanel {
                                 .addGap(3, 3, 3))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addGap(24, 24, 24))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
@@ -347,6 +366,8 @@ public class employee extends javax.swing.JPanel {
         );
 
         uJTextfield1.getAccessibleContext().setAccessibleName("");
+
+        jPanel2.setBackground(new java.awt.Color(252, 252, 252));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -385,9 +406,11 @@ public class employee extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                .addGap(26, 26, 26))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
+
+        jPanel4.setBackground(new java.awt.Color(252, 252, 252));
 
         jButton2.setText("Clear All");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -607,7 +630,7 @@ public class employee extends javax.swing.JPanel {
                         String mobile1_HS = resultSet_HS.getString("mobile");
 //                        mobile1 = mobile1_HS;
                         if (!number1.isEmpty() & !mobile1_HS.equals(number1)) {
-                            UpdateMoible_HS(NIC_HS, number1);
+                            UpdateMoible_HS(NIC_HS, number1, mobile1_HS);
                         }
 //                        else if (number1.isEmpty() & !mobile1_HS.isEmpty()) {
 //                            System.out.println("Delete");
@@ -619,7 +642,7 @@ public class employee extends javax.swing.JPanel {
                     if (resultSet_HS.next()) {
                         String mobile2_HS = resultSet_HS.getString("mobile");
                         if (!number2.isEmpty() & !mobile2_HS.equals(number2)) {
-                            UpdateMoible_HS(NIC_HS, number2);
+                            UpdateMoible_HS(NIC_HS, number2, mobile2_HS);
 
                         } else if (number2.isEmpty() & !mobile2_HS.isEmpty()) {
                             DeleteMoible_HS(NIC_HS, mobile2_HS);
@@ -631,7 +654,7 @@ public class employee extends javax.swing.JPanel {
                     if (resultSet_HS.next()) {
                         String mobile3_HS = resultSet_HS.getString("mobile");
                         if (!number3.isEmpty() & !mobile3_HS.equals(number3)) {
-                            UpdateMoible_HS(NIC_HS, number3);
+                            UpdateMoible_HS(NIC_HS, number3, mobile3_HS);
                         } else if (number3.isEmpty() & !mobile3_HS.isEmpty()) {
                             DeleteMoible_HS(NIC_HS, mobile3_HS);
                         }
@@ -712,9 +735,9 @@ public class employee extends javax.swing.JPanel {
         }
     }
 
-    private void UpdateMoible_HS(String nic, String Mobile) {
+    private void UpdateMoible_HS(String nic, String Mobile, String AlreadyMobile) {
         try {
-            MYSQL.executeIUD("UPDATE `employee_mobile` SET `mobile`='" + Mobile + "',`employee_nic`='" + nic + "'");
+            MYSQL.executeIUD("UPDATE `employee_mobile` SET `mobile`='" + Mobile + "' WHERE employee_nic='" + nic + "' AND mobile='" + AlreadyMobile + "'");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -750,6 +773,7 @@ public class employee extends javax.swing.JPanel {
         jLabel14.setText("");
         jLabel15.setText("");
         jPanel5.removeAll();
+        jButton4.setVisible(false);
         jPanel5.add(jButton3, BorderLayout.CENTER);
         SwingUtilities.updateComponentTreeUI(jPanel5);
 
@@ -770,6 +794,8 @@ public class employee extends javax.swing.JPanel {
             uJTextfield3.setEnabled(false);
             jComboBox1.setEnabled(true);
             jTable2.setEnabled(false);
+
+            jButton4.setVisible(true);
 
             int Selectedrow_HS = jTable2.getSelectedRow();
 
@@ -859,12 +885,21 @@ public class employee extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int Selectedrow_HS = jTable2.getSelectedRow();
+        String NIC_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 0));
+        new UserEmployee(null, true, NIC_HS).setVisible(true);
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
