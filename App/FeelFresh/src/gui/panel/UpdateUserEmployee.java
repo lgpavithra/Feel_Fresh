@@ -4,28 +4,24 @@
  */
 package gui.panel;
 
-import com.formdev.flatlaf.FlatClientProperties;
-import gui.dialog.LinkBrandCategoryDialog;
-import java.awt.Frame;
-import javax.swing.JFrame;
-
+import gui.dialog.UserEmployee;
 
 /**
  *
- * @author PC
+ * @author Sandun
  */
-public class LinkBrandCategoryBtn extends javax.swing.JPanel {
+public class UpdateUserEmployee extends javax.swing.JPanel {
 
     /**
-     * Creates new form LinkBrandCategoryBtn
+     * Creates new form UpdateUserEmployee
      */
-    
-    
-    
-    public LinkBrandCategoryBtn() {
+    private UserEmployee usemp_HS;
+
+    public UpdateUserEmployee(UserEmployee UEUpdate) {
         initComponents();
-        
-        jButton1.putClientProperty(FlatClientProperties.STYLE, "arc:0");
+        usemp_HS = UEUpdate;
+        jButton1.putClientProperty("JButton.buttonType", "roundRect");
+
     }
 
     /**
@@ -39,14 +35,11 @@ public class LinkBrandCategoryBtn extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0,0,0,0));
+        setBackground(new java.awt.Color(249, 249, 249));
 
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/controlers/link-20.png"))); // NOI18N
-        jButton1.setText("Link Brand Category");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButton1.setBackground(new java.awt.Color(56, 99, 255));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Update System Access");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -57,24 +50,17 @@ public class LinkBrandCategoryBtn extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                .addGap(1, 1, 1))
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, Short.MAX_VALUE)
-                .addGap(2, 2, 2))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-
-        new LinkBrandCategoryDialog((JFrame) this.getParent().getParent().getParent().getParent().getParent().getParent(), true).setVisible(true);
+        // TODO add your handling code here:
+        usemp_HS.RegUPDUserEmployee_HS("Updateaccess");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

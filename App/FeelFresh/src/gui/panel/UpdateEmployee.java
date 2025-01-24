@@ -13,8 +13,11 @@ public class UpdateEmployee extends javax.swing.JPanel {
     /**
      * Creates new form AddEmployee
      */
-    public UpdateEmployee() {
+    private employee emp_HS;
+
+    public UpdateEmployee(employee EUpdate) {
         initComponents();
+        emp_HS = EUpdate;
     }
 
     /**
@@ -28,7 +31,14 @@ public class UpdateEmployee extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 102));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Update");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -41,6 +51,11 @@ public class UpdateEmployee extends javax.swing.JPanel {
             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        emp_HS.EmployeeUpdate_HS("EmpUpdate");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
