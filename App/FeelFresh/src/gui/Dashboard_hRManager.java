@@ -94,6 +94,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         jButtonHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/home-28.png"))); // NOI18N
         jButtonHome.setText("   Home");
         jButtonHome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonHome.setInheritsPopupMenu(true);
         jButtonHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonHomeActionPerformed(evt);
