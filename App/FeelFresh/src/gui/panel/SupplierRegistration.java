@@ -410,7 +410,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
         String line1 = uJTextfield6.getText().trim();
         String line2 = uJTextfield7.getText().trim();
         String status = String.valueOf(jComboBox1.getSelectedItem());
-        System.out.println(status);
+//        System.out.println(status);
 
         int row = jTable1.getSelectedRow();
 

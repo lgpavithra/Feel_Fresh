@@ -108,6 +108,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="   Home"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="inheritsPopupMenu" type="boolean" value="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonHomeActionPerformed"/>
