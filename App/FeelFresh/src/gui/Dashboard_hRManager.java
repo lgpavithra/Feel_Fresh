@@ -73,6 +73,10 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jToggleButton1 = new javax.swing.JToggleButton();
         jButtonEmployee = new javax.swing.JButton();
+        jButtonCompany1 = new javax.swing.JButton();
+        jButtonCompany2 = new javax.swing.JButton();
+        jButtonCompany3 = new javax.swing.JButton();
+        jButtonCompany4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -127,6 +131,42 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             }
         });
 
+        jButtonCompany1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany1.setText("  Supplier");
+        jButtonCompany1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonCompany1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCompany1ActionPerformed(evt);
+            }
+        });
+
+        jButtonCompany2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany2.setText("  Customer");
+        jButtonCompany2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonCompany2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCompany2ActionPerformed(evt);
+            }
+        });
+
+        jButtonCompany3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany3.setText("  Attendance");
+        jButtonCompany3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonCompany3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCompany3ActionPerformed(evt);
+            }
+        });
+
+        jButtonCompany4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany4.setText("  Salary");
+        jButtonCompany4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonCompany4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCompany4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -142,7 +182,11 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
                             .addComponent(jButtonCompany, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jButtonCompany1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(jButtonCompany2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(jButtonCompany3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(jButtonCompany4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                         .addGap(1, 1, 1)))
                 .addGap(14, 14, 14))
         );
@@ -159,7 +203,15 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
                 .addComponent(jButtonEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonCompany)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCompany1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCompany2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCompany3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCompany4)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -347,6 +399,22 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         changeControllerPanel("Employee");
         windowName_vp("Employee");
     }//GEN-LAST:event_jButtonEmployeeActionPerformed
+
+    private void jButtonCompany1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompany1ActionPerformed
+
+    private void jButtonCompany2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompany2ActionPerformed
+
+    private void jButtonCompany3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompany3ActionPerformed
+
+    private void jButtonCompany4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompany4ActionPerformed
     private void ChangePanal_HS(JPanel PanalFrome_HS) {
         jPanel2.removeAll();
         if (PanalFrome_HS != null) {
@@ -406,6 +474,10 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
     private javax.swing.JPanel ControllerLoaderLeft;
     private javax.swing.JPanel ControllerLoaderRight;
     private javax.swing.JButton jButtonCompany;
+    private javax.swing.JButton jButtonCompany1;
+    private javax.swing.JButton jButtonCompany2;
+    private javax.swing.JButton jButtonCompany3;
+    private javax.swing.JButton jButtonCompany4;
     private javax.swing.JButton jButtonEmployee;
     private javax.swing.JButton jButtonHome;
     private javax.swing.JLabel jLabel1;
