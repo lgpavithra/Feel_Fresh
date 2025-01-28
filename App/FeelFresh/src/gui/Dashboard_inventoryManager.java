@@ -9,6 +9,7 @@ import gui.panel.Brand;
 import gui.panel.BrandAndCategories;
 import gui.panel.Categories;
 import gui.panel.Company;
+import gui.panel.CustomerRegistration;
 
 import gui.panel.SupplierRegistration;
 import gui.panel.Welcome;
@@ -85,6 +86,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jButtonSupplier = new javax.swing.JButton();
         jButtonOrder = new javax.swing.JButton();
+        jButtonCustomer = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -165,6 +167,15 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             }
         });
 
+        jButtonCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/customer-24.png"))); // NOI18N
+        jButtonCustomer.setText("  Customer");
+        jButtonCustomer.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,7 +193,8 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jButtonSupplier, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButtonOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(1, 1, 1))
                     .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
@@ -206,6 +218,8 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                 .addComponent(jButtonSupplier)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonOrder)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonCustomer)
                 .addContainerGap())
         );
 
@@ -432,6 +446,13 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         windowName_vp("Make Order");
     }//GEN-LAST:event_jButtonOrderActionPerformed
 
+    private void jButtonCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomerActionPerformed
+         changePanel_vp(new CustomerRegistration());
+
+        changeControllerPanel("Customer");
+        windowName_vp("Customer");
+    }//GEN-LAST:event_jButtonCustomerActionPerformed
+
     private void toggleTextIcon(boolean isSelected) {
 
         if (isSelected) {
@@ -495,6 +516,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     private javax.swing.JPanel ControllerLoaderRight;
     private javax.swing.JButton jButtonBrandCategory;
     private javax.swing.JButton jButtonCompany;
+    private javax.swing.JButton jButtonCustomer;
     private javax.swing.JButton jButtonHome;
     private javax.swing.JButton jButtonOrder;
     private javax.swing.JButton jButtonProduct;
