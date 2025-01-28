@@ -462,6 +462,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             jButtonCompany.setText("");
             jButtonSupplier.setText("");
             jButtonOrder.setText("");
+            jButtonCustomer.setText("");
         } else {
             jButtonHome.setText("   Home");
             jButtonBrandCategory.setText("   Brand & Categories");
@@ -469,6 +470,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             jButtonCompany.setText("   Company");
             jButtonSupplier.setText("   Supplier");
             jButtonOrder.setText("  Order");
+            jButtonCustomer.setText("  Customer");
         }
 
     }
