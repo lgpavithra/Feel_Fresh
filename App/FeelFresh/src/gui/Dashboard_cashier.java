@@ -34,8 +34,11 @@ public class Dashboard_cashier extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard_inventoryManager
      */
-    public Dashboard_cashier() {
+    private final String emp_Username;
+
+    public Dashboard_cashier(String Username) {
         initComponents();
+        emp_Username = Username;
 
         changePanel_vp(new Cashier());
         this.setLocationRelativeTo(null);
@@ -214,10 +217,11 @@ public class Dashboard_cashier extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     private int expanded_width_vp;
     private int height_vp;
-    private int min_width_vp = 58;    private void ChangePanal_HS(JPanel PanalFrome_HS) {
+    private int min_width_vp = 58;
+
+    private void ChangePanal_HS(JPanel PanalFrome_HS) {
         jPanel2.removeAll();
         if (PanalFrome_HS != null) {
             jPanel2.add(PanalFrome_HS, BorderLayout.CENTER);
@@ -228,7 +232,6 @@ public class Dashboard_cashier extends javax.swing.JFrame {
 
     private void toggleTextIcon(boolean isSelected) {
 
-        
     }
 
     //
@@ -265,7 +268,7 @@ public class Dashboard_cashier extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Dashboard_cashier().setVisible(true);
+                new Dashboard_cashier("200").setVisible(true);
             }
         });
     }
@@ -285,22 +288,19 @@ public class Dashboard_cashier extends javax.swing.JFrame {
     private desingcode.PanalRound panalRound2;
     // End of variables declaration//GEN-END:variables
 
-    
-    
     /*This method is intended for load more options for controller panel*/
     private void changeControllerPanel(String loadWindowName) {
         boolean hasControllers;
 
         ControllerLoaderLeft.removeAll();
         ControllerLoaderRight.removeAll();
-        
 
         SwingUtilities.updateComponentTreeUI(this);
 
     }
-    
-      private void windowName_vp(String text) {
-       jLabel2.setText(text.trim());
+
+    private void windowName_vp(String text) {
+        jLabel2.setText(text.trim());
     }
 
 }
