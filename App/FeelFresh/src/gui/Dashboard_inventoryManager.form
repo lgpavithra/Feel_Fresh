@@ -65,13 +65,23 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton1" min="-2" pref="168" max="-2" attributes="0"/>
-                      <Component id="jButtonBrandCategory" min="-2" pref="168" max="-2" attributes="0"/>
-                      <Component id="jButtonSupplier" min="-2" pref="168" max="-2" attributes="0"/>
-                      <Component id="jButtonHome" min="-2" pref="168" max="-2" attributes="0"/>
-                      <Component id="jToggleButton1" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jButtonCompany" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
-                      <Component id="jButtonProduct" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
+
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jButtonProduct" max="32767" attributes="0"/>
+                              <Component id="jButtonBrandCategory" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jButtonCompany" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jToggleButton1" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jButtonSupplier" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jButtonOrder" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jButtonHome" max="32767" attributes="0"/>
+
                   </Group>
                   <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
@@ -90,14 +100,12 @@
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jButtonProduct" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jButtonCompany" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="jButtonBrandCategory" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="jButtonSupplier" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+
+                  <Component id="jButtonSupplier" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jButtonOrder" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+
               </Group>
           </Group>
         </DimensionLayout>
@@ -198,20 +206,18 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSupplierActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+
+        <Component class="javax.swing.JButton" name="jButtonOrder">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/icon/dashboard/hR/employee-24.png"/>
+              <Image iconType="3" name="/resources/icon/dashboard/inventory/order-24.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="    Customer"/>
+            <Property name="text" type="java.lang.String" value="  Order"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[104, 34]"/>
-            </Property>
-            <Property name="selected" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonOrderActionPerformed"/>
+
           </Events>
         </Component>
       </SubComponents>

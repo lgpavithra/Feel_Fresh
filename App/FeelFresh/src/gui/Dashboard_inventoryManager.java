@@ -15,6 +15,7 @@ import gui.panel.SupplierRegistration;
 import gui.panel.Welcome;
 
 import gui.panel.addProduct;
+import gui.panel.order.MakeOrder;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -35,7 +36,10 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard_inventoryManager
      */
-    private final String emp_Username;
+
+    public Dashboard_inventoryManager() {
+        initComponents();
+
 
     public Dashboard_inventoryManager(String Username) {
         initComponents();
@@ -84,7 +88,9 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jToggleButton1 = new javax.swing.JToggleButton();
         jButtonSupplier = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+
+        jButtonOrder = new javax.swing.JButton();
+
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -166,14 +172,14 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/hR/employee-24.png"))); // NOI18N
-        jButton1.setText("    Customer");
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton1.setMinimumSize(new java.awt.Dimension(104, 34));
-        jButton1.setSelected(true);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+
+        jButtonOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/order-24.png"))); // NOI18N
+        jButtonOrder.setText("  Order");
+        jButtonOrder.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonOrderActionPerformed(evt);
+
             }
         });
 
@@ -184,15 +190,21 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBrandCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonHome, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBrandCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonCompany, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jButtonSupplier, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(1, 1, 1))
+                    .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
+
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,14 +218,12 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButtonProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jButtonBrandCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jButtonSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+
+                .addComponent(jButtonSupplier)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonOrder)
+                .addContainerGap())
+
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -435,12 +445,14 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         windowName_vp("Supplier");
     }//GEN-LAST:event_jButtonSupplierActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        changePanel_vp(new CustomerRegistration());
 
-        changeControllerPanel("Customer");
-        windowName_vp("Customer");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderActionPerformed
+        changePanel_vp(new MakeOrder());
+
+        changeControllerPanel("Make Order");
+        windowName_vp("Make Order");
+    }//GEN-LAST:event_jButtonOrderActionPerformed
+
 
     private void toggleTextIcon(boolean isSelected) {
 
@@ -450,12 +462,16 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             jButtonProduct.setText("");
             jButtonCompany.setText("");
             jButtonSupplier.setText("");
+            jButtonOrder.setText("");
         } else {
             jButtonHome.setText("   Home");
             jButtonBrandCategory.setText("   Brand & Categories");
             jButtonProduct.setText("   Product");
             jButtonCompany.setText("   Company");
             jButtonSupplier.setText("   Supplier");
+
+            jButtonOrder.setText("  Order");
+
         }
 
     }
@@ -493,7 +509,9 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dashboard_inventoryManager("200").setVisible(true);
+
+                new Dashboard_inventoryManager().setVisible(true);
+
             }
         });
     }
@@ -505,6 +523,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBrandCategory;
     private javax.swing.JButton jButtonCompany;
     private javax.swing.JButton jButtonHome;
+    private javax.swing.JButton jButtonOrder;
     private javax.swing.JButton jButtonProduct;
     private javax.swing.JButton jButtonSupplier;
     private javax.swing.JLabel jLabel1;

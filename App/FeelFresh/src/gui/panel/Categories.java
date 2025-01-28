@@ -131,17 +131,7 @@ public class Categories extends javax.swing.JPanel {
             updateAndRemoveCategory_vp.uJTextfield1.setText(updateAndRemoveCategory_vp.currentCategory_vp);
             SwingUtilities.updateComponentTreeUI(jPanel1);
             
-            try {
-                if (MYSQL.executeSearch("SELECT * FROM `category_has_brand` INNER JOIN `category`"
-                        + "  ON `category_has_brand`.`category_id` = `category`.`id` WHERE `category`.`name` = '"+String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1))+"'").next()) {
-
-                    updateAndRemoveCategory_vp.jButton1.setEnabled(false);
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+           
 
         } else {
             reset_vp();
