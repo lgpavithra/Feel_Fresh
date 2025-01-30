@@ -16,6 +16,7 @@ import gui.panel.Welcome;
 
 import gui.panel.addProduct;
 import gui.panel.order.MakeOrder;
+import gui.panel.order.OrderPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -433,21 +434,23 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButtonSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupplierActionPerformed
+        gotoSupplierPanel();
+    }//GEN-LAST:event_jButtonSupplierActionPerformed
+    public void gotoSupplierPanel() {
+        /*This method is used to move to supplier panel in another windows like jdialog */
         changePanel_vp(new SupplierRegistration());
-
         changeControllerPanel("Supplier");
         windowName_vp("Supplier");
-    }//GEN-LAST:event_jButtonSupplierActionPerformed
-
+    }
     private void jButtonOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderActionPerformed
-        changePanel_vp(new MakeOrder());
+        changePanel_vp(new OrderPanel(this));
 
-        changeControllerPanel("Make Order");
-        windowName_vp("Make Order");
+        changeControllerPanel("Order");
+        windowName_vp("Order");
     }//GEN-LAST:event_jButtonOrderActionPerformed
 
     private void jButtonCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomerActionPerformed
-         changePanel_vp(new CustomerRegistration());
+        changePanel_vp(new CustomerRegistration());
 
         changeControllerPanel("Customer");
         windowName_vp("Customer");
@@ -488,16 +491,6 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
     }
 
-//     private void changePanel_ps(JPanel panelForm_ps) {
-//        jPanel2.removeAll();
-//
-//        if (panelForm_ps != null) {
-//            jPanel2.add(panelForm_ps, BorderLayout.CENTER);
-//        }        
-//        SwingUtilities.updateComponentTreeUI(jPanel2);
-//
-//    }
-//        
     /**
      * @param args the command line arguments
      */

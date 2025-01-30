@@ -131,7 +131,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             }
         });
 
-        jButtonCompany1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/supplier-24.png"))); // NOI18N
         jButtonCompany1.setText("  Supplier");
         jButtonCompany1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButtonCompany1.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +140,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             }
         });
 
-        jButtonCompany2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/customer-24.png"))); // NOI18N
         jButtonCompany2.setText("  Customer");
         jButtonCompany2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButtonCompany2.addActionListener(new java.awt.event.ActionListener() {

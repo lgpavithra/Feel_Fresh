@@ -35,6 +35,8 @@ public class MakeOrder extends javax.swing.JPanel {
     private String supplierId_vp;
     private String[] productDetails_vp;
     DefaultTableModel tableModelFull_vp;//table model without filters
+    
+    public JFrame parentFrame_vp;
 
     /**
      * @param productDetails the productDetails_vp to set
@@ -100,7 +102,8 @@ public class MakeOrder extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel
      */
-    public MakeOrder() {
+    public MakeOrder(JFrame parentFrame) {
+        this.parentFrame_vp = parentFrame;
         initComponents();
         tableModelFull_vp = (DefaultTableModel) jTable1.getModel();
 
@@ -189,6 +192,11 @@ public class MakeOrder extends javax.swing.JPanel {
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         jListOrderHistory.setFixedCellHeight(30);
+        jListOrderHistory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListOrderHistoryMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jListOrderHistory);
 
         jPanel2.add(jScrollPane4, java.awt.BorderLayout.CENTER);
@@ -766,6 +774,12 @@ public class MakeOrder extends javax.swing.JPanel {
             jComboBoxUnit.grabFocus();
         }
     }//GEN-LAST:event_jFormattedTextFieldQtyKeyPressed
+
+    private void jListOrderHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListOrderHistoryMouseClicked
+        if (evt.getClickCount() == 2) {
+            new gui.dialog.OrderHistoryDialog((Frame) this.getParent().getParent().getParent().getParent().getParent(), true).setVisible(true);
+        }
+    }//GEN-LAST:event_jListOrderHistoryMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
