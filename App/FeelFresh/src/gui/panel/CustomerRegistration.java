@@ -253,6 +253,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
 
         buttonGroup2.add(jRadioButton1);
         jRadioButton1.setText("Male");
+        jRadioButton1.setActionCommand("Male");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -574,15 +575,10 @@ public class CustomerRegistration extends javax.swing.JPanel {
         String no = String.valueOf(jTable1.getValueAt(row ,4));
         String line1 = String.valueOf(jTable1.getValueAt(row ,5));
         String line2 = String.valueOf(jTable1.getValueAt(row ,6));
-        String mobile = String.valueOf(jTable1.getValueAt(row ,7));
+        String mobile = String.valueOf(jTable1.getValueAt(row ,9));
         String gender = String.valueOf(jTable1.getValueAt(row, 10));
-   
-        if (gender.equals("Male")) {
-                jRadioButton1.setSelected(true);
-            }
-        if (gender.equals("Female")) {
-                jRadioButton2.setSelected(true);
-            }
+       
+ 
         String status = String.valueOf(jTable1.getValueAt(row, 11));
          
         if (evt.getClickCount() == 2) {
@@ -598,7 +594,16 @@ public class CustomerRegistration extends javax.swing.JPanel {
                 uJTextfield6.setText(line1);
                 uJTextfield7.setText(line2);
                 uJTextfield8.setText(mobile);
+                  String gender_HS = String.valueOf(jTable1.getValueAt(row, 10));
+                 if (gender.equals("Male")) {
+                jRadioButton1.setSelected(true);
+                  }
+                 if (gender.equals("Female")) {
+                  jRadioButton2.setSelected(true);
+                 }
+                
                  jComboBox1.setSelectedItem(status);
+               
                 uJTextfield1.setEditable(false);
                 
               
@@ -666,9 +671,11 @@ public class CustomerRegistration extends javax.swing.JPanel {
         uJTextfield7.setText("");
         uJTextfield7.setText("");
         uJTextfield8.setText("");
-        
+        buttonGroup2.clearSelection();
+         jComboBox1.setSelectedIndex(0);
+         
         uJTextfield1.grabFocus();
-    
+          jButton1.setEnabled(true);
     }
 
     
