@@ -10,6 +10,7 @@ import gui.panel.BrandAndCategories;
 import gui.panel.Categories;
 import gui.panel.Company;
 import gui.panel.CustomerRegistration;
+import gui.panel.Settings_btn;
 
 import gui.panel.SupplierRegistration;
 import gui.panel.Welcome;
@@ -46,7 +47,9 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         setDateTime();
-
+        
+        
+        ControllerLoaderRight.add(new Settings_btn(),BorderLayout.CENTER);
     }
 
     private void setDateTime() {
@@ -547,6 +550,15 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
     private void windowName_vp(String text) {
         jLabel2.setText(text.trim());
+    }
+    
+    
+    public String getDate_vp(){
+        return jLabel4.getText();
+    }
+    
+    public String getTime_vp(){
+        return jLabel3.getText();
     }
 
 }

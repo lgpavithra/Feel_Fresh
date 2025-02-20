@@ -4,6 +4,7 @@
  */
 package gui.panel.order;
 
+import gui.Dashboard_inventoryManager;
 import gui.dialog.SelectProduct;
 import gui.dialog.SelectSupplier_order;
 
@@ -25,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.HashMap;
+import model.Email;
 
 /**
  *
@@ -35,8 +37,8 @@ public class MakeOrder extends javax.swing.JPanel {
     private String supplierId_vp;
     private String[] productDetails_vp;
     DefaultTableModel tableModelFull_vp;//table model without filters
-    
-    public JFrame parentFrame_vp;
+
+    public Dashboard_inventoryManager parentFrame_vp;
 
     /**
      * @param productDetails the productDetails_vp to set
@@ -103,7 +105,7 @@ public class MakeOrder extends javax.swing.JPanel {
      * Creates new form NewJPanel
      */
     public MakeOrder(JFrame parentFrame) {
-        this.parentFrame_vp = parentFrame;
+        this.parentFrame_vp = (Dashboard_inventoryManager) parentFrame;
         initComponents();
         tableModelFull_vp = (DefaultTableModel) jTable1.getModel();
 
@@ -603,9 +605,9 @@ public class MakeOrder extends javax.swing.JPanel {
                                 .addComponent(roundButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(roundButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(13, 13, 13)))))
+                                .addGap(7, 7, 7)))))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -634,6 +636,7 @@ public class MakeOrder extends javax.swing.JPanel {
     }//GEN-LAST:event_roundButtonUpdateQTYActionPerformed
 
     private void roundButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton6ActionPerformed
+
         if (IdLabel.getText().equals("ID")) {//it was not selected a supplier
             JOptionPane.showMessageDialog(this, "Please select a supplier", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (jTable1.getRowCount() < 1) {
@@ -643,10 +646,10 @@ public class MakeOrder extends javax.swing.JPanel {
         } else if (jTextArea1.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "Message Body is empty", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-
+            // every fields are filled
             String supplierId = null;
 
-            try {
+            try {//retrieving supplier id
                 ResultSet rsSupplier = MYSQL.executeSearch("SELECT * FROM `supplier` WHERE `id` = '" + IdLabel.getText() + "' ");
                 if (rsSupplier.next()) {
                     supplierId = rsSupplier.getString("id");
@@ -657,6 +660,8 @@ public class MakeOrder extends javax.swing.JPanel {
 
             if (supplierId != null) {
                 try {
+
+                    //This preparedStatement is used for retrieving the primary key of currently inserted row
                     PreparedStatement preStatement = MYSQL.connection.prepareStatement("INSERT INTO `order` (`supplier_id`,`status`,`required_date`,`message`,`user_employee_nic`)"
                             + " VALUES ('" + supplierId + "','Pending',"//default set as pending
                             + " '" + new SimpleDateFormat("yyyy-MM-dd").format(jDateChooser1.getDate()) + "',"
@@ -665,7 +670,7 @@ public class MakeOrder extends javax.swing.JPanel {
                     //Toast message is better for this -T
 
                     preStatement.executeUpdate();
-                    ResultSet rsKeys = preStatement.getGeneratedKeys();
+                    ResultSet rsKeys = preStatement.getGeneratedKeys();//retrieving the primary key
 
                     if (rsKeys.next()) {
 
@@ -691,6 +696,236 @@ public class MakeOrder extends javax.swing.JPanel {
 
                             JOptionPane.showMessageDialog(this, "Order is saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
 
+//Send the email to supplier
+                            String time = parentFrame_vp.getTime_vp();
+                            String date = parentFrame_vp.getDate_vp();
+                            String orderId = String.valueOf(order_id);
+                            String supplierEmail = emailLabel.getText();
+                            String subject = "Feel Fresh - superMarket";
+
+                            String items = "";
+
+                            for (int i = 0; i < jTable1.getRowCount(); i++) {
+                                items += "    "
+                                        + "            <tr>\n"
+                                        + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 0) + "</td>\n"
+                                        + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 1) + "</td>\n"
+                                        + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 2) + "</td>\n"
+                                        + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 3) + "</td>\n"
+                                        + "            </tr>\n";
+                            }
+
+                            String body = "<!DOCTYPE html>\n"
+                                    + "\n"
+                                    + "<html>\n"
+                                    + "\n"
+                                    + "<head>\n"
+                                    + "    <title>Email</title>\n"
+                                    + "\n"
+                                    + "    <style>\n"
+                                    + "        * {\n"
+                                    + "\n"
+                                    + "            box-sizing: border-box;\n"
+                                    + "\n"
+                                    + "            color: gray;\n"
+                                    + "\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .m0 {\n"
+                                    + "            margin: 0;\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .p0 {\n"
+                                    + "            padding: 0;\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .messageBox {\n"
+                                    + "            border: 1px solid rgba(0, 0, 0, 0.212);\n"
+                                    + "            padding: 10px;\n"
+                                    + "            margin: 10px;\n"
+                                    + "            border-radius: 20px;\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .infobox {\n"
+                                    + "\n"
+                                    + "            padding: 10px;\n"
+                                    + "            margin: 10px;\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .text-center {\n"
+                                    + "\n"
+                                    + "            text-align: center;\n"
+                                    + "\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "        .text-color1 {\n"
+                                    + "\n"
+                                    + "            color: rgb(138, 153, 51);\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .table1 {\n"
+                                    + "            width: 100%;\n"
+                                    + "            margin-inline: 10px;\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .th1 {\n"
+                                    + "            padding: 10px ;\n"
+                                    + "            border-block: 1px solid rgba(0, 0, 0, 0.212);\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .td1 {\n"
+                                    + "            padding-block: 5px;\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .align-center {\n"
+                                    + "\n"
+                                    + "            display: flex;\n"
+                                    + "            justify-content: center;\n"
+                                    + "\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .text-end {\n"
+                                    + "            text-align: end;\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "        .bottomBox {\n"
+                                    + "            background-color: rgba(28, 9, 58, 0.589);\n"
+                                    + "            padding: 10px;\n"
+                                    + "            margin: 10px;\n"
+                                    + "\n"
+                                    + "            position: relative;\n"
+                                    + "\n"
+                                    + "        }\n"
+                                    + "\n"
+                                    + "        .text-color2 {\n"
+                                    + "\n"
+                                    + "            color: white;\n"
+                                    + "            font-family: sans-serif;\n"
+                                    + "            font-size: x-small;\n"
+                                    + "            letter-spacing: 1px;\n"
+                                    + "            font-weight: 10;\n"
+                                    + "        }\n"
+                                    + "    </style>\n"
+                                    + "</head>\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "<body>\n"
+                                    //Body                                    
+                                    + "    <div>\n"
+                                    + "\n"
+                                    + "        <!-- Title -->\n"
+                                    + "\n"
+                                    + "        <div class=\"infobox\">\n"
+                                    + "            <div class=\"text-center\">\n"
+                                    + "                <img src=\"https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM\" width=\"150\">\n"
+                                    + "            </div>\n"
+                                    + "            <h1 class=\"text-center text-color1\">Order - Feel Fresh - " + orderId + "</h1>\n"
+                                    + "\n"
+                                    + "            <h6 style=\"margin-bottom: 0px;\">Date : " + date + "</h6>\n"
+                                    + "            <h6 style=\"margin-block: 4px;\">Time : " + time + "</h6>\n"
+                                    + "        </div>\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "        <!-- Message -->\n"
+                                    + "        <div class=\"messageBox\">\n"
+                                    + "            <h3>Message</h3>\n"
+                                    + "            <p>" + jTextArea1.getText() + "</p>\n"
+                                    + "\n"
+                                    + "        </div>\n"
+                                    + "\n"
+                                    + "        <!-- LIst of items -->\n"
+                                    + "        <h4 style=\"margin-left: 20px; margin-bottom: 10px;\">Items</h4>\n"
+                                    + "        <div class=\"align-center\">\n"
+                                    + "            <table class=\"table1\">\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "                <tr>\n"
+                                    + "                    <th class=\"th1\">Product</th>\n"
+                                    + "                    <th class=\"th1\">Brand</th>\n"
+                                    + "                    <th class=\"th1\">Category</th>\n"
+                                    + "                    <th class=\"th1\">Quantity</th>\n"
+                                    + "                </tr>\n"
+                                    + "\n"
+                                    + items
+                                    + "\n"
+                                    + "            </table>\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "        </div>\n"
+                                    + "        <h4 style=\"margin-right: 20px; text-align: end;\">Required Date : " + jDateChooser1.getDate() + "</h4>\n"
+                                    + "\n"
+                                    + "        <!-- Bottom -->\n"
+                                    + "        <div class=\"bottomBox\">\n"
+                                    + "            <!-- <p class=\"p0 m0 text-color2\" >\n"
+                                    + "                <span style=\"position: absolute; left: 10px; bottom: 5px;\" class=\"text-color2\">Feel fresh &copy; All\n"
+                                    + "                    rights received</span>\n"
+                                    + "                <img style=\"position: absolute; left: 50%; transform: translateX(-50%); bottom: 5px;\"\n"
+                                    + "                    src=\"https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM\" width=\"50\">\n"
+                                    + "                <a style=\"position: absolute; right: 10px; bottom: 5px;\" href=\"#\"><span\n"
+                                    + "                        class=\"text-color2\">feelfresh@gmail.com</span></a>\n"
+                                    + "            </p> -->\n"
+                                    + "\n"
+                                    + "            <!-- <div style=\"position: absolute; width: 30%; height: 20px; top: 0; left: 0; text-align: center; \">\n"
+                                    + "                \n"
+                                    + "            </div>\n"
+                                    + "            <div style=\"position: absolute; width: 40%; height: 20px; top: 0; left: 0; text-align: center; \">\n"
+                                    + "                \n"
+                                    + "            </div>\n"
+                                    + "            <div style=\"position: absolute; width: 30%; height: 20px; top: 0; left: 0; text-align: center; \">\n"
+                                    + "                <P class=\"m0 p0 text-color2\" style=\"text-align: end;\">feelfresh@gmail.com</P>\n"
+                                    + "            </div> -->\n"
+                                    + "\n"
+                                    + "            <table width=\"100%\">\n"
+                                    + "                <tr>\n"
+                                    + "                    <td style=\"width: 40vh;\">\n"
+                                    + "                        <P class=\"m0 p0 text-color2\" style=\"text-align: start;\">Feel Fresh &copy; All Rights Reserved\n"
+                                    + "                        </P>\n"
+                                    + "                    </td>\n"
+                                    + "                    <td style=\"width: 20vh; text-align: center;\"><img \n"
+                                    + "                            src=\"https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM\" width=\"50\" />\n"
+                                    + "                    </td>\n"
+                                    + "                    <td style=\"width: 40vh;\">\n"
+                                    + "                        <P class=\"m0 p0 text-color2\" style=\"text-align: end;\">feelfresh@gmail.com</P>\n"
+                                    + "                    </td>\n"
+                                    + "                </tr>\n"
+                                    + "            </table>\n"
+                                    + "\n"
+                                    + "        </div>\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "    </div>\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "    </div>\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "\n"
+                                    + "</body>\n"
+                                    + "\n"
+                                    + "</html>";
+
+                            Email email = new Email(this.parentFrame_vp);
+
+                            email.setSubject(subject);
+                            email.setBody(body);
+                            
+                            email.sendEmail();
+
+//Send the email to supplier
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -777,7 +1012,7 @@ public class MakeOrder extends javax.swing.JPanel {
 
     private void jListOrderHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListOrderHistoryMouseClicked
         if (evt.getClickCount() == 2) {
-            new gui.dialog.OrderHistoryDialog((Frame) this.getParent().getParent().getParent().getParent().getParent(), true).setVisible(true);
+            new gui.dialog.OrderHistoryDialog((Frame) parentFrame_vp, true).setVisible(true);
         }
     }//GEN-LAST:event_jListOrderHistoryMouseClicked
 

@@ -354,7 +354,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         changeControllerPanel("Company");
         windowName_vp("Company");
     }//GEN-LAST:event_jButtonCompanyActionPerformed
-   private int expanded_width_vp;
+    private int expanded_width_vp;
     private int height_vp;
     private int min_width_vp = 58;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -422,6 +422,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         }
         SwingUtilities.updateComponentTreeUI(jPanel2);
     }
+
     private void toggleTextIcon(boolean isSelected) {
         if (isSelected) {
             jButtonHome.setText("");
@@ -433,6 +434,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             jButtonCompany.setText("Company");
         }
     }
+
     //
     /*this method requires a panel object what you want to apply to to the dashboard
     You can clean the dashboard by passing a null object to the changePanel_vp method*/
