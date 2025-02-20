@@ -4,6 +4,8 @@
  */
 package gui.panel;
 
+import gui.dialog.Settings;
+import java.awt.Frame;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,8 +17,10 @@ public class Settings_btn extends javax.swing.JPanel {
     /**
      * Creates new form Settings_btn
      */
-    public Settings_btn() {
+    Frame parentFrame;
+    public Settings_btn(Frame parent) {
         initComponents();
+        this.parentFrame = parent;
     }
 
     /**
@@ -55,7 +59,7 @@ public class Settings_btn extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        JOptionPane.showConfirmDialog(this, "Message", "Open settings",JOptionPane.INFORMATION_MESSAGE);
+        new Settings(parentFrame, true).setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
 

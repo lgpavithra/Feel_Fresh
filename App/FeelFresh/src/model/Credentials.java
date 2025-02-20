@@ -17,7 +17,21 @@ import java.io.Serializable;
  *
  * @author PC
  */
-class Credentials implements Serializable {
+public class Credentials implements Serializable {
+
+    /**
+     * @return the sender
+     */
+    public String getSender() {
+        return sender;
+    }
+
+    /**
+     * @param sender the sender to set
+     */
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
 
     /**
      * @return the username
@@ -46,18 +60,9 @@ class Credentials implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+    private transient File file = new File("email/credentials.ser");
 
-    // the transient keyword is used to ignore these fields from serialization process
-    private transient File file;
-    private transient FileInputStream fileIS;
-    private transient ObjectInputStream objectIS;
-
-    private transient FileOutputStream fileOS;
-    private transient ObjectOutputStream objectOS;
-
-    Credentials() {
-
-        file = new File("email/credentials.ser");
+    public Credentials() {
 
         if (!file.exists()) {
             file.getParentFile().mkdir();
@@ -78,18 +83,18 @@ class Credentials implements Serializable {
     public void readObject() {
 
         try {
-            fileIS = new FileInputStream(file);
-            objectIS = new ObjectInputStream(fileIS);
-            Object obj = objectIS.readObject();
-            if (obj instanceof Credentials) {
-                Credentials cre = (Credentials) obj;
 
-                this.username = cre.getUsername();
-                this.password = cre.getPassword();
-            }
+            FileInputStream fileIS = new FileInputStream(file);
+            ObjectInputStream objectIS = new ObjectInputStream(fileIS);
 
-            fileIS.close();
+            Credentials cre = (Credentials) objectIS.readObject();
+
+            this.username = cre.getUsername();
+            this.password = cre.getPassword();
+            this.sender = cre.getSender();
+
             objectIS.close();
+            fileIS.close();
 
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -106,14 +111,16 @@ class Credentials implements Serializable {
         if (this.username != null && this.password != null) {
 
             try {
-                fileOS = new FileOutputStream(file);
-                objectOS = new ObjectOutputStream(fileOS);
+
+                FileOutputStream fileOS = new FileOutputStream(file);
+                ObjectOutputStream objectOS = new ObjectOutputStream(fileOS);
 
                 objectOS.writeObject(this);
                 System.out.println(this.getClass());
 
-                fileOS.close();
                 objectOS.close();
+                fileOS.close();
+
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             } catch (IOException ex) {
@@ -125,6 +132,7 @@ class Credentials implements Serializable {
     }
 
     //credentials    
+    private String sender = "hfsjdhfdjs";
     private String username;
     private String password;
 

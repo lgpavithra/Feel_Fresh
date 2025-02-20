@@ -49,7 +49,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         setDateTime();
         
         
-        ControllerLoaderRight.add(new Settings_btn(),BorderLayout.CENTER);
+        ControllerLoaderRight.add(new Settings_btn(this),BorderLayout.CENTER);
     }
 
     private void setDateTime() {
@@ -539,7 +539,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         boolean hasControllers;
 
         ControllerLoaderLeft.removeAll();
-        ControllerLoaderRight.removeAll();
+//        ControllerLoaderRight.removeAll();
 //        if (loadWindowName.equals("Brand & Category")) {
 //            ControllerLoaderRight.add(new LinkBrandCategoryBtn(), BorderLayout.CENTER);
 //        } 
