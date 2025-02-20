@@ -26,6 +26,7 @@ public class GetEmailCredentials extends javax.swing.JDialog {
         
         uJTextfield1.setText(creArray[0]);
         uJTextfield2.setText(creArray[1]);
+        uJTextfield3.setText(creArray[2]);
     }
 
     /**
@@ -45,6 +46,8 @@ public class GetEmailCredentials extends javax.swing.JDialog {
         uJTextfield2 = new component.UJTextfield();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        uJTextfield3 = new component.UJTextfield();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,6 +94,18 @@ public class GetEmailCredentials extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel4.setForeground(new java.awt.Color(230, 230, 230));
+        jLabel4.setText("Sender's Email  :");
+
+        uJTextfield3.setForeground(new java.awt.Color(230, 230, 230));
+        uJTextfield3.setBorderColor(new java.awt.Color(230, 230, 230));
+        uJTextfield3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uJTextfield3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -102,25 +117,31 @@ public class GetEmailCredentials extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                            .addComponent(uJTextfield2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(uJTextfield2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(uJTextfield3, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))))
                 .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(uJTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(uJTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(uJTextfield3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(uJTextfield2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(27, 27, 27))
         );
@@ -169,11 +190,12 @@ public class GetEmailCredentials extends javax.swing.JDialog {
     }//GEN-LAST:event_uJTextfield2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        String sender = uJTextfield3.getText();
         String username = uJTextfield1.getText();
         String appPassword = uJTextfield2.getText();
-        
-        if (username.isEmpty()) {
+        if (sender.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Warning", "Sender'Email mustn't be empty", JOptionPane.WARNING_MESSAGE);
+        } else if (username.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Warning", "Username mustn't be empty", JOptionPane.WARNING_MESSAGE);
         } else if (appPassword.isBlank()) {
             JOptionPane.showMessageDialog(this, "Warning", "app Passowrd mustn't be empty", JOptionPane.WARNING_MESSAGE);
@@ -181,6 +203,7 @@ public class GetEmailCredentials extends javax.swing.JDialog {
             
             this.creArray[0] = username;
             this.creArray[1] = appPassword;
+            this.creArray[2] = sender;
             
         }
         
@@ -188,6 +211,10 @@ public class GetEmailCredentials extends javax.swing.JDialog {
         
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void uJTextfield3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uJTextfield3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uJTextfield3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,9 +225,11 @@ public class GetEmailCredentials extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
+    private component.UJTextfield uJTextfield3;
     // End of variables declaration//GEN-END:variables
 }

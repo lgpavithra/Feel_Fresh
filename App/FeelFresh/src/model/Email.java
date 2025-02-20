@@ -111,18 +111,25 @@ public class Email {
             this.username = cre.getUsername();
             this.password = cre.getPassword();
             this.sender = cre.getSender();
+
+            if (this.username == null || this.password == null || this.sender == null
+                    || this.username.isBlank() || this.password.isBlank() || this.sender.isBlank()) {
+                collectCredentials();
+
+                cre = new Credentials();
+                this.username = cre.getUsername();
+                this.password = cre.getPassword();
+                this.sender = cre.getSender();
+            }
+
         } else {
 
+            collectCredentials();
+
             Credentials cre = new Credentials();
-
-            String[] creArray = {cre.getUsername(), cre.getPassword()};//this array is used as a container to get collected valuses from jdialog below.
-
-            new GetEmailCredentials(frame, true, creArray).setVisible(true);
-
-            cre.setUsername(creArray[0]);
-            cre.setPassword(creArray[1]);
-
-            cre.saveObject();
+            this.username = cre.getUsername();
+            this.password = cre.getPassword();
+            this.sender = cre.getSender();
         }
 
     }
@@ -188,6 +195,20 @@ public class Email {
             return 1;
         }
 
+    }
+
+    private void collectCredentials() {
+        Credentials cre = new Credentials();
+
+        String[] creArray = {cre.getUsername(), cre.getPassword(), cre.getSender()};//this array is used as a container to get collected valuses from jdialog below.
+
+        new GetEmailCredentials(frame, true, creArray).setVisible(true);
+
+        cre.setUsername(creArray[0]);
+        cre.setPassword(creArray[1]);
+        cre.setSender(creArray[2]);
+
+        cre.saveObject();
     }
 
 }
