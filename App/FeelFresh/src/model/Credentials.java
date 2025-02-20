@@ -74,7 +74,7 @@ public class Credentials implements Serializable {
 
             System.out.println("created");
         } else {
-            System.out.println("read");
+            
             readObject();
         }
 
@@ -116,7 +116,7 @@ public class Credentials implements Serializable {
                 ObjectOutputStream objectOS = new ObjectOutputStream(fileOS);
 
                 objectOS.writeObject(this);
-                System.out.println(this.getClass());
+                
 
                 objectOS.close();
                 fileOS.close();
@@ -132,7 +132,7 @@ public class Credentials implements Serializable {
     }
 
     //credentials    
-    private String sender = "hfsjdhfdjs";
+    private String sender ;
     private String username;
     private String password;
 

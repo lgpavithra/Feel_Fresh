@@ -33,6 +33,34 @@ import javax.mail.internet.MimeMultipart;
 public class Email {
 
     /**
+     * @return the sender
+     */
+    public String getSender() {
+        return sender;
+    }
+
+    /**
+     * @param sender the sender to set
+     */
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    /**
+     * @return the recipients
+     */
+    public String getRecipients() {
+        return recipients;
+    }
+
+    /**
+     * @param recipients the recipients to set
+     */
+    public void setRecipients(String recipients) {
+        this.recipients = recipients;
+    }
+
+    /**
      * @param subject the subject to set
      */
     public void setSubject(String subject) {
@@ -49,12 +77,12 @@ public class Email {
     private Frame frame;//parent frame
 
     public Email(Frame f) {
-        
+
         /*These methods should be called before send the email
+            setRecipient();
             setSubject();
             setBody();
-        */
-        
+         */
         setupCredentials();
         this.frame = f;
 
@@ -62,27 +90,31 @@ public class Email {
 
 //    Varables
     //emails
-    private String sender = "lgpavithra148@gmail.com";
-    private String recipients = "lgpavithra148@gmail.com";
+    private String sender;
+    private String recipients;
 
     private String subject;
     private String body;
 
     //credentials
     private String host = "smtp.gmail.com";
-    private String username = "lgpavithra148@gmail.com";
-    private String password = "hngp cvov pueh izzl";
+    private String username;
+    private String password;
 
     public void setupCredentials() {
         //check that saved file is avaliable
         File file = new File("email/credentials.ser");
 
         if (file.exists()) {
-            System.out.println("avaliable");
-        } else {
-            System.out.println("unavaliable");
 
             Credentials cre = new Credentials();
+            this.username = cre.getUsername();
+            this.password = cre.getPassword();
+            this.sender = cre.getSender();
+        } else {
+
+            Credentials cre = new Credentials();
+
             String[] creArray = {cre.getUsername(), cre.getPassword()};//this array is used as a container to get collected valuses from jdialog below.
 
             new GetEmailCredentials(frame, true, creArray).setVisible(true);
@@ -124,8 +156,8 @@ public class Email {
 
     private void composeEmail() {
         try {
-            message.setFrom(new InternetAddress(sender));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
+            message.setFrom(new InternetAddress(getSender()));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(getRecipients()));
             message.setSubject(subject);
 
             Multipart mpart = new MimeMultipart();
@@ -146,11 +178,10 @@ public class Email {
     public int sendEmail() {
         //this returns 0 - success , 1 - error was occured
         setup();
-        composeEmail();        
+        composeEmail();
 
         try {
             Transport.send(message);
-            System.out.println("Email was sent successfully");
             return 0;
         } catch (MessagingException ex) {
             ex.printStackTrace();

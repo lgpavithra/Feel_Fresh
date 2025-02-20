@@ -7,6 +7,7 @@ package gui.panel.order;
 import gui.Dashboard_inventoryManager;
 import gui.dialog.SelectProduct;
 import gui.dialog.SelectSupplier_order;
+import java.awt.Color;
 
 import java.awt.Frame;
 import java.util.logging.Level;
@@ -27,6 +28,8 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.HashMap;
 import model.Email;
+import raven.toast.Notifications;
+import raven.toast.ToastClientProperties;
 
 /**
  *
@@ -112,6 +115,8 @@ public class MakeOrder extends javax.swing.JPanel {
         loadCategories_vp();
         loadBrand();
         loadUnits_vp();
+
+        Notifications.getInstance().setJFrame(this.parentFrame_vp);
 
     }
 
@@ -635,6 +640,8 @@ public class MakeOrder extends javax.swing.JPanel {
 
     }//GEN-LAST:event_roundButtonUpdateQTYActionPerformed
 
+    int status = 3; //this is shows whether email is sent or not /0-sent , 1-failed , 3-wait for resilt
+
     private void roundButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton6ActionPerformed
 
         if (IdLabel.getText().equals("ID")) {//it was not selected a supplier
@@ -694,236 +701,290 @@ public class MakeOrder extends javax.swing.JPanel {
                             MYSQL.executeIUD("INSERT INTO `order_item` (`order_id`,`product_id`,`qty`,`unit_id`) VALUES "
                                     + q + " ");
 
-                            JOptionPane.showMessageDialog(this, "Order is saved successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Order Saved");
+                            Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "Please wait until send the email!");
 
+                            Thread tStatus = new Thread(() -> {
+                                while (status == 3) {
+                                    String text = this.parentFrame_vp.jLabelProgress.getText();
+                                    this.parentFrame_vp.jLabelProgress.setText(text + "|||");
+                                    try {
+                                        Thread.sleep(35);
+                                    } catch (InterruptedException ex) {
+                                        ex.printStackTrace();
+                                    }
+
+                                    if (text.length() > 80) {
+                                        this.parentFrame_vp.jLabelProgress.setText("      ");
+                                        this.parentFrame_vp.jLabelProgress.setForeground(Color.WHITE);
+                                    } else if (text.length() > 60) {
+                                        this.parentFrame_vp.jLabelProgress.setForeground(Color.RED);
+                                    } else if (text.length() > 30) {
+                                        this.parentFrame_vp.jLabelProgress.setForeground(Color.ORANGE);
+
+                                    }
+                                }
+
+                                if (status != 3) {
+                                    this.parentFrame_vp.jLabelProgress.setText("      ");
+                                }
+
+                            });
+                            tStatus.start();
 //Send the email to supplier
-                            String time = parentFrame_vp.getTime_vp();
-                            String date = parentFrame_vp.getDate_vp();
-                            String orderId = String.valueOf(order_id);
-                            String supplierEmail = emailLabel.getText();
-                            String subject = "Feel Fresh - superMarket";
+                            roundButton6.setEnabled(false);
+                            Thread tEmail = new Thread(() -> {
 
-                            String items = "";
+                                try {
+                                    Thread.sleep(150);
+                                } catch (InterruptedException ex) {
+                                    ex.printStackTrace();
+                                }
 
-                            for (int i = 0; i < jTable1.getRowCount(); i++) {
-                                items += "    "
-                                        + "            <tr>\n"
-                                        + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 0) + "</td>\n"
-                                        + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 1) + "</td>\n"
-                                        + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 2) + "</td>\n"
-                                        + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 3) + "</td>\n"
-                                        + "            </tr>\n";
-                            }
+                                String time = parentFrame_vp.getTime_vp();
+                                String date = parentFrame_vp.getDate_vp();
+                                String orderId = String.valueOf(order_id);
+                                String subject = "Feel Fresh - superMarket";
 
-                            String body = "<!DOCTYPE html>\n"
-                                    + "\n"
-                                    + "<html>\n"
-                                    + "\n"
-                                    + "<head>\n"
-                                    + "    <title>Email</title>\n"
-                                    + "\n"
-                                    + "    <style>\n"
-                                    + "        * {\n"
-                                    + "\n"
-                                    + "            box-sizing: border-box;\n"
-                                    + "\n"
-                                    + "            color: gray;\n"
-                                    + "\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .m0 {\n"
-                                    + "            margin: 0;\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .p0 {\n"
-                                    + "            padding: 0;\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .messageBox {\n"
-                                    + "            border: 1px solid rgba(0, 0, 0, 0.212);\n"
-                                    + "            padding: 10px;\n"
-                                    + "            margin: 10px;\n"
-                                    + "            border-radius: 20px;\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .infobox {\n"
-                                    + "\n"
-                                    + "            padding: 10px;\n"
-                                    + "            margin: 10px;\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .text-center {\n"
-                                    + "\n"
-                                    + "            text-align: center;\n"
-                                    + "\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "        .text-color1 {\n"
-                                    + "\n"
-                                    + "            color: rgb(138, 153, 51);\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .table1 {\n"
-                                    + "            width: 100%;\n"
-                                    + "            margin-inline: 10px;\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .th1 {\n"
-                                    + "            padding: 10px ;\n"
-                                    + "            border-block: 1px solid rgba(0, 0, 0, 0.212);\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .td1 {\n"
-                                    + "            padding-block: 5px;\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .align-center {\n"
-                                    + "\n"
-                                    + "            display: flex;\n"
-                                    + "            justify-content: center;\n"
-                                    + "\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .text-end {\n"
-                                    + "            text-align: end;\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "        .bottomBox {\n"
-                                    + "            background-color: rgba(28, 9, 58, 0.589);\n"
-                                    + "            padding: 10px;\n"
-                                    + "            margin: 10px;\n"
-                                    + "\n"
-                                    + "            position: relative;\n"
-                                    + "\n"
-                                    + "        }\n"
-                                    + "\n"
-                                    + "        .text-color2 {\n"
-                                    + "\n"
-                                    + "            color: white;\n"
-                                    + "            font-family: sans-serif;\n"
-                                    + "            font-size: x-small;\n"
-                                    + "            letter-spacing: 1px;\n"
-                                    + "            font-weight: 10;\n"
-                                    + "        }\n"
-                                    + "    </style>\n"
-                                    + "</head>\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "<body>\n"
-                                    //Body                                    
-                                    + "    <div>\n"
-                                    + "\n"
-                                    + "        <!-- Title -->\n"
-                                    + "\n"
-                                    + "        <div class=\"infobox\">\n"
-                                    + "            <div class=\"text-center\">\n"
-                                    + "                <img src=\"https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM\" width=\"150\">\n"
-                                    + "            </div>\n"
-                                    + "            <h1 class=\"text-center text-color1\">Order - Feel Fresh - " + orderId + "</h1>\n"
-                                    + "\n"
-                                    + "            <h6 style=\"margin-bottom: 0px;\">Date : " + date + "</h6>\n"
-                                    + "            <h6 style=\"margin-block: 4px;\">Time : " + time + "</h6>\n"
-                                    + "        </div>\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "        <!-- Message -->\n"
-                                    + "        <div class=\"messageBox\">\n"
-                                    + "            <h3>Message</h3>\n"
-                                    + "            <p>" + jTextArea1.getText() + "</p>\n"
-                                    + "\n"
-                                    + "        </div>\n"
-                                    + "\n"
-                                    + "        <!-- LIst of items -->\n"
-                                    + "        <h4 style=\"margin-left: 20px; margin-bottom: 10px;\">Items</h4>\n"
-                                    + "        <div class=\"align-center\">\n"
-                                    + "            <table class=\"table1\">\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "                <tr>\n"
-                                    + "                    <th class=\"th1\">Product</th>\n"
-                                    + "                    <th class=\"th1\">Brand</th>\n"
-                                    + "                    <th class=\"th1\">Category</th>\n"
-                                    + "                    <th class=\"th1\">Quantity</th>\n"
-                                    + "                </tr>\n"
-                                    + "\n"
-                                    + items
-                                    + "\n"
-                                    + "            </table>\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "        </div>\n"
-                                    + "        <h4 style=\"margin-right: 20px; text-align: end;\">Required Date : " + jDateChooser1.getDate() + "</h4>\n"
-                                    + "\n"
-                                    + "        <!-- Bottom -->\n"
-                                    + "        <div class=\"bottomBox\">\n"
-                                    + "            <!-- <p class=\"p0 m0 text-color2\" >\n"
-                                    + "                <span style=\"position: absolute; left: 10px; bottom: 5px;\" class=\"text-color2\">Feel fresh &copy; All\n"
-                                    + "                    rights received</span>\n"
-                                    + "                <img style=\"position: absolute; left: 50%; transform: translateX(-50%); bottom: 5px;\"\n"
-                                    + "                    src=\"https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM\" width=\"50\">\n"
-                                    + "                <a style=\"position: absolute; right: 10px; bottom: 5px;\" href=\"#\"><span\n"
-                                    + "                        class=\"text-color2\">feelfresh@gmail.com</span></a>\n"
-                                    + "            </p> -->\n"
-                                    + "\n"
-                                    + "            <!-- <div style=\"position: absolute; width: 30%; height: 20px; top: 0; left: 0; text-align: center; \">\n"
-                                    + "                \n"
-                                    + "            </div>\n"
-                                    + "            <div style=\"position: absolute; width: 40%; height: 20px; top: 0; left: 0; text-align: center; \">\n"
-                                    + "                \n"
-                                    + "            </div>\n"
-                                    + "            <div style=\"position: absolute; width: 30%; height: 20px; top: 0; left: 0; text-align: center; \">\n"
-                                    + "                <P class=\"m0 p0 text-color2\" style=\"text-align: end;\">feelfresh@gmail.com</P>\n"
-                                    + "            </div> -->\n"
-                                    + "\n"
-                                    + "            <table width=\"100%\">\n"
-                                    + "                <tr>\n"
-                                    + "                    <td style=\"width: 40vh;\">\n"
-                                    + "                        <P class=\"m0 p0 text-color2\" style=\"text-align: start;\">Feel Fresh &copy; All Rights Reserved\n"
-                                    + "                        </P>\n"
-                                    + "                    </td>\n"
-                                    + "                    <td style=\"width: 20vh; text-align: center;\"><img \n"
-                                    + "                            src=\"https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM\" width=\"50\" />\n"
-                                    + "                    </td>\n"
-                                    + "                    <td style=\"width: 40vh;\">\n"
-                                    + "                        <P class=\"m0 p0 text-color2\" style=\"text-align: end;\">feelfresh@gmail.com</P>\n"
-                                    + "                    </td>\n"
-                                    + "                </tr>\n"
-                                    + "            </table>\n"
-                                    + "\n"
-                                    + "        </div>\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "    </div>\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "    </div>\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "\n"
-                                    + "</body>\n"
-                                    + "\n"
-                                    + "</html>";
+                                String items = "";
 
-                            Email email = new Email(this.parentFrame_vp);
+                                for (int i = 0; i < jTable1.getRowCount(); i++) {
+                                    items += "    "
+                                            + "            <tr>\n"
+                                            + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 1) + "</td>\n"
+                                            + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 2) + "</td>\n"
+                                            + "                    <td class=\"td1\">" + jTable1.getValueAt(i, 3) + "</td>\n"
+                                            + "                    <td class=\"td1 text-end\">" + jTable1.getValueAt(i, 4) + " " + jTable1.getValueAt(i, 5) + "</td>\n"
+                                            + "            </tr>\n";
+                                }
 
-                            email.setSubject(subject);
-                            email.setBody(body);
-                            
-                            email.sendEmail();
+                                String body = "<!DOCTYPE html>\n"
+                                        + "\n"
+                                        + "<html>\n"
+                                        + "\n"
+                                        + "<head>\n"
+                                        + "    <title>Email</title>\n"
+                                        + "\n"
+                                        + "    <style>\n"
+                                        + "        * {\n"
+                                        + "\n"
+                                        + "            box-sizing: border-box;\n"
+                                        + "\n"
+                                        + "            color: gray;\n"
+                                        + "\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .m0 {\n"
+                                        + "            margin: 0;\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .p0 {\n"
+                                        + "            padding: 0;\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .messageBox {\n"
+                                        + "            border: 1px solid rgba(0, 0, 0, 0.212);\n"
+                                        + "            padding: 10px;\n"
+                                        + "            margin: 10px;\n"
+                                        + "            border-radius: 20px;\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .infobox {\n"
+                                        + "\n"
+                                        + "            padding: 10px;\n"
+                                        + "            margin: 10px;\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .text-center {\n"
+                                        + "\n"
+                                        + "            text-align: center;\n"
+                                        + "\n"
+                                        + "        }\n"
+                                        + "        .text-end {\n"
+                                        + "\n"
+                                        + "            text-align: end;\n"
+                                        + "\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "        .text-color1 {\n"
+                                        + "\n"
+                                        + "            color: rgb(138, 153, 51);\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .table1 {\n"
+                                        + "            width: 100%;\n"
+                                        + "            margin-inline: 10px;\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .th1 {\n"
+                                        + "            padding: 10px ;\n"
+                                        + "            border-block: 1px solid rgba(0, 0, 0, 0.212);\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .td1 {\n"
+                                        + "            padding-block: 5px;\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .align-center {\n"
+                                        + "\n"
+                                        + "            display: flex;\n"
+                                        + "            justify-content: center;\n"
+                                        + "\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .text-end {\n"
+                                        + "            text-align: end;\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "        .bottomBox {\n"
+                                        + "            background-color: rgba(28, 9, 58, 0.589);\n"
+                                        + "            padding: 10px;\n"
+                                        + "            margin: 10px;\n"
+                                        + "\n"
+                                        + "            position: relative;\n"
+                                        + "\n"
+                                        + "        }\n"
+                                        + "\n"
+                                        + "        .text-color2 {\n"
+                                        + "\n"
+                                        + "            color: white;\n"
+                                        + "            font-family: sans-serif;\n"
+                                        + "            font-size: x-small;\n"
+                                        + "            letter-spacing: 1px;\n"
+                                        + "            font-weight: 10;\n"
+                                        + "        }\n"
+                                        + "    </style>\n"
+                                        + "</head>\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "<body>\n"
+                                        //Body                                    
+                                        + "    <div>\n"
+                                        + "\n"
+                                        + "        <!-- Title -->\n"
+                                        + "\n"
+                                        + "        <div class=\"infobox\">\n"
+                                        + "            <div class=\"text-center\">\n"
+                                        + "                <img src=\"https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM\" width=\"150\">\n"
+                                        + "            </div>\n"
+                                        + "            <h1 class=\"text-center text-color1\">Order - Feel Fresh - " + orderId + "</h1>\n"
+                                        + "\n"
+                                        + "            <h6 style=\"margin-bottom: 0px;\">Date : " + date + "</h6>\n"
+                                        + "            <h6 style=\"margin-block: 4px;\">Time : " + time + "</h6>\n"
+                                        + "        </div>\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "        <!-- Message -->\n"
+                                        + "        <div class=\"messageBox\">\n"
+                                        + "            <h3>Message</h3>\n"
+                                        + "            <p>" + jTextArea1.getText() + "</p>\n"
+                                        + "\n"
+                                        + "        </div>\n"
+                                        + "\n"
+                                        + "        <!-- LIst of items -->\n"
+                                        + "        <h4 style=\"margin-left: 20px; margin-bottom: 10px;\">Items</h4>\n"
+                                        + "        <div class=\"align-center\">\n"
+                                        + "            <table class=\"table1\">\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "                <tr>\n"
+                                        + "                    <th class=\"th1\">Product</th>\n"
+                                        + "                    <th class=\"th1\">Brand</th>\n"
+                                        + "                    <th class=\"th1\">Category</th>\n"
+                                        + "                    <th class=\"th1\">Quantity</th>\n"
+                                        + "                </tr>\n"
+                                        + "\n"
+                                        + items
+                                        + "\n"
+                                        + "            </table>\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "        </div>\n"
+                                        + "        <h4 style=\"margin-right: 20px; text-align: end;\">Required Date : " + jDateChooser1.getDate() + "</h4>\n"
+                                        + "\n"
+                                        + "        <!-- Bottom -->\n"
+                                        + "        <div class=\"bottomBox\">\n"
+                                        + "            <!-- <p class=\"p0 m0 text-color2\" >\n"
+                                        + "                <span style=\"position: absolute; left: 10px; bottom: 5px;\" class=\"text-color2\">Feel fresh &copy; All\n"
+                                        + "                    rights received</span>\n"
+                                        + "                <img style=\"position: absolute; left: 50%; transform: translateX(-50%); bottom: 5px;\"\n"
+                                        + "                    src=\"https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM\" width=\"50\">\n"
+                                        + "                <a style=\"position: absolute; right: 10px; bottom: 5px;\" href=\"#\"><span\n"
+                                        + "                        class=\"text-color2\">feelfresh@gmail.com</span></a>\n"
+                                        + "            </p> -->\n"
+                                        + "\n"
+                                        + "            <!-- <div style=\"position: absolute; width: 30%; height: 20px; top: 0; left: 0; text-align: center; \">\n"
+                                        + "                \n"
+                                        + "            </div>\n"
+                                        + "            <div style=\"position: absolute; width: 40%; height: 20px; top: 0; left: 0; text-align: center; \">\n"
+                                        + "                \n"
+                                        + "            </div>\n"
+                                        + "            <div style=\"position: absolute; width: 30%; height: 20px; top: 0; left: 0; text-align: center; \">\n"
+                                        + "                <P class=\"m0 p0 text-color2\" style=\"text-align: end;\">feelfresh@gmail.com</P>\n"
+                                        + "            </div> -->\n"
+                                        + "\n"
+                                        + "            <table width=\"100%\">\n"
+                                        + "                <tr>\n"
+                                        + "                    <td style=\"width: 40vh;\">\n"
+                                        + "                        <P class=\"m0 p0 text-color2\" style=\"text-align: start;\">Feel Fresh &copy; All Rights Reserved\n"
+                                        + "                        </P>\n"
+                                        + "                    </td>\n"
+                                        + "                    <td style=\"width: 20vh; text-align: center;\"><img \n"
+                                        + "                            src=\"https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM\" width=\"50\" />\n"
+                                        + "                    </td>\n"
+                                        + "                    <td style=\"width: 40vh;\">\n"
+                                        + "                        <P class=\"m0 p0 text-color2\" style=\"text-align: end;\">feelfresh@gmail.com</P>\n"
+                                        + "                    </td>\n"
+                                        + "                </tr>\n"
+                                        + "            </table>\n"
+                                        + "\n"
+                                        + "        </div>\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "    </div>\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "    </div>\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "\n"
+                                        + "</body>\n"
+                                        + "\n"
+                                        + "</html>";
+
+                                Email email = new Email(this.parentFrame_vp);
+                                email.setRecipients(emailLabel.getText());
+                                email.setSubject(subject);
+                                email.setBody(body);
+
+                                status = email.sendEmail();
+
+                                if (status == 0) {
+                                    Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "Email was sent successfully");
+                                } else if (status == 1) {
+                                    Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Email Sending Failed");
+
+                                }
+
+                                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Go to the Order History to view the order.");
+                                clearAll_vp();
+                            });
+
+                            tEmail.start();
 
 //Send the email to supplier
                         } catch (Exception e) {
@@ -1358,5 +1419,31 @@ public class MakeOrder extends javax.swing.JPanel {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void clearAll_vp() {
+        nameLabel.setText("Name :");
+        emailLabel.setText("Email : ");
+        mobileLabel.setText("Mobile : ");
+
+        jListOrderHistory.setModel(new DefaultListModel<>());
+
+        jPanel6.removeAll();
+        jPanel6.add(jPanelNoPendingOrders);
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        while (dtm.getRowCount() > 0) {
+            dtm.removeRow(0);
+        }
+        jTable1.setModel(dtm);
+        jTextArea1.setText("");
+        jFormattedTextFieldQty.setText("");
+
+        clearFilter_vp();
+
+        jDateChooser1.setDate(null);
+
+        status = 3;//email status
+        roundButton6.setEnabled(true);
+
     }
 }

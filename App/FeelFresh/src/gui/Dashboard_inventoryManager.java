@@ -103,6 +103,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ControllerLoaderRight = new javax.swing.JPanel();
         ControllerLoaderLeft = new javax.swing.JPanel();
+        jLabelProgress = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(0, 470));
@@ -306,6 +307,10 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
         ControllerLoaderLeft.setBackground(new java.awt.Color(102, 102, 102));
         ControllerLoaderLeft.setLayout(new java.awt.BorderLayout());
+
+        jLabelProgress.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelProgress.setText("      ");
+        ControllerLoaderLeft.add(jLabelProgress, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout panalRound2Layout = new javax.swing.GroupLayout(panalRound2);
         panalRound2.setLayout(panalRound2Layout);
@@ -525,6 +530,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    public javax.swing.JLabel jLabelProgress;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -538,7 +544,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     private void changeControllerPanel(String loadWindowName) {
         boolean hasControllers;
 
-        ControllerLoaderLeft.removeAll();
+//        ControllerLoaderLeft.removeAll();
 //        ControllerLoaderRight.removeAll();
 //        if (loadWindowName.equals("Brand & Category")) {
 //            ControllerLoaderRight.add(new LinkBrandCategoryBtn(), BorderLayout.CENTER);
