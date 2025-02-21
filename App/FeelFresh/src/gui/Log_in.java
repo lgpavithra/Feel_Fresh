@@ -280,27 +280,30 @@ public class Log_in extends javax.swing.JFrame {
             } else if (password.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please Enter your password.", "Warning", JOptionPane.WARNING_MESSAGE);
                 jPasswordField1.grabFocus();
-          
+
             } else {
-                ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `user` "
-                        + " INNER JOIN `user_type` ON `user`.`user_type_id` = `user_type`.`id` "
-                        + "INNER JOIN `status` ON `user`.`status_id` = `status`.`id` "
-                        + "WHERE `nic`='" + Username + "' AND `password`='" + password + "'");
+                ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `user` WHERE `employee_nic`='" + Username + "' AND `password`='" + password + "'");
 
                 if (resultSet.next()) {
 
-                    if (resultSet.getString("status.name").equals("Active")) {//checking that either acvive or inactive
-                        
-                        if (resultSet.getString("user_type.name").equals("Inventory Manager")) {//checking that the user type is invenotory manager.
-                            new Dashboard_inventoryManager().setVisible(true);
-                        } else {
-                            Main_Dashbord main_Dashbord = new Main_Dashbord();
-                            main_Dashbord.setVisible(true);
+                    if (resultSet.getString("status").equals("Active")) {//checking that either acvive or inactive
+
+                        if (resultSet.getString("user_type").equals("Inventory manager")) {//checking that the user type is invenotory manager.
+                            new Dashboard_inventoryManager(Username).setVisible(true);
+                        }
+                        if (resultSet.getString("user_type").equals("Cashiers")) {
+                            new Dashboard_cashier(Username).setVisible(true);
+                        }
+                        if (resultSet.getString("user_type").equals("HR Manager")) {
+                            new Dashboard_hRManager().setVisible(true);
+                        }
+                        if (resultSet.getString("user_type").equals("Admin")) {
+                            new Main_Dashbord().setVisible(true);
                         }
                         this.dispose();
-                        
+
                     } else {
-                        JOptionPane.showMessageDialog(this, "Your user status is "+resultSet.getString("status.name"), "Warning ", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Your user status is " + resultSet.getString("status"), "Warning ", JOptionPane.WARNING_MESSAGE);
                     }
 
                     setUsername(Username);

@@ -36,11 +36,10 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
     public Dashboard_hRManager() {
         initComponents();
 
+        setExtendedState(Dashboard_hRManager.MAXIMIZED_BOTH);
         changePanel_vp(new Welcome());
         this.setLocationRelativeTo(null);
-
         setDateTime();
-
     }
 
     private void setDateTime() {
@@ -53,14 +52,10 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             LocalTime time = LocalTime.now();
             String formattedDate = date.format(dateFormatter);
             String formattedTime = time.format(timeFormatter);
-
             jLabel3.setText(formattedTime);
             jLabel4.setText(formattedDate);
-
         });
-
         timer.start();
-
     }
 
     /**
@@ -78,6 +73,10 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jToggleButton1 = new javax.swing.JToggleButton();
         jButtonEmployee = new javax.swing.JButton();
+        jButtonCompany1 = new javax.swing.JButton();
+        jButtonCompany2 = new javax.swing.JButton();
+        jButtonCompany3 = new javax.swing.JButton();
+        jButtonCompany4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -92,13 +91,14 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         ControllerLoaderLeft = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(0, 470));
+        setMinimumSize(new java.awt.Dimension(0, 580));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButtonHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/home-28.png"))); // NOI18N
         jButtonHome.setText("   Home");
         jButtonHome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonHome.setInheritsPopupMenu(true);
         jButtonHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonHomeActionPerformed(evt);
@@ -131,6 +131,42 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             }
         });
 
+        jButtonCompany1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany1.setText("  Supplier");
+        jButtonCompany1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonCompany1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCompany1ActionPerformed(evt);
+            }
+        });
+
+        jButtonCompany2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany2.setText("  Customer");
+        jButtonCompany2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonCompany2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCompany2ActionPerformed(evt);
+            }
+        });
+
+        jButtonCompany3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany3.setText("  Attendance");
+        jButtonCompany3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonCompany3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCompany3ActionPerformed(evt);
+            }
+        });
+
+        jButtonCompany4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany4.setText("  Salary");
+        jButtonCompany4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonCompany4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCompany4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -146,7 +182,11 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
                             .addComponent(jButtonCompany, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jButtonCompany1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(jButtonCompany2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(jButtonCompany3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(jButtonCompany4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                         .addGap(1, 1, 1)))
                 .addGap(14, 14, 14))
         );
@@ -163,7 +203,15 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
                 .addComponent(jButtonEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonCompany)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCompany1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCompany2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCompany3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCompany4)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -261,10 +309,12 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(ControllerLoaderRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panalRound2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panalRound2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addComponent(ControllerLoaderLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(ControllerLoaderLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -301,48 +351,35 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
 
     private void jButtonCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompanyActionPerformed
         changePanel_vp(new Company());
-
         changeControllerPanel("Company");
-        
         windowName_vp("Company");
     }//GEN-LAST:event_jButtonCompanyActionPerformed
-
-    private int expanded_width_vp;
+   private int expanded_width_vp;
     private int height_vp;
     private int min_width_vp = 58;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-
         if (jToggleButton1.isSelected()) {
-
             expanded_width_vp = jPanel1.getWidth();
             height_vp = jPanel1.getHeight();
-
             Thread thread_vp = new Thread(() -> {
-
                 for (int i = expanded_width_vp; i >= min_width_vp; i -= 10) {
                     jPanel1.setPreferredSize(new Dimension(i, height_vp));
                     SwingUtilities.updateComponentTreeUI(jPanel1);
-
                     try {
                         Thread.sleep(10);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-
                 //remove text
                 toggleTextIcon(true);
-
             });
             thread_vp.start();
         } else {
-
             Thread thread_vp = new Thread(() -> {
-
                 for (int i = min_width_vp; i <= expanded_width_vp; i += 10) {
                     jPanel1.setPreferredSize(new Dimension(i, height_vp));
                     SwingUtilities.updateComponentTreeUI(jPanel1);
-
                     try {
                         Thread.sleep(10);
                     } catch (Exception e) {
@@ -350,33 +387,42 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
                     }
                 }
                 toggleTextIcon(false);
-
             });
             thread_vp.start();
         }
-
         jToggleButton1.setBorder(null);
         SwingUtilities.updateComponentTreeUI(jPanel1);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButtonEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmployeeActionPerformed
         ChangePanal_HS(new employee());
-        
         changeControllerPanel("Employee");
-        
         windowName_vp("Employee");
     }//GEN-LAST:event_jButtonEmployeeActionPerformed
+
+    private void jButtonCompany1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompany1ActionPerformed
+
+    private void jButtonCompany2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompany2ActionPerformed
+
+    private void jButtonCompany3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompany3ActionPerformed
+
+    private void jButtonCompany4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCompany4ActionPerformed
     private void ChangePanal_HS(JPanel PanalFrome_HS) {
         jPanel2.removeAll();
         if (PanalFrome_HS != null) {
             jPanel2.add(PanalFrome_HS, BorderLayout.CENTER);
         }
         SwingUtilities.updateComponentTreeUI(jPanel2);
-
     }
-
     private void toggleTextIcon(boolean isSelected) {
-
         if (isSelected) {
             jButtonHome.setText("");
             jButtonEmployee.setText("");
@@ -386,20 +432,16 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             jButtonEmployee.setText("Employee");
             jButtonCompany.setText("Company");
         }
-
     }
-
     //
     /*this method requires a panel object what you want to apply to to the dashboard
     You can clean the dashboard by passing a null object to the changePanel_vp method*/
     public void changePanel_vp(JPanel panelForm_vp) {
         jPanel2.removeAll();
-
         if (panelForm_vp != null) {
             jPanel2.add(panelForm_vp, BorderLayout.CENTER);
         }
         SwingUtilities.updateComponentTreeUI(jPanel2);
-
     }
 
 //     private void changePanel_ps(JPanel panelForm_ps) {
@@ -432,6 +474,10 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
     private javax.swing.JPanel ControllerLoaderLeft;
     private javax.swing.JPanel ControllerLoaderRight;
     private javax.swing.JButton jButtonCompany;
+    private javax.swing.JButton jButtonCompany1;
+    private javax.swing.JButton jButtonCompany2;
+    private javax.swing.JButton jButtonCompany3;
+    private javax.swing.JButton jButtonCompany4;
     private javax.swing.JButton jButtonEmployee;
     private javax.swing.JButton jButtonHome;
     private javax.swing.JLabel jLabel1;
@@ -455,16 +501,13 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
 
         ControllerLoaderLeft.removeAll();
         ControllerLoaderRight.removeAll();
-        
 
-        
-        
         SwingUtilities.updateComponentTreeUI(this);
 
     }
-    
-      private void windowName_vp(String text) {
-       jLabel2.setText(text.trim());
+
+    private void windowName_vp(String text) {
+        jLabel2.setText(text.trim());
     }
 
 }

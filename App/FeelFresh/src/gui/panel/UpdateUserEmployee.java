@@ -4,20 +4,24 @@
  */
 package gui.panel;
 
+import gui.dialog.UserEmployee;
+
 /**
  *
  * @author Sandun
  */
-public class UpdateEmployee extends javax.swing.JPanel {
+public class UpdateUserEmployee extends javax.swing.JPanel {
 
     /**
-     * Creates new form AddEmployee
+     * Creates new form UpdateUserEmployee
      */
-    private employee emp_HS;
+    private UserEmployee usemp_HS;
 
-    public UpdateEmployee(employee EUpdate) {
+    public UpdateUserEmployee(UserEmployee UEUpdate) {
         initComponents();
-        emp_HS = EUpdate;
+        usemp_HS = UEUpdate;
+        jButton1.putClientProperty("JButton.buttonType", "roundRect");
+
     }
 
     /**
@@ -31,9 +35,11 @@ public class UpdateEmployee extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 102));
+        setBackground(new java.awt.Color(249, 249, 249));
+
+        jButton1.setBackground(new java.awt.Color(56, 99, 255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Update");
+        jButton1.setText("Update System Access");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -44,17 +50,17 @@ public class UpdateEmployee extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        emp_HS.EmployeeUpdate_HS("EmpUpdate");
+        usemp_HS.RegUPDUserEmployee_HS("Updateaccess");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class MYSQL {
 
-    private static Connection connection;
+    public static Connection connection;
     private static String username ;
     private static String password ;
 
