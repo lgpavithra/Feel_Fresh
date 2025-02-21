@@ -22,7 +22,6 @@ import gui.panel.inventory.GRNTerminal;
 import gui.panel.order.MakeOrder;
 import gui.panel.order.OrderPanel;
 
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.time.LocalDate;
@@ -51,9 +50,8 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         setDateTime();
-        
-        
-        ControllerLoaderRight.add(new Settings_btn(this),BorderLayout.CENTER);
+
+        ControllerLoaderRight.add(new Settings_btn(this), BorderLayout.CENTER);
     }
 
     private void setDateTime() {
@@ -93,10 +91,9 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jToggleButton1 = new javax.swing.JToggleButton();
         jButtonSupplier = new javax.swing.JButton();
-
         jButtonOrder = new javax.swing.JButton();
         jButtonCustomer = new javax.swing.JButton();
-
+        jButtonGRN = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -169,7 +166,6 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             }
         });
 
-
         jButtonOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/order-24.png"))); // NOI18N
         jButtonOrder.setText("  Order");
         jButtonOrder.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -185,7 +181,15 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jButtonCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCustomerActionPerformed(evt);
+            }
+        });
 
+        jButtonGRN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/customer-24.png"))); // NOI18N
+        jButtonGRN.setText("  GRN");
+        jButtonGRN.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButtonGRN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGRNActionPerformed(evt);
             }
         });
 
@@ -206,10 +210,9 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jButtonSupplier, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-
                             .addComponent(jButtonOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-
+                            .addComponent(jButtonCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonGRN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(1, 1, 1))
                     .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
@@ -232,11 +235,11 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSupplier)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-
                 .addComponent(jButtonOrder)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonGRN)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonCustomer)
-
                 .addContainerGap())
         );
 
@@ -463,7 +466,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         changePanel_vp(new SupplierRegistration());
         changeControllerPanel("Supplier");
         windowName_vp("Supplier");
-
+    }
 
     private void jButtonOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderActionPerformed
         changePanel_vp(new OrderPanel(this));
@@ -479,6 +482,12 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         windowName_vp("Customer");
     }//GEN-LAST:event_jButtonCustomerActionPerformed
 
+    private void jButtonGRNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGRNActionPerformed
+        changePanel_vp(new GRNTerminal());
+
+        changeControllerPanel("GRN");
+        windowName_vp("GRN");
+    }//GEN-LAST:event_jButtonGRNActionPerformed
 
     private void toggleTextIcon(boolean isSelected) {
 
@@ -490,6 +499,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             jButtonSupplier.setText("");
             jButtonOrder.setText("");
             jButtonCustomer.setText("");
+            jButtonGRN.setText("");
         } else {
             jButtonHome.setText("   Home");
             jButtonBrandCategory.setText("   Brand & Categories");
@@ -498,6 +508,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             jButtonSupplier.setText("   Supplier");
             jButtonOrder.setText("  Order");
             jButtonCustomer.setText("  Customer");
+            jButtonGRN.setText("  GRN");
         }
 
     }
@@ -533,10 +544,10 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ControllerLoaderLeft;
     private javax.swing.JPanel ControllerLoaderRight;
-    private javax.swing.JButton inventoryButton;
     private javax.swing.JButton jButtonBrandCategory;
     private javax.swing.JButton jButtonCompany;
     private javax.swing.JButton jButtonCustomer;
+    private javax.swing.JButton jButtonGRN;
     private javax.swing.JButton jButtonHome;
     private javax.swing.JButton jButtonOrder;
     private javax.swing.JButton jButtonProduct;
@@ -566,7 +577,6 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 //        if (loadWindowName.equals("Brand & Category")) {
 //            ControllerLoaderRight.add(new LinkBrandCategoryBtn(), BorderLayout.CENTER);
 //        } 
-
         SwingUtilities.updateComponentTreeUI(this);
 
     }
@@ -574,13 +584,12 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     private void windowName_vp(String text) {
         jLabel2.setText(text.trim());
     }
-    
-    
-    public String getDate_vp(){
+
+    public String getDate_vp() {
         return jLabel4.getText();
     }
-    
-    public String getTime_vp(){
+
+    public String getTime_vp() {
         return jLabel3.getText();
     }
 
