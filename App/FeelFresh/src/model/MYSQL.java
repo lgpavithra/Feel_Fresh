@@ -93,7 +93,7 @@ public class MYSQL {
                         password = sc_vp.nextLine();
                     }
                     
-                    System.out.println(i);
+
                 }else{
                     Scanner sc_in_vp = new Scanner(System.in);
                     

@@ -47,7 +47,7 @@ public class SelectSupplier_order extends javax.swing.JDialog {
         q = " SELECT * FROM `supplier` INNER JOIN `supplier_mobile` ON `supplier`.`id` = `supplier_mobile`.`supplier_id` "
                 + " WHERE `status` = 'Active' " + q;
 
-        System.out.println(q);
+
         try {
 
             //select all the active suppliers 
