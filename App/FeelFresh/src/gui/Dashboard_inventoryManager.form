@@ -75,8 +75,10 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jButtonSupplier" alignment="1" max="32767" attributes="0"/>
+
                               <Component id="jButtonOrder" alignment="1" max="32767" attributes="0"/>
                               <Component id="jButtonCustomer" alignment="1" max="32767" attributes="0"/>
+
                           </Group>
                           <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                       </Group>
@@ -104,9 +106,11 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jButtonSupplier" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
+
                   <Component id="jButtonOrder" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButtonCustomer" min="-2" max="-2" attributes="0"/>
+
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -188,6 +192,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSupplierActionPerformed"/>
           </Events>
         </Component>
+
         <Component class="javax.swing.JButton" name="jButtonOrder">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -210,6 +215,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCustomerActionPerformed"/>
+
           </Events>
         </Component>
       </SubComponents>
@@ -361,12 +367,16 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="ControllerLoaderRight" alignment="0" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="ControllerLoaderLeft" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
-              <Component id="ControllerLoaderLeft" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
