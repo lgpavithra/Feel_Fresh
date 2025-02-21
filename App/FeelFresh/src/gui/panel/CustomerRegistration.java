@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
+import javax.swing.ButtonModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +23,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
     public CustomerRegistration() {
         initComponents();
         loadCustomer_ps();
+        //loadStatus_ps();
     }
 
 //    private void loadStatus_ps(){
@@ -46,7 +48,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
 //    
 //    }
 //    } 
-    
+//    
     
      private void loadCustomer_ps() {
    
@@ -66,9 +68,9 @@ public class CustomerRegistration extends javax.swing.JPanel {
        vector.add(resultSet.getString("no"));
        vector.add(resultSet.getString("line1"));
        vector.add(resultSet.getString("line2"));
-       vector.add(resultSet.getString("customer_mobile.mobile_number"));
        vector.add(resultSet.getString("reg_date"));
        vector.add(resultSet.getString("upd_date"));
+       vector.add(resultSet.getString("customer_mobile.mobile_number"));
        vector.add(resultSet.getString("gender"));
        vector.add(resultSet.getString("status"));
         
@@ -85,9 +87,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         panalRound1 = new desingcode.PanalRound();
         jLabel9 = new javax.swing.JLabel();
@@ -116,17 +116,9 @@ public class CustomerRegistration extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        roundButton1 = new component.RoundButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -259,10 +251,16 @@ public class CustomerRegistration extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Quicksand", 0, 12)); // NOI18N
         jLabel5.setText("Email");
 
-        buttonGroup1.add(jRadioButton1);
+        buttonGroup2.add(jRadioButton1);
         jRadioButton1.setText("Male");
+        jRadioButton1.setActionCommand("Male");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
-        buttonGroup1.add(jRadioButton2);
+        buttonGroup2.add(jRadioButton2);
         jRadioButton2.setText("Female");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
@@ -328,18 +326,6 @@ public class CustomerRegistration extends javax.swing.JPanel {
             }
         });
 
-        roundButton1.setForeground(new java.awt.Color(102, 102, 102));
-        roundButton1.setText("Clear");
-        roundButton1.setArc(10);
-        roundButton1.setBorderColorHex("#666666");
-        roundButton1.setBorderWidth("01");
-        roundButton1.setFont(new java.awt.Font("Quicksand SemiBold", 0, 12)); // NOI18N
-        roundButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roundButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -348,7 +334,6 @@ public class CustomerRegistration extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                    .addComponent(roundButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
@@ -359,8 +344,6 @@ public class CustomerRegistration extends javax.swing.JPanel {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -473,8 +456,10 @@ public class CustomerRegistration extends javax.swing.JPanel {
         String line1 = uJTextfield6.getText().trim();
         String line2= uJTextfield7.getText().trim();
         String mobile= uJTextfield8.getText().trim();
+        ButtonModel gender = buttonGroup2.getSelection();
+        String status = String.valueOf(jComboBox1.getSelectedItem());
         
-
+        //System.out.println(gender);
         if (nic.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter NIC", "Warning", JOptionPane.WARNING_MESSAGE);
         }else if (first_name.isEmpty()) {
@@ -494,14 +479,23 @@ public class CustomerRegistration extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter mobile number", "Warning", JOptionPane.WARNING_MESSAGE);
         }else if (!mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
                 JOptionPane.showMessageDialog(this, "Please enter valid mobile", "Warning", JOptionPane.WARNING_MESSAGE);
+        }else if (gender == null) {
+            JOptionPane.showMessageDialog(this, "Please Select Gender.", "WARNING", JOptionPane.WARNING_MESSAGE);
+        }else if (status.equals("Select Position")) {
+            JOptionPane.showMessageDialog(this, "Please Select Position.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            
         } else {
                try {
+                 String genderId = gender.getActionCommand(); 
+                 System.out.println(gender);
                ResultSet rs  =  MYSQL.executeSearch("SELECT * FROM `customer`WHERE `nic`='"+nic+"'");
            
                 if(rs.next()){
                 JOptionPane.showMessageDialog(this, "you are already registered", "Warning", JOptionPane.WARNING_MESSAGE);           
                 }else{
-                MYSQL.executeIUD("INSERT INTO `customer`(`nic`,`first_name`,`last_name`,`email`,`reg_date`,`no`,`line1`,`line2`)VALUES('"+ nic +"','" + first_name + "','"+ last_name +"','"+ email +"','"+ date +"','"+ no +"','"+ line1 +"','"+ line2 +"')");
+                    
+                MYSQL.executeIUD("INSERT INTO `customer`(`nic`,`first_name`,`last_name`,`email`,`no`,`line1`,`line2`,`reg_date`,`gender`,`status`)"
+                        + " VALUES('"+ nic +"','" + first_name + "','"+ last_name +"','"+ email +"','"+ no +"','"+ line1 +"','"+ line2 +"','"+ date +"','"+ genderId + "','"+ status+ "')");
                 
                 MYSQL.executeIUD("INSERT INTO `customer_mobile`(`customer_nic`,`mobile_number`,`create_at`)VALUES('"+nic+"','"+mobile+"','"+date+"')");
                         
@@ -524,7 +518,8 @@ public class CustomerRegistration extends javax.swing.JPanel {
         String line1 = uJTextfield6.getText().trim();
         String line2= uJTextfield7.getText().trim();
         String mobile= uJTextfield8.getText().trim();
-        
+        ButtonModel gender = buttonGroup2.getSelection();
+        String status = String.valueOf(jComboBox1.getSelectedItem());
            int row   =  jTable1.getSelectedRow();
         
         if (nic.isEmpty()) {
@@ -546,10 +541,17 @@ public class CustomerRegistration extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter mobile number", "Warning", JOptionPane.WARNING_MESSAGE);
         }else if (!mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
                 JOptionPane.showMessageDialog(this, "Please enter valid mobile", "Warning", JOptionPane.WARNING_MESSAGE); 
+        }else if (gender == null) {
+            JOptionPane.showMessageDialog(this, "Please Select Gender.", "WARNING", JOptionPane.WARNING_MESSAGE);
+        }else if (status.equals("Select Position")) {
+            JOptionPane.showMessageDialog(this, "Please Select Position.", "WARNING", JOptionPane.WARNING_MESSAGE);
+            
         }else {
          
             try{
-                MYSQL.executeIUD("UPDATE `customer` SET  `first_name`='"+first_name+"',`last_name`='"+last_name+"',`email`='"+email+"',`no`='"+no+"',`line1`='"+line1+"',`line2`='"+line2+"',`upd_date`='"+up_date+"'WHERE `nic` = '"+String.valueOf(jTable1.getValueAt(row ,0))+"' ");
+                 String genderId = gender.getActionCommand();   
+                
+                MYSQL.executeIUD("UPDATE `customer` SET  `first_name`='"+first_name+"',`last_name`='"+last_name+"',`email`='"+email+"',`no`='"+no+"',`line1`='"+line1+"',`line2`='"+line2+"',`upd_date`='"+up_date+"', `gender`='"+genderId+"',`status`='"+status+"'WHERE `nic` = '"+String.valueOf(jTable1.getValueAt(row ,0))+"' ");
                 MYSQL.executeIUD("UPDATE `customer_mobile` SET  `mobile_number`='"+mobile+"',`update_at`='"+up_date+"'");
                 
                 loadCustomer_ps();
@@ -573,8 +575,13 @@ public class CustomerRegistration extends javax.swing.JPanel {
         String no = String.valueOf(jTable1.getValueAt(row ,4));
         String line1 = String.valueOf(jTable1.getValueAt(row ,5));
         String line2 = String.valueOf(jTable1.getValueAt(row ,6));
-        String mobile = String.valueOf(jTable1.getValueAt(row ,7));
-           if (evt.getClickCount() == 2) {
+        String mobile = String.valueOf(jTable1.getValueAt(row ,9));
+        String gender = String.valueOf(jTable1.getValueAt(row, 10));
+       
+ 
+        String status = String.valueOf(jTable1.getValueAt(row, 11));
+         
+        if (evt.getClickCount() == 2) {
                
                 jButton1.setEnabled(false);
                
@@ -587,6 +594,16 @@ public class CustomerRegistration extends javax.swing.JPanel {
                 uJTextfield6.setText(line1);
                 uJTextfield7.setText(line2);
                 uJTextfield8.setText(mobile);
+                  String gender_HS = String.valueOf(jTable1.getValueAt(row, 10));
+                 if (gender.equals("Male")) {
+                jRadioButton1.setSelected(true);
+                  }
+                 if (gender.equals("Female")) {
+                  jRadioButton2.setSelected(true);
+                 }
+                
+                 jComboBox1.setSelectedItem(status);
+               
                 uJTextfield1.setEditable(false);
                 
               
@@ -603,9 +620,13 @@ public class CustomerRegistration extends javax.swing.JPanel {
       
     }//GEN-LAST:event_roundButton1ActionPerformed
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        System.out.println(jRadioButton1.getActionCommand());
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -618,7 +639,6 @@ public class CustomerRegistration extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -627,11 +647,9 @@ public class CustomerRegistration extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private desingcode.PanalRound panalRound1;
-    private component.RoundButton roundButton1;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
     private component.UJTextfield uJTextfield3;
@@ -653,9 +671,11 @@ public class CustomerRegistration extends javax.swing.JPanel {
         uJTextfield7.setText("");
         uJTextfield7.setText("");
         uJTextfield8.setText("");
-        
+        buttonGroup2.clearSelection();
+         jComboBox1.setSelectedIndex(0);
+         
         uJTextfield1.grabFocus();
-    
+          jButton1.setEnabled(true);
     }
 
     
