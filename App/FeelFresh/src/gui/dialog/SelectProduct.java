@@ -29,7 +29,7 @@ public class SelectProduct extends javax.swing.JDialog {
     MakeOrder makeOrderPanel;
 
     public SelectProduct(JPanel parent, boolean modal) {
-        super((JFrame) parent.getParent().getParent().getParent().getParent().getParent().getParent(), modal);
+        super((JFrame) parent.getParent().getParent().getParent().getParent().getParent().getParent().getParent().getParent(), modal);
         initComponents();
         loadProduct_vp("");
         loadUnits_vp();

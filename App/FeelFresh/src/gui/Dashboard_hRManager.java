@@ -131,7 +131,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             }
         });
 
-        jButtonCompany1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/supplier-24.png"))); // NOI18N
         jButtonCompany1.setText("  Supplier");
         jButtonCompany1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButtonCompany1.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +140,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             }
         });
 
-        jButtonCompany2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/company-24.png"))); // NOI18N
+        jButtonCompany2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/dashboard/inventory/customer-24.png"))); // NOI18N
         jButtonCompany2.setText("  Customer");
         jButtonCompany2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButtonCompany2.addActionListener(new java.awt.event.ActionListener() {
@@ -354,7 +354,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         changeControllerPanel("Company");
         windowName_vp("Company");
     }//GEN-LAST:event_jButtonCompanyActionPerformed
-   private int expanded_width_vp;
+    private int expanded_width_vp;
     private int height_vp;
     private int min_width_vp = 58;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -422,6 +422,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         }
         SwingUtilities.updateComponentTreeUI(jPanel2);
     }
+
     private void toggleTextIcon(boolean isSelected) {
         if (isSelected) {
             jButtonHome.setText("");
@@ -433,6 +434,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
             jButtonCompany.setText("Company");
         }
     }
+
     //
     /*this method requires a panel object what you want to apply to to the dashboard
     You can clean the dashboard by passing a null object to the changePanel_vp method*/

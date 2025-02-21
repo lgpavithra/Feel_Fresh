@@ -10,6 +10,7 @@ import gui.panel.BrandAndCategories;
 import gui.panel.Categories;
 import gui.panel.Company;
 import gui.panel.CustomerRegistration;
+import gui.panel.Settings_btn;
 
 import gui.panel.SupplierRegistration;
 import gui.panel.Welcome;
@@ -19,6 +20,7 @@ import gui.panel.addProduct;
 import gui.panel.inventory.GRNTerminal;
 
 import gui.panel.order.MakeOrder;
+import gui.panel.order.OrderPanel;
 
 
 import java.awt.BorderLayout;
@@ -49,7 +51,9 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
         setDateTime();
-
+        
+        
+        ControllerLoaderRight.add(new Settings_btn(this),BorderLayout.CENTER);
     }
 
     private void setDateTime() {
@@ -105,6 +109,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ControllerLoaderRight = new javax.swing.JPanel();
         ControllerLoaderLeft = new javax.swing.JPanel();
+        jLabelProgress = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(0, 470));
@@ -315,6 +320,10 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         ControllerLoaderLeft.setBackground(new java.awt.Color(102, 102, 102));
         ControllerLoaderLeft.setLayout(new java.awt.BorderLayout());
 
+        jLabelProgress.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelProgress.setText("      ");
+        ControllerLoaderLeft.add(jLabelProgress, java.awt.BorderLayout.CENTER);
+
         javax.swing.GroupLayout panalRound2Layout = new javax.swing.GroupLayout(panalRound2);
         panalRound2.setLayout(panalRound2Layout);
         panalRound2Layout.setHorizontalGroup(
@@ -447,22 +456,24 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButtonSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSupplierActionPerformed
+        gotoSupplierPanel();
+    }//GEN-LAST:event_jButtonSupplierActionPerformed
+    public void gotoSupplierPanel() {
+        /*This method is used to move to supplier panel in another windows like jdialog */
         changePanel_vp(new SupplierRegistration());
-
         changeControllerPanel("Supplier");
         windowName_vp("Supplier");
-    }//GEN-LAST:event_jButtonSupplierActionPerformed
 
 
     private void jButtonOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderActionPerformed
-        changePanel_vp(new MakeOrder());
+        changePanel_vp(new OrderPanel(this));
 
-        changeControllerPanel("Make Order");
-        windowName_vp("Make Order");
+        changeControllerPanel("Order");
+        windowName_vp("Order");
     }//GEN-LAST:event_jButtonOrderActionPerformed
 
     private void jButtonCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomerActionPerformed
-         changePanel_vp(new CustomerRegistration());
+        changePanel_vp(new CustomerRegistration());
 
         changeControllerPanel("Customer");
         windowName_vp("Customer");
@@ -504,16 +515,6 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
     }
 
-//     private void changePanel_ps(JPanel panelForm_ps) {
-//        jPanel2.removeAll();
-//
-//        if (panelForm_ps != null) {
-//            jPanel2.add(panelForm_ps, BorderLayout.CENTER);
-//        }        
-//        SwingUtilities.updateComponentTreeUI(jPanel2);
-//
-//    }
-//        
     /**
      * @param args the command line arguments
      */
@@ -546,6 +547,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    public javax.swing.JLabel jLabelProgress;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -559,8 +561,8 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     private void changeControllerPanel(String loadWindowName) {
         boolean hasControllers;
 
-        ControllerLoaderLeft.removeAll();
-        ControllerLoaderRight.removeAll();
+//        ControllerLoaderLeft.removeAll();
+//        ControllerLoaderRight.removeAll();
 //        if (loadWindowName.equals("Brand & Category")) {
 //            ControllerLoaderRight.add(new LinkBrandCategoryBtn(), BorderLayout.CENTER);
 //        } 
@@ -571,6 +573,15 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
     private void windowName_vp(String text) {
         jLabel2.setText(text.trim());
+    }
+    
+    
+    public String getDate_vp(){
+        return jLabel4.getText();
+    }
+    
+    public String getTime_vp(){
+        return jLabel3.getText();
     }
 
 }
