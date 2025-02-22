@@ -31,7 +31,7 @@ public class MYSQL {
         try {
             if (connection == null) {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/feelfresh_db", username, password);
+            connection = DriverManager.getConnection("jdbc:mysql://mysql-2d0c5dce-senadhimayadunna04-16e6.h.aivencloud.com:10838/feelfresh_db", username, password);
         }
         } catch (Exception e) {
             
