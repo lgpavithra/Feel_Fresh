@@ -1,9 +1,19 @@
+<div align="center" >
+
+ <img src="https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM"  />
+
+</div>
 
 
-<div align="center" ><img align="center" src="https://github.com/user-attachments/assets/544e6804-9198-41ff-9f69-96ba3353b2b9" height="130px"/></div>
 
 # Feel_Fresh
-Teamwork by Legacy 
+
+<div>
+
+
+  <h5>  <img align="center" src="https://github.com/user-attachments/assets/544e6804-9198-41ff-9f69-96ba3353b2b9" /> <h5 align="end">Teamwork by Legacy</h5>  </h5>
+</div>
+
 
 # Standards 
  <h4> Naming branches</h4>
