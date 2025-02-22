@@ -186,6 +186,8 @@ public class Email {
         //this returns 0 - success , 1 - error was occured
         setup();
         composeEmail();
+        
+        
 
         try {
             Transport.send(message);

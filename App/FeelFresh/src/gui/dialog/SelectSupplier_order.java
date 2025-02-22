@@ -58,7 +58,7 @@ public class SelectSupplier_order extends javax.swing.JDialog {
                 vector.add(resultSet.getString("id"));
                 vector.add(resultSet.getString("first_name") + "  " + resultSet.getString("last_name"));
                 vector.add(resultSet.getString("email"));
-                vector.add(resultSet.getString("mobiler"));
+                vector.add(resultSet.getString("mobile"));
 
                 dtm.addRow(vector);
 
@@ -376,7 +376,7 @@ public class SelectSupplier_order extends javax.swing.JDialog {
 
         } else {
             q += "AND (`email` LIKE '" + email + "%' "                   
-                    + "OR `mobiler` LIKE '" + email + "%'  ) ";
+                    + "OR `mobile` LIKE '" + email + "%'  ) ";
         }
 
         if (name.length() >= 6 && name.substring(0, 6).equals("Search")) {
