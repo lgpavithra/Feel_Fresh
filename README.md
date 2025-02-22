@@ -61,32 +61,6 @@
 </ul>
 
 
-# Database
-<h4>Host name: <a>mysql-2d0c5dce-senadhimayadunna04-16e6.h.aivencloud.com</a> </h4>
-<h4>Port : <a>10838</a></h4>
-<table>
- <tr>
-  <th></th>
-  <th>MGH Sandun Theekshana</th>
-  <th>WL Pawan Shanaka</th>
-  <th>LG Virajith Pavithra</th>
-  <th>Senadhi Mayadunna</th>
- </tr>
- <tr>
-  <td><h6>Username</h6></h6></td>
-  <td><a>user002</a></td>
-  <td><a>user003</a></td>
-  <td><a>user001</a></td>
-  <td><a> </td>  
- </tr>
- <tr>
-  <td><h6>Password</h6></h6></td>
-  <td><a>AVNS_bpfSbXHsCYWW7IYTCN5</a></td>
-  <td><a>AVNS_mUYuTSfzKr3ouAeEb-5</a></td>
-  <td><a>AVNS_gVBaM6A3H_auoATOvc9</a>a></td>
-  <td> </td>
- </tr> 
-</table>
 
 
 # Links
