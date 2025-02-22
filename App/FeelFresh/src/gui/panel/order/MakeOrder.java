@@ -673,7 +673,7 @@ public class MakeOrder extends javax.swing.JPanel {
                             + " VALUES ('" + supplierId + "','Pending',"//default set as pending
                             + " '" + new SimpleDateFormat("yyyy-MM-dd").format(jDateChooser1.getDate()) + "',"
                             + " '" + jTextArea1.getText() + "',"
-                            + "  '199944557848' )  ", Statement.RETURN_GENERATED_KEYS);//Here User id has inserted manually **********************
+                            + "  '200388895632' )  ", Statement.RETURN_GENERATED_KEYS);//Here User id has inserted manually **********************
                     //Toast message is better for this -T
 
                     preStatement.executeUpdate();
@@ -976,7 +976,12 @@ public class MakeOrder extends javax.swing.JPanel {
                                 if (status == 0) {
                                     Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "Email was sent successfully");
                                 } else if (status == 1) {
-                                    Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Email Sending Failed");
+                                    try {
+                                        Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Email Sending Failed");
+                                        MYSQL.executeIUD("UPDATE `order` SET `order`.`status` = 'Email_Failed' WHERE `order_id` = '"+orderId+"' ");
+                                    } catch (Exception ex) {
+                                        ex.printStackTrace();
+                                    }
 
                                 }
 
@@ -1145,7 +1150,7 @@ public class MakeOrder extends javax.swing.JPanel {
                 IdLabel.setText(resultSet.getString("id"));
                 nameLabel.setText(resultSet.getString("first_name") + " " + resultSet.getString("last_name"));
                 emailLabel.setText(resultSet.getString("email"));
-                mobileLabel.setText(resultSet.getString("mobiler"));
+                mobileLabel.setText(resultSet.getString("mobile"));
 
             }
         } catch (Exception ex) {
