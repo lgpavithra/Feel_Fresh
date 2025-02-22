@@ -1,4 +1,7 @@
- ________________________________________________  ![sg1](https://github.com/user-attachments/assets/544e6804-9198-41ff-9f69-96ba3353b2b9)  _________________________________________________
+
+
+<div align="center" ><img align="center" src="https://github.com/user-attachments/assets/544e6804-9198-41ff-9f69-96ba3353b2b9" height="130px"/></div>
+
 # Feel_Fresh
 Teamwork by Legacy 
 
