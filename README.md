@@ -1,6 +1,6 @@
 <div align="center" >
 
- <img src="https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM"  />
+ <img src="https://drive.google.com/thumbnail?id=1zfltuCYc9xptfApSAPjwj4NFT8npApgM"   />
 
 </div>
 
@@ -9,7 +9,15 @@
 # Feel_Fresh 
 
 <div>
-  <h5>  <img align="center" src="https://github.com/user-attachments/assets/544e6804-9198-41ff-9f69-96ba3353b2b9" /> <h5 align="end">Teamwork by Legacy</h5>  </h5>
+
+   
+   
+   
+   <h5 align="center">   <img  src="https://github.com/user-attachments/assets/544e6804-9198-41ff-9f69-96ba3353b2b9" height="50px" />    </h5>
+   <h5 align="center">Teamwork by Legacy</h5>
+  
+  
+ 
 </div>
 
 
