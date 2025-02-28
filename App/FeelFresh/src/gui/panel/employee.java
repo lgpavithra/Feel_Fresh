@@ -63,6 +63,7 @@ public class employee extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
+
     private void LoadEmployee_HS() {
         try {
             ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `employee` INNER JOIN `position` ON "
@@ -357,6 +358,11 @@ public class employee extends javax.swing.JPanel {
         uJTextfield1.getAccessibleContext().setAccessibleName("");
 
         jPanel2.setBackground(new java.awt.Color(252, 252, 252));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -400,6 +406,11 @@ public class employee extends javax.swing.JPanel {
         );
 
         jPanel4.setBackground(new java.awt.Color(252, 252, 252));
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Clear All");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -623,6 +634,7 @@ public class employee extends javax.swing.JPanel {
             }
         }
     }
+
     private void MobileViwe() {
         String NIC_HS = uJTextfield3.getText().trim();
         if (NIC_HS.isEmpty()) {
@@ -632,7 +644,11 @@ public class employee extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "The NIC number is invalid.", "WARNING", JOptionPane.WARNING_MESSAGE);
             uJTextfield3.grabFocus();
         } else {
-            new Mobile(null, true, NIC_HS, this).setVisible(true);
+//            new Mobile(1,jLabel13.getText(); ).setVisible(true);
+
+            Mobile mo = new Mobile(this, null, null);
+            mo.setVisible(true);
+            mo.loadMobile(jLabel13.getText(), jLabel14.getText(), jLabel15.getText());
         }
     }
 
@@ -651,6 +667,7 @@ public class employee extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
+
     private void DeleteMoible_HS(String nic, String Mobile) {
         try {
             MYSQL.executeIUD("DELETE FROM `employee_mobile` WHERE `mobile`='" + Mobile + "' AND `employee_nic`='" + nic + "'");
@@ -702,6 +719,20 @@ public class employee extends javax.swing.JPanel {
             int Selectedrow_HS = jTable2.getSelectedRow();
             String NIC_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 0));
             uJTextfield3.setText(NIC_HS);
+            try {
+                ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `employee_mobile` WHERE `employee_nic`='" + NIC_HS + "'");
+                if (resultSet_HS.next()) {
+                    jLabel13.setText(resultSet_HS.getString("mobile"));
+                }
+                if (resultSet_HS.next()) {
+                    jLabel14.setText(resultSet_HS.getString("mobile"));
+                }
+                if (resultSet_HS.next()) {
+                    jLabel15.setText(resultSet_HS.getString("mobile"));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             String Fname_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 1));
             uJTextfield1.setText(Fname_HS);
             String lname_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 2));
@@ -750,6 +781,18 @@ public class employee extends javax.swing.JPanel {
         String NIC_HS = String.valueOf(jTable2.getValueAt(Selectedrow_HS, 0));
         new UserEmployee(null, true, NIC_HS).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+        // TODO add your handling code here:
+        Clean_All_HS();
+
+    }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        // TODO add your handling code here:
+        Clean_All_HS();
+
+    }//GEN-LAST:event_jPanel2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -30,7 +30,6 @@ public class SupplierRegistration extends javax.swing.JPanel {
         jButton2.setEnabled(false);
     }
 
-
     private void loadSupplier_ps() {
 
         try {
@@ -46,7 +45,7 @@ public class SupplierRegistration extends javax.swing.JPanel {
                 vector.add(resultSet.getString("first_name"));
                 vector.add(resultSet.getString("last_name"));
                 vector.add(resultSet.getString("email"));
-                vector.add(resultSet.getString("supplier_mobile.mobiler"));
+                vector.add(resultSet.getString("supplier_mobile.mobile"));
                 vector.add(resultSet.getString("reg_date"));
                 vector.add(resultSet.getString("no"));
                 vector.add(resultSet.getString("line1"));
@@ -59,8 +58,6 @@ public class SupplierRegistration extends javax.swing.JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 
     }
 
@@ -103,6 +100,11 @@ public class SupplierRegistration extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabel1.setText("Supplier Registration");
@@ -382,7 +384,6 @@ public class SupplierRegistration extends javax.swing.JPanel {
 
                 MYSQL.executeIUD("INSERT INTO `supplier`(`first_name`,`last_name`,`email`,`reg_date`,`no`,`line1`,`line2`,`status_id`)VALUES('" + first_name + "','" + last_name + "','" + email + "','" + date + "','" + no + "','" + line1 + "','" + line2 + "','" + 1 + "')");
 
-
                 MYSQL.executeIUD("INSERT INTO `supplier_mobile`(`supplier_id`,`mobiler`)VALUES('" + id + "','" + mobile + "')");
                 loadSupplier_ps();
                 reset_ps();
@@ -485,6 +486,12 @@ public class SupplierRegistration extends javax.swing.JPanel {
         // TODO add your handling code here:
         reset_ps();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+        reset_ps();
+
+    }//GEN-LAST:event_jPanel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

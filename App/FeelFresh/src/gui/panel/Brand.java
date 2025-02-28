@@ -139,8 +139,7 @@ public class Brand extends javax.swing.JPanel {
             SwingUtilities.updateComponentTreeUI(jPanel1);
             
             try {
-                if (MYSQL.executeSearch("SELECT * FROM `category_has_brand` INNER JOIN `brand`"
-                        + "  ON `category_has_brand`.`brand_id` = `brand`.`id` WHERE `brand`.`name` = '"+String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1))+"'").next()) {
+                if (MYSQL.executeSearch("SELECT * FROM brand WHERE `brand`.`name` = '"+String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 1))+"'").next()) {
 
                     updateAndRemoveBrand_vp.jButton1.setEnabled(false);
 
