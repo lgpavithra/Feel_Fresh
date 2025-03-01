@@ -4,10 +4,11 @@
  */
 package gui.dialog;
 
+import gui.panel.CustomerRegistration;
+import gui.panel.SupplierRegistration;
 import gui.panel.employee;
-import java.sql.ResultSet;
+import java.awt.Color;
 import javax.swing.JOptionPane;
-import model.MYSQL;
 
 /**
  *
@@ -18,34 +19,26 @@ public class Mobile extends javax.swing.JDialog {
     /**
      * Creates new form Mobile
      */
-//    Dashboard_HRManager HRemployeefrom;
-    employee employeePanal_HS;
-    public Mobile(java.awt.Frame parent, boolean modal, String nic_HS, employee Ejp) {
-        super(parent, modal);
+    employee employee_HS;
+    CustomerRegistration Customer_HS;
+    SupplierRegistration Supplier_HS;
+
+    public Mobile(employee Ejp, CustomerRegistration Cus, SupplierRegistration Sup) {
+//        super(parent, modal);
         initComponents();
-        employeePanal_HS = Ejp;
+        employee_HS = Ejp;
+        Customer_HS = Cus;
+        Supplier_HS = Sup;
         jButton1.putClientProperty("JButton.buttonType", "roundRect");
-        System.out.println(nic_HS);
-        loadMobile(nic_HS);
-//setBackground(new Color(0, 0, 0, 0));
+
+        loadMobile("", "", "");
 
     }
 
-    private void loadMobile(String Nic_HS) {
-        try {
-            ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `employee_mobile` WHERE `employee_nic`='" + Nic_HS + "'");
-            if (resultSet_HS.next()) {
-                uJTextfield1.setText(resultSet_HS.getString("mobile"));
-            }
-            if (resultSet_HS.next()) {
-                uJTextfield2.setText(resultSet_HS.getString("mobile"));
-            }
-            if (resultSet_HS.next()) {
-                uJTextfield3.setText(resultSet_HS.getString("mobile"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void loadMobile(String number1, String number2, String number3) {
+        uJTextfield1.setText(number1);
+        uJTextfield2.setText(number2);
+        uJTextfield3.setText(number3);
     }
 
     /**
@@ -186,24 +179,30 @@ public class Mobile extends javax.swing.JDialog {
         } else if (!mobile2.isEmpty() && (!mobile2.matches("^(?:0|94|\\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\\d)\\d{6}$"))) {
             JOptionPane.showMessageDialog(this, "The second mobile phone number is invalid.", "WARNING", JOptionPane.WARNING_MESSAGE);
             uJTextfield2.grabFocus();
-            System.out.println("not2");
+//            System.out.println("not2");
         } else if (!mobile3.isEmpty() && (!mobile3.matches("^(?:0|94|\\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\\d)\\d{6}$"))) {
             JOptionPane.showMessageDialog(this, "The third mobile phone number is invalid.", "WARNING", JOptionPane.WARNING_MESSAGE);
             uJTextfield3.grabFocus();
-            System.out.println("not");
+//            System.out.println("not");
         } else {
             String mobile[] = new String[3];
             mobile[0] = mobile1;
             mobile[1] = mobile2;
             mobile[2] = mobile3;
-            employeePanal_HS.setMoblie(mobile);
+            if (employee_HS != null) {
+                employee_HS.setMoblie(mobile);
+            } else if (Supplier_HS != null) {
+                System.out.println("Suupler");
+            } else if (Customer_HS != null) {
+                System.out.println("Cusstomer");
+            }
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     /**

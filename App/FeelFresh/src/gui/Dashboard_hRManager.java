@@ -5,24 +5,18 @@
 package gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import gui.panel.Brand;
-import gui.panel.BrandAndCategories;
-import gui.panel.Categories;
 import gui.panel.Company;
 import gui.panel.Welcome;
-
-import gui.panel.addProduct;
 import gui.panel.employee;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+
 
 /**
  *
