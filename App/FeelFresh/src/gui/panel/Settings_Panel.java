@@ -4,6 +4,8 @@
  */
 package gui.panel;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Credentials;
 
@@ -16,11 +18,25 @@ public class Settings_Panel extends javax.swing.JPanel {
     /**
      * Creates new form Settings
      */
-    public Settings_Panel() {
+    
+    //This panel shows on a jDialog (settings) therefore parent is a jDialog
+    JDialog parent;
+    public Settings_Panel(JDialog parent) {
+        this.parent = parent;
         initComponents();
+        
+        loadTabsAsUserType();
         
         loadEmail();
         
+        
+        
+        
+        
+    }
+    
+    private void loadTabsAsUserType(){
+        jTabbedPane1.add("DB Connection", new ConnectionSetupPanel(parent));
     }
     
     private void loadEmail() {
