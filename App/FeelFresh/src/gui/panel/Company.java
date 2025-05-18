@@ -21,10 +21,10 @@ public class Company extends javax.swing.JPanel {
     public Company() {
         initComponents();
 
-        loadCompany_ps("company_name", "ASC", jTextField1.getText(),jTextField1.getText());
+        loadCompany_ps("company_name", "ASC", jTextField1.getText(), jTextField1.getText());
     }
 
-    private void loadCompany_ps(String column, String orderby, String hotline ,String name) {
+    private void loadCompany_ps(String column, String orderby, String hotline, String name) {
 
         try {
 
@@ -57,9 +57,9 @@ public class Company extends javax.swing.JPanel {
         int filter = jComboBox1.getSelectedIndex();
 
         if (filter == 0) {
-             loadCompany_ps("company_name", "ASC", jTextField1.getText(),jTextField1.getText());
+            loadCompany_ps("company_name", "ASC", jTextField1.getText(), jTextField1.getText());
         } else if (filter == 1) {
-            loadCompany_ps("company_name", "ASC", jTextField1.getText(),jTextField1.getText());
+            loadCompany_ps("company_name", "ASC", jTextField1.getText(), jTextField1.getText());
         }
 
     }
@@ -372,7 +372,7 @@ public class Company extends javax.swing.JPanel {
                 MYSQL.executeIUD("INSERT INTO `company`(`company_name`,`hotline`,`email`,`no`,`line1`,`line2`)VALUES('" + name + "','" + hotline + "','" + email + "','" + no + "','" + line1 + "','" + line2 + "')");
 
                 reset_ps();
-                 loadCompany_ps("company_name", "ASC", jTextField1.getText(),jTextField1.getText());
+                loadCompany_ps("company_name", "ASC", jTextField1.getText(), jTextField1.getText());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -419,7 +419,7 @@ public class Company extends javax.swing.JPanel {
 
                 reset_ps();
                 jButton1.setEnabled(true);
-                loadCompany_ps("company_name", "ASC", jTextField1.getText(),jTextField1.getText());
+                loadCompany_ps("company_name", "ASC", jTextField1.getText(), jTextField1.getText());
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -433,7 +433,7 @@ public class Company extends javax.swing.JPanel {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 
         int row = jTable1.getSelectedRow();
-
+        jButton3.setEnabled(true);
         String name = String.valueOf(jTable1.getValueAt(row, 1));
         String hotline = String.valueOf(jTable1.getValueAt(row, 2));
         String email = String.valueOf(jTable1.getValueAt(row, 3));
@@ -443,6 +443,7 @@ public class Company extends javax.swing.JPanel {
 
         if (evt.getClickCount() == 2) {
             jButton1.setEnabled(false);
+            jButton2.setEnabled(true);
             uJTextfield1.setText(name);
             uJTextfield2.setText(hotline);
             uJTextfield3.setText(email);
@@ -451,26 +452,28 @@ public class Company extends javax.swing.JPanel {
             uJTextfield6.setText(line2);
         }
 
-        if (evt.getClickCount() == 1) {
-            reset_ps();
-        }
+//        if (evt.getClickCount() == 1) {
+//              reset_ps();
+//          
+//          
+//        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-         Integer row = jTable1.getSelectedRow();
-        
+        Integer row = jTable1.getSelectedRow();
+
         try {
-          
-            if(!row.equals(0)){
-                 JOptionPane.showMessageDialog(this, "Please Select Row", "Warning", JOptionPane.WARNING_MESSAGE);
-            
-            }else{
-             MYSQL.executeIUD("DELETE FROM `company` WHERE `id` = '" + String.valueOf(jTable1.getValueAt(row, 0)) + "'");
-             loadCompany_ps("company_name", "ASC", jTextField1.getText(),jTextField1.getText());
-            
+
+            if (!row.equals(0)) {
+                JOptionPane.showMessageDialog(this, "Please Select Row", "Warning", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+                MYSQL.executeIUD("DELETE FROM `company` WHERE `id` = '" + String.valueOf(jTable1.getValueAt(row, 0)) + "'");
+                loadCompany_ps("company_name", "ASC", jTextField1.getText(), jTextField1.getText());
+                 jButton3.setEnabled(false);
             }
-           
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -527,7 +530,9 @@ public class Company extends javax.swing.JPanel {
         uJTextfield6.setText("");
 
         uJTextfield1.grabFocus();
-        //uJTextfield1.setEditable(true);
+        jButton1.setEnabled(true);
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
 
     }
 }
