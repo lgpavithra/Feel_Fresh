@@ -35,7 +35,7 @@ public class employee extends javax.swing.JPanel {
         initComponents();
         jButton1.putClientProperty("JButton.buttonType", "roundRect");
         jButton4.putClientProperty("JButton.buttonType", "roundRect");
-        LoadEmployee_HS();
+        LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText());
         LoadPosition();
         jButton4.setVisible(false);
         jComboBox1.setEnabled(false);
@@ -64,10 +64,10 @@ public class employee extends javax.swing.JPanel {
         }
     }
 
-    private void LoadEmployee_HS() {
+    private void LoadEmployee_HS(String column, String orderby ,String fname_HS, String nic) {
         try {
             ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `employee` INNER JOIN `position` ON "
-                    + "`position`.`id`=`employee`.`position_id`");
+                    + "`position`.`id`=`employee`.`position_id` WHERE `fname` LIKE '" + fname_HS + "%' OR `nic` LIKE '" + nic + "%' ORDER BY `" + column + "` " + orderby + "");
             DefaultTableModel Tablemodel_HS = (DefaultTableModel) jTable2.getModel();
             Tablemodel_HS.setRowCount(0);
             while (resultSet_HS.next()) {
@@ -90,6 +90,23 @@ public class employee extends javax.swing.JPanel {
         }
     }
 
+    
+      private void filterName() {
+      
+        int filter = jComboBox4.getSelectedIndex();
+        
+        if (filter == 0){
+             LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText());
+        } else if (filter == 1){
+             LoadEmployee_HS("fname", "DESC",jTextField1.getText(),jTextField1.getText());
+        } else if (filter == 2){
+             LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText());
+        } else if (filter == 3){
+             LoadEmployee_HS("fname", "DESC",jTextField1.getText(),jTextField1.getText());
+        }
+      
+      }
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,6 +148,8 @@ public class employee extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -388,21 +407,45 @@ public class employee extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable2);
 
+        jComboBox4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "First Name ASC", "First Name DESC", "Last Name ASC", "Last Name DESC" }));
+        jComboBox4.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox4ItemStateChanged(evt);
+            }
+        });
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
-                .addGap(25, 25, 25))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 301, Short.MAX_VALUE)
+                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(jTextField1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel4.setBackground(new java.awt.Color(252, 252, 252));
@@ -572,6 +615,7 @@ public class employee extends javax.swing.JPanel {
                         MYSQL.executeIUD("INSERT INTO employee (nic,fname,lname,email,gender,`no`,line_1,line_2,`status`,position_id,employment_type) "
                                 + "VALUES ('" + NIC_HS + "','" + Fname_HS + "','" + lname_HS + "','" + email_HS + "','" + genderId_HS + "','" + NO_HS + "','" + line1_HS + "',"
                                 + "'" + Line2_HS + "','" + user_status_HS + "','" + UserPositionId_HS + "','" + Employee_type_HS + "');");
+                        
                         ///query responsive
                         String query_mobile = "";
                         if (!number1.isBlank()) {
@@ -585,7 +629,7 @@ public class employee extends javax.swing.JPanel {
                         }
                         MYSQL.executeIUD("INSERT INTO `employee_mobile` (`mobile`,`employee_nic`) VALUES "
                                 + query_mobile);
-                        LoadEmployee_HS();
+                         LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText());
                         Clean_All_HS();
                         ///query responsive
                     }
@@ -626,7 +670,7 @@ public class employee extends javax.swing.JPanel {
                     } else if (!number3.isEmpty()) {
                         insert_HS(NIC_HS, number3);
                     }
-                    LoadEmployee_HS();
+                     LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText()); 
                     Clean_All_HS();
                 }
             } catch (Exception e) {
@@ -700,6 +744,9 @@ public class employee extends javax.swing.JPanel {
         jButton4.setVisible(false);
         jPanel5.add(jButton3, BorderLayout.CENTER);
         SwingUtilities.updateComponentTreeUI(jPanel5);
+        
+        jComboBox4.setSelectedIndex(0);
+         LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText()); 
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -794,6 +841,14 @@ public class employee extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jPanel2MouseClicked
 
+    private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
+       filterName();
+    }//GEN-LAST:event_jComboBox4ItemStateChanged
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+         filterName();
+    }//GEN-LAST:event_jTextField1KeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -804,6 +859,7 @@ public class employee extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -828,6 +884,7 @@ public class employee extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
     private component.UJTextfield uJTextfield3;
