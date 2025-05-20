@@ -711,7 +711,7 @@ public class MakeOrder extends javax.swing.JPanel {
                             String product_id = String.valueOf(tableModelFull_vp.getValueAt(i, 0));
                             String qty = String.valueOf(tableModelFull_vp.getValueAt(i, 4));
                             String unit = unitMap_vp.get(tableModelFull_vp.getValueAt(i, 5));
-
+                            
                             if (q.isBlank()) {
                                 q = "('" + order_id + "' , '" + product_id + "' , '" + qty + "' , '" + unit + "')";
                             } else {

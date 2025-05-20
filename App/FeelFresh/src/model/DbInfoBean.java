@@ -10,9 +10,9 @@ public class DbInfoBean implements Serializable {
     private String port;
     private String dbName;
 
-    public DbInfoBean() {
+    public DbInfoBean() {                        
     }
-
+    
     public String getUsername() {
         return username;
     }

@@ -11,8 +11,14 @@ import model.MYSQL;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -493,7 +499,18 @@ public class ViewOrders extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton6ActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            HashMap<String, Object> map = new HashMap<>();
+            JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
+
+            JasperPrint print = JasperFillManager.fillReport("src/reports/order/filtered_orders.jasper", map, dataSource);
+            JasperViewer.viewReport(print,false);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_roundButton6ActionPerformed
 
     private void roundButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton7ActionPerformed
@@ -501,7 +518,8 @@ public class ViewOrders extends javax.swing.JPanel {
     }//GEN-LAST:event_roundButton7ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -647,7 +665,6 @@ public class ViewOrders extends javax.swing.JPanel {
                 v.add(rs.getString("qty") + "  " + rs.getString("unit.name"));
 
                 dtm.addRow(v);
-
             }
 
         } catch (Exception ex) {
@@ -699,7 +716,7 @@ public class ViewOrders extends javax.swing.JPanel {
             }
             moreThanOneFilter = true;
 
-        } 
+        }
 
         if (jRadioButton1.isSelected()) {
             q += "ORDER BY `order`.`id` ASC ";
