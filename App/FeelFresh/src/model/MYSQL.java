@@ -32,7 +32,7 @@ public class MYSQL {
             if (connection == null) {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://mysql-2d0c5dce-senadhimayadunna04-16e6.h.aivencloud.com:10838/feelfresh_db", username, password);
-        }
+ }
         } catch (Exception e) {
                        
             File file_vp = new File("dbInfo.txt");

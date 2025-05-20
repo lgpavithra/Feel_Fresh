@@ -6,7 +6,11 @@ package gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import gui.panel.Company;
+import gui.panel.CustomerRegistration;
+import gui.panel.Settings_btn;
+import gui.panel.SupplierRegistration;
 import gui.panel.Welcome;
+import gui.panel.attendance;
 import gui.panel.employee;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,7 +20,6 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-
 
 /**
  *
@@ -34,6 +37,8 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         changePanel_vp(new Welcome());
         this.setLocationRelativeTo(null);
         setDateTime();
+        ControllerLoaderRight.add(new Settings_btn(this), BorderLayout.CENTER);
+
     }
 
     private void setDateTime() {
@@ -396,14 +401,23 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
 
     private void jButtonCompany1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany1ActionPerformed
         // TODO add your handling code here:
+        changePanel_vp(new SupplierRegistration());
+        changeControllerPanel("Supplier");
+        windowName_vp("Supplier");
     }//GEN-LAST:event_jButtonCompany1ActionPerformed
 
     private void jButtonCompany2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany2ActionPerformed
         // TODO add your handling code here:
+        changePanel_vp(new CustomerRegistration());
+        changeControllerPanel("Customer");
+        windowName_vp("Customer");
     }//GEN-LAST:event_jButtonCompany2ActionPerformed
 
     private void jButtonCompany3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany3ActionPerformed
         // TODO add your handling code here:
+        changePanel_vp(new attendance());
+        changeControllerPanel("Attendance");
+        windowName_vp("Attendance");
     }//GEN-LAST:event_jButtonCompany3ActionPerformed
 
     private void jButtonCompany4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompany4ActionPerformed

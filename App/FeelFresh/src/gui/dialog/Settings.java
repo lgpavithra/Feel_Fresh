@@ -17,12 +17,14 @@ public class Settings extends javax.swing.JDialog {
     /**
      * Creates new form Settings
      */
+   public static Settings settings;
+
     public Settings(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        settings = this;
         jPanel1.add(new Settings_Panel(), BorderLayout.CENTER);
-        
+
         setLocationRelativeTo(parent);
     }
 

@@ -41,7 +41,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard_inventoryManager
      */
-    private final String emp_Username;
+    public static String emp_Username;
 
     public Dashboard_inventoryManager(String Username) {
         initComponents();
@@ -108,7 +108,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         ControllerLoaderLeft = new javax.swing.JPanel();
         jLabelProgress = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(0, 470));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
