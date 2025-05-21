@@ -7,12 +7,22 @@ package gui.dialog;
 import com.formdev.flatlaf.FlatLightLaf;
 import gui.panel.Settings_Panel;
 import java.awt.BorderLayout;
+import model.system.SystemStatus;
 
 /**
  *
  * @author PC
  */
 public class Settings extends javax.swing.JDialog {
+
+    
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        SystemStatus.settingsDialog = 0;
+        //when dispose this , the status should be inactive
+    }
 
     /**
      * Creates new form Settings
@@ -22,10 +32,14 @@ public class Settings extends javax.swing.JDialog {
     public Settings(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
         settings = this;
         jPanel1.add(new Settings_Panel(), BorderLayout.CENTER);
 
+
         setLocationRelativeTo(parent);
+        
+        SystemStatus.settingsDialog = 1;
     }
 
     /**
@@ -47,11 +61,11 @@ public class Settings extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
 
         pack();

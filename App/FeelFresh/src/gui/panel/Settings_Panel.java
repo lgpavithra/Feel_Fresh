@@ -4,12 +4,16 @@
  */
 package gui.panel;
 
+
 import gui.Dashboard_inventoryManager;
 import gui.Log_in;
 import gui.dialog.Settings;
 import java.awt.Frame;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.swing.JDialog;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Credentials;
@@ -23,10 +27,26 @@ public class Settings_Panel extends javax.swing.JPanel {
     /**
      * Creates new form Settings
      */
-    public Settings_Panel() {
+    
+    //This panel shows on a jDialog (settings) therefore parent is a jDialog
+    JDialog parent;
+    public Settings_Panel(JDialog parent) {
+        this.parent = parent;
         initComponents();
 
+        
+        loadTabsAsUserType();
+        
         loadEmail();
+        
+        
+        
+        
+        
+    }
+    
+    private void loadTabsAsUserType(){
+        jTabbedPane1.add("DB Connection", new ConnectionSetupPanel(parent));
 
     }
 
