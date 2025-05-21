@@ -34,7 +34,7 @@ public class Settings extends javax.swing.JDialog {
         initComponents();
 
         settings = this;
-        jPanel1.add(new Settings_Panel(), BorderLayout.CENTER);
+        jPanel1.add(new Settings_Panel(this), BorderLayout.CENTER);
 
 
         setLocationRelativeTo(parent);
