@@ -34,9 +34,12 @@ public class MYSQL {
         settingUsernamePassword_vp();
         try {
             if (connection == null) {
+ 
+
 
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection("jdbc:mysql://" + bean.getHost() + ":" + bean.getPort() + "/" + bean.getDbName() + "", bean.getUsername(), bean.getPassword());
+
 
             }
             return "Success";

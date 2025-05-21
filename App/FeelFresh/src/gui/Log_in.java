@@ -6,10 +6,14 @@ package gui;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
+import gui.panel.attendance;
 import java.awt.Color;
+import java.awt.Frame;
 import javax.swing.JOptionPane;
 import model.MYSQL;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -21,6 +25,7 @@ public class Log_in extends javax.swing.JFrame {
      * @return the username
      */
     private static String username; //Sandun
+    public static Frame Dashboaed_Fram_HS;
 
     public static String getUsername() {
         return username;
@@ -289,23 +294,33 @@ public class Log_in extends javax.swing.JFrame {
                     if (resultSet.getString("status").equals("Active")) {//checking that either acvive or inactive
 
                         if (resultSet.getString("user_type").equals("Inventory manager")) {//checking that the user type is invenotory manager.
-                            new Dashboard_inventoryManager(Username).setVisible(true);
+                            Dashboaed_Fram_HS = new Dashboard_inventoryManager(Username);
+                            Dashboaed_Fram_HS.setVisible(true);
                         }
                         if (resultSet.getString("user_type").equals("Cashiers")) {
-                            new Dashboard_cashier(Username).setVisible(true);
+                            Dashboaed_Fram_HS = new Dashboard_cashier(Username);
+                            Dashboaed_Fram_HS.setVisible(true);
                         }
                         if (resultSet.getString("user_type").equals("HR Manager")) {
-                            new Dashboard_hRManager().setVisible(true);
+                            Dashboaed_Fram_HS = new Dashboard_hRManager();
+                            Dashboaed_Fram_HS.setVisible(true);
                         }
                         if (resultSet.getString("user_type").equals("Admin")) {
                             new Main_Dashbord().setVisible(true);
+                        }
+                        ResultSet res_atEmp_HS = MYSQL.executeSearch("SELECT * FROM `employee` LEFT JOIN `attendance` ON `employee`.`nic`=`attendance`.`employee_nic` WHERE `nic`='" + Username + "' ORDER BY `time` DESC");
+                        if (res_atEmp_HS.next()) {
+                            SimpleDateFormat Dateformat = new SimpleDateFormat("yyyy-MM-dd");
+                            Date date = new Date();
+                            if (res_atEmp_HS.getString("nic").equals(Username) && !res_atEmp_HS.getString("date").equals(Dateformat.format(date))) {
+                                attendance.ComeAttendance(Username, Dateformat.format(date));
+                            }
                         }
                         this.dispose();
 
                     } else {
                         JOptionPane.showMessageDialog(this, "Your user status is " + resultSet.getString("status"), "Warning ", JOptionPane.WARNING_MESSAGE);
                     }
-
                     setUsername(Username);
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid Username or Passwors", "Warning", JOptionPane.WARNING_MESSAGE);
