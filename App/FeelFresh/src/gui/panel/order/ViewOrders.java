@@ -11,8 +11,16 @@ import model.MYSQL;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
+import model.jasper.Report;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.view.JasperViewer;
+import raven.toast.Notifications;
 
 /**
  *
@@ -30,6 +38,9 @@ public class ViewOrders extends javax.swing.JPanel {
         initComponents();
 
         loadOrders_vp("");
+
+        Notifications.getInstance().setJFrame(this.parentFrame_vp);
+
     }
 
     /**
@@ -72,12 +83,11 @@ public class ViewOrders extends javax.swing.JPanel {
         roundButton7 = new component.RoundButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
         jLabelSupplierIDName = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabelSupplierContact = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        roundButton3 = new component.RoundButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -310,6 +320,7 @@ public class ViewOrders extends javax.swing.JPanel {
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Quicksand", 0, 16)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setMaximumSize(new java.awt.Dimension(2147483647, 300));
         jScrollPane2.setViewportView(jTextArea1);
@@ -320,21 +331,32 @@ public class ViewOrders extends javax.swing.JPanel {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "id", "Poduct", "QTY"
+                "id", "Poduct", "Brand", "Category", "QTY"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable2.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
             jTable2.getColumnModel().getColumn(0).setMinWidth(0);
             jTable2.getColumnModel().getColumn(0).setPreferredWidth(0);
             jTable2.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable2.getColumnModel().getColumn(2).setMinWidth(0);
+            jTable2.getColumnModel().getColumn(2).setPreferredWidth(0);
+            jTable2.getColumnModel().getColumn(2).setMaxWidth(0);
+            jTable2.getColumnModel().getColumn(3).setMinWidth(0);
+            jTable2.getColumnModel().getColumn(3).setPreferredWidth(0);
+            jTable2.getColumnModel().getColumn(3).setMaxWidth(0);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -345,7 +367,7 @@ public class ViewOrders extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
         );
 
         jLabel4.setText("Order Items");
@@ -382,20 +404,25 @@ public class ViewOrders extends javax.swing.JPanel {
         jLabel10.setForeground(new java.awt.Color(204, 51, 255));
         jLabel10.setText("Print Selected Order");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Recieved", "NotRecieved" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Change status  :");
-
         jLabelSupplierIDName.setFont(new java.awt.Font("Poppins Light", 0, 14)); // NOI18N
-        jLabelSupplierIDName.setText("Supplier ");
+        jLabelSupplierIDName.setText("Supplier");
 
         jLabelSupplierContact.setFont(new java.awt.Font("Poppins Light", 0, 14)); // NOI18N
         jLabelSupplierContact.setText("Contact");
+
+        roundButton3.setBackground(new java.awt.Color(255, 51, 51));
+        roundButton3.setForeground(new java.awt.Color(255, 255, 255));
+        roundButton3.setText("Confirm Received");
+        roundButton3.setArc(15);
+        roundButton3.setBorderColorHex("#E70101");
+        roundButton3.setBorderWidth("0");
+        roundButton3.setEnabled(false);
+        roundButton3.setFont(new java.awt.Font("Quicksand SemiBold", 0, 14)); // NOI18N
+        roundButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -410,7 +437,6 @@ public class ViewOrders extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(roundButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -426,16 +452,14 @@ public class ViewOrders extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                                        .addComponent(roundButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(roundButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,22 +494,24 @@ public class ViewOrders extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel4)
                                 .addGap(5, 5, 5)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7)))
-                            .addComponent(roundButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(roundButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(roundButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(roundButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(12, 12, 12))
                     .addComponent(jSeparator1))
                 .addContainerGap())
@@ -493,25 +519,72 @@ public class ViewOrders extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void roundButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton6ActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            HashMap<String, Object> map = new HashMap<>();
+            JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
+
+            JasperPrint print = JasperFillManager.fillReport("src/reports/order/filtered_orders.jasper", map, dataSource);
+            Report.execute(print);
+
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+
+
     }//GEN-LAST:event_roundButton6ActionPerformed
 
     private void roundButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roundButton7ActionPerformed
+//Print jasper Report
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+        if (jTextArea1.getText().isBlank()
+                && jLabelSupplierContact.getText().equals("Contact")
+                && jLabelSupplierIDName.getText().equals("Supplier")) {
+            //show error message
+            Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "Please select an order to print in detail.");
+
+        } else {
+            HashMap<String, Object> map = new HashMap<>();
+            int row = jTable1.getSelectedRow();
+            map.put("OrderID", jTable1.getValueAt(row, 0));
+            map.put("Req", jTable1.getValueAt(row, 2));
+            map.put("Cre", jTable1.getValueAt(row, 3));
+            map.put("Status", jTable1.getValueAt(row, 4));
+
+            map.put("SubReportDataSource", new JRTableModelDataSource(jTable2.getModel()));
+
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("message");
+            Vector<String> v = new Vector<>();
+            v.add(jTextArea1.getText());
+            model.addRow(v);
+            JRTableModelDataSource dataSource = new JRTableModelDataSource(model);
+
+            try {
+                Report.execute(JasperFillManager.fillReport("src/reports/order/slected_order_order_items.jasper", map, dataSource), Report.VIEW_REPORT);
+            } catch (JRException ex) {
+                ex.printStackTrace();
+            }
+
+        }
+
+
+    }//GEN-LAST:event_roundButton7ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() >= 2) {
             int row = jTable1.getSelectedRow();
             jLabelSupplierIDName.setText(String.valueOf(jTable1.getValueAt(row, 6)) + "  :  " + String.valueOf(jTable1.getValueAt(row, 1)));
             jLabelSupplierContact.setText(String.valueOf(jTable1.getValueAt(row, 7)));
-            jTextArea1.setText(String.valueOf(jTable1.getValueAt(row, 4)));
+            jTextArea1.setText(String.valueOf(jTable1.getValueAt(row, 5)));
             loadOrderItems(String.valueOf(jTable1.getValueAt(row, 0)));
 
+            if (String.valueOf(jTable1.getValueAt(row, 4)).equalsIgnoreCase("pending")) {
+                roundButton3.setEnabled(true);
+            }
+
+        } else {
+            clearSelectedOrder();
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -550,11 +623,24 @@ public class ViewOrders extends javax.swing.JPanel {
         filter_vp();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void roundButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton3ActionPerformed
+        int row = jTable1.getSelectedRow();
+        String OrderId = String.valueOf(jTable1.getValueAt(row, 0));
+
+        try {
+            MYSQL.executeIUD("UPDATE `order` SET `status` = 'Recieved' WHERE `id` = '" + OrderId + "' ");
+            jTable1.setValueAt("Recieved", row, 4);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_roundButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
@@ -564,7 +650,6 @@ public class ViewOrders extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelSupplierContact;
@@ -586,6 +671,7 @@ public class ViewOrders extends javax.swing.JPanel {
     private javax.swing.JTextArea jTextArea1;
     private desingcode.PanalRound panalRound3;
     private component.RoundButton roundButton1;
+    private component.RoundButton roundButton3;
     private component.RoundButton roundButton6;
     private component.RoundButton roundButton7;
     private component.UJTextfield uJTextfield1;
@@ -637,6 +723,8 @@ public class ViewOrders extends javax.swing.JPanel {
             ResultSet rs = MYSQL.executeSearch("SELECT * FROM `order_item`"
                     + "INNER JOIN `product` ON `order_item`.`product_id` = `product`.`id` "
                     + "INNER JOIN `unit` ON `order_item`.`unit_id` = `unit`.`id` "
+                    + " INNER JOIN `brand` ON `product`.`brand_id` = `brand`.`id` "
+                    + " INNER JOIN `category` ON `category`.`id` = `product`.`category_id` "
                     + " WHERE `order_id` = '" + orderId + "' ");
             DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();
             dtm.setRowCount(0);
@@ -644,10 +732,11 @@ public class ViewOrders extends javax.swing.JPanel {
                 Vector<String> v = new Vector();
                 v.add(rs.getString("order_item.id"));
                 v.add(rs.getString("product.name"));
+                v.add(rs.getString("brand.name"));
+                v.add(rs.getString("category.name"));
                 v.add(rs.getString("qty") + "  " + rs.getString("unit.name"));
 
                 dtm.addRow(v);
-
             }
 
         } catch (Exception ex) {
@@ -699,7 +788,7 @@ public class ViewOrders extends javax.swing.JPanel {
             }
             moreThanOneFilter = true;
 
-        } 
+        }
 
         if (jRadioButton1.isSelected()) {
             q += "ORDER BY `order`.`id` ASC ";
@@ -711,5 +800,16 @@ public class ViewOrders extends javax.swing.JPanel {
         }
 
         loadOrders_vp(q);
+    }
+
+    private void clearSelectedOrder() {
+
+        jLabelSupplierIDName.setText("Supplier");
+        jLabelSupplierContact.setText("Contact");
+        jTextArea1.setText("");
+        roundButton3.setEnabled(false);
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        model.setRowCount(0);
+
     }
 }
