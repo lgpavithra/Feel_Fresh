@@ -21,7 +21,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
 
     public CustomerRegistration() {
         initComponents();
-        loadCustomer_ps();
+        loadCustomer_ps("first_name", "ASC", jTextField1.getText(), jTextField1.getText());
         //loadStatus_ps();
     }
 
@@ -48,11 +48,11 @@ public class CustomerRegistration extends javax.swing.JPanel {
 //    }
 //    } 
 //    
-    private void loadCustomer_ps() {
+    private void loadCustomer_ps(String column, String orderby, String mobile, String nic) {
 
         try {
 
-            ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `customer`INNER JOIN `customer_mobile` ON `customer`.`nic`=`customer_mobile`.`customer_nic`");
+            ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `customer`INNER JOIN `customer_mobile` ON `customer`.`nic`=`customer_mobile`.`customer_nic` WHERE `customer_mobile`.`mobile_number` LIKE '" + mobile + "%' OR `nic` LIKE '" + nic + "%' ORDER BY `" + column + "` " + orderby + "");
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
@@ -78,6 +78,22 @@ public class CustomerRegistration extends javax.swing.JPanel {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+    }
+
+    private void filterName() {
+
+        int filter = jComboBox2.getSelectedIndex();
+
+        if (filter == 0) {
+            loadCustomer_ps("first_name", "ASC", jTextField1.getText(), jTextField1.getText());
+        } else if (filter == 1) {
+            loadCustomer_ps("first_name", "DESC", jTextField1.getText(), jTextField1.getText());
+        } else if (filter == 2) {
+            loadCustomer_ps("last_name", "ASC", jTextField1.getText(), jTextField1.getText());
+        } else if (filter == 3) {
+            loadCustomer_ps("last_name", "ASC", jTextField1.getText(), jTextField1.getText());
         }
 
     }
@@ -116,6 +132,8 @@ public class CustomerRegistration extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -358,6 +376,20 @@ public class CustomerRegistration extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "First Name ASC", "First Name DESC", "Last Name ASC", "Last Name DESC" }));
+        jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox2ItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -374,7 +406,12 @@ public class CustomerRegistration extends javax.swing.JPanel {
                                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(10, 10, 10)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -394,7 +431,13 @@ public class CustomerRegistration extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1))))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -429,14 +472,14 @@ public class CustomerRegistration extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -458,34 +501,30 @@ public class CustomerRegistration extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nic = uJTextfield1.getText().trim();
         String first_name = uJTextfield2.getText().trim();
         String last_name = uJTextfield3.getText().trim();
+        String nic = uJTextfield1.getText().trim();
         String email = uJTextfield4.getText().trim();
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String mobile = uJTextfield8.getText().trim();
+        ButtonModel gender = buttonGroup2.getSelection();
         String no = uJTextfield5.getText().trim();
         String line1 = uJTextfield6.getText().trim();
         String line2 = uJTextfield7.getText().trim();
-        String mobile = uJTextfield8.getText().trim();
-        ButtonModel gender = buttonGroup2.getSelection();
         String status = String.valueOf(jComboBox1.getSelectedItem());
 
-        //System.out.println(gender);
-        if (nic.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter NIC", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (first_name.isEmpty()) {
+     
+        if (first_name.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter first name", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (last_name.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter last name", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (nic.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter NIC", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter email address", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (!email.matches("^(?=.{1,64}@)[A-Za-z0-9\\+_-]+(\\.[A-Za-z0-9\\+_-]+)*@[^-][A-Za-z0-9\\+-]+"
                 + "(\\.[A-Za-z0-9\\+-]+)*(\\.[A-Za-z]{2,})$")) {
             JOptionPane.showMessageDialog(this, "Please enter valid Invalid email", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (no.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter address no", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else if (line1.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter address", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (mobile.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter mobile number", "Warning", JOptionPane.WARNING_MESSAGE);
         } else if (!mobile.matches("^07[01245678]{1}[0-9]{7}$")) {
@@ -494,7 +533,10 @@ public class CustomerRegistration extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Select Gender.", "WARNING", JOptionPane.WARNING_MESSAGE);
         } else if (status.equals("Select Position")) {
             JOptionPane.showMessageDialog(this, "Please Select Position.", "WARNING", JOptionPane.WARNING_MESSAGE);
-
+        } else if (no.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter address no", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (line1.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter address", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
                 String genderId = gender.getActionCommand();
@@ -510,7 +552,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
 
                     MYSQL.executeIUD("INSERT INTO `customer_mobile`(`customer_nic`,`mobile_number`,`create_at`)VALUES('" + nic + "','" + mobile + "','" + date + "')");
 
-                    loadCustomer_ps();
+                    loadCustomer_ps("first_name", "ASC", jTextField1.getText(), jTextField1.getText());
                     reset_ps();
                 }
             } catch (Exception e) {
@@ -562,9 +604,9 @@ public class CustomerRegistration extends javax.swing.JPanel {
             try {
                 String genderId = gender.getActionCommand();
                 MYSQL.executeIUD("UPDATE `customer` SET  `first_name`='" + first_name + "',`last_name`='" + last_name + "',`email`='" + email + "',`no`='" + no + "',`line1`='" + line1 + "',`line2`='" + line2 + "',`upd_date`='" + up_date + "', `gender`='" + genderId + "',`status`='" + status + "'WHERE `nic` = '" + String.valueOf(jTable1.getValueAt(row, 0)) + "' ");
-                MYSQL.executeIUD("UPDATE `customer_mobile` SET  `mobile_number`='" + mobile + "',`update_at`='" + up_date + "'");
+                MYSQL.executeIUD("UPDATE `customer_mobile` SET  `mobile_number`='" + mobile + "',`update_at`='" + up_date + "' WHERE `customer_nic` = '" + String.valueOf(jTable1.getValueAt(row, 0)) + "'");
 
-                loadCustomer_ps();
+                loadCustomer_ps("first_name", "ASC", jTextField1.getText(), jTextField1.getText());
                 reset_ps();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -576,31 +618,29 @@ public class CustomerRegistration extends javax.swing.JPanel {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int row = jTable1.getSelectedRow();
 
-        String nic = String.valueOf(jTable1.getValueAt(row, 0));
         String fname = String.valueOf(jTable1.getValueAt(row, 1));
         String lname = String.valueOf(jTable1.getValueAt(row, 2));
+        String nic = String.valueOf(jTable1.getValueAt(row, 0));
         String email = String.valueOf(jTable1.getValueAt(row, 3));
+        String mobile = String.valueOf(jTable1.getValueAt(row, 9));
         String no = String.valueOf(jTable1.getValueAt(row, 4));
         String line1 = String.valueOf(jTable1.getValueAt(row, 5));
         String line2 = String.valueOf(jTable1.getValueAt(row, 6));
-        String mobile = String.valueOf(jTable1.getValueAt(row, 9));
-        String gender = String.valueOf(jTable1.getValueAt(row, 10));
-
         String status = String.valueOf(jTable1.getValueAt(row, 11));
 
         if (evt.getClickCount() == 2) {
 
             jButton1.setEnabled(false);
 
-            uJTextfield1.setText(nic);
             uJTextfield2.setText(fname);
             uJTextfield3.setText(lname);
+            uJTextfield1.setText(nic);
             uJTextfield4.setText(email);
+            uJTextfield8.setText(mobile);
             uJTextfield5.setText(no);
             uJTextfield6.setText(line1);
             uJTextfield7.setText(line2);
-            uJTextfield8.setText(mobile);
-            String gender_HS = String.valueOf(jTable1.getValueAt(row, 10));
+            String gender = String.valueOf(jTable1.getValueAt(row, 10));
             if (gender.equals("Male")) {
                 jRadioButton1.setSelected(true);
             }
@@ -634,6 +674,14 @@ public class CustomerRegistration extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+        filterName();
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        filterName();
+    }//GEN-LAST:event_jTextField1KeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup2;
@@ -641,6 +689,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -660,6 +709,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private desingcode.PanalRound panalRound1;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
@@ -682,11 +732,18 @@ public class CustomerRegistration extends javax.swing.JPanel {
         uJTextfield7.setText("");
         uJTextfield7.setText("");
         uJTextfield8.setText("");
+        jTextField1.setText("");
         buttonGroup2.clearSelection();
         jComboBox1.setSelectedIndex(0);
 
         uJTextfield1.grabFocus();
         jButton1.setEnabled(true);
+        uJTextfield1.setEditable(true);
+        jButton2.setEnabled(false);
+
+        int index = 0;
+        jComboBox2.setSelectedIndex(index);
+        loadCustomer_ps("first_name", "ASC", jTextField1.getText(), jTextField1.getText());
     }
 
 }
