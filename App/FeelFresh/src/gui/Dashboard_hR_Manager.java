@@ -25,15 +25,15 @@ import javax.swing.Timer;
  *
  * @author lgpavithra
  */
-public class Dashboard_hRManager extends javax.swing.JFrame {
+public class Dashboard_hR_Manager extends javax.swing.JFrame {
 
     /**
      * Creates new form Dashboard_inventoryManager
      */
-    public Dashboard_hRManager() {
+    public Dashboard_hR_Manager() {
         initComponents();
 
-        setExtendedState(Dashboard_hRManager.MAXIMIZED_BOTH);
+        setExtendedState(Dashboard_hR_Manager.MAXIMIZED_BOTH);
         changePanel_vp(new Welcome());
         this.setLocationRelativeTo(null);
         setDateTime();
@@ -475,7 +475,7 @@ public class Dashboard_hRManager extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Dashboard_hRManager().setVisible(true);
+                new Dashboard_hR_Manager().setVisible(true);
             }
         });
     }

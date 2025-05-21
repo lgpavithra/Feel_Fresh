@@ -302,7 +302,7 @@ public class Log_in extends javax.swing.JFrame {
                             Dashboaed_Fram_HS.setVisible(true);
                         }
                         if (resultSet.getString("user_type").equals("HR Manager")) {
-                            Dashboaed_Fram_HS = new Dashboard_hRManager();
+                            Dashboaed_Fram_HS = new Dashboard_hR_Manager();
                             Dashboaed_Fram_HS.setVisible(true);
                         }
                         if (resultSet.getString("user_type").equals("Admin")) {
