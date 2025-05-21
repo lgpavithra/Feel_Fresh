@@ -508,9 +508,8 @@ public class Dashboard_hR_Manager extends javax.swing.JFrame {
     /*This method is intended for load more options for controller panel*/
     private void changeControllerPanel(String loadWindowName) {
         boolean hasControllers;
-
-        ControllerLoaderLeft.removeAll();
-        ControllerLoaderRight.removeAll();
+////        ControllerLoaderLeft.removeAll();
+//        ControllerLoaderRight.removeAll();
 
         SwingUtilities.updateComponentTreeUI(this);
 
