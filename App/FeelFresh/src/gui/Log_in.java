@@ -11,9 +11,11 @@ import java.awt.Color;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
 import model.MYSQL;
+import model.UserBean;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import model.system.SystemStatus;
 
 /**
  *
@@ -292,22 +294,8 @@ public class Log_in extends javax.swing.JFrame {
                 if (resultSet.next()) {
 
                     if (resultSet.getString("status").equals("Active")) {//checking that either acvive or inactive
+                        UserBean userBean = new UserBean();
 
-                        if (resultSet.getString("user_type").equals("Inventory manager")) {//checking that the user type is invenotory manager.
-                            Dashboaed_Fram_HS = new Dashboard_inventoryManager(Username);
-                            Dashboaed_Fram_HS.setVisible(true);
-                        }
-                        if (resultSet.getString("user_type").equals("Cashiers")) {
-                            Dashboaed_Fram_HS = new Dashboard_cashier(Username);
-                            Dashboaed_Fram_HS.setVisible(true);
-                        }
-                        if (resultSet.getString("user_type").equals("HR Manager")) {
-                            Dashboaed_Fram_HS = new Dashboard_hR_Manager();
-                            Dashboaed_Fram_HS.setVisible(true);
-                        }
-                        if (resultSet.getString("user_type").equals("Admin")) {
-                            new Main_Dashbord().setVisible(true);
-                        }
                         ResultSet res_atEmp_HS = MYSQL.executeSearch("SELECT * FROM `employee` LEFT JOIN `attendance` ON `employee`.`nic`=`attendance`.`employee_nic` WHERE `nic`='" + Username + "' ORDER BY `time` DESC");
                         if (res_atEmp_HS.next()) {
                             SimpleDateFormat Dateformat = new SimpleDateFormat("yyyy-MM-dd");
@@ -315,6 +303,36 @@ public class Log_in extends javax.swing.JFrame {
                             if (res_atEmp_HS.getString("nic").equals(Username) && !res_atEmp_HS.getString("date").equals(Dateformat.format(date))) {
                                 attendance.ComeAttendance(Username, Dateformat.format(date));
                             }
+                            userBean.setNic(Username);
+                            userBean.setUserName(res_atEmp_HS.getString("fname") + " " + res_atEmp_HS.getString("lname"));
+                        }
+
+                        if (resultSet.getString("user_type").equals("Inventory manager")) {//checking that the user type is invenotory manager.
+                            userBean.setUserType("2");
+                            SystemStatus.setUser(userBean);
+                            Dashboaed_Fram_HS = new Dashboard_inventoryManager();
+                            Dashboaed_Fram_HS.setVisible(true);
+
+                        }
+                        if (resultSet.getString("user_type").equals("Cashiers")) {
+                            userBean.setUserType("4");
+                            SystemStatus.setUser(userBean);
+                            Dashboaed_Fram_HS = new Dashboard_cashier(Username);
+                            Dashboaed_Fram_HS.setVisible(true);
+
+                        }
+                        if (resultSet.getString("user_type").equals("HR Manager")) {
+                            userBean.setUserType("2");
+                            SystemStatus.setUser(userBean);
+                            Dashboaed_Fram_HS = new Dashboard_hR_Manager();
+                            Dashboaed_Fram_HS.setVisible(true);
+
+                        }
+                        if (resultSet.getString("user_type").equals("Admin")) {
+                            userBean.setUserType("1");
+                            SystemStatus.setUser(userBean);
+                            new Main_Dashbord().setVisible(true);
+
                         }
                         this.dispose();
 

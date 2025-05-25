@@ -25,7 +25,6 @@ public class UserEmployee extends javax.swing.JDialog {
     public UserEmployee(java.awt.Frame parent, boolean modal, String nic_HS) {
         super(parent, modal);
         initComponents();
-
         jButton1.putClientProperty("JButton.buttonType", "roundRect");
         uJTextfield1.setEditable(false);
         jComboBox1.setEnabled(false);
@@ -61,8 +60,8 @@ public class UserEmployee extends javax.swing.JDialog {
                 }
 
             } else {
-                jLabel8.setText("This Employee system not access.");
-                jLabel9.setText("This Employee system not access.");
+                jLabel8.setText("This employee cannot access the system.");
+                jLabel9.setText("This employee cannot access the system.");
             }
 
         } catch (Exception e) {
@@ -99,6 +98,8 @@ public class UserEmployee extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(345, 447));
+        setMinimumSize(new java.awt.Dimension(345, 447));
 
         panalRound1.setBackground(new java.awt.Color(252, 252, 252));
 
@@ -157,34 +158,32 @@ public class UserEmployee extends javax.swing.JDialog {
         panalRound1Layout.setHorizontalGroup(
             panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panalRound1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10)
-                    .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(uJPasswordFiled1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panalRound1Layout.createSequentialGroup()
-                            .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panalRound1Layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(panalRound1Layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(panalRound1Layout.createSequentialGroup()
-                                            .addComponent(jLabel7)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1))
-                            .addGap(9, 9, 9))
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(22, 22, 22)
+                .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel10)
+                        .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panalRound1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panalRound1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(panalRound1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)))
+                    .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(uJPasswordFiled1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         panalRound1Layout.setVerticalGroup(
@@ -246,9 +245,8 @@ public class UserEmployee extends javax.swing.JDialog {
 //        System.out.println(NIC_HS);
 //        System.out.println(Password_HS);
 //        System.out.println(userstatus_HS);
-        System.out.println(usertype_HS);
-
-        System.out.println(REGUPDtype_HS);
+//        System.out.println(usertype_HS);
+//        System.out.println(REGUPDtype_HS);
 
         if (Password_HS.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please Enter Password.", "WARNING", JOptionPane.WARNING_MESSAGE);
@@ -271,7 +269,7 @@ public class UserEmployee extends javax.swing.JDialog {
                             + "`user_type`='" + usertype_HS + "' WHERE `employee_nic`='" + NIC_HS + "'");
                 }
                 this.dispose();
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -298,7 +296,10 @@ public class UserEmployee extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
+    public static void main(String[] args) {
+        new UserEmployee(null, true, "").setVisible(true);
 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -20,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import model.system.SystemStatus;
 
 /**
  *
@@ -32,7 +33,7 @@ public class Dashboard_hR_Manager extends javax.swing.JFrame {
      */
     public Dashboard_hR_Manager() {
         initComponents();
-
+        jLabel6.setText(SystemStatus.getUser().getUserName());
         setExtendedState(Dashboard_hR_Manager.MAXIMIZED_BOTH);
         changePanel_vp(new Welcome());
         this.setLocationRelativeTo(null);
