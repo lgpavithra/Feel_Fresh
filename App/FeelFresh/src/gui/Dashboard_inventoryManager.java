@@ -31,6 +31,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import model.system.SystemStatus;
 
 /**
  *
@@ -41,37 +42,37 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard_inventoryManager
      */
-    public static String emp_Username;
-
-    public Dashboard_inventoryManager(String Username) {
+//    public static String emp_Username;
+    public Dashboard_inventoryManager() {
         initComponents();
-        emp_Username = Username;
+//        jLabel6.setText(SystemStatus.getUser().getUserName());
+        jLabel6.setText("Joni");
         changePanel_vp(new Welcome());
         this.setLocationRelativeTo(null);
-
+        
         setDateTime();
-
+        
         ControllerLoaderRight.add(new Settings_btn(this), BorderLayout.CENTER);
     }
-
+    
     private void setDateTime() {
-
+        
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd ");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(" HH:mm:ss");
-
+        
         Timer timer = new Timer(1000, e -> {
             LocalDate date = LocalDate.now();
             LocalTime time = LocalTime.now();
             String formattedDate = date.format(dateFormatter);
             String formattedTime = time.format(timeFormatter);
-
+            
             jLabel3.setText(formattedTime);
             jLabel4.setText(formattedDate);
-
+            
         });
-
+        
         timer.start();
-
+        
     }
 
     /**
@@ -381,47 +382,47 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         changeControllerPanel("Welcome");
         windowName_vp("Home");
     }//GEN-LAST:event_jButtonHomeActionPerformed
-
+    
 
     private void jButtonProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProductActionPerformed
         changePanel_vp(new addProduct());
         changeControllerPanel("Product");
-
+        
         windowName_vp("Product");
     }//GEN-LAST:event_jButtonProductActionPerformed
 
     private void jButtonCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompanyActionPerformed
         changePanel_vp(new Company());
-
+        
         changeControllerPanel("Company");
         windowName_vp("Company");
     }//GEN-LAST:event_jButtonCompanyActionPerformed
-
+    
 
     private void jButtonBrandCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrandCategoryActionPerformed
         changePanel_vp(new BrandAndCategories());
-
+        
         changeControllerPanel("Brand & Category");
-
+        
         windowName_vp("Brand & Category");
     }//GEN-LAST:event_jButtonBrandCategoryActionPerformed
-
+    
     private int expanded_width_vp;
     private int height_vp;
     private int min_width_vp = 58;
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-
+        
         if (jToggleButton1.isSelected()) {
-
+            
             expanded_width_vp = jPanel1.getWidth();
             height_vp = jPanel1.getHeight();
-
+            
             Thread thread_vp = new Thread(() -> {
-
+                
                 for (int i = expanded_width_vp; i >= min_width_vp; i -= 10) {
                     jPanel1.setPreferredSize(new Dimension(i, height_vp));
                     SwingUtilities.updateComponentTreeUI(jPanel1);
-
+                    
                     try {
                         Thread.sleep(10);
                     } catch (Exception e) {
@@ -431,17 +432,17 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
                 //remove text
                 toggleTextIcon(true);
-
+                
             });
             thread_vp.start();
         } else {
-
+            
             Thread thread_vp = new Thread(() -> {
-
+                
                 for (int i = min_width_vp; i <= expanded_width_vp; i += 10) {
                     jPanel1.setPreferredSize(new Dimension(i, height_vp));
                     SwingUtilities.updateComponentTreeUI(jPanel1);
-
+                    
                     try {
                         Thread.sleep(10);
                     } catch (Exception e) {
@@ -449,11 +450,11 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
                     }
                 }
                 toggleTextIcon(false);
-
+                
             });
             thread_vp.start();
         }
-
+        
         jToggleButton1.setBorder(null);
         SwingUtilities.updateComponentTreeUI(jPanel1);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
@@ -470,27 +471,27 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 
     private void jButtonOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrderActionPerformed
         changePanel_vp(new OrderPanel(this));
-
+        
         changeControllerPanel("Order");
         windowName_vp("Order");
     }//GEN-LAST:event_jButtonOrderActionPerformed
 
     private void jButtonCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomerActionPerformed
         changePanel_vp(new CustomerRegistration());
-
+        
         changeControllerPanel("Customer");
         windowName_vp("Customer");
     }//GEN-LAST:event_jButtonCustomerActionPerformed
 
     private void jButtonGRNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGRNActionPerformed
         changePanel_vp(new GRNTerminal());
-
+        
         changeControllerPanel("GRN");
         windowName_vp("GRN");
     }//GEN-LAST:event_jButtonGRNActionPerformed
-
+    
     private void toggleTextIcon(boolean isSelected) {
-
+        
         if (isSelected) {
             jButtonHome.setText("");
             jButtonBrandCategory.setText("");
@@ -510,7 +511,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
             jButtonCustomer.setText("  Customer");
             jButtonGRN.setText("  GRN");
         }
-
+        
     }
 
     //
@@ -518,12 +519,12 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
     You can clean the dashboard by passing a null object to the changePanel_vp method*/
     public void changePanel_vp(JPanel panelForm_vp) {
         jPanel2.removeAll();
-
+        
         if (panelForm_vp != null) {
             jPanel2.add(panelForm_vp, BorderLayout.CENTER);
         }
         SwingUtilities.updateComponentTreeUI(jPanel2);
-
+        
     }
 
     /**
@@ -536,7 +537,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dashboard_inventoryManager("Jhon Doe").setVisible(true);
+                new Dashboard_inventoryManager().setVisible(true);
             }
         });
     }
@@ -578,19 +579,19 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 //            ControllerLoaderRight.add(new LinkBrandCategoryBtn(), BorderLayout.CENTER);
 //        } 
         SwingUtilities.updateComponentTreeUI(this);
-
+        
     }
-
+    
     private void windowName_vp(String text) {
         jLabel2.setText(text.trim());
     }
-
+    
     public String getDate_vp() {
         return jLabel4.getText();
     }
-
+    
     public String getTime_vp() {
         return jLabel3.getText();
     }
-
+    
 }

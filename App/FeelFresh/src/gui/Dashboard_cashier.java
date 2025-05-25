@@ -21,9 +21,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import model.system.SystemStatus;
 
 /**
  *
@@ -38,6 +40,8 @@ public class Dashboard_cashier extends javax.swing.JFrame {
 
     public Dashboard_cashier(String Username) {
         initComponents();
+//       this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        jLabel6.setText(SystemStatus.getUser().getUserName());
         emp_Username = Username;
 
         changePanel_vp(new Cashier());
