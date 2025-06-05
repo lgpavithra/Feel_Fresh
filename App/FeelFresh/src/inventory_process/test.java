@@ -65,7 +65,8 @@ public class test {
         }
         
         System.out.println("this is inventory checking");
-                                        
+        
+        //to load products (format:- product_name , category , brand_name)...
         for (ProductDTO productDTO : manager.loadProducts()) {
             System.out.println(productDTO.getPname());
             System.out.println(productDTO.getCategoryName());
