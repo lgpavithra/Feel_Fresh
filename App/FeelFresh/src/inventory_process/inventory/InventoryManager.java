@@ -174,4 +174,39 @@ public class InventoryManager {
         }
     }
 
+    public ArrayList<ProductDTO> loadProducts() {
+        System.out.println("Loading products from the inventory...");
+        Inventory.getInstance().getProductList().clear();
+        try {
+            ResultSet rs = MYSQL.executeSearch(
+                    "SELECT "
+                    + "p.name AS product_name, "
+                    + "b.name AS brand_name, "
+                    + "c.name AS category_name "
+                    + "FROM product p "
+                    + "JOIN brand b ON p.brand_id = b.id "
+                    + "JOIN category c ON p.category_id = c.id;"
+            );
+
+            while(rs.next()){                
+                ProductDTO productDTO = new ProductDTO();
+                productDTO.setPname(rs.getString("product_name"));
+                productDTO.setCategoryName(rs.getString("category_name"));
+                productDTO.setBrandName(rs.getString("brand_name"));
+                Inventory.getInstance().getProductList().add(productDTO);
+            }            
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return Inventory.getInstance().getProductList();
+    }
+      
+    /*
+    
+        next updates
+        =============
+        1. CRUD - products
+        2.
+    */
 }

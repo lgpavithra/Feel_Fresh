@@ -2,25 +2,26 @@ package inventory_process.inventory;
 
 import java.util.ArrayList;
 import inventory_process.dto.ProductDTO;
+import java.sql.ResultSet;
+import model.MYSQL;
 
 public class Inventory {
 
+    private Inventory(){
+        productList = new ArrayList();
+    }
+    
     private static Inventory inventory;
-    private static ArrayList<ProductDTO> productList;
-       
-    public static Inventory getInstance(){
-        if(inventory == null){
-           inventory = new Inventory();
+    private ArrayList<ProductDTO> productList = new ArrayList();
+
+    public static Inventory getInstance() {
+        if (inventory == null) {
+            inventory = new Inventory();
         }
         return inventory;
     }
-    
-    public void loadProducts() {
-        
-    }
-    
-    public void updateStockLevels() {
-        
-    }
-    
+
+    public ArrayList<ProductDTO> getProductList() {
+        return productList;
+    }            
 }
