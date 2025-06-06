@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import inventory_process.dto.ProductDTO;
 import inventory_process.dto.RecieptDTO;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.MYSQL;
 
 public class InventoryManager {
@@ -188,25 +190,69 @@ public class InventoryManager {
                     + "JOIN category c ON p.category_id = c.id;"
             );
 
-            while(rs.next()){                
+            while (rs.next()) {
                 ProductDTO productDTO = new ProductDTO();
                 productDTO.setPname(rs.getString("product_name"));
                 productDTO.setCategoryName(rs.getString("category_name"));
                 productDTO.setBrandName(rs.getString("brand_name"));
                 Inventory.getInstance().getProductList().add(productDTO);
-            }            
-            
+            }
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return Inventory.getInstance().getProductList();
     }
-      
+
     /*
     
         next updates
         =============
         1. CRUD - products
         2.
-    */
+     */
+    public void issuingProducts(ProductDTO productDTO) {
+        System.out.println("INVENTORY MANAGER:updating stock levels after the generation of INVOICES...");
+        try {
+            //getting stock details
+            String stockQ = "SELECT "
+                    + "id, "
+                    + "product_id, "
+                    + "grn_id, "
+                    + "selling_price, "
+                    + "exp_date, "
+                    + "qty, "
+                    + "DATEDIFF(exp_date, CURDATE()) AS days_until_expiry "
+                    + "FROM stock "
+                    + "WHERE "
+                    + "product_id = '" + productDTO.getPid() + "' "
+                    + "AND qty > 0 "
+                    + "AND exp_date IS NOT NULL "
+                    + "AND exp_date >= CURDATE() "
+                    + "ORDER BY exp_date ASC";
+            
+            ResultSet stockDetails = MYSQL.executeSearch(stockQ);
+            
+            /*================== SYNCH with the inventory levels ====================*/
+            while (stockDetails.next()) {
+                Double currentQTY = stockDetails.getDouble("qty");
+                if (productDTO.getQty() > currentQTY) {
+                    String query = "UPDATE stock "
+                            + "SET qty = '" + 0 + "' "
+                            + "WHERE id = '" + stockDetails.getString("id") + "'";
+                    MYSQL.executeIUD(query);
+                } else {
+                    currentQTY = currentQTY - productDTO.getQty();
+                    String query = "UPDATE stock "
+                            + "SET qty = '" + currentQTY + "' "
+                            + "WHERE id = '" + stockDetails.getString("id") + "'";
+                    MYSQL.executeIUD(query);
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(InventoryManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

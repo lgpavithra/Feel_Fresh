@@ -7,6 +7,7 @@ import inventory_process.inventory.InventoryManager;
 import java.util.ArrayList;
 import inventory_process.dto.DTOGenerator;
 import inventory_process.inventory.Inventory;
+import inventory_process.inventory.InvoiceProcessor;
 
 public class test {
 
@@ -31,46 +32,30 @@ public class test {
         productList.add(p1);
         productList.add(p2);
 
-//        manager.issueProducts(dTO);
-//        GrnDTO dTO = DTOGenerator.generateGrnDTO(productList, 1, 1000, 0, 1000, 0, 1);
-//        if(dTO != null){
-//            manager.addStocks(dTO);
-//        }else{
-//            System.out.println("Null is returned");
-//        }
-//        
-//        InvoiceDTO dtO = DTOGenerator.generateInvoiceDTO(productList, 2000, 1000, 0, "08777377");
-//        if(dtO != null){
-//            manager.issueProducts(dtO);
-//        }else{
-//            System.out.println("Null is returned");
-//        }
-
         DTOGenerator dTOGenerator = DTOGenerator.getInstance();
-        
-        //grn creation
+
+//      // grn creation
         GrnDTO grnDTO = dTOGenerator.generateGrnDTO(productList, 1, 1000, 0, 1000, 0, 1);
-        if(grnDTO != null){
+        if (grnDTO != null) {            
             manager.addStocks(grnDTO);
-        }else{
+        } else {
             System.out.println("Null is returned when creating grnDTO");
         }
-         
-        //invoice creation
-        InvoiceDTO invoiceDTO = dTOGenerator.generateInvoiceDTO(productList, 1000, 1000, 0, "07855444");
-        if(invoiceDTO != null){            
-            manager.issueProducts(invoiceDTO);
-        }else{
+
+        // invoice creation
+        InvoiceDTO invoiceDTO = dTOGenerator.generateInvoiceDTO(productList, 1800, 1000, 0, "07855444");
+        if (invoiceDTO != null) {
+            //manager.issueProducts(invoiceDTO);
+            new InvoiceProcessor().process(invoiceDTO);
+        } else {
             System.out.println("Null is returned when creating invoice DTO");
         }
-        
-        System.out.println("this is inventory checking");
-        
-        //to load products (format:- product_name , category , brand_name)...
+
+        // to load products (format:- product_name , category , brand_name)...
         for (ProductDTO productDTO : manager.loadProducts()) {
             System.out.println(productDTO.getPname());
             System.out.println(productDTO.getCategoryName());
-            System.out.println(productDTO.getBrandName());            
+            System.out.println(productDTO.getBrandName());
         }
     }
 }
