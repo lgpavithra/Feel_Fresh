@@ -1001,7 +1001,7 @@ public class MakeOrder extends javax.swing.JPanel {
                                 } else if (status == 1) {
                                     try {
                                         Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Email Sending Failed");
-                                        MYSQL.executeIUD("UPDATE `order` SET `order`.`status` = 'Email_Failed' WHERE `order_id` = '"+orderId+"' ");
+                                        MYSQL.executeIUD("UPDATE `order` SET `order`.`status` = 'Email_Failed' WHERE `id` = '"+orderId+"' ");
                                     } catch (Exception ex) {
                                         ex.printStackTrace();
                                     }

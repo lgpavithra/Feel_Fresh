@@ -45,7 +45,7 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 //    public static String emp_Username;
     public Dashboard_inventoryManager() {
         initComponents();
-//        jLabel6.setText(SystemStatus.getUser().getUserName());
+//        jLabel6.setText(SystemStatus.getUser().getUserName()); // ************
         jLabel6.setText("Joni");
         changePanel_vp(new Welcome());
         this.setLocationRelativeTo(null);
