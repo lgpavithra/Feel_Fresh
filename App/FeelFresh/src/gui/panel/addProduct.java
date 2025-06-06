@@ -26,7 +26,7 @@ public class addProduct extends javax.swing.JPanel {
         initComponents();
         loadCategories();
         loadBrand();
-        loadProducts_PS("name", "ASC");
+        loadProducts_PS("product`.`name", "ASC");
       
     }
 
@@ -81,7 +81,7 @@ public class addProduct extends javax.swing.JPanel {
         try {
 
             ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `product` INNER JOIN `category` ON `product`.`category_id`=`category`.`id` "
-                    + "LEFT JOIN `brand` ON `brand`.`id`=`product`.`brand_id`  ORDER BY `" + column + "` " + orderby + "");
+                    + "LEFT JOIN `brand` ON `brand`.`id`=`product`.`brand_id`  ORDER BY `"+ column +"` " + orderby + "");
            
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -90,7 +90,7 @@ public class addProduct extends javax.swing.JPanel {
             while (resultSet.next()) {
                 Vector<String> vector = new Vector<>();
                 vector.add(resultSet.getString("id"));
-                vector.add(resultSet.getString("name"));
+                vector.add(resultSet.getString("product.name"));
                 vector.add(resultSet.getString("category.name"));
                 vector.add(resultSet.getString("brand.name"));
 
@@ -109,10 +109,10 @@ public class addProduct extends javax.swing.JPanel {
         int filter = jComboBox3.getSelectedIndex();
 
         if (filter == 0) {
-            loadProducts_PS("name", "ASC");
+            loadProducts_PS("product`.`name", "ASC");
           
         } else if (filter == 1) {
-             loadProducts_PS("name", "DESC");
+             loadProducts_PS("product`.`name", "DESC");
            
         }
 
@@ -247,7 +247,7 @@ public class addProduct extends javax.swing.JPanel {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -291,6 +291,11 @@ public class addProduct extends javax.swing.JPanel {
         jComboBox3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox3ItemStateChanged(evt);
+            }
+        });
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
             }
         });
 
@@ -357,7 +362,7 @@ public class addProduct extends javax.swing.JPanel {
             try {
 
                 MYSQL.executeIUD("INSERT INTO `product`(`name`,`brand_id`,`category_id`)VALUES('" + name + "','" + brandMap.get(brand) + "','" + categoryMap.get(category) + "')");
-                  loadProducts_PS("name", "ASC");
+                  loadProducts_PS("product`.`name", "ASC");
                
               
                 reset_PS();
@@ -391,7 +396,7 @@ public class addProduct extends javax.swing.JPanel {
             try {
 
                 MYSQL.executeIUD("UPDATE `product` SET `name`='" + name + "',`category_id`='" + categoryMap.get(category) + "',`brand_id`='" + brandMap.get(brand) + "' WHERE `id` = '" + String.valueOf(jTable1.getValueAt(row, 0)) + "'  ");
-
+//                loadProducts_PS(product`.`name, brand);
                 reset_PS();
 
             } catch (Exception e) {
@@ -428,6 +433,9 @@ public class addProduct extends javax.swing.JPanel {
         filterName();
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -449,14 +457,13 @@ public class addProduct extends javax.swing.JPanel {
     private component.UJTextfield uJTextfield1;
     // End of variables declaration//GEN-END:variables
 private void reset_PS() {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         jButton1.setEnabled(true);
         uJTextfield1.setText("");
         jComboBox2.setSelectedIndex(0);
         jComboBox1.setSelectedIndex(0);
         uJTextfield1.grabFocus();
         uJTextfield1.setEditable(true);
-        loadProducts_PS("name", "ASC");
+        loadProducts_PS("product`.`name", "ASC");
        
     }
 

@@ -4,6 +4,18 @@ import model.UserBean;
 
 public class SystemStatus {
 
+    //============*********===========
+    static {
+        /*
+        This static block is created in testing purpose.
+        
+         */
+        SystemStatus.user = new UserBean();
+        SystemStatus.user.setNic("200312568946");
+
+    }
+    //============*********===========
+
     public static UserBean getUser() {
         return user;
     }
@@ -27,22 +39,18 @@ public class SystemStatus {
  /* Dialogs */
     public static int settingsDialog;
     public static int connectionDialog;
-    
- /* User 
+
+    /* User 
     Admin : 1
     HR Manager : 2
     Inventory Manger : 3
     Cashire : 4       
-    */
-    
-    public static final int ADMIN =1;
+     */
+    public static final int ADMIN = 1;
     public static final int HR_MANAGER = 2;
     public static final int INVENTORY_MANAGER = 3;
     public static final int CASHIER = 4;
-    
-    private static UserBean user;
 
-    
-    
+    private static UserBean user;
 
 }
