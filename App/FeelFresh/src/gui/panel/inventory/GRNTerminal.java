@@ -4,13 +4,19 @@
  */
 package gui.panel.inventory;
 
+import inventory_process.inventory.InventoryManager;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.GRNProduct;
 import model.MYSQL;
+import model.dto.DTOGenerator;
+import model.dto.GrnDTO;
+import model.dto.ProductDTO;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
@@ -29,11 +35,11 @@ public class GRNTerminal extends javax.swing.JPanel {
 
     private boolean isProductComboBoxInteracted = false; // Track user interaction with the combo box
 
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
     public GRNTerminal() {
         initComponents();
 
-    
-        
         // Populate combo box with product names from the database
         loadActiveProducts();
         // Populate combo boxes
@@ -601,18 +607,24 @@ public class GRNTerminal extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Pname", "Qty", "buying price", "subtotal"
+                "ID", "Pname", "Qty", "Buying Price", "Selling Price", "subtotal", "EXD"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                true, false, false, false, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        itemTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(itemTable);
+        if (itemTable.getColumnModel().getColumnCount() > 0) {
+            itemTable.getColumnModel().getColumn(0).setMinWidth(0);
+            itemTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+            itemTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         jLabel23.setText("Item Table");
 
@@ -721,20 +733,59 @@ public class GRNTerminal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
-        //supplier_id
-        String supplierName = String.valueOf(supplierComboBox.getSelectedItem());
-        //user_employee_nic
-        String empNic = employeeNICLabel.getText();
-        //order_id
-        String orderID = orderIDValue.getText();
-        //total_amount
-        String total = totalLabel.getText();
-        //discount_amount
-        String discount = discountTxtField.getText();
-        //paid_amount
-        String paidAmt = paidAmountTxtField.getText();
-        //outstanding_amount
-        String outStandingAmt = outstandingLabel.getText();
+
+        if (supplierComboBox.getSelectedIndex() != 0) {
+            //supplier_name
+            String supplierName = String.valueOf(supplierComboBox.getSelectedItem()).trim();
+            //supplier_name
+            String supplierID = supplierMap.get(supplierName);
+            //user_employee_nic
+            String empNic = employeeNICLabel.getText();
+            //order_id
+            String orderID = orderIDValue.getText();
+            //total_amount
+            String total = totalLabel.getText();
+            //discount_amount
+            String discount = discountTxtField.getText();
+            //paid_amount
+            String paidAmt = paidAmountTxtField.getText();
+            //outstanding_amount
+            String outStandingAmt = outstandingLabel.getText();
+
+            //DTO
+            DefaultTableModel dtm = (DefaultTableModel) itemTable.getModel();
+            if (dtm.getRowCount() > 0) {
+
+                ArrayList<ProductDTO> productList = new ArrayList<>();
+                for (int i = 0; i < dtm.getRowCount(); i++) {
+//                    System.out.println(dtm.getValueAt(i, 0));
+                    ProductDTO productDto = DTOGenerator.getInstance().generateProductDTO(String.valueOf(itemTable.getValueAt(i, 0)),
+                            Double.parseDouble(String.valueOf(itemTable.getValueAt(i, 3))),
+                            Double.parseDouble(String.valueOf(itemTable.getValueAt(i, 4))),
+                            Integer.parseInt(String.valueOf(itemTable.getValueAt(i, 2))),
+                            String.valueOf(itemTable.getValueAt(i, 6)));
+
+                    productList.add(productDto);
+
+                }
+                GrnDTO grnDto = DTOGenerator.getInstance().generateGrnDTO(productList,
+                        1,
+                        Double.parseDouble(total),
+                        Double.parseDouble(discount),
+                        Double.parseDouble(paidAmt),
+                        Double.parseDouble(outStandingAmt),
+                        Integer.parseInt(supplierID));
+                
+                InventoryManager.getInstance().addStocks(grnDto);
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "Please add products", "Warning", JOptionPane.WARNING_MESSAGE);
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please Select a supplier", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_printButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -820,10 +871,13 @@ public class GRNTerminal extends javax.swing.JPanel {
             // If the product doesn't exist, add a new row to the table
             if (!itemExists) {
                 model.addRow(new Object[]{
+                    productMap.get(product.getProductName()),
                     product.getProductName(),
                     product.getQuantity(),
                     product.getBuyingPrice(),
-                    product.getSubtotal()
+                    product.getSellingPrice(),
+                    product.getSubtotal(),
+                    sdf.format(exdDateChooser.getDate())
                 });
             }
 
@@ -1120,6 +1174,7 @@ public class GRNTerminal extends javax.swing.JPanel {
     private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel totalSubTotalLabel;
     // End of variables declaration//GEN-END:variables
+HashMap<String, String> productMap = new HashMap<>();
 
     private void loadActiveProducts() {
         try {
@@ -1130,12 +1185,13 @@ public class GRNTerminal extends javax.swing.JPanel {
             productComboBoxModel.addElement("Select");
 
             // Query to fetch active products
-            String query = "SELECT name FROM product WHERE status = 'Active'";
+            String query = "SELECT * FROM product WHERE status = 'Active'";
             ResultSet rs = MYSQL.executeSearch(query);
 
             // Populate the combo box model with product names
             while (rs.next()) {
                 String productName = rs.getString("name");
+                productMap.put(productName, rs.getString("id"));
                 productComboBoxModel.addElement(productName);
             }
 
@@ -1208,14 +1264,16 @@ public class GRNTerminal extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Failed to load order IDs: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    HashMap<String, String> supplierMap = new HashMap<>();
 
     private void populateSupplierComboBox() {
         try {
-            String supplierQuery = "SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM `supplier` WHERE `status` = 'Active'";
+            String supplierQuery = "SELECT CONCAT(first_name, ' ', last_name) AS full_name, id FROM `supplier` WHERE `status` = 'Active'";
             ResultSet supplierResults = MYSQL.executeSearch(supplierQuery);
 
             supplierComboBoxModel.addElement("Select"); // Add a "Select" option as the first item
             while (supplierResults.next()) {
+                supplierMap.put(supplierResults.getString("full_name"), supplierResults.getString("id"));
                 String supplierName = supplierResults.getString("full_name");
                 supplierComboBoxModel.addElement(supplierName); // Add supplier name to the combo box model
             }
