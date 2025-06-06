@@ -1,4 +1,4 @@
-package inventory_process.dto;
+package model.dto;
 
 public class ProductDTO {
 

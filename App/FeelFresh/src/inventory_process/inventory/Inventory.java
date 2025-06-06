@@ -1,7 +1,7 @@
 package inventory_process.inventory;
 
 import java.util.ArrayList;
-import inventory_process.dto.ProductDTO;
+import model.dto.ProductDTO;
 import java.sql.ResultSet;
 import model.MYSQL;
 

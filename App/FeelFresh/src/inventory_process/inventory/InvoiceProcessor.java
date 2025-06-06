@@ -1,8 +1,8 @@
 package inventory_process.inventory;
 
-import inventory_process.dto.InvoiceDTO;
-import inventory_process.dto.ProductDTO;
-import inventory_process.dto.RecieptDTO;
+import model.dto.InvoiceDTO;
+import model.dto.ProductDTO;
+import model.dto.RecieptDTO;
 import java.sql.ResultSet;
 import model.MYSQL;
 

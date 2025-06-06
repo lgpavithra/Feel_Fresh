@@ -1,10 +1,10 @@
 package inventory_process.inventory;
 
-import inventory_process.dto.GrnDTO;
-import inventory_process.dto.InvoiceDTO;
+import model.dto.GrnDTO;
+import model.dto.InvoiceDTO;
 import java.util.ArrayList;
-import inventory_process.dto.ProductDTO;
-import inventory_process.dto.RecieptDTO;
+import model.dto.ProductDTO;
+import model.dto.RecieptDTO;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,12 +1,11 @@
 package inventory_process;
 
-import inventory_process.dto.GrnDTO;
-import inventory_process.dto.InvoiceDTO;
-import inventory_process.dto.ProductDTO;
+import model.dto.GrnDTO;
+import model.dto.InvoiceDTO;
+import model.dto.ProductDTO;
 import inventory_process.inventory.InventoryManager;
 import java.util.ArrayList;
-import inventory_process.dto.DTOGenerator;
-import inventory_process.inventory.Inventory;
+import model.dto.DTOGenerator;
 import inventory_process.inventory.InvoiceProcessor;
 
 public class test {

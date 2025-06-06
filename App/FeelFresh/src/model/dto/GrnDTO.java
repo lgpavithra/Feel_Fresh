@@ -1,4 +1,4 @@
-package inventory_process.dto;
+package model.dto;
 
 import java.util.ArrayList;
 
