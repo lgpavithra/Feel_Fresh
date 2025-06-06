@@ -34,12 +34,12 @@ public class test {
         DTOGenerator dTOGenerator = DTOGenerator.getInstance();
 
 //      // grn creation
-        GrnDTO grnDTO = dTOGenerator.generateGrnDTO(productList, 1, 1000, 0, 1000, 0, 1);
-        if (grnDTO != null) {            
-            manager.addStocks(grnDTO);
-        } else {
-            System.out.println("Null is returned when creating grnDTO");
-        }
+//        GrnDTO grnDTO = dTOGenerator.generateGrnDTO(productList, 1, 1000, 0, 1000, 0, 1);
+//        if (grnDTO != null) {            
+//            manager.addStocks(grnDTO);
+//        } else {
+//            System.out.println("Null is returned when creating grnDTO");
+//        }
 
         // invoice creation
         InvoiceDTO invoiceDTO = dTOGenerator.generateInvoiceDTO(productList, 1800, 1000, 0, "07855444");
@@ -49,12 +49,12 @@ public class test {
         } else {
             System.out.println("Null is returned when creating invoice DTO");
         }
-
-        // to load products (format:- product_name , category , brand_name)...
-        for (ProductDTO productDTO : manager.loadProducts()) {
-            System.out.println(productDTO.getPname());
-            System.out.println(productDTO.getCategoryName());
-            System.out.println(productDTO.getBrandName());
-        }
+//
+//        // to load products (format:- product_name , category , brand_name)...
+//        for (ProductDTO productDTO : manager.loadProducts()) {
+//            System.out.println(productDTO.getPname());
+//            System.out.println(productDTO.getCategoryName());
+//            System.out.println(productDTO.getBrandName());
+//        }
     }
 }

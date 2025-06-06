@@ -136,7 +136,10 @@ public class InventoryManager {
 //            ResultSet rs = MYSQL.executeSearch("SELECT * FROM grn "
 //                    + "WHERE po_id = '" + dto.getPo_id() + "'");
             ResultSet rs = MYSQL.executeSearch("SELECT LAST_INSERT_ID()");
+            int lastId = -1;
+            
             if (rs.next()) {
+                lastId = rs.getInt(1);
                 for (ProductDTO productDTO : dto.getProductList()) {
                     String grnItem = "INSERT INTO grn_item ("
                             + "    grn_id,"
@@ -145,7 +148,7 @@ public class InventoryManager {
                             + "    selling_price,"
                             + "    qty"
                             + ") VALUES ("
-                            + "    '" + rs.getInt("grn_id") + "',"
+                            + "    '" + lastId + "',"
                             + "    '" + productDTO.getPid() + "',"
                             + "    '" + productDTO.getBuyingPrice() + "',"
                             + "    '" + productDTO.getSellingPrice() + "',"
@@ -161,7 +164,7 @@ public class InventoryManager {
                             + "    qty"
                             + ") VALUES ("
                             + "    '" + productDTO.getPid() + "',"
-                            + "    '" + rs.getInt("grn_id") + "',"
+                            + "    '" + lastId + "',"
                             + "    '" + productDTO.getSellingPrice() + "',"
                             + "    '" + productDTO.getExpDate() + "',"
                             + "    '" + productDTO.getQty() + "'"
