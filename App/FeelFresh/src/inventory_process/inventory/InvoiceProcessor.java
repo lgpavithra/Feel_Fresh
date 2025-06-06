@@ -45,7 +45,7 @@ public class InvoiceProcessor {
                         + "'" + productDTO.getQty() + "'"
                         + ")";
                 MYSQL.executeIUD(invoiceItem);
-                InventoryManager.getInstance().issuingProducts(productDTO);
+                InventoryManager.getInstance().issueProducts(productDTO);
             }
 
         } catch (Exception ex) {
