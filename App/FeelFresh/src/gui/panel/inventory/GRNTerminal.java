@@ -66,10 +66,8 @@ public class GRNTerminal extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        mfdDateChooser1 = new com.toedter.calendar.JDateChooser();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         sellingPriceTxtField = new javax.swing.JTextField();
         qtyTxtField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -129,9 +127,6 @@ public class GRNTerminal extends javax.swing.JPanel {
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
-        mfdDateChooser1.setForeground(new java.awt.Color(51, 51, 51));
-        mfdDateChooser1.setFont(new java.awt.Font("Poppins", 0, 19)); // NOI18N
-
         jButton2.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jButton2.setText("Cancel");
         jButton2.setFocusPainted(false);
@@ -139,10 +134,6 @@ public class GRNTerminal extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Quantity");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel8.setText("MFD");
 
         sellingPriceTxtField.setFont(new java.awt.Font("Segoe UI", 0, 19)); // NOI18N
         sellingPriceTxtField.setForeground(new java.awt.Color(51, 51, 51));
@@ -233,12 +224,14 @@ public class GRNTerminal extends javax.swing.JPanel {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel9)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(exdDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +239,6 @@ public class GRNTerminal extends javax.swing.JPanel {
                                 .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createSequentialGroup()
                                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(mfdDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(productComboBox, 0, 159, Short.MAX_VALUE)
@@ -255,13 +247,11 @@ public class GRNTerminal extends javax.swing.JPanel {
                                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(qtyTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(sellingPriceTxtField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(exdDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                                     .addGroup(jPanel10Layout.createSequentialGroup()
                                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
                                             .addComponent(jLabel6)
                                             .addComponent(jLabel5))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addGap(0, 66, Short.MAX_VALUE)))))
                         .addGap(28, 28, 28))))
         );
         jPanel10Layout.setVerticalGroup(
@@ -286,13 +276,9 @@ public class GRNTerminal extends javax.swing.JPanel {
                             .addComponent(buyingPriceTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sellingPriceTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mfdDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exdDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(exdDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1142,7 +1128,6 @@ public class GRNTerminal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1160,7 +1145,6 @@ public class GRNTerminal extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private com.toedter.calendar.JDateChooser mfdDateChooser1;
     private javax.swing.JLabel netTotalLabel;
     private javax.swing.JComboBox<String> orderComboBox;
     private javax.swing.JLabel orderIDValue;
@@ -1302,7 +1286,7 @@ HashMap<String, String> productMap = new HashMap<>();
         // Loop through all rows in the table and sum the subtotal values
         for (int row = 0; row < model.getRowCount(); row++) {
             // Get the value from the "Subtotal" column (assuming it's the 4th column)
-            Object subtotalObj = model.getValueAt(row, 3); // Column index for Subtotal (adjust if necessary)
+            Object subtotalObj = model.getValueAt(row, 5); // Column index for Subtotal (adjust if necessary)
 
             // Check if the value is numeric and add it to the total
             if (subtotalObj instanceof Number) {
