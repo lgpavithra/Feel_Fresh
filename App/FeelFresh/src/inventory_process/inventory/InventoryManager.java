@@ -112,7 +112,6 @@ public class InventoryManager {
 //        reciept.setPaid(dto.getPaid());
 //        return reciept;
 //    }
-
     public void addStocks(GrnDTO dto) {
         //grn records
         String grn = "INSERT INTO grn ("
@@ -134,8 +133,9 @@ public class InventoryManager {
                 + ")";
         try {
             MYSQL.executeIUD(grn);
-            ResultSet rs = MYSQL.executeSearch("SELECT * FROM grn "
-                    + "WHERE po_id = '" + dto.getPo_id() + "'");
+//            ResultSet rs = MYSQL.executeSearch("SELECT * FROM grn "
+//                    + "WHERE po_id = '" + dto.getPo_id() + "'");
+            ResultSet rs = MYSQL.executeSearch("SELECT LAST_INSERT_ID()");
             if (rs.next()) {
                 for (ProductDTO productDTO : dto.getProductList()) {
                     String grnItem = "INSERT INTO grn_item ("
@@ -230,9 +230,9 @@ public class InventoryManager {
                     + "AND exp_date IS NOT NULL "
                     + "AND exp_date >= CURDATE() "
                     + "ORDER BY exp_date ASC";
-            
+
             ResultSet stockDetails = MYSQL.executeSearch(stockQ);
-                        
+
             while (stockDetails.next()) {
                 Double currentQTY = stockDetails.getDouble("qty");
                 if (productDTO.getQty() > currentQTY) {
