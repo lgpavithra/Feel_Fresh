@@ -3,6 +3,7 @@ package gui;
 import finance.FinanceDepartment;
 import model.dto.DTOGenerator;
 import model.dto.FinanceDTO;
+import model.dto.ProductDTO;
 import model.dto.TransactionDTO;
 
 public class FinanceTesting {
@@ -49,7 +50,7 @@ public class FinanceTesting {
         //} else {
           //  System.out.println("null returned");
         //}
-        
+//        
         TransactionDTO dTO = DTOGenerator.getInstance().generateTransactionDTO("Supplier", "Inventory", 1000, Flag.credit.toString(), Type.LiabilityGetting.toString(), "Products are buying to inventory");
         if(dTO != null){
             System.out.println("Dto is created");
@@ -57,6 +58,6 @@ public class FinanceTesting {
             FinanceDepartment.getTransactionManager().create(dTO);
         }else{
             System.out.println("DTO is null");
-        }        
+        }                                 
     }
 }

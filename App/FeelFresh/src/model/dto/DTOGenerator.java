@@ -86,27 +86,27 @@ public class DTOGenerator {
             return dto;
         }
     }
-    
-    public TransactionDTO generateTransactionDTO(String source,String beneficiary,double amount,String flag,String type,String remark){
-        if(source.isEmpty()){
+
+    public TransactionDTO generateTransactionDTO(String source, String beneficiary, double amount, String flag, String type, String remark) {
+        if (source.isEmpty()) {
             System.out.println("source cannot be null");
             return null;
-        }else if(beneficiary.isEmpty()){
+        } else if (beneficiary.isEmpty()) {
             System.out.println("beneficiary cannot be null");
             return null;
-        }else if(amount == 0){
+        } else if (amount == 0) {
             System.out.println("amount cannot be null");
             return null;
-        }else if(flag.isEmpty()){
+        } else if (flag.isEmpty()) {
             System.out.println("flag cannot be null");
             return null;
-        }else if(type.isEmpty()){
+        } else if (type.isEmpty()) {
             System.out.println("type cannot be null");
             return null;
-        }else if(remark.isEmpty()){
+        } else if (remark.isEmpty()) {
             System.out.println("remark cannot be null");
             return null;
-        }else{
+        } else {
             TransactionDTO transactionDTO = new TransactionDTO();
             transactionDTO.setSource(source);
             transactionDTO.setBeneficiary(beneficiary);
@@ -115,6 +115,36 @@ public class DTOGenerator {
             transactionDTO.setType(type);
             transactionDTO.setRemark(remark);
             return transactionDTO;
+        }
+    }
+
+    public ProductDTO generateProductDTO(String pid, double buyingPrice, double sellingPrice, int qty, String expDate) {
+        if (pid.isEmpty()) {
+            System.out.println("pid cannot be empty");
+            return null;
+        } else if (buyingPrice < 0) {
+            System.out.println("buying price should be greater than 0");
+            return null;
+        } else if (sellingPrice < 0) {
+            System.out.println("selling price should be greater than 0");
+            return null;
+        } else if (buyingPrice > sellingPrice) {
+            System.out.println("Buying price should be less than selling price");
+            return null;
+        } else if (qty < 0) {
+            System.out.println("quantity should be greater than 0");
+            return null;
+        }else if(expDate.isEmpty()){
+            System.out.println("expire date should not be null");
+            return null;
+        }else{
+            ProductDTO dTO = new ProductDTO();
+            dTO.setPid(Integer.valueOf(pid));
+            dTO.setBuyingPrice(buyingPrice);
+            dTO.setSellingPrice(sellingPrice);
+            dTO.setQty(qty);
+            dTO.setExpDate(expDate);
+            return dTO;
         }
     }
 }

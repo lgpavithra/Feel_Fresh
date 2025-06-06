@@ -250,7 +250,7 @@ public class InventoryManager {
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(InventoryManager.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
