@@ -5,12 +5,20 @@
 package gui.panel;
 
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.MYSQL;
+import model.jasper.Report;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 
 /**
  *
@@ -42,6 +50,9 @@ public class Company extends javax.swing.JPanel {
                 vector.add(resultSet.getString("no"));
                 vector.add(resultSet.getString("line1"));
                 vector.add(resultSet.getString("line2"));
+                vector.add(resultSet.getString("location_type"));
+                vector.add(resultSet.getString("reg_date"));
+                vector.add(resultSet.getString("upd_date"));
                 model.addRow(vector);
 
             }
@@ -96,6 +107,8 @@ public class Company extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
+        roundButton1 = new component.RoundButton();
+        jLabel8 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -262,11 +275,11 @@ public class Company extends javax.swing.JPanel {
 
             },
             new String [] {
-                "id", "company name", "hotline", "email", "no", "line1", "line2"
+                "id", "company name", "hotline", "email", "no", "line1", "line2", "location_type", "reg_date", "upd_date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -280,6 +293,17 @@ public class Company extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(7).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(7).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(8).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(8).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(8).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(9).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(9).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(9).setMaxWidth(0);
+        }
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name ASC", "Name DESC" }));
@@ -295,21 +319,34 @@ public class Company extends javax.swing.JPanel {
             }
         });
 
+        roundButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/print-26.png"))); // NOI18N
+        roundButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel8.setText("Print Company Report");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(119, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)))
-                .addGap(20, 20, 20))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,9 +355,15 @@ public class Company extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -350,6 +393,9 @@ public class Company extends javax.swing.JPanel {
         String no = uJTextfield4.getText().trim();
         String line1 = uJTextfield5.getText().trim();
         String line2 = uJTextfield6.getText().trim();
+       // String location_type = String.valueOf(jTable1.getValueAt(row,7));
+       // String reg_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+       // String upd_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter company name", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -370,6 +416,7 @@ public class Company extends javax.swing.JPanel {
             try {
 
                 MYSQL.executeIUD("INSERT INTO `company`(`company_name`,`hotline`,`email`,`no`,`line1`,`line2`)VALUES('" + name + "','" + hotline + "','" + email + "','" + no + "','" + line1 + "','" + line2 + "')");
+               // MYSQL.executeIUD("INSERT INTO `company`(`company_name`,`hotline`,`email`,`no`,`line1`,`line2`,`location_type`,`reg_date`,`upd_date`)VALUES('" + name + "','" + hotline + "','" + email + "','" + no + "','" + line1 + "','" + line2 + "','Local','"+reg_date+"','"+upd_date+"')");
 
                 reset_ps();
                 loadCompany_ps("company_name", "ASC", jTextField1.getText(), jTextField1.getText());
@@ -394,7 +441,9 @@ public class Company extends javax.swing.JPanel {
         String no = uJTextfield4.getText();
         String line1 = uJTextfield5.getText();
         String line2 = uJTextfield6.getText();
-
+        String reg_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String upd_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        
         int row = jTable1.getSelectedRow();
 
         if (name.isEmpty()) {
@@ -415,7 +464,8 @@ public class Company extends javax.swing.JPanel {
         } else {
             try {
 
-                MYSQL.executeIUD("UPDATE `company` SET `company_name`='" + name + "',`hotline`='" + hotline + "',`email`='" + email + "',`no`='" + no + "',`line1`='" + line1 + "',`line2`='" + line2 + "' WHERE `id` = '" + String.valueOf(jTable1.getValueAt(row, 0)) + "'");
+                MYSQL.executeIUD("UPDATE `company` SET `company_name`='" + name + "',`hotline`='" + hotline + "',`email`='" + email + "',`no`='" + no + "',`line1`='" + line1 + "',`line2`='" + line2 + "'  WHERE `id` = '" + String.valueOf(jTable1.getValueAt(row, 0)) + "'");
+                ///MYSQL.executeIUD("UPDATE `company` SET `company_name`='" + name + "',`hotline`='" + hotline + "',`email`='" + email + "',`no`='" + no + "',`line1`='" + line1 + "',`line2`='" + line2 + "' ,`location_type`='Local',`reg_date`='"+reg_date+"',`upd_date`='"+upd_date+"' WHERE `id` = '" + String.valueOf(jTable1.getValueAt(row, 0)) + "'");
 
                 reset_ps();
                 jButton1.setEnabled(true);
@@ -493,6 +543,18 @@ public class Company extends javax.swing.JPanel {
         reset_ps();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void roundButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton1ActionPerformed
+        try {
+            HashMap<String, Object> map = new HashMap<>();
+            JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
+     //       JREmptyDataSource dataSource = new JREmptyDataSource();
+            JasperPrint print = JasperFillManager.fillReport("src/reports/company/CompanyReport.jasper",map, dataSource);
+            Report.execute(print);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_roundButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -507,11 +569,13 @@ public class Company extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private component.RoundButton roundButton1;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
     private component.UJTextfield uJTextfield3;

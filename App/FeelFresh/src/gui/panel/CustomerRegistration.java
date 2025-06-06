@@ -660,10 +660,6 @@ public class CustomerRegistration extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_uJTextfield6ActionPerformed
 
-    private void roundButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton1ActionPerformed
-
-    }//GEN-LAST:event_roundButton1ActionPerformed
-
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         System.out.println(jRadioButton1.getActionCommand());
     }//GEN-LAST:event_jRadioButton1ActionPerformed
