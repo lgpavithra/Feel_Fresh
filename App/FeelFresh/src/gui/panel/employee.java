@@ -18,6 +18,10 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import model.MYSQL;
+import model.jasper.Report;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 
 /**
  *
@@ -67,7 +71,7 @@ public class employee extends javax.swing.JPanel {
     private void LoadEmployee_HS(String column, String orderby ,String fname_HS, String nic) {
         try {
             ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `employee` INNER JOIN `position` ON "
-                    + "`position`.`id`=`employee`.`position_id` WHERE `fname` LIKE '" + fname_HS + "%' OR `nic` LIKE '" + nic + "%' ORDER BY `" + column + "` " + orderby + "");
+                    + "`position`.`id`=`employee`.`position_id` INNER JOIN `employee_mobile` ON `employee`.`nic` = `employee_mobile`.`employee_nic` WHERE `fname` LIKE '" + fname_HS + "%' OR `nic` LIKE '" + nic + "%' ORDER BY `" + column + "` " + orderby + "");
             DefaultTableModel Tablemodel_HS = (DefaultTableModel) jTable2.getModel();
             Tablemodel_HS.setRowCount(0);
             while (resultSet_HS.next()) {
@@ -83,6 +87,7 @@ public class employee extends javax.swing.JPanel {
                 v.add(resultSet_HS.getString("line_1"));
                 v.add(resultSet_HS.getString("line_2"));
                 v.add(resultSet_HS.getString("no"));
+                v.add(resultSet_HS.getString("employee_mobile.mobile"));
                 Tablemodel_HS.addRow(v);
             }
         } catch (Exception e) {
@@ -117,6 +122,7 @@ public class employee extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        roundButton1 = new component.RoundButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -150,6 +156,7 @@ public class employee extends javax.swing.JPanel {
         jTable2 = new javax.swing.JTable();
         jComboBox4 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
+        roundButton2 = new component.RoundButton();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -157,6 +164,8 @@ public class employee extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+
+        roundButton1.setText("roundButton1");
 
         jPanel1.setBackground(new java.awt.Color(252, 252, 252));
 
@@ -388,11 +397,11 @@ public class employee extends javax.swing.JPanel {
 
             },
             new String [] {
-                "NIC", "FIrst Name", "Last Name", "Email", "Gender", "Employee_Type", "Position", "Status", "Line 1", "Line 2", "no"
+                "NIC", "FIrst Name", "Last Name", "Email", "Gender", "Employee_Type", "Position", "Status", "Line 1", "Line 2", "no", "mobile"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -406,6 +415,11 @@ public class employee extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(11).setMinWidth(0);
+            jTable2.getColumnModel().getColumn(11).setPreferredWidth(0);
+            jTable2.getColumnModel().getColumn(11).setMaxWidth(0);
+        }
 
         jComboBox4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "First Name ASC", "First Name DESC", "Last Name ASC", "Last Name DESC" }));
@@ -421,6 +435,13 @@ public class employee extends javax.swing.JPanel {
             }
         });
 
+        roundButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/print-26.png"))); // NOI18N
+        roundButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -428,9 +449,11 @@ public class employee extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(roundButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
                         .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -439,12 +462,14 @@ public class employee extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1))
+                    .addComponent(roundButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
@@ -849,6 +874,18 @@ public class employee extends javax.swing.JPanel {
          filterName();
     }//GEN-LAST:event_jTextField1KeyReleased
 
+    private void roundButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton2ActionPerformed
+        try {
+             HashMap <String, Object> map = new HashMap<>();
+             JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable2.getModel());
+             JasperPrint print = JasperFillManager.fillReport("src/reports/employee/EmployeeReport.jasper", map, dataSource);
+             Report.execute(print);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       
+    }//GEN-LAST:event_roundButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -885,6 +922,8 @@ public class employee extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
+    private component.RoundButton roundButton1;
+    private component.RoundButton roundButton2;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
     private component.UJTextfield uJTextfield3;
