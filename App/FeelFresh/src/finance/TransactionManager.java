@@ -64,10 +64,24 @@ public class TransactionManager {
         try {
             ResultSet rs = MYSQL.executeSearch(q);
             return rs;
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return null;
     }
+
+
+    public String delete(int id) {
+        String q = "DELETE FROM transactions WHERE id = " + id;
+        try {
+            MYSQL.executeIUD(q);
+            return "Deleted Successfully";
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }    
+
 }
 

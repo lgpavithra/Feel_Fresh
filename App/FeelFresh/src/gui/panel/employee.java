@@ -158,7 +158,7 @@ public class employee extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(252, 252, 252));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Employee");
@@ -193,7 +193,7 @@ public class employee extends javax.swing.JPanel {
 
         jLabel12.setText("User Status");
 
-        jPanel3.setBackground(new java.awt.Color(252, 252, 252));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setText("Last Name");
 
@@ -376,7 +376,7 @@ public class employee extends javax.swing.JPanel {
 
         uJTextfield1.getAccessibleContext().setAccessibleName("");
 
-        jPanel2.setBackground(new java.awt.Color(252, 252, 252));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
@@ -448,7 +448,7 @@ public class employee extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
         );
 
-        jPanel4.setBackground(new java.awt.Color(252, 252, 252));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel4MouseClicked(evt);
