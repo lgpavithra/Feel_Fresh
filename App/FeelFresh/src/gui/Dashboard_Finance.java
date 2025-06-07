@@ -336,7 +336,7 @@ public class Dashboard_Finance extends javax.swing.JFrame {
     
 
     private void jButtonAssetManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAssetManagementActionPerformed
-        changePanel_vp(new AssetManagement());
+        changePanel_vp(AssetManagement.getInstance());
         
         changeControllerPanel("Asset Management");
         

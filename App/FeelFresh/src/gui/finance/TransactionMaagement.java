@@ -4,7 +4,15 @@
  */
 package gui.finance;
 
+import finance.FinanceDepartment;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.dto.DTOGenerator;
+import model.dto.TransactionDTO;
 
 /**
  *
@@ -15,8 +23,19 @@ public class TransactionMaagement extends javax.swing.JPanel {
     /**
      * Creates new form TransactionManagement
      */
+    private static TransactionMaagement transactionMaagement;
+
+    public static TransactionMaagement getInstance() {
+        if (transactionMaagement == null) {
+            transactionMaagement = new TransactionMaagement();
+        }
+        return transactionMaagement;
+    }
+
     public TransactionMaagement() {
         initComponents();
+        loadComboBox();
+        loadTable();
     }
 
     /**
@@ -39,8 +58,8 @@ public class TransactionMaagement extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        roundButton6 = new component.RoundButton();
-        roundButton7 = new component.RoundButton();
+        createButton = new component.RoundButton();
+        discardButton = new component.RoundButton();
         panalRound1 = new desingcode.PanalRound();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,16 +69,16 @@ public class TransactionMaagement extends javax.swing.JPanel {
         panalRound2 = new desingcode.PanalRound();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        amountField = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        flagComboBox = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        remarkTextArea = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
-        roundButton3 = new component.RoundButton();
+        typeComboBox = new javax.swing.JComboBox<>();
+        deleteButton = new component.RoundButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -91,17 +110,30 @@ public class TransactionMaagement extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Date Time", "Source", "Beneficiary", "Amount", "Credit/Debit", "Remark"
+                "id", "Date Time", "Source", "Beneficiary", "Amount", "Credit/Debit", "Type", "Remark"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -150,28 +182,28 @@ public class TransactionMaagement extends javax.swing.JPanel {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText("Source");
 
-        roundButton6.setBackground(new java.awt.Color(51, 51, 255));
-        roundButton6.setForeground(new java.awt.Color(255, 255, 255));
-        roundButton6.setText("Blue  Button");
-        roundButton6.setArc(15);
-        roundButton6.setAutoscrolls(true);
-        roundButton6.setBorderColorHex("#aaaaaa");
-        roundButton6.setFont(new java.awt.Font("Quicksand SemiBold", 0, 16)); // NOI18N
-        roundButton6.addActionListener(new java.awt.event.ActionListener() {
+        createButton.setBackground(new java.awt.Color(51, 51, 255));
+        createButton.setForeground(new java.awt.Color(255, 255, 255));
+        createButton.setText("Create");
+        createButton.setArc(15);
+        createButton.setAutoscrolls(true);
+        createButton.setBorderColorHex("#aaaaaa");
+        createButton.setFont(new java.awt.Font("Quicksand SemiBold", 0, 16)); // NOI18N
+        createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roundButton6ActionPerformed(evt);
+                createButtonActionPerformed(evt);
             }
         });
 
-        roundButton7.setForeground(new java.awt.Color(255, 51, 51));
-        roundButton7.setText("Discard");
-        roundButton7.setArc(15);
-        roundButton7.setAutoscrolls(true);
-        roundButton7.setBorderColorHex("#ff3333");
-        roundButton7.setFont(new java.awt.Font("Quicksand SemiBold", 0, 16)); // NOI18N
-        roundButton7.addActionListener(new java.awt.event.ActionListener() {
+        discardButton.setForeground(new java.awt.Color(255, 51, 51));
+        discardButton.setText("Discard");
+        discardButton.setArc(15);
+        discardButton.setAutoscrolls(true);
+        discardButton.setBorderColorHex("#ff3333");
+        discardButton.setFont(new java.awt.Font("Quicksand SemiBold", 0, 16)); // NOI18N
+        discardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roundButton7ActionPerformed(evt);
+                discardButtonActionPerformed(evt);
             }
         });
 
@@ -251,9 +283,9 @@ public class TransactionMaagement extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jFormattedTextField1.setText("0.00");
-        jFormattedTextField1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        amountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        amountField.setText("0.00");
+        amountField.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -261,66 +293,62 @@ public class TransactionMaagement extends javax.swing.JPanel {
 
         jLabel14.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel14.setText("Credit");
-
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        jFormattedTextField2.setText("0.00");
-        jFormattedTextField2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel14.setText("Credit/Debit");
 
         jLabel15.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel15.setText("Type");
 
-        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        flagComboBox.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        flagComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        remarkTextArea.setColumns(20);
+        remarkTextArea.setRows(5);
+        jScrollPane2.setViewportView(remarkTextArea);
 
         jLabel16.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel16.setText("Remark");
+
+        typeComboBox.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        typeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(flagComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(panalRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(3, 3, 3))
+                                .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                            .addComponent(uJTextfield2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(amountField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                                    .addComponent(uJTextfield2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(roundButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(roundButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(22, 22, 22))
+                                .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(discardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 2, Short.MAX_VALUE)))
+                .addGap(19, 19, 19))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(29, 29, 29)
@@ -343,23 +371,23 @@ public class TransactionMaagement extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15))
+                .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(flagComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(typeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(roundButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(discardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -368,16 +396,16 @@ public class TransactionMaagement extends javax.swing.JPanel {
                     .addContainerGap(296, Short.MAX_VALUE)))
         );
 
-        roundButton3.setBackground(new java.awt.Color(255, 51, 51));
-        roundButton3.setForeground(new java.awt.Color(255, 255, 255));
-        roundButton3.setText("Delete");
-        roundButton3.setArc(15);
-        roundButton3.setBorderColorHex("#E70101");
-        roundButton3.setBorderWidth("0");
-        roundButton3.setFont(new java.awt.Font("Quicksand SemiBold", 0, 14)); // NOI18N
-        roundButton3.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setBackground(new java.awt.Color(255, 51, 51));
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("Delete");
+        deleteButton.setArc(15);
+        deleteButton.setBorderColorHex("#E70101");
+        deleteButton.setBorderWidth("0");
+        deleteButton.setFont(new java.awt.Font("Quicksand SemiBold", 0, 14)); // NOI18N
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roundButton3ActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
             }
         });
 
@@ -396,8 +424,8 @@ public class TransactionMaagement extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
-                            .addComponent(roundButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE))
+                            .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -416,7 +444,7 @@ public class TransactionMaagement extends javax.swing.JPanel {
                         .addGap(15, 15, 15)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(roundButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1))
@@ -424,30 +452,71 @@ public class TransactionMaagement extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void roundButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roundButton6ActionPerformed
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        String source = uJTextfield1.getText().trim();
+        String beneficiary = uJTextfield2.getText().trim();
+        String amountText = amountField.getText().trim();
+        String flag = String.valueOf(flagComboBox.getSelectedItem());
+        String type = String.valueOf(typeComboBox.getSelectedItem());
+        String remark = remarkTextArea.getText().trim();
 
-    private void roundButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roundButton7ActionPerformed
+        double amount = 0;
 
-    private void roundButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton3ActionPerformed
-        if (jTable1.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a row that you want to remove", "Warning", JOptionPane.WARNING_MESSAGE);
+        if (source.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Source cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (beneficiary.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Beneficiary cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (amountText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Amount cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-
-           
+            try {
+                amount = Double.parseDouble(amountText);
+                if (amount <= 0) {
+                    JOptionPane.showMessageDialog(null, "Amount must be greater than zero", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else if (flag.equals("Select")) {
+                    JOptionPane.showMessageDialog(null, "Please select a valid debit/credit flag", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else if (type.equals("Select")) {
+                    JOptionPane.showMessageDialog(null, "Please select a valid transaction type", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else if (remark.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "remark field cannot be empty", "Warning", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    TransactionDTO dTO = DTOGenerator.getInstance().generateTransactionDTO(source, beneficiary, amount, flag, type, remark);
+                    FinanceDepartment.getTransactionManager().create(dTO);
+                    loadTable();
+                    clearFields();
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Amount must be a valid number", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
         }
-    }//GEN-LAST:event_roundButton3ActionPerformed
+
+    }//GEN-LAST:event_createButtonActionPerformed
+
+    private void discardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discardButtonActionPerformed
+        clearFields();
+    }//GEN-LAST:event_discardButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        int id = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
+        String msg = FinanceDepartment.getTransactionManager().delete(id);
+        if(msg.equals("Deleted Successfully")){
+            JOptionPane.showMessageDialog(transactionMaagement, "Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            loadTable();
+            clearFields();
+        }else{
+           JOptionPane.showMessageDialog(transactionMaagement, "An Error Occured", "Warning", JOptionPane.WARNING_MESSAGE); 
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JFormattedTextField amountField;
+    private component.RoundButton createButton;
+    private component.RoundButton deleteButton;
+    private component.RoundButton discardButton;
+    private javax.swing.JComboBox<String> flagComboBox;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -467,14 +536,62 @@ public class TransactionMaagement extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private desingcode.PanalRound panalRound1;
     private desingcode.PanalRound panalRound2;
     private desingcode.PanalRound panalRound4;
-    private component.RoundButton roundButton3;
-    private component.RoundButton roundButton6;
-    private component.RoundButton roundButton7;
+    private javax.swing.JTextArea remarkTextArea;
+    private javax.swing.JComboBox<String> typeComboBox;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
     // End of variables declaration//GEN-END:variables
+
+    private void loadComboBox() {
+        DefaultComboBoxModel m1 = (DefaultComboBoxModel) flagComboBox.getModel();
+        m1.removeAllElements();
+        m1.addElement("Select");
+        m1.addElement("credit");
+        m1.addElement("debit");
+
+        DefaultComboBoxModel m2 = (DefaultComboBoxModel) typeComboBox.getModel();
+        m2.removeAllElements();
+        m2.addElement("Select");
+        m2.addElement("Income");
+        m2.addElement("Expense");
+        m2.addElement("AssetBuying");
+        m2.addElement("Payout");
+        m2.addElement("Investing");
+        m2.addElement("Damaged");
+        m2.addElement("LiabilityGetting");
+    }
+
+    private void loadTable() {
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+        ResultSet rs = FinanceDepartment.getTransactionManager().read();
+        try {
+            while (rs.next()) {
+                Vector<String> v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("created_at"));
+                v.add(rs.getString("source"));
+                v.add(rs.getString("beneficiary"));
+                v.add(rs.getString("amount"));
+                v.add(rs.getString("debit_credit_flag"));
+                v.add(rs.getString("type"));
+                v.add(rs.getString("remark"));
+                dtm.addRow(v);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void clearFields() {
+        uJTextfield1.setText("");
+        uJTextfield2.setText("");
+        amountField.setText("");
+        flagComboBox.setSelectedIndex(0);   // Assuming 0 is the "Select" option
+        typeComboBox.setSelectedIndex(0);   // Assuming 0 is the "Select" option
+        remarkTextArea.setText("");
+    }
 }
