@@ -6,6 +6,6 @@ public enum Type {
     AssetBuying,
     Payout,
     Investing,
-    Loss,
+    Damaged,
     LiabilityGetting
 }
