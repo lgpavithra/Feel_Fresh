@@ -30,6 +30,48 @@ public class TransactionManager {
         return null;
     }
 
+    public ResultSet read(String flag) {
+        String q = "SELECT * "
+                + "FROM transactions "
+                + "WHERE debit_credit_flag = '" + flag + "'";
+        try {
+            ResultSet rs = MYSQL.executeSearch(q);
+            return rs;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet getByType() {
+        String q = "SELECT type, COUNT(*) AS transaction_count, SUM(amount) AS total_amount "
+                + "FROM transactions "
+                + "GROUP BY type;";
+        try {
+            ResultSet rs = MYSQL.executeSearch(q);
+            return rs;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet getByType(String flag) {
+        String q = "SELECT type, COUNT(*) AS transaction_count, SUM(amount) AS total_amount "
+                + "FROM transactions "
+                + "WHERE debit_credit_flag = '" + flag + "' AND type <> 'Damaged' "
+                + "GROUP BY type";
+        try {
+            ResultSet rs = MYSQL.executeSearch(q);
+            return rs;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+
     public String delete(int id) {
         String q = "DELETE FROM transactions WHERE id = " + id;
         try {
@@ -40,4 +82,6 @@ public class TransactionManager {
         }
         return null;
     }    
+
 }
+
