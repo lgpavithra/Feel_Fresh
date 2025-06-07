@@ -5,10 +5,16 @@
 package gui.panel;
 import com.formdev.flatlaf.util.SwingUtils;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import model.MYSQL;
+import model.jasper.Report;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 
 /**
  *
@@ -46,6 +52,8 @@ public class Categories extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        roundButton6 = new component.RoundButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -90,6 +98,22 @@ public class Categories extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jLabel9.setFont(new java.awt.Font("Poppins Light", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 51, 255));
+        jLabel9.setText("Print Brands");
+
+        roundButton6.setBackground(new java.awt.Color(248, 206, 250));
+        roundButton6.setForeground(new java.awt.Color(255, 255, 255));
+        roundButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/print-26.png"))); // NOI18N
+        roundButton6.setBorderColorHex("#009900");
+        roundButton6.setBorderWidth("0");
+        roundButton6.setFont(new java.awt.Font("Quicksand SemiBold", 0, 14)); // NOI18N
+        roundButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,6 +130,12 @@ public class Categories extends javax.swing.JPanel {
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE))))
                 .addGap(25, 25, 25))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(roundButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,8 +147,12 @@ public class Categories extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(roundButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,13 +178,30 @@ public class Categories extends javax.swing.JPanel {
         reset_vp();
     }//GEN-LAST:event_formMouseClicked
 
+    private void roundButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton6ActionPerformed
+
+        try {
+            HashMap<String, Object> map = new HashMap<>();
+            JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable1.getModel());
+
+            JasperPrint print = JasperFillManager
+                    .fillReport("src/reports/brandsAndCategories/categories_report.jasper", map, dataSource);
+            Report.execute(print);
+
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_roundButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private component.RoundButton roundButton6;
     // End of variables declaration//GEN-END:variables
 
    void loadCategories_vp(String q) {
