@@ -4,8 +4,13 @@
  */
 package gui.panel.cashier;
 
-import gui.panel.*;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.MYSQL;
+import java.sql.ResultSet;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,8 +26,47 @@ public class Cashier extends javax.swing.JPanel {
     public Cashier() {
         initComponents();
         
-       
+        loadStocks("");
     }
+    
+    
+    private void loadStocks(String searchKeyWord){
+        String query = "SELECT * FROM `stock` INNER JOIN `product` ON"
+                + " `stock`.`product_id` = `product`.`id`"
+                + " INNER JOIN `brand` ON `product`.`brand_id`= `brand`.`id` "
+                + " WHERE `stock`.`qty` > '0' ";
+        
+        if (!searchKeyWord.isBlank() && searchKeyWord != null) {
+            query += " AND (`product`.`name` LIKE '%"+searchKeyWord+"%' OR `product`.`id` LIKE '%"+searchKeyWord+"%' )";
+        }
+        
+        try {
+            ResultSet rs =  MYSQL.executeSearch(query);
+            
+            DefaultTableModel model = (DefaultTableModel)jTableStock.getModel();
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                Vector<String> v = new Vector<>();
+                v.add(rs.getString("product.id"));
+                v.add(rs.getString("product.name"));
+                v.add(rs.getString("stock.selling_price"));
+                v.add(rs.getString("brand.name"));
+                v.add(rs.getString("stock.exp_date"));
+                
+                model.addRow(v);
+            }
+            
+            
+            
+            
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +82,7 @@ public class Cashier extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         uJTextfield1 = new component.UJTextfield();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableStock = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -97,34 +141,37 @@ public class Cashier extends javax.swing.JPanel {
                 uJTextfield1ActionPerformed(evt);
             }
         });
+        uJTextfield1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                uJTextfield1KeyReleased(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableStock.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Product ID", "Name", "Price", "Brand"
+                "StockID", "Name", "Price", "Brand", "EXP"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jTableStock.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableStock);
+        if (jTableStock.getColumnModel().getColumnCount() > 0) {
+            jTableStock.getColumnModel().getColumn(0).setMinWidth(70);
+            jTableStock.getColumnModel().getColumn(0).setPreferredWidth(0);
+            jTableStock.getColumnModel().getColumn(0).setMaxWidth(100);
         }
 
         jButton1.setBackground(new java.awt.Color(0, 179, 152));
@@ -526,7 +573,7 @@ public class Cashier extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jSeparator2)
@@ -592,7 +639,7 @@ public class Cashier extends javax.swing.JPanel {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(panalRound7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -739,6 +786,8 @@ public class Cashier extends javax.swing.JPanel {
     private void roundButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_roundButton6ActionPerformed
+    // TODO add your handling code here:
+
 
     private void roundButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton7ActionPerformed
         // TODO add your handling code here:
@@ -755,6 +804,10 @@ public class Cashier extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void uJTextfield1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_uJTextfield1KeyReleased
+        loadStocks(uJTextfield1.getText());
+    }//GEN-LAST:event_uJTextfield1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -793,9 +846,9 @@ public class Cashier extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTableStock;
     private desingcode.PanalRound panalRound1;
     private desingcode.PanalRound panalRound2;
     private desingcode.PanalRound panalRound3;
