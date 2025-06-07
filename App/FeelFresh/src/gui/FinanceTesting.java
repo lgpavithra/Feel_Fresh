@@ -51,7 +51,7 @@ public class FinanceTesting {
           //  System.out.println("null returned");
         //}
 //        
-        TransactionDTO dTO = DTOGenerator.getInstance().generateTransactionDTO("Supplier", "Inventory", 1000, Flag.credit.toString(), Type.LiabilityGetting.toString(), "Products are buying to inventory");
+        TransactionDTO dTO = DTOGenerator.getInstance().generateTransactionDTO("Supplier", "Inventory", 1000, Flag.credit.toString(), Type.Damaged.toString(), "Products are buying to inventory");
         if(dTO != null){
             System.out.println("Dto is created");
             System.out.println(dTO.getType());
