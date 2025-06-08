@@ -23,6 +23,10 @@ import javax.swing.table.DefaultTableModel;
 import model.dto.DTOGenerator;
 import model.dto.InvoiceDTO;
 import model.dto.ProductDTO;
+import model.jasper.Report;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import raven.toast.Notifications;
 
 /**
@@ -942,13 +946,8 @@ public class Cashier extends javax.swing.JPanel {
     }//GEN-LAST:event_uJTextfield2ActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        DefaultTableModel model = (DefaultTableModel) jTableInvoice.getModel();
-        model.setRowCount(0);
-        jLabel1Nettotal.setText("0.00");
-        jLabelBalance.setText("0.00");
-        jLabelCustomerNIC.setText("");
-        jLabelDiscountTotal.setText("0.00");
-        jLabelGrossTotal.setText("0.00");
+        
+        reset();
 
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
@@ -976,10 +975,33 @@ public class Cashier extends javax.swing.JPanel {
 
             }
 
-            InvoiceDTO invoiceDTO = DTOGenerator.getInstance().generateInvoiceDTO(productList, netTotal, paidAmount, discount, jLabelCustomerNIC.getText());
+            String customerNIC = jLabelCustomerNIC.getText();
+            if (customerNIC.isBlank()) {
+                customerNIC = "default";
+            }
+
+            InvoiceDTO invoiceDTO = DTOGenerator.getInstance().generateInvoiceDTO(productList, netTotal, paidAmount, discount, customerNIC);
             if (invoiceDTO != null) {
+
                 new InvoiceProcessor().process(invoiceDTO);
-                Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "Invoice Done");
+
+
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("Parameter1", String.valueOf(grossTotal));
+                map.put("Parameter2", String.valueOf(discount));
+                map.put("Parameter3", String.valueOf(netTotal));
+                map.put("Parameter4", String.valueOf(paidAmount));
+                map.put("Parameter5", jLabelBalance.getText());
+
+                JRTableModelDataSource dataSource = new JRTableModelDataSource(jTableInvoice.getModel());
+
+                try {
+                    Report.execute(JasperFillManager.fillReport("src/reports/invoice/invoice.jasper", map, dataSource));
+                } catch (JRException ex) {
+                    ex.printStackTrace();
+                }
+
+                reset();
             } else {
                 Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "PRODUCT DTO IS NULL");
             }
@@ -1158,9 +1180,10 @@ public class Cashier extends javax.swing.JPanel {
     double discount;
     double netTotal;
     double paidAmount;
+    double grossTotal;
 
     private void calculate() {
-        double grossTotal = 0;
+        grossTotal = 0;
 
         if (!jFormattedTextFieldPaidAmount.getText().isBlank()) {
             paidAmount = Double.parseDouble(jFormattedTextFieldPaidAmount.getText());
@@ -1187,5 +1210,23 @@ public class Cashier extends javax.swing.JPanel {
         jLabelDiscountTotal.setText(String.valueOf(discount));
         jLabelGrossTotal.setText(String.valueOf(grossTotal));
 
+    }
+
+    private void reset() {
+    
+        DefaultTableModel model = (DefaultTableModel) jTableInvoice.getModel();
+        model.setRowCount(0);
+        jLabel1Nettotal.setText("0.00");
+        jLabelBalance.setText("0.00");
+        jLabelCustomerNIC.setText("");
+        jLabelDiscountTotal.setText("0.00");
+        jLabelGrossTotal.setText("0.00");
+        jFormattedTextFieldPaidAmount.setText("");
+
+        discount = 0;
+        netTotal = 0;
+        paidAmount = 0;
+        grossTotal = 0;
+        
     }
 }
