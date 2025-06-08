@@ -11,7 +11,12 @@ import model.MYSQL;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
+import model.jasper.Report;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 
 /**
  *
@@ -46,13 +51,16 @@ public class attendance extends javax.swing.JPanel {
                 Vector v = new Vector<>();
                 v.add(atresultSet_HS.getString("nic"));
                 v.add(atresultSet_HS.getString("fname") + " " + atresultSet_HS.getString("lname"));
+                boolean isNewEmployee = false;
                 if (atresultSet_HS.getString("time") == null) {
                     v.add("New Employee");
+                    isNewEmployee = true;
                 } else {
                     v.add(atresultSet_HS.getString("time"));
                 }
-                if (atresultSet_HS.getString("time") != null && atresultSet_HS.getString("leaving") == null) {
-                    v.add("Not Mark");
+
+                if ( (atresultSet_HS.getString("time") != null && atresultSet_HS.getString("leaving") == null) ||  isNewEmployee) {
+                    v.add("Not Mark");                
                 } else {
                     v.add(atresultSet_HS.getString("leaving"));
                 }
@@ -86,9 +94,12 @@ public class attendance extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         attendancejTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         attenjComboBox1 = new javax.swing.JComboBox<>();
+        roundButton1 = new component.RoundButton();
+        panalRound3 = new desingcode.PanalRound();
+        jLabel8 = new javax.swing.JLabel();
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(360, 360));
 
         attenjTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -97,6 +108,7 @@ public class attendance extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setBackground(new java.awt.Color(153, 153, 153));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/profile-user.gif"))); // NOI18N
 
@@ -140,6 +152,8 @@ public class attendance extends javax.swing.JPanel {
                 .addGap(40, 40, 40))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         attendancejTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -164,9 +178,6 @@ public class attendance extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(attendancejTable1);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Attendance");
-
         attenjComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Date DESC", "Date ASC" }));
         attenjComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
@@ -178,6 +189,37 @@ public class attendance extends javax.swing.JPanel {
             }
         });
 
+        roundButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/print-26.png"))); // NOI18N
+        roundButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundButton1ActionPerformed(evt);
+            }
+        });
+
+        panalRound3.setBackground(new java.awt.Color(244, 244, 244));
+        panalRound3.setRoundTopLeft(40);
+
+        jLabel8.setFont(new java.awt.Font("Quicksand", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel8.setText("Attendance");
+
+        javax.swing.GroupLayout panalRound3Layout = new javax.swing.GroupLayout(panalRound3);
+        panalRound3.setLayout(panalRound3Layout);
+        panalRound3Layout.setHorizontalGroup(
+            panalRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panalRound3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panalRound3Layout.setVerticalGroup(
+            panalRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -185,25 +227,26 @@ public class attendance extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panalRound3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(attenjComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
-                        .addGap(15, 15, 15))))
+                        .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                        .addComponent(attenjComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(attenjComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(panalRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(attenjComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(33, 33, 33))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -294,6 +337,19 @@ public class attendance extends javax.swing.JPanel {
         attendanceLoad("WHERE `nic` LIKE '%" + attenjTextField1.getText() + "%'  ");
     }//GEN-LAST:event_attenjComboBox1PopupMenuWillBecomeInvisible
 
+    private void roundButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton1ActionPerformed
+        try {
+
+            HashMap<String, Object> map = new HashMap<>();
+            JRTableModelDataSource dataSource = new JRTableModelDataSource(attendancejTable1.getModel());
+            JasperPrint print = JasperFillManager.fillReport("src/reports/attendance/AttendanceReport.jasper", map, dataSource);
+            Report.execute(print);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_roundButton1ActionPerformed
+
     private void checkMark() {
         try {
             ResultSet res_atEmp_HS = MYSQL.executeSearch("SELECT * FROM  `attendance`  WHERE `employee_nic`='" + attenjTextField1.getText() + "' AND `date`='" + Dateformat.format(date) + "'");
@@ -318,7 +374,7 @@ public class attendance extends javax.swing.JPanel {
 
     public static void leaving(String nic, String leaving, String ToDay) throws Exception {
         MYSQL.executeIUD("UPDATE `attendance` SET `leaving`='" + leaving + "' WHERE `date`='" + ToDay + "' AND `employee_nic`='" + nic + "'");
-      }
+    }
 
     private void clean() {
         attendanceLoad("WHERE `attendance`.`date`='" + Dateformat.format(date) + "'");
@@ -332,11 +388,13 @@ public class attendance extends javax.swing.JPanel {
     private javax.swing.JButton attenjButton1;
     private javax.swing.JComboBox<String> attenjComboBox1;
     private javax.swing.JTextField attenjTextField1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private desingcode.PanalRound panalRound3;
+    private component.RoundButton roundButton1;
     // End of variables declaration//GEN-END:variables
 }
