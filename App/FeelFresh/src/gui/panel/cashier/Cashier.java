@@ -5,8 +5,11 @@
 package gui.panel.cashier;
 
 import gui.dialog.CustomerRegistrationDialog;
+import inventory_process.inventory.InvoiceProcessor;
 import java.awt.Color;
 import java.awt.Frame;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.MYSQL;
@@ -18,6 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.dto.DTOGenerator;
+import model.dto.InvoiceDTO;
 import model.dto.ProductDTO;
 import raven.toast.Notifications;
 
@@ -177,7 +181,7 @@ public class Cashier extends javax.swing.JPanel {
         jButtonCancel = new javax.swing.JButton();
         roundButton2 = new component.RoundButton();
         roundButton1 = new component.RoundButton();
-        jLabelCustomerID = new javax.swing.JLabel();
+        jLabelCustomerNIC = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         panalRound1 = new desingcode.PanalRound();
         jLabel1 = new javax.swing.JLabel();
@@ -800,7 +804,7 @@ public class Cashier extends javax.swing.JPanel {
             }
         });
 
-        jLabelCustomerID.setForeground(new java.awt.Color(153, 102, 0));
+        jLabelCustomerNIC.setForeground(new java.awt.Color(153, 102, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -822,7 +826,7 @@ public class Cashier extends javax.swing.JPanel {
                                 .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabelCustomerID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabelCustomerNIC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
         );
         jPanel1Layout.setVerticalGroup(
@@ -839,7 +843,7 @@ public class Cashier extends javax.swing.JPanel {
                             .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelCustomerNIC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -942,7 +946,7 @@ public class Cashier extends javax.swing.JPanel {
         model.setRowCount(0);
         jLabel1Nettotal.setText("0.00");
         jLabelBalance.setText("0.00");
-        jLabelCustomerID.setText("");
+        jLabelCustomerNIC.setText("");
         jLabelDiscountTotal.setText("0.00");
         jLabelGrossTotal.setText("0.00");
 
@@ -950,25 +954,37 @@ public class Cashier extends javax.swing.JPanel {
 
     private void roundButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton2ActionPerformed
 
-        ArrayList<ProductDTO> productList = new ArrayList<>();
+        if (jTableInvoice.getRowCount() < 1) {
+            Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "No products added to proceed");
+        } else if (Double.parseDouble(jLabelBalance.getText()) < 0) {
+            Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "Paid amount is not enough to proceed");
+        } else {
 
-        int rowCount = jTableInvoice.getRowCount();
-        for (int i = 0; i < rowCount; i++) {
-            ProductDTO dto = DTOGenerator.getInstance().generateProductDTO(
-                    String.valueOf(jTableInvoice.getValueAt(i, 0)),
-                    Double.parseDouble(jTableInvoice.getValueAt(i, 4).toString()),
-                    Double.parseDouble(jTableInvoice.getValueAt(i, 3).toString()),
-                    Integer.parseInt(jTableInvoice.getValueAt(i, 2).toString()),
-                    String.valueOf(jTableInvoice.getValueAt(i, 5))
-                    );
-            
-            
-           productList.add(dto);
-            
-            
+            ArrayList<ProductDTO> productList = new ArrayList<>();
+
+            int rowCount = jTableInvoice.getRowCount();
+            for (int i = 0; i < rowCount; i++) {
+                ProductDTO dto = DTOGenerator.getInstance().generateProductDTO(
+                        String.valueOf(jTableInvoice.getValueAt(i, 0)),
+                        Double.parseDouble(jTableInvoice.getValueAt(i, 4).toString()),
+                        Double.parseDouble(jTableInvoice.getValueAt(i, 3).toString()),
+                        (int) Double.parseDouble(jTableInvoice.getValueAt(i, 2).toString()),
+                        String.valueOf(jTableInvoice.getValueAt(i, 5))
+                );
+
+                productList.add(dto);
+
+            }
+
+            InvoiceDTO invoiceDTO = DTOGenerator.getInstance().generateInvoiceDTO(productList, netTotal, paidAmount, discount, jLabelCustomerNIC.getText());
+            if (invoiceDTO != null) {
+                new InvoiceProcessor().process(invoiceDTO);
+                Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "Invoice Done");
+            } else {
+                Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "PRODUCT DTO IS NULL");
+            }
+
         }
-
-//        DTOGenerator.getInstance().generateInvoiceDTO(productList, netTotal, paidAmount, discount, )
 
     }//GEN-LAST:event_roundButton2ActionPerformed
 
@@ -977,7 +993,7 @@ public class Cashier extends javax.swing.JPanel {
         int row = jTableCustomer.getSelectedRow();
         if (points > 100) {
             discount = points;
-            jLabelCustomerID.setText(String.valueOf(jTableCustomer.getValueAt(row, 0)));
+            jLabelCustomerNIC.setText(String.valueOf(jTableCustomer.getValueAt(row, 0)));
             calculate();
         } else {
             Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "Please Select a product");
@@ -1026,7 +1042,8 @@ public class Cashier extends javax.swing.JPanel {
 
     private void jTableStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableStockMouseClicked
         if (evt.getClickCount() > 1) {
-
+            jFormattedTextFieldQty.grabFocus();
+            jFormattedTextFieldQty.setText("");
         } else {
             jTableStock.clearSelection();
         }
@@ -1037,11 +1054,17 @@ public class Cashier extends javax.swing.JPanel {
     }//GEN-LAST:event_jFormattedTextFieldQtyKeyPressed
 
     private void roundButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton1ActionPerformed
-        int i = JOptionPane.showConfirmDialog(this, "Do you want to remove this column", "Warning", JOptionPane.WARNING_MESSAGE);
-        int row = jTableInvoice.getSelectedRow();
-        if (i == 0 && row != -1) {
-            DefaultTableModel dtm = (DefaultTableModel) jTableInvoice.getModel();
-            dtm.removeRow(row);
+        if (jTableInvoice.getRowCount() < 1) {
+            Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "No products added to remove!");
+        } else if (jTableInvoice.getSelectedRow() == -1) {
+            Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "Please select the product that you need to remoove!");
+        } else {
+            int i = JOptionPane.showConfirmDialog(this, "Do you want to remove this column", "Warning", JOptionPane.WARNING_MESSAGE);
+            int row = jTableInvoice.getSelectedRow();
+            if (i == 0 && row != -1) {
+                DefaultTableModel dtm = (DefaultTableModel) jTableInvoice.getModel();
+                dtm.removeRow(row);
+            }
         }
     }//GEN-LAST:event_roundButton1ActionPerformed
 
@@ -1070,7 +1093,7 @@ public class Cashier extends javax.swing.JPanel {
 
         } else {
             jTableCustomer.clearSelection();
-            jLabelCustomerID.setText("");
+            jLabelCustomerNIC.setText("");
         }
     }//GEN-LAST:event_jTableCustomerMouseClicked
 
@@ -1094,7 +1117,7 @@ public class Cashier extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelBalance;
-    private javax.swing.JLabel jLabelCustomerID;
+    private javax.swing.JLabel jLabelCustomerNIC;
     private javax.swing.JLabel jLabelDiscountTotal;
     private javax.swing.JLabel jLabelGrossTotal;
     private javax.swing.JLabel jLabelPoints;
