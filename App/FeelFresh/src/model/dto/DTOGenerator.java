@@ -43,7 +43,7 @@ public class DTOGenerator {
         }
     }
 
-    public InvoiceDTO generateInvoiceDTO(ArrayList<ProductDTO> productList, double total, double paid, double discount, String mobile) {
+    public InvoiceDTO generateInvoiceDTO(ArrayList<ProductDTO> productList, double total, double paid, double discount, String nic) {
         //productList,total,paid,discount,mobile
         if (productList.isEmpty()) {
             System.out.println("Please add products");
@@ -54,12 +54,12 @@ public class DTOGenerator {
         } else if (paid == 0) {
             System.out.println("Please enter a valid amount to the paid value");
             return null;
-        } else if (mobile.isBlank()) {
+        } else if (nic.isBlank()) {
             System.out.println("Please enter a mobile number");
             return null;
         } else {
             InvoiceDTO dTO = new InvoiceDTO();
-            dTO.setMobile(mobile);
+            dTO.setNic(nic);
             dTO.setTotal(total);
             dTO.setDiscount(discount);
             dTO.setPaid(paid);

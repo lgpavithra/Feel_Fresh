@@ -12,12 +12,12 @@ public class InvoiceProcessor {
         System.out.println("INVOICE PROCESSOR: creating an invoice...");
         //insert into the invoice table
         String invoice = "INSERT INTO invoice ("
-                + "    cus_mobile,"
+                + "    cus_nic,"
                 + "    total,"
                 + "    discount,"
                 + "    paid"
                 + ") VALUES ("
-                + "    '" + dto.getMobile() + "',"
+                + "    '" + dto.getNic() + "',"
                 + "    '" + dto.getTotal() + "',"
                 + "    '" + dto.getDiscount() + "',"
                 + "    '" + dto.getPaid() + "'"
@@ -54,7 +54,7 @@ public class InvoiceProcessor {
 
         RecieptDTO reciept = new RecieptDTO();
         reciept.setProductList(dto.getProductList());
-        reciept.setMobile(dto.getMobile());
+        reciept.setNic(dto.getNic());
         reciept.setTotal(dto.getTotal());
         reciept.setDiscount(dto.getDiscount());
         reciept.setPaid(dto.getPaid());
