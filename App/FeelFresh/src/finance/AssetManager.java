@@ -24,7 +24,7 @@ public class AssetManager implements FinanceManager {
             return "Successfully created";
         } catch (Exception ex) {
             return "Exception occurred: " + ex.getMessage();
-        }
+        }        
     }
 
     @Override

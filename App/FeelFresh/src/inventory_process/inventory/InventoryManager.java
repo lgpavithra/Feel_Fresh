@@ -266,12 +266,33 @@ public class InventoryManager {
                 + "JOIN brand b ON p.brand_id = b.id "
                 + "JOIN category c ON p.category_id = c.id "
                 + "WHERE p.barcode = '" + barcode + "'";
-        
+
         try {
             ResultSet rs = MYSQL.executeSearch(q);
-            if(rs.next()){
+            if (rs.next()) {
                 return rs;
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResultSet loadStocks() {
+        String q = "SELECT "
+                + "p.*, "
+                + "SUM(s.qty) AS total_stock "
+                + "FROM "
+                + "product p "
+                + "INNER JOIN "
+                + "stock s ON p.id = s.product_id "
+                + "GROUP BY "
+                + "p.id "
+                + "HAVING "
+                + "total_stock > 0";
+        try {
+            ResultSet rs = MYSQL.executeSearch(q);
+            return rs;  // Return ResultSet directly without calling rs.next()
         } catch (Exception ex) {
             ex.printStackTrace();
         }
