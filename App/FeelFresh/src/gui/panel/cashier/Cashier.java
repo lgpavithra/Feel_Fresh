@@ -60,7 +60,9 @@ public class Cashier extends javax.swing.JPanel {
                 + " WHERE `stock`.`qty` > '0' ";
 
         if (!searchKeyWord.isBlank() && searchKeyWord != null) {
-            query += " AND (`product`.`name` LIKE '%" + searchKeyWord + "%' OR `product`.`id` LIKE '%" + searchKeyWord + "%' )";
+            query += " AND (`product`.`name` LIKE '%" + searchKeyWord + "%' "
+                    + "OR `product`.`id` LIKE '%" + searchKeyWord + "%' "
+                    + "OR `product`.`barcode` = '" + searchKeyWord + "')";  // Add barcode filter
         }
 
         try {
@@ -946,7 +948,7 @@ public class Cashier extends javax.swing.JPanel {
     }//GEN-LAST:event_uJTextfield2ActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        
+
         reset();
 
     }//GEN-LAST:event_jButtonCancelActionPerformed
@@ -984,7 +986,6 @@ public class Cashier extends javax.swing.JPanel {
             if (invoiceDTO != null) {
 
                 new InvoiceProcessor().process(invoiceDTO);
-
 
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("Parameter1", String.valueOf(grossTotal));
@@ -1213,7 +1214,7 @@ public class Cashier extends javax.swing.JPanel {
     }
 
     private void reset() {
-    
+
         DefaultTableModel model = (DefaultTableModel) jTableInvoice.getModel();
         model.setRowCount(0);
         jLabel1Nettotal.setText("0.00");
@@ -1227,6 +1228,6 @@ public class Cashier extends javax.swing.JPanel {
         netTotal = 0;
         paidAmount = 0;
         grossTotal = 0;
-        
+
     }
 }
