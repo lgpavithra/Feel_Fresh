@@ -608,11 +608,12 @@ public class TransactionMaagement extends javax.swing.JPanel {
 
     private void loadLabels() {
         String cv = FinanceDepartment.getTransactionManager().getFlagValue("credit");
-        String dv = FinanceDepartment.getTransactionManager().getFlagValue("debit");
-        if (cv != null) {
+        String dv = FinanceDepartment.getTransactionManager().getFlagValue("debit");        
+        if (cv.isEmpty()) {
             creditValue.setText(cv);
-        } else if (dv != null) {
+        }
+        if (dv.isEmpty()) {
             debitValue.setText(dv);
-        }        
+        }
     }
 }
