@@ -13,6 +13,7 @@ import gui.panel.Welcome;
 
 import gui.panel.addProduct;
 import gui.panel.cashier.Cashier;
+import gui.panel.cashier.CashierPane;
 import gui.panel.employee;
 
 import java.awt.BorderLayout;
@@ -44,7 +45,7 @@ public class Dashboard_cashier extends javax.swing.JFrame {
         jLabel6.setText(SystemStatus.getUser().getUserName());
         emp_Username = Username;
 
-        changePanel_vp(new Cashier());
+        changePanel_vp(new CashierPane());
         this.setLocationRelativeTo(null);
 
         setDateTime();
