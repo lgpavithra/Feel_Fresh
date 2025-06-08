@@ -246,20 +246,22 @@
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="545" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton3" alignment="1" min="-2" pref="123" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
+                          <Component id="jButton3" min="-2" pref="123" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="roundButton1" min="-2" pref="48" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jComboBox3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jTextField1" min="-2" pref="208" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jScrollPane1" pref="545" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -272,15 +274,16 @@
               <Group type="102" alignment="1" attributes="0">
                   <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                           <Component id="jTextField1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                           <Component id="jComboBox3" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="roundButton1" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="roundButton1" alignment="1" pref="34" max="32767" attributes="0"/>
+                      <Component id="jButton4" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="80" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" pref="68" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -297,14 +300,16 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="7" rowCount="0">
+                  <Table columnCount="9" rowCount="0">
                     <Column editable="false" title="id" type="java.lang.Object"/>
                     <Column editable="false" title="name" type="java.lang.Object"/>
                     <Column editable="false" title="category" type="java.lang.Object"/>
                     <Column editable="false" title="brand" type="java.lang.Object"/>
-                    <Column editable="true" title="added_date" type="java.lang.Object"/>
-                    <Column editable="true" title="upd_date" type="java.lang.Object"/>
-                    <Column editable="true" title="status" type="java.lang.Object"/>
+                    <Column editable="false" title="added_date" type="java.lang.Object"/>
+                    <Column editable="false" title="upd_date" type="java.lang.Object"/>
+                    <Column editable="false" title="status" type="java.lang.Object"/>
+                    <Column editable="false" title="filePath" type="java.lang.Object"/>
+                    <Column editable="false" title="barcode" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -325,6 +330,16 @@
                       <Renderer/>
                     </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -395,6 +410,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roundButton1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="View Product Details"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

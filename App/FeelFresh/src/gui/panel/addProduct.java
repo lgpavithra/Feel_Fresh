@@ -4,18 +4,24 @@
  */
 package gui.panel;
 
+import gui.dialog.ProductcInfoDialog;
+import inventory_process.inventory.InventoryManager;
+import java.awt.Frame;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.BarcodeGenerator;
 import model.MYSQL;
 import model.jasper.Report;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import raven.toast.Notifications;
 
 /**
  *
@@ -25,9 +31,15 @@ public class addProduct extends javax.swing.JPanel {
 
     HashMap<String, String> brandMap = new HashMap<>();
     HashMap<String, String> categoryMap = new HashMap<>();
+    private Frame[] frames;
 
     public addProduct() {
         initComponents();
+
+        frames = Frame.getFrames();        //currently running frams array
+
+        Notifications.getInstance().setJFrame((JFrame) frames[frames.length - 1]);    // last opened jframe
+
         loadCategories();
         loadBrand();
         loadProducts_PS("product`.`name", "ASC");
@@ -103,6 +115,8 @@ public class addProduct extends javax.swing.JPanel {
                     vector.add(resultSet.getString("product.update_at"));
                 }
                 vector.add(resultSet.getString("status"));
+                vector.add(resultSet.getString("file_path"));
+                vector.add(resultSet.getString("barcode"));
 
                 model.addRow(vector);
 
@@ -150,6 +164,7 @@ public class addProduct extends javax.swing.JPanel {
         jComboBox3 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         roundButton1 = new component.RoundButton();
+        jButton4 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(594, 241));
@@ -272,11 +287,11 @@ public class addProduct extends javax.swing.JPanel {
 
             },
             new String [] {
-                "id", "name", "category", "brand", "added_date", "upd_date", "status"
+                "id", "name", "category", "brand", "added_date", "upd_date", "status", "filePath", "barcode"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true, true
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -300,6 +315,12 @@ public class addProduct extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(6).setMinWidth(0);
             jTable1.getColumnModel().getColumn(6).setPreferredWidth(0);
             jTable1.getColumnModel().getColumn(6).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(7).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(7).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(7).setMaxWidth(0);
+            jTable1.getColumnModel().getColumn(8).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(8).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(8).setMaxWidth(0);
         }
 
         jButton3.setText("Clear");
@@ -329,6 +350,13 @@ public class addProduct extends javax.swing.JPanel {
             }
         });
 
+        jButton4.setText("View Product Details");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -336,18 +364,20 @@ public class addProduct extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))))
                 .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
@@ -355,13 +385,14 @@ public class addProduct extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                    .addComponent(roundButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
@@ -395,7 +426,12 @@ public class addProduct extends javax.swing.JPanel {
         } else {
             try {
 
-                MYSQL.executeIUD("INSERT INTO `product`(`name`,`brand_id`,`category_id`)VALUES('" + name + "','" + brandMap.get(brand) + "','" + categoryMap.get(category) + "')");
+                String barcode = BarcodeGenerator.generateProductBarcode();
+                String filePath = BarcodeGenerator.generateBarcode(barcode);
+
+                MYSQL.executeIUD("INSERT INTO `product`(`name`,`brand_id`,`category_id`,`barcode`,`file_path`)"
+                        + "VALUES('" + name + "','" + brandMap.get(brand) + "',"
+                        + "'" + categoryMap.get(category) + "', '" + barcode + "','" + filePath + "'  )");
                 loadProducts_PS("product`.`name", "ASC");
 
                 reset_PS();
@@ -482,10 +518,28 @@ public class addProduct extends javax.swing.JPanel {
 
     }//GEN-LAST:event_roundButton1ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        int row = jTable1.getSelectedRow();
+
+        if (row != -1) {
+
+            ResultSet rs = InventoryManager.getInstance().getProductDetails(String.valueOf(jTable1.getValueAt(row, 8)));
+
+            new ProductcInfoDialog((JFrame) frames[frames.length - 1], true, String.valueOf(jTable1.getValueAt(row, 7)),rs  ).setVisible(true);
+
+        } else {
+            Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "Please Select a product in table");
+        }
+
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
