@@ -1,12 +1,17 @@
 package inventory_process;
 
+import finance.FinanceDepartment;
 import model.dto.GrnDTO;
 import model.dto.InvoiceDTO;
 import model.dto.ProductDTO;
 import inventory_process.inventory.InventoryManager;
 import java.util.ArrayList;
 import model.dto.DTOGenerator;
+import java.sql.ResultSet;
 import inventory_process.inventory.InvoiceProcessor;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class test {
 
@@ -40,15 +45,14 @@ public class test {
 //        } else {
 //            System.out.println("Null is returned when creating grnDTO");
 //        }
-
         // invoice creation
-        InvoiceDTO invoiceDTO = dTOGenerator.generateInvoiceDTO(productList, 1800, 1000, 0, "200312568946");
-        if (invoiceDTO != null) {
-            //manager.issueProducts(invoiceDTO);
-            new InvoiceProcessor().process(invoiceDTO);
-        } else {
-            System.out.println("Null is returned when creating invoice DTO");
-        }
+//        InvoiceDTO invoiceDTO = dTOGenerator.generateInvoiceDTO(productList, 1800, 1000, 0, "200312568946");
+//        if (invoiceDTO != null) {
+//            //manager.issueProducts(invoiceDTO);
+//            new InvoiceProcessor().process(invoiceDTO);
+//        } else {
+//            System.out.println("Null is returned when creating invoice DTO");
+//        }
 //
 //        // to load products (format:- product_name , category , brand_name)...
 //        for (ProductDTO productDTO : manager.loadProducts()) {
@@ -56,5 +60,13 @@ public class test {
 //            System.out.println(productDTO.getCategoryName());
 //            System.out.println(productDTO.getBrandName());
 //        }
+        ResultSet rs = FinanceDepartment.getTransactionManager().getTodayExpenses();
+        try {            
+            if (rs.next()) {
+                System.out.println("ok");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

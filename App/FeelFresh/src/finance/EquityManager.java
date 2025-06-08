@@ -31,7 +31,7 @@ public class EquityManager implements FinanceManager {
     public String update(String name, double value) {        
         String q = "UPDATE finance "
                 + "SET value = '" + value + "' "
-                + "WHERE type = 'Liability' AND name = '" + name + "'";
+                + "WHERE type = 'Equity' AND name = '" + name + "'";
 
         try {
             MYSQL.executeIUD(q);
