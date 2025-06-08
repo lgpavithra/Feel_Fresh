@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.dto.DTOGenerator;
@@ -36,6 +37,7 @@ public class TransactionMaagement extends javax.swing.JPanel {
         initComponents();
         loadComboBox();
         loadTable();
+        loadLabels();
     }
 
     /**
@@ -62,13 +64,13 @@ public class TransactionMaagement extends javax.swing.JPanel {
         discardButton = new component.RoundButton();
         panalRound1 = new desingcode.PanalRound();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        debitValue = new javax.swing.JLabel();
         uJTextfield1 = new component.UJTextfield();
         uJTextfield2 = new component.UJTextfield();
         jLabel12 = new javax.swing.JLabel();
         panalRound2 = new desingcode.PanalRound();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        creditValue = new javax.swing.JLabel();
         amountField = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -214,21 +216,22 @@ public class TransactionMaagement extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Debit");
 
-        jLabel2.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("100");
+        debitValue.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
+        debitValue.setForeground(new java.awt.Color(255, 255, 255));
+        debitValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        debitValue.setText("0.00");
 
         javax.swing.GroupLayout panalRound1Layout = new javax.swing.GroupLayout(panalRound1);
         panalRound1.setLayout(panalRound1Layout);
         panalRound1Layout.setHorizontalGroup(
             panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound1Layout.createSequentialGroup()
+            .addGroup(panalRound1Layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
+            .addGroup(panalRound1Layout.createSequentialGroup()
+                .addComponent(debitValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panalRound1Layout.setVerticalGroup(
             panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +239,7 @@ public class TransactionMaagement extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(debitValue)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -257,21 +260,22 @@ public class TransactionMaagement extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Credit");
 
-        jLabel4.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("100");
+        creditValue.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
+        creditValue.setForeground(new java.awt.Color(255, 255, 255));
+        creditValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        creditValue.setText("0.00");
 
         javax.swing.GroupLayout panalRound2Layout = new javax.swing.GroupLayout(panalRound2);
         panalRound2.setLayout(panalRound2Layout);
         panalRound2Layout.setHorizontalGroup(
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound2Layout.createSequentialGroup()
+            .addGroup(panalRound2Layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
+            .addGroup(panalRound2Layout.createSequentialGroup()
+                .addComponent(creditValue, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panalRound2Layout.setVerticalGroup(
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,7 +283,7 @@ public class TransactionMaagement extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(creditValue)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -499,19 +503,28 @@ public class TransactionMaagement extends javax.swing.JPanel {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int id = Integer.parseInt(String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0)));
         String msg = FinanceDepartment.getTransactionManager().delete(id);
-        if(msg.equals("Deleted Successfully")){
+        if (msg.equals("Deleted Successfully")) {
             JOptionPane.showMessageDialog(transactionMaagement, "Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             loadTable();
             clearFields();
-        }else{
-           JOptionPane.showMessageDialog(transactionMaagement, "An Error Occured", "Warning", JOptionPane.WARNING_MESSAGE); 
+        } else {
+            JOptionPane.showMessageDialog(transactionMaagement, "An Error Occured", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    public JLabel getDebitValue() {
+        return debitValue;
+    }
+
+    public JLabel getCreditValue() {
+        return creditValue;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField amountField;
     private component.RoundButton createButton;
+    private javax.swing.JLabel creditValue;
+    private javax.swing.JLabel debitValue;
     private component.RoundButton deleteButton;
     private component.RoundButton discardButton;
     private javax.swing.JComboBox<String> flagComboBox;
@@ -526,9 +539,7 @@ public class TransactionMaagement extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -593,5 +604,15 @@ public class TransactionMaagement extends javax.swing.JPanel {
         flagComboBox.setSelectedIndex(0);   // Assuming 0 is the "Select" option
         typeComboBox.setSelectedIndex(0);   // Assuming 0 is the "Select" option
         remarkTextArea.setText("");
+    }
+
+    private void loadLabels() {
+        String cv = FinanceDepartment.getTransactionManager().getFlagValue("credit");
+        String dv = FinanceDepartment.getTransactionManager().getFlagValue("debit");
+        if (cv != null) {
+            creditValue.setText(cv);
+        } else if (dv != null) {
+            debitValue.setText(dv);
+        }        
     }
 }

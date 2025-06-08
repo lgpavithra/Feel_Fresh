@@ -4,7 +4,13 @@
  */
 package gui.finance;
 
+import finance.FinanceDepartment;
 import gui.dialog.SelectProduct;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +23,8 @@ public class Home extends javax.swing.JPanel {
      */
     public Home() {
         initComponents();
+        loadTable();
+        loadLabels();
     }
 
     /**
@@ -44,13 +52,13 @@ public class Home extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         panalRound1 = new desingcode.PanalRound();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        assetValueLabel = new javax.swing.JLabel();
         panalRound5 = new desingcode.PanalRound();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        equityValueLabel = new javax.swing.JLabel();
         panalRound6 = new desingcode.PanalRound();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        liabilityValueLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -199,21 +207,24 @@ public class Home extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Asset");
 
-        jLabel2.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("100");
+        assetValueLabel.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
+        assetValueLabel.setForeground(new java.awt.Color(255, 255, 255));
+        assetValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        assetValueLabel.setText("0.00");
 
         javax.swing.GroupLayout panalRound1Layout = new javax.swing.GroupLayout(panalRound1);
         panalRound1.setLayout(panalRound1Layout);
         panalRound1Layout.setHorizontalGroup(
             panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panalRound1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panalRound1Layout.createSequentialGroup()
+                        .addGap(0, 65, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 65, Short.MAX_VALUE))
+                    .addComponent(assetValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panalRound1Layout.setVerticalGroup(
             panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +232,7 @@ public class Home extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(assetValueLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -234,21 +245,24 @@ public class Home extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Equity");
 
-        jLabel4.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("100");
+        equityValueLabel.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
+        equityValueLabel.setForeground(new java.awt.Color(255, 255, 255));
+        equityValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        equityValueLabel.setText("0.00");
 
         javax.swing.GroupLayout panalRound5Layout = new javax.swing.GroupLayout(panalRound5);
         panalRound5.setLayout(panalRound5Layout);
         panalRound5Layout.setHorizontalGroup(
             panalRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panalRound5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panalRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(panalRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panalRound5Layout.createSequentialGroup()
+                        .addGap(0, 65, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 65, Short.MAX_VALUE))
+                    .addComponent(equityValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panalRound5Layout.setVerticalGroup(
             panalRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,7 +270,7 @@ public class Home extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(equityValueLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -269,21 +283,24 @@ public class Home extends javax.swing.JPanel {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Liability");
 
-        jLabel7.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("100");
+        liabilityValueLabel.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
+        liabilityValueLabel.setForeground(new java.awt.Color(255, 255, 255));
+        liabilityValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        liabilityValueLabel.setText("0.00");
 
         javax.swing.GroupLayout panalRound6Layout = new javax.swing.GroupLayout(panalRound6);
         panalRound6.setLayout(panalRound6Layout);
         panalRound6Layout.setHorizontalGroup(
             panalRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panalRound6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panalRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(panalRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panalRound6Layout.createSequentialGroup()
+                        .addGap(0, 64, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(0, 64, Short.MAX_VALUE))
+                    .addComponent(liabilityValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panalRound6Layout.setVerticalGroup(
             panalRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,7 +308,7 @@ public class Home extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(liabilityValueLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -306,17 +323,17 @@ public class Home extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Date Time", "Source", "Beneficiar", "Amount", "Credit", "Type", "Remark"
+                "id", "Date Time", "Source", "Beneficiar", "Amount", "Credit", "Type", "Remark"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -325,12 +342,17 @@ public class Home extends javax.swing.JPanel {
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -353,7 +375,7 @@ public class Home extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
@@ -415,19 +437,29 @@ public class Home extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_roundButton7ActionPerformed
 
+    public JLabel getAssetValueLabel() {
+        return assetValueLabel;
+    }
+
+    public JLabel getLiabilityValueLabel() {
+        return liabilityValueLabel;
+    }
+
+    public JLabel getEquityValueLabel() {
+        return equityValueLabel;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel assetValueLabel;
+    private javax.swing.JLabel equityValueLabel;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -438,6 +470,7 @@ public class Home extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel liabilityValueLabel;
     private desingcode.PanalRound panalRound1;
     private desingcode.PanalRound panalRound4;
     private desingcode.PanalRound panalRound5;
@@ -446,4 +479,42 @@ public class Home extends javax.swing.JPanel {
     private component.RoundButton roundButton6;
     private component.RoundButton roundButton7;
     // End of variables declaration//GEN-END:variables
+
+    private void loadTable() {
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+        ResultSet rs = FinanceDepartment.getTransactionManager().read();
+        try {
+            while (rs.next()) {
+                Vector<String> v = new Vector();
+                v.add(rs.getString("id"));
+                v.add(rs.getString("created_at"));
+                v.add(rs.getString("source"));
+                v.add(rs.getString("beneficiary"));
+                v.add(rs.getString("amount"));
+                v.add(rs.getString("debit_credit_flag"));
+                v.add(rs.getString("type"));
+                v.add(rs.getString("remark"));
+                dtm.addRow(v);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void loadLabels() {
+        String av = FinanceDepartment.getAssetManager().getValue().toString();
+        String ev = FinanceDepartment.getEquityManager().getValue().toString();
+        String lv = FinanceDepartment.getLiabilityManager().getValue().toString();
+        System.out.println(ev);
+        if (av != null) {
+            getAssetValueLabel().setText(av);
+        } 
+        if (ev != null) {
+            getEquityValueLabel().setText(ev);
+        }
+        if(lv != null){
+            getLiabilityValueLabel().setText(lv);
+        }
+    }
 }
