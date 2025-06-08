@@ -39,7 +39,7 @@ public class employee extends javax.swing.JPanel {
         initComponents();
         jButton1.putClientProperty("JButton.buttonType", "roundRect");
         jButton4.putClientProperty("JButton.buttonType", "roundRect");
-        LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText());
+        LoadEmployee_HS("fname", "ASC", jTextField1.getText(), jTextField1.getText());
         LoadPosition();
         jButton4.setVisible(false);
         jComboBox1.setEnabled(false);
@@ -68,10 +68,29 @@ public class employee extends javax.swing.JPanel {
         }
     }
 
-    private void LoadEmployee_HS(String column, String orderby ,String fname_HS, String nic) {
+    private void LoadEmployee_HS(String column, String orderby, String fname_HS, String nic) {
         try {
-            ResultSet resultSet_HS = MYSQL.executeSearch("SELECT * FROM `employee` INNER JOIN `position` ON "
-                    + "`position`.`id`=`employee`.`position_id` INNER JOIN `employee_mobile` ON `employee`.`nic` = `employee_mobile`.`employee_nic` WHERE `fname` LIKE '" + fname_HS + "%' OR `nic` LIKE '" + nic + "%' ORDER BY `" + column + "` " + orderby + "");
+            ResultSet resultSet_HS = MYSQL.executeSearch("SELECT \n"
+                    + "    e.nic,\n"
+                    + "    e.fname,\n"
+                    + "    e.lname,\n"
+                    + "    e.email,\n"
+                    + "    e.gender,\n"
+                    + "    e.status,\n"
+                    + "    e.employment_type,\n"
+                    + "    e.position_id,\n"
+                    + "    p.position_name AS position,\n"
+                    + "    e.line_1,\n"
+                    + "    e.line_2,\n"
+                    + "    e.no,\n"
+                    + "    MIN(em.mobile) AS primary_mobile\n"
+                    + "FROM employee e\n"
+                    + "LEFT JOIN employee_mobile em \n"
+                    + "    ON e.nic = em.employee_nic\n"
+                    + "LEFT JOIN position p\n"
+                    + "    ON e.position_id = p.id\n"
+                    + "GROUP BY e.nic;");
+
             DefaultTableModel Tablemodel_HS = (DefaultTableModel) jTable2.getModel();
             Tablemodel_HS.setRowCount(0);
             while (resultSet_HS.next()) {
@@ -82,12 +101,16 @@ public class employee extends javax.swing.JPanel {
                 v.add(resultSet_HS.getString("email"));
                 v.add(resultSet_HS.getString("gender"));
                 v.add(resultSet_HS.getString("employment_type"));
-                v.add(resultSet_HS.getString("position.position_name"));
+                v.add(resultSet_HS.getString("position"));
                 v.add(resultSet_HS.getString("status"));
                 v.add(resultSet_HS.getString("line_1"));
                 v.add(resultSet_HS.getString("line_2"));
                 v.add(resultSet_HS.getString("no"));
-                v.add(resultSet_HS.getString("employee_mobile.mobile"));
+                if (resultSet_HS.getString("primary_mobile") != null) {
+                    v.add(resultSet_HS.getString("primary_mobile"));
+                } else {
+                    v.add("Empty");
+                }
                 Tablemodel_HS.addRow(v);
             }
         } catch (Exception e) {
@@ -95,23 +118,22 @@ public class employee extends javax.swing.JPanel {
         }
     }
 
-    
-      private void filterName() {
-      
+    private void filterName() {
+
         int filter = jComboBox4.getSelectedIndex();
-        
-        if (filter == 0){
-             LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText());
-        } else if (filter == 1){
-             LoadEmployee_HS("fname", "DESC",jTextField1.getText(),jTextField1.getText());
-        } else if (filter == 2){
-             LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText());
-        } else if (filter == 3){
-             LoadEmployee_HS("fname", "DESC",jTextField1.getText(),jTextField1.getText());
+
+        if (filter == 0) {
+            LoadEmployee_HS("fname", "ASC", jTextField1.getText(), jTextField1.getText());
+        } else if (filter == 1) {
+            LoadEmployee_HS("fname", "DESC", jTextField1.getText(), jTextField1.getText());
+        } else if (filter == 2) {
+            LoadEmployee_HS("fname", "ASC", jTextField1.getText(), jTextField1.getText());
+        } else if (filter == 3) {
+            LoadEmployee_HS("fname", "DESC", jTextField1.getText(), jTextField1.getText());
         }
-      
-      }
-       
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -451,7 +473,6 @@ public class employee extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(roundButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -640,7 +661,7 @@ public class employee extends javax.swing.JPanel {
                         MYSQL.executeIUD("INSERT INTO employee (nic,fname,lname,email,gender,`no`,line_1,line_2,`status`,position_id,employment_type) "
                                 + "VALUES ('" + NIC_HS + "','" + Fname_HS + "','" + lname_HS + "','" + email_HS + "','" + genderId_HS + "','" + NO_HS + "','" + line1_HS + "',"
                                 + "'" + Line2_HS + "','" + user_status_HS + "','" + UserPositionId_HS + "','" + Employee_type_HS + "');");
-                        
+
                         ///query responsive
                         String query_mobile = "";
                         if (!number1.isBlank()) {
@@ -654,7 +675,7 @@ public class employee extends javax.swing.JPanel {
                         }
                         MYSQL.executeIUD("INSERT INTO `employee_mobile` (`mobile`,`employee_nic`) VALUES "
                                 + query_mobile);
-                         LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText());
+                        LoadEmployee_HS("fname", "ASC", jTextField1.getText(), jTextField1.getText());
                         Clean_All_HS();
                         ///query responsive
                     }
@@ -695,7 +716,7 @@ public class employee extends javax.swing.JPanel {
                     } else if (!number3.isEmpty()) {
                         insert_HS(NIC_HS, number3);
                     }
-                     LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText()); 
+                    LoadEmployee_HS("fname", "ASC", jTextField1.getText(), jTextField1.getText());
                     Clean_All_HS();
                 }
             } catch (Exception e) {
@@ -769,9 +790,9 @@ public class employee extends javax.swing.JPanel {
         jButton4.setVisible(false);
         jPanel5.add(jButton3, BorderLayout.CENTER);
         SwingUtilities.updateComponentTreeUI(jPanel5);
-        
+
         jComboBox4.setSelectedIndex(0);
-         LoadEmployee_HS("fname", "ASC",jTextField1.getText(),jTextField1.getText()); 
+        LoadEmployee_HS("fname", "ASC", jTextField1.getText(), jTextField1.getText());
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -867,23 +888,23 @@ public class employee extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jComboBox4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox4ItemStateChanged
-       filterName();
+        filterName();
     }//GEN-LAST:event_jComboBox4ItemStateChanged
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-         filterName();
+        filterName();
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void roundButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton2ActionPerformed
         try {
-             HashMap <String, Object> map = new HashMap<>();
-             JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable2.getModel());
-             JasperPrint print = JasperFillManager.fillReport("src/reports/employee/EmployeeReport.jasper", map, dataSource);
-             Report.execute(print);
+            HashMap<String, Object> map = new HashMap<>();
+            JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable2.getModel());
+            JasperPrint print = JasperFillManager.fillReport("src/reports/employee/EmployeeReport.jasper", map, dataSource);
+            Report.execute(print);
         } catch (Exception e) {
             e.printStackTrace();
         }
-       
+
     }//GEN-LAST:event_roundButton2ActionPerformed
 
 
