@@ -19,11 +19,10 @@ public class TransactionManager {
     }
 
     public ResultSet read() {
-        String q = "SELECT * FROM `transactions`";
+        String q = "SELECT * FROM `transactions` ORDER BY created_at DESC";
         try {
             ResultSet rs = MYSQL.executeSearch(q);
             return rs;
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -31,9 +30,9 @@ public class TransactionManager {
     }
 
     public ResultSet read(String flag) {
-        String q = "SELECT * "
-                + "FROM transactions "
-                + "WHERE debit_credit_flag = '" + flag + "'";
+        String q = "SELECT * FROM transactions "
+                + "WHERE debit_credit_flag = '" + flag + "' "
+                + "ORDER BY created_at DESC";
         try {
             ResultSet rs = MYSQL.executeSearch(q);
             return rs;
@@ -71,7 +70,6 @@ public class TransactionManager {
         return null;
     }
 
-
     public String delete(int id) {
         String q = "DELETE FROM transactions WHERE id = " + id;
         try {
@@ -81,7 +79,21 @@ public class TransactionManager {
             ex.printStackTrace();
         }
         return null;
-    }    
+    }
 
+    public String getFlagValue(String flag) {
+        String q = "SELECT SUM(amount) AS total_value_today "
+                + "FROM transactions "
+                + "WHERE debit_credit_flag = '" + flag + "' "
+                + "  AND DATE(created_at) = CURDATE()";
+        try {
+            ResultSet rs = MYSQL.executeSearch(q);
+            if (rs.next()) {
+                return String.valueOf(rs.getString("total_value_today"));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }
-

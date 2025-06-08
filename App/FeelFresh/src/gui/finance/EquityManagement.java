@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.dto.DTOGenerator;
 import model.dto.FinanceDTO;
@@ -393,7 +395,7 @@ public class EquityManagement extends javax.swing.JPanel {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 2) {  // Check for double-click            
             int row = jTable1.getSelectedRow();  // Get the selected row index
-            if (row != -1) {                               
+            if (row != -1) {
                 String name = String.valueOf(jTable1.getValueAt(row, 0));
                 String value = String.valueOf(jTable1.getValueAt(row, 1));
                 uJTextfield1.setText(name);
@@ -444,6 +446,13 @@ public class EquityManagement extends javax.swing.JPanel {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+        // Center align all columns
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
 

@@ -137,7 +137,7 @@ public class InventoryManager {
 //                    + "WHERE po_id = '" + dto.getPo_id() + "'");
             ResultSet rs = MYSQL.executeSearch("SELECT LAST_INSERT_ID()");
             int lastId = -1;
-            
+
             if (rs.next()) {
                 lastId = rs.getInt(1);
                 for (ProductDTO productDTO : dto.getProductList()) {
@@ -255,6 +255,27 @@ public class InventoryManager {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public ResultSet getProductDetails(String barcode) {
+        String q = "SELECT "
+                + "    p.*, "
+                + "    b.name AS brand_name, "
+                + "    c.name AS category_name "
+                + "FROM product p "
+                + "JOIN brand b ON p.brand_id = b.id "
+                + "JOIN category c ON p.category_id = c.id "
+                + "WHERE p.barcode = '" + barcode + "'";
+        
+        try {
+            ResultSet rs = MYSQL.executeSearch(q);
+            if(rs.next()){
+                return rs;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
 }

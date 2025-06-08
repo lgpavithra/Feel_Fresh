@@ -55,7 +55,7 @@ public class DTOGenerator {
             System.out.println("Please enter a valid amount to the paid value");
             return null;
         } else if (nic.isBlank()) {
-            System.out.println("Please enter a mobile number");
+            System.out.println("Please enter a nic number");
             return null;
         } else {
             InvoiceDTO dTO = new InvoiceDTO();
