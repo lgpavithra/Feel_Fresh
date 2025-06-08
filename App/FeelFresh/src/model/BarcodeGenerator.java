@@ -45,7 +45,7 @@ public class BarcodeGenerator {
             
             BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix);
             
-            String directoryPath = "barcodes/";
+            String directoryPath = "src/barcodes/";
             File directory = new File(directoryPath);
             if (!directory.exists()) {
                 directory.mkdirs();
