@@ -31,7 +31,7 @@ public class addProduct extends javax.swing.JPanel {
         loadCategories();
         loadBrand();
         loadProducts_PS("product`.`name", "ASC");
-      
+
     }
 
     private void loadCategories() {
@@ -80,13 +80,11 @@ public class addProduct extends javax.swing.JPanel {
     }
 //   
 
-   
     private void loadProducts_PS(String column, String orderby) {
         try {
 
             ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `product` INNER JOIN `category` ON `product`.`category_id`=`category`.`id` "
-                    + "LEFT JOIN `brand` ON `brand`.`id`=`product`.`brand_id`  ORDER BY `"+ column +"` " + orderby + "");
-           
+                    + "LEFT JOIN `brand` ON `brand`.`id`=`product`.`brand_id`  ORDER BY `" + column + "` " + orderby + "");
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
@@ -98,10 +96,11 @@ public class addProduct extends javax.swing.JPanel {
                 vector.add(resultSet.getString("category.name"));
                 vector.add(resultSet.getString("brand.name"));
                 vector.add(resultSet.getString("product.create_at"));
-                if(resultSet==null){
-                 vector.add("Not Updated Yet");
-                }else{
-                   vector.add(resultSet.getString("product.update_at"));
+                String Udate = resultSet.getString("product.update_at");
+                if (Udate == null) {
+                    vector.add("Not Updated Yet");
+                } else {
+                    vector.add(resultSet.getString("product.update_at"));
                 }
                 vector.add(resultSet.getString("status"));
 
@@ -121,10 +120,10 @@ public class addProduct extends javax.swing.JPanel {
 
         if (filter == 0) {
             loadProducts_PS("product`.`name", "ASC");
-          
+
         } else if (filter == 1) {
-             loadProducts_PS("product`.`name", "DESC");
-           
+            loadProducts_PS("product`.`name", "DESC");
+
         }
 
     }
@@ -397,9 +396,8 @@ public class addProduct extends javax.swing.JPanel {
             try {
 
                 MYSQL.executeIUD("INSERT INTO `product`(`name`,`brand_id`,`category_id`)VALUES('" + name + "','" + brandMap.get(brand) + "','" + categoryMap.get(category) + "')");
-                  loadProducts_PS("product`.`name", "ASC");
-               
-              
+                loadProducts_PS("product`.`name", "ASC");
+
                 reset_PS();
 
             } catch (Exception e) {
@@ -469,19 +467,19 @@ public class addProduct extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-    
+
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void roundButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton1ActionPerformed
         try {
-             HashMap<String, Object> map = new HashMap<>();
-             JRTableModelDataSource dataSource = new JRTableModelDataSource((jTable1.getModel()));
-             JasperPrint print = JasperFillManager.fillReport("src/reports/product/Product_Report.jasper", map, dataSource);
-             Report.execute(print);
+            HashMap<String, Object> map = new HashMap<>();
+            JRTableModelDataSource dataSource = new JRTableModelDataSource((jTable1.getModel()));
+            JasperPrint print = JasperFillManager.fillReport("src/reports/product/Product_Report.jasper", map, dataSource);
+            Report.execute(print);
         } catch (Exception e) {
             e.printStackTrace();
         }
-     
+
     }//GEN-LAST:event_roundButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -512,7 +510,7 @@ private void reset_PS() {
         uJTextfield1.grabFocus();
         uJTextfield1.setEditable(true);
         loadProducts_PS("product`.`name", "ASC");
-       
+
     }
 
 }
