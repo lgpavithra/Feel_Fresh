@@ -188,7 +188,7 @@ public class employee extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        roundButton1.setText("roundButton1");
+        
 
 
 
