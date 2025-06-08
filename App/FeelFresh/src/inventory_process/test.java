@@ -42,7 +42,7 @@ public class test {
 //        }
 
         // invoice creation
-        InvoiceDTO invoiceDTO = dTOGenerator.generateInvoiceDTO(productList, 1800, 1000, 0, "07855444");
+        InvoiceDTO invoiceDTO = dTOGenerator.generateInvoiceDTO(productList, 1800, 1000, 0, "200312568946");
         if (invoiceDTO != null) {
             //manager.issueProducts(invoiceDTO);
             new InvoiceProcessor().process(invoiceDTO);

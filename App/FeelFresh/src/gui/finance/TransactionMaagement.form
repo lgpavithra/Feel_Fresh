@@ -30,9 +30,9 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel1" max="32767" attributes="0"/>
-                              <Component id="jScrollPane1" pref="500" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="501" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="roundButton3" min="-2" pref="98" max="-2" attributes="0"/>
+                          <Component id="deleteButton" min="-2" pref="98" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="14" max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="roundButton3" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="deleteButton" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanel2" max="32767" attributes="0"/>
@@ -121,17 +121,29 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="4">
-                <Column editable="true" title="Date Time" type="java.lang.Object"/>
-                <Column editable="true" title="Source" type="java.lang.Object"/>
-                <Column editable="true" title="Beneficiary" type="java.lang.Object"/>
-                <Column editable="true" title="Amount" type="java.lang.Object"/>
-                <Column editable="true" title="Credit/Debit" type="java.lang.Object"/>
-                <Column editable="true" title="Remark" type="java.lang.Object"/>
+              <Table columnCount="8" rowCount="4">
+                <Column editable="false" title="id" type="java.lang.Object"/>
+                <Column editable="false" title="Date Time" type="java.lang.Object"/>
+                <Column editable="false" title="Source" type="java.lang.Object"/>
+                <Column editable="false" title="Beneficiary" type="java.lang.Object"/>
+                <Column editable="false" title="Amount" type="java.lang.Object"/>
+                <Column editable="false" title="Credit/Debit" type="java.lang.Object"/>
+                <Column editable="false" title="Type" type="java.lang.Object"/>
+                <Column editable="false" title="Remark" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -255,52 +267,47 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
+                          <Component id="flagComboBox" min="-2" pref="99" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="panalRound1" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Component id="typeComboBox" min="-2" pref="99" max="-2" attributes="0"/>
                                   <Component id="jLabel15" min="-2" pref="53" max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" min="-2" pref="99" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel12" max="32767" attributes="0"/>
-                                      <Component id="jLabel11" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="uJTextfield1" pref="144" max="32767" attributes="0"/>
-                                      <Component id="uJTextfield2" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="jFormattedTextField1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jScrollPane2" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
-                                      <Component id="jLabel13" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
-                                      <Component id="jLabel14" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
-                                      <Component id="jFormattedTextField2" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="roundButton6" min="-2" pref="120" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                          <Component id="roundButton7" min="-2" pref="121" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel12" max="32767" attributes="0"/>
+                              <Component id="jLabel11" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="uJTextfield1" pref="144" max="32767" attributes="0"/>
+                              <Component id="uJTextfield2" max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <Component id="amountField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane2" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
+                              <Component id="jLabel13" alignment="0" min="-2" pref="233" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="createButton" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Component id="discardButton" min="-2" pref="121" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel14" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -329,25 +336,25 @@
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="amountField" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel15" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jFormattedTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="flagComboBox" min="-2" max="-2" attributes="0"/>
+                      <Component id="typeComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" pref="74" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="80" max="32767" attributes="0"/>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="roundButton7" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                      <Component id="roundButton6" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="discardButton" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="createButton" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
@@ -371,7 +378,7 @@
             <Property name="text" type="java.lang.String" value="Source"/>
           </Properties>
         </Component>
-        <Component class="component.RoundButton" name="roundButton6">
+        <Component class="component.RoundButton" name="createButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="33" red="33" type="rgb"/>
@@ -379,7 +386,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Blue  Button"/>
+            <Property name="text" type="java.lang.String" value="Create"/>
             <Property name="arc" type="int" value="15"/>
             <Property name="autoscrolls" type="boolean" value="true"/>
             <Property name="borderColorHex" type="java.lang.String" value="#aaaaaa"/>
@@ -388,10 +395,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roundButton6ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="component.RoundButton" name="roundButton7">
+        <Component class="component.RoundButton" name="discardButton">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -405,7 +412,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roundButton7ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="discardButtonActionPerformed"/>
           </Events>
         </Component>
         <Container class="desingcode.PanalRound" name="panalRound1">
@@ -551,7 +558,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+        <Component class="javax.swing.JFormattedTextField" name="amountField">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="#0.00" subtype="-1" type="0"/>
@@ -577,18 +584,7 @@
               <Font name="Poppins" size="14" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="Credit"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="#0.00" subtype="-1" type="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="0.00"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Poppins" size="14" style="0"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Credit/Debit"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
@@ -600,7 +596,7 @@
             <Property name="text" type="java.lang.String" value="Type"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="flagComboBox">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Poppins" size="14" style="0"/>
@@ -625,7 +621,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jTextArea1">
+            <Component class="javax.swing.JTextArea" name="remarkTextArea">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
@@ -642,9 +638,27 @@
             <Property name="text" type="java.lang.String" value="Remark"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JComboBox" name="typeComboBox">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Poppins" size="14" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
-    <Component class="component.RoundButton" name="roundButton3">
+    <Component class="component.RoundButton" name="deleteButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -661,7 +675,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roundButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">

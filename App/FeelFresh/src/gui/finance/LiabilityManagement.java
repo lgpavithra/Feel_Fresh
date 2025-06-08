@@ -4,7 +4,15 @@
  */
 package gui.finance;
 
+import finance.FinanceDepartment;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.dto.DTOGenerator;
+import model.dto.FinanceDTO;
 
 /**
  *
@@ -15,8 +23,19 @@ public class LiabilityManagement extends javax.swing.JPanel {
     /**
      * Creates new form LiabilityManagement
      */
+    private static LiabilityManagement liabilityManagement;
+
+    public static LiabilityManagement getInstance() {
+        if (liabilityManagement == null) {
+            liabilityManagement = new LiabilityManagement();
+        }
+        return liabilityManagement;
+    }
+
     public LiabilityManagement() {
         initComponents();
+        loadValues();
+        loadTable();
     }
 
     /**
@@ -35,16 +54,16 @@ public class LiabilityManagement extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        roundButton5 = new component.RoundButton();
-        roundButton6 = new component.RoundButton();
-        roundButton7 = new component.RoundButton();
+        createButton = new component.RoundButton();
+        updateButton = new component.RoundButton();
+        discardButton = new component.RoundButton();
         panalRound1 = new desingcode.PanalRound();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        liabilityValue = new javax.swing.JLabel();
         uJTextfield1 = new component.UJTextfield();
         uJTextfield2 = new component.UJTextfield();
         jLabel12 = new javax.swing.JLabel();
-        roundButton3 = new component.RoundButton();
+        deleteButton = new component.RoundButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -76,16 +95,26 @@ public class LiabilityManagement extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Name", "Type"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -94,41 +123,41 @@ public class LiabilityManagement extends javax.swing.JPanel {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText("Name ");
 
-        roundButton5.setBackground(new java.awt.Color(0, 153, 51));
-        roundButton5.setForeground(new java.awt.Color(255, 255, 255));
-        roundButton5.setText("Balance Sheet");
-        roundButton5.setArc(15);
-        roundButton5.setAutoscrolls(true);
-        roundButton5.setBorderColorHex("#aaaaaa");
-        roundButton5.setFont(new java.awt.Font("Quicksand SemiBold", 0, 16)); // NOI18N
-        roundButton5.addActionListener(new java.awt.event.ActionListener() {
+        createButton.setBackground(new java.awt.Color(0, 153, 51));
+        createButton.setForeground(new java.awt.Color(255, 255, 255));
+        createButton.setText("Add");
+        createButton.setArc(15);
+        createButton.setAutoscrolls(true);
+        createButton.setBorderColorHex("#aaaaaa");
+        createButton.setFont(new java.awt.Font("Quicksand SemiBold", 0, 16)); // NOI18N
+        createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roundButton5ActionPerformed(evt);
+                createButtonActionPerformed(evt);
             }
         });
 
-        roundButton6.setBackground(new java.awt.Color(51, 51, 255));
-        roundButton6.setForeground(new java.awt.Color(255, 255, 255));
-        roundButton6.setText("Income Statement");
-        roundButton6.setArc(15);
-        roundButton6.setAutoscrolls(true);
-        roundButton6.setBorderColorHex("#aaaaaa");
-        roundButton6.setFont(new java.awt.Font("Quicksand SemiBold", 0, 16)); // NOI18N
-        roundButton6.addActionListener(new java.awt.event.ActionListener() {
+        updateButton.setBackground(new java.awt.Color(51, 51, 255));
+        updateButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateButton.setText("Update");
+        updateButton.setArc(15);
+        updateButton.setAutoscrolls(true);
+        updateButton.setBorderColorHex("#aaaaaa");
+        updateButton.setFont(new java.awt.Font("Quicksand SemiBold", 0, 16)); // NOI18N
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roundButton6ActionPerformed(evt);
+                updateButtonActionPerformed(evt);
             }
         });
 
-        roundButton7.setForeground(new java.awt.Color(255, 51, 51));
-        roundButton7.setText("Discard");
-        roundButton7.setArc(15);
-        roundButton7.setAutoscrolls(true);
-        roundButton7.setBorderColorHex("#ff3333");
-        roundButton7.setFont(new java.awt.Font("Quicksand SemiBold", 0, 16)); // NOI18N
-        roundButton7.addActionListener(new java.awt.event.ActionListener() {
+        discardButton.setForeground(new java.awt.Color(255, 51, 51));
+        discardButton.setText("Discard");
+        discardButton.setArc(15);
+        discardButton.setAutoscrolls(true);
+        discardButton.setBorderColorHex("#ff3333");
+        discardButton.setFont(new java.awt.Font("Quicksand SemiBold", 0, 16)); // NOI18N
+        discardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roundButton7ActionPerformed(evt);
+                discardButtonActionPerformed(evt);
             }
         });
 
@@ -139,21 +168,24 @@ public class LiabilityManagement extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Liability");
 
-        jLabel2.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("100");
+        liabilityValue.setFont(new java.awt.Font("Poppins", 0, 30)); // NOI18N
+        liabilityValue.setForeground(new java.awt.Color(255, 255, 255));
+        liabilityValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        liabilityValue.setText("00.00");
 
         javax.swing.GroupLayout panalRound1Layout = new javax.swing.GroupLayout(panalRound1);
         panalRound1.setLayout(panalRound1Layout);
         panalRound1Layout.setHorizontalGroup(
             panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panalRound1Layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
-                .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panalRound1Layout.createSequentialGroup()
+                        .addGap(0, 78, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(0, 78, Short.MAX_VALUE))
+                    .addComponent(liabilityValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panalRound1Layout.setVerticalGroup(
             panalRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +193,7 @@ public class LiabilityManagement extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(liabilityValue)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -195,9 +227,9 @@ public class LiabilityManagement extends javax.swing.JPanel {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(uJTextfield1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                                     .addComponent(uJTextfield2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(roundButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(createButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(discardButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(25, 25, 25))
         );
         jPanel2Layout.setVerticalGroup(
@@ -214,24 +246,24 @@ public class LiabilityManagement extends javax.swing.JPanel {
                     .addComponent(jLabel12)
                     .addComponent(uJTextfield2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
-                .addComponent(roundButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(roundButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(roundButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(discardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        roundButton3.setBackground(new java.awt.Color(255, 51, 51));
-        roundButton3.setForeground(new java.awt.Color(255, 255, 255));
-        roundButton3.setText("Delete");
-        roundButton3.setArc(15);
-        roundButton3.setBorderColorHex("#E70101");
-        roundButton3.setBorderWidth("0");
-        roundButton3.setFont(new java.awt.Font("Quicksand SemiBold", 0, 14)); // NOI18N
-        roundButton3.addActionListener(new java.awt.event.ActionListener() {
+        deleteButton.setBackground(new java.awt.Color(255, 51, 51));
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("Delete");
+        deleteButton.setArc(15);
+        deleteButton.setBorderColorHex("#E70101");
+        deleteButton.setBorderWidth("0");
+        deleteButton.setFont(new java.awt.Font("Quicksand SemiBold", 0, 14)); // NOI18N
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roundButton3ActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
             }
         });
 
@@ -248,7 +280,7 @@ public class LiabilityManagement extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(roundButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,7 +303,7 @@ public class LiabilityManagement extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(roundButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(6, 6, 6)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -291,45 +323,140 @@ public class LiabilityManagement extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void roundButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton5ActionPerformed
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        String name = uJTextfield1.getText();
+        String value = uJTextfield2.getText();
 
-    }//GEN-LAST:event_roundButton5ActionPerformed
-
-    private void roundButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roundButton6ActionPerformed
-
-    private void roundButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roundButton7ActionPerformed
-
-    private void roundButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton3ActionPerformed
-        if (jTable1.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(this, "Please select a row that you want to remove", "Warning", JOptionPane.WARNING_MESSAGE);
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(liabilityManagement, "name cannot be null", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (value.isEmpty()) {
+            JOptionPane.showMessageDialog(liabilityManagement, "value cannot be null", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (!isValidDouble(value)) {
+            JOptionPane.showMessageDialog(liabilityManagement, "value must be a valid number", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
         } else {
-
+            FinanceDTO dTO = DTOGenerator.getInstance().generateFinanceDTO(name, "Liability", Double.parseDouble(value));
+            String msg = FinanceDepartment.getLiabilityManager().create(dTO);
+            if (msg.equals("Successfully created")) {
+                JOptionPane.showMessageDialog(liabilityManagement, "Created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else if (msg.equals("Liability with this name and type already exists.")) {
+                JOptionPane.showMessageDialog(liabilityManagement, "Liability with this name and type already exists.", "warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(liabilityManagement, "Unknown Error occured", "warning", JOptionPane.WARNING_MESSAGE);
+            }
+            loadTable();
+            clearFields();
+            loadValues();
         }
-    }//GEN-LAST:event_roundButton3ActionPerformed
+    }//GEN-LAST:event_createButtonActionPerformed
 
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        String name = uJTextfield1.getText();
+        String value = uJTextfield2.getText();
+
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(liabilityManagement, "name cannot be null", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (value.isEmpty()) {
+            JOptionPane.showMessageDialog(liabilityManagement, "value cannot be null", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (!isValidDouble(value)) {
+            JOptionPane.showMessageDialog(liabilityManagement, "value must be a valid number", "warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+            String msg = FinanceDepartment.getLiabilityManager().update(name, Double.parseDouble(value));
+            if (msg.equals("successfully updated")) {
+                JOptionPane.showMessageDialog(liabilityManagement, "Updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(liabilityManagement, "Unknown Error occured", "warning", JOptionPane.WARNING_MESSAGE);
+            }
+            loadTable();
+            clearFields();
+            loadValues();
+        }
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void discardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discardButtonActionPerformed
+        clearFields();
+    }//GEN-LAST:event_discardButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        String name = String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+        FinanceDepartment.getLiabilityManager().delete(name);
+        loadTable();
+        loadValues();
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (evt.getClickCount() == 2) {  // Check for double-click            
+            int row = jTable1.getSelectedRow();  // Get the selected row index
+            if (row != -1) {                               
+                String name = String.valueOf(jTable1.getValueAt(row, 0));
+                String value = String.valueOf(jTable1.getValueAt(row, 1));
+                uJTextfield1.setText(name);
+                uJTextfield2.setText(value);
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    public JLabel getLiabilityValue() {
+        return liabilityValue;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private component.RoundButton createButton;
+    private component.RoundButton deleteButton;
+    private component.RoundButton discardButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel liabilityValue;
     private desingcode.PanalRound panalRound1;
     private desingcode.PanalRound panalRound4;
-    private component.RoundButton roundButton3;
-    private component.RoundButton roundButton5;
-    private component.RoundButton roundButton6;
-    private component.RoundButton roundButton7;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
+    private component.RoundButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    private void loadValues() {
+        getLiabilityValue().setText(String.valueOf(FinanceDepartment.getLiabilityManager().getValue()));
+    }
+
+    private void loadTable() {
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+        ResultSet rs = FinanceDepartment.getLiabilityManager().read();
+        try {
+            while (rs.next()) {
+                Vector<String> v = new Vector();
+                v.add(rs.getString("name"));
+                v.add(rs.getString("value"));
+                dtm.addRow(v);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private boolean isValidDouble(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private void clearFields() {
+        uJTextfield1.setText("");
+        uJTextfield2.setText("");
+    }
 }

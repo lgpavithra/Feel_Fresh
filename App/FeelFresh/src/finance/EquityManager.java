@@ -28,10 +28,11 @@ public class EquityManager implements FinanceManager {
     }
 
     @Override
-    public String update(String name, double value) {
+    public String update(String name, double value) {        
         String q = "UPDATE finance "
                 + "SET value = '" + value + "' "
-                + "WHERE type = 'Equity' AND name = '" + name + "'";
+                + "WHERE type = 'Liability' AND name = '" + name + "'";
+
         try {
             MYSQL.executeIUD(q);
             return "successfully updated";

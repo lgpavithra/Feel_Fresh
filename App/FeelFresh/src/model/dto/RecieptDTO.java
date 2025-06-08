@@ -5,17 +5,17 @@ import java.util.ArrayList;
 public class RecieptDTO {
 
     private ArrayList<ProductDTO> productList;
-    private String mobile;
+    private String nic;
     private double total;
     private double discount;
     private double paid;
 
-    public String getMobile() {
-        return mobile;
+    public String getNic() {
+        return nic;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setNic(String nic) {
+        this.nic = nic;
     }
 
     public double getTotal() {
