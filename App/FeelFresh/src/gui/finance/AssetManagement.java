@@ -13,6 +13,8 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import model.dto.DTOGenerator;
 import model.dto.FinanceDTO;
 
@@ -34,7 +36,7 @@ public class AssetManagement extends javax.swing.JPanel {
         return assetManagement;
     }
 
-    private AssetManagement() {
+    public AssetManagement() {
         initComponents();
         loadValues();
         loadTable();
@@ -342,7 +344,7 @@ public class AssetManagement extends javax.swing.JPanel {
             String msg = FinanceDepartment.getAssetManager().create(dTO);
             if (msg.equals("Successfully created")) {
                 JOptionPane.showMessageDialog(assetManagement, "Created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-            }else if(msg.equals("Asset with this name and type already exists.")){
+            } else if (msg.equals("Asset with this name and type already exists.")) {
                 JOptionPane.showMessageDialog(assetManagement, "Asset with this name and type already exists.", "warning", JOptionPane.WARNING_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(assetManagement, "Unknown Error occured", "warning", JOptionPane.WARNING_MESSAGE);
@@ -393,7 +395,7 @@ public class AssetManagement extends javax.swing.JPanel {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 2) {  // Check for double-click            
             int row = jTable1.getSelectedRow();  // Get the selected row index
-            if (row != -1) {                               
+            if (row != -1) {
                 String name = String.valueOf(jTable1.getValueAt(row, 0));
                 String value = String.valueOf(jTable1.getValueAt(row, 1));
                 uJTextfield1.setText(name);
@@ -445,6 +447,13 @@ public class AssetManagement extends javax.swing.JPanel {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+        // Center align all columns
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
 

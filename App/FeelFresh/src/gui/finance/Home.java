@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,6 +23,15 @@ public class Home extends javax.swing.JPanel {
     /**
      * Creates new form Home
      */
+    private static Home home;
+
+    public static Home getInstance() {
+        if (home == null) {
+            home = new Home();
+        }
+        return home;
+    }
+
     public Home() {
         initComponents();
         loadTable();
@@ -500,6 +511,13 @@ public class Home extends javax.swing.JPanel {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        // Center align all columns
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
     }
 
     private void loadLabels() {
@@ -509,11 +527,11 @@ public class Home extends javax.swing.JPanel {
         System.out.println(ev);
         if (av != null) {
             getAssetValueLabel().setText(av);
-        } 
+        }
         if (ev != null) {
             getEquityValueLabel().setText(ev);
         }
-        if(lv != null){
+        if (lv != null) {
             getLiabilityValueLabel().setText(lv);
         }
     }
