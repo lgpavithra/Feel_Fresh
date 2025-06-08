@@ -97,7 +97,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
         } else if (filter == 2) {
             loadCustomer_ps("last_name", "ASC", jTextField1.getText(), jTextField1.getText());
         } else if (filter == 3) {
-            loadCustomer_ps("last_name", "ASC", jTextField1.getText(), jTextField1.getText());
+            loadCustomer_ps("last_name", "DESC", jTextField1.getText(), jTextField1.getText());
         }
 
     }
@@ -675,6 +675,7 @@ public class CustomerRegistration extends javax.swing.JPanel {
         if (evt.getClickCount() == 2) {
 
             jButton1.setEnabled(false);
+            jButton2.setEnabled(true);
 
             uJTextfield2.setText(fname);
             uJTextfield3.setText(lname);

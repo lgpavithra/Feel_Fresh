@@ -68,7 +68,7 @@ public class employee extends javax.swing.JPanel {
         }
     }
 
-    private void LoadEmployee_HS(String column, String orderby, String fname_HS, String nic) {
+    private void LoadEmployee_HS(String column, String orderby, String nic, String FName_HS) {
         try {
             ResultSet resultSet_HS = MYSQL.executeSearch("SELECT \n"
                     + "    e.nic,\n"
@@ -89,7 +89,7 @@ public class employee extends javax.swing.JPanel {
                     + "    ON e.nic = em.employee_nic\n"
                     + "LEFT JOIN position p\n"
                     + "    ON e.position_id = p.id\n"
-                    + "GROUP BY e.nic;");
+                    + " WHERE `nic` LIKE '" + nic + "%' OR `fname` LIKE '" + FName_HS + "%'  ORDER BY `" + column + "` " + orderby + "GROUP BY e.nic;");
 
             DefaultTableModel Tablemodel_HS = (DefaultTableModel) jTable2.getModel();
             Tablemodel_HS.setRowCount(0);
@@ -127,9 +127,9 @@ public class employee extends javax.swing.JPanel {
         } else if (filter == 1) {
             LoadEmployee_HS("fname", "DESC", jTextField1.getText(), jTextField1.getText());
         } else if (filter == 2) {
-            LoadEmployee_HS("fname", "ASC", jTextField1.getText(), jTextField1.getText());
+            LoadEmployee_HS("lname", "ASC", jTextField1.getText(), jTextField1.getText());
         } else if (filter == 3) {
-            LoadEmployee_HS("fname", "DESC", jTextField1.getText(), jTextField1.getText());
+            LoadEmployee_HS("lname", "DESC", jTextField1.getText(), jTextField1.getText());
         }
 
     }
