@@ -148,7 +148,7 @@ public class InventoryManager {
             FinanceDepartment.getAssetManager().debit("Money", dto.getPaid());
             FinanceDepartment.getAssetManager().credit("Inventory", dto.getPaid());
             //=============== comment this if error occured =============
-            
+
             ResultSet rs = MYSQL.executeSearch("SELECT LAST_INSERT_ID()");
             int lastId = -1;
 
@@ -189,7 +189,7 @@ public class InventoryManager {
 
             //stock level update
         } catch (Exception ex) {
-            logger.error("EXCEPTION",ex);
+            logger.error("EXCEPTION", ex);
         }
     }
 
@@ -216,7 +216,7 @@ public class InventoryManager {
             }
 
         } catch (Exception ex) {
-            logger.error("EXCEPTION",ex);
+            logger.error("EXCEPTION", ex);
         }
         return Inventory.getInstance().getProductList();
     }
@@ -228,7 +228,7 @@ public class InventoryManager {
         1. CRUD - products
         2.
      */
-    public void issueProducts(ProductDTO productDTO) {        
+    public void issueProducts(ProductDTO productDTO) {
         try {
             //getting stock details
             String stockQ = "SELECT "
@@ -267,7 +267,7 @@ public class InventoryManager {
                 }
             }
         } catch (Exception ex) {
-            logger.error("EXCEPTION",ex);
+            logger.error("EXCEPTION", ex);
         }
     }
 
@@ -287,7 +287,7 @@ public class InventoryManager {
                 return rs;
             }
         } catch (Exception ex) {
-            logger.error("EXCEPTION",ex);
+            logger.error("EXCEPTION", ex);
         }
         return null;
     }
@@ -308,7 +308,23 @@ public class InventoryManager {
             ResultSet rs = MYSQL.executeSearch(q);
             return rs;  // Return ResultSet directly without calling rs.next()
         } catch (Exception ex) {
-            logger.error("EXCEPTION",ex);
+            logger.error("EXCEPTION", ex);
+        }
+        return null;
+    }
+
+    public ResultSet loadStocks(String barcode) {
+        String q = "SELECT p.*, SUM(s.qty) AS total_stock "
+                + "FROM product p "
+                + "INNER JOIN stock s ON p.id = s.product_id "
+                + "WHERE p.barcode = ? " // Barcode filter
+                + "GROUP BY p.id "
+                + "HAVING total_stock > 0";
+        try {
+            ResultSet rs = MYSQL.executeSearch(q);
+            return rs;  // Return ResultSet directly without calling rs.next()
+        } catch (Exception ex) {
+            logger.error("EXCEPTION", ex);
         }
         return null;
     }
