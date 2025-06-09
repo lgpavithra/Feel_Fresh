@@ -78,47 +78,8 @@ Feel Fresh Logo :
 <tr>
   <th>Leader</th>
 </tr>
-<tr>
- <td>MG Haritha Sandun Theekshana</td>
-</tr>
-<tr>
- <th>Database Manager</th>
-</tr>
-<tr>
- <td>MG Haritha Sandun Theekshana</td>
-</tr>
-<tr>
- <th>Project Manager</th>
-</tr>
-<tr>
- <td>LG Virajith Pavithra Wijewansha</td>
-</tr>
-<tr>
- <th>UI Designer</th>
-</tr>
-<tr>
- <td>WL Pawan Shanaka</td>
-</tr>
-<tr>
- <th>Documentation Analyst</th>
-</tr>
-<tr>
- <td>ARG Dulakshi Nayanathara</td>
-</tr>
-<tr>
- <th>Software Developer</th>
-</tr>
-<tr>
- <td>Nimesh Kumara Ilangamge</td>
-</tr>
- <tr>
-  <td>GS Sawandi Sulakshani Premarathne</td>
- </tr>
  <tr>
   <td>MG Haritha Sandun Theekshana</td>
- </tr>
- <tr>
-  <td>AGR Dulakshi Nayanathara</td>
  </tr>
  <tr>
   <td>WL Pawan Shanaka</td>
@@ -126,7 +87,10 @@ Feel Fresh Logo :
  <tr>
   <td>LG Virajith Pavithra Wijewansha</td>
  </tr>
-
+ 
+ <tr>
+  <td>TDTP Senadhi Mayadunna</td>
+ </tr>
  <tr>
   <td>____________________________________*****************************************____________________________________</td>
  </tr>
