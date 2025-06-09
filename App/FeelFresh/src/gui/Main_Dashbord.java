@@ -4,6 +4,10 @@
  */
 package gui;
 
+import gui.panel.cashier.Cashier;
+import java.awt.Toolkit;
+import model.system.SystemStatus;
+
 /**
  *
  * @author Sandun
@@ -15,6 +19,8 @@ public class Main_Dashbord extends javax.swing.JFrame {
      */
     public Main_Dashbord() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/icon/Cherryicon.png")));
+
     }
 
     /**
@@ -26,22 +32,122 @@ public class Main_Dashbord extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        roundButton1 = new component.RoundButton();
+        roundButton2 = new component.RoundButton();
+        roundButton3 = new component.RoundButton();
+        roundButton4 = new component.RoundButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        roundButton1.setBackground(new java.awt.Color(51, 51, 0));
+        roundButton1.setForeground(new java.awt.Color(255, 255, 255));
+        roundButton1.setText("Finance");
+        roundButton1.setBorderColorHex("#555555");
+        roundButton1.setFont(new java.awt.Font("Poppins Black", 0, 24)); // NOI18N
+        roundButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundButton1ActionPerformed(evt);
+            }
+        });
+
+        roundButton2.setBackground(new java.awt.Color(51, 51, 0));
+        roundButton2.setForeground(new java.awt.Color(255, 255, 255));
+        roundButton2.setText("Cashier");
+        roundButton2.setBorderColorHex("#555555");
+        roundButton2.setFont(new java.awt.Font("Poppins Black", 0, 24)); // NOI18N
+        roundButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundButton2ActionPerformed(evt);
+            }
+        });
+
+        roundButton3.setBackground(new java.awt.Color(51, 51, 0));
+        roundButton3.setForeground(new java.awt.Color(255, 255, 255));
+        roundButton3.setText("HR ");
+        roundButton3.setBorderColorHex("#555555");
+        roundButton3.setFont(new java.awt.Font("Poppins Black", 0, 24)); // NOI18N
+        roundButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundButton3ActionPerformed(evt);
+            }
+        });
+
+        roundButton4.setBackground(new java.awt.Color(51, 51, 0));
+        roundButton4.setForeground(new java.awt.Color(255, 255, 255));
+        roundButton4.setText("Inventory");
+        roundButton4.setBorderColorHex("#555555");
+        roundButton4.setFont(new java.awt.Font("Poppins Black", 0, 24)); // NOI18N
+        roundButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(roundButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(roundButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(roundButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(roundButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roundButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roundButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roundButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 743, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void roundButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton2ActionPerformed
+        new Dashboard_cashier(SystemStatus.getUser().getUserName()).setVisible(true);
+    }//GEN-LAST:event_roundButton2ActionPerformed
+
+    private void roundButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton3ActionPerformed
+        new Dashboard_hR_Manager().setVisible(true);
+    }//GEN-LAST:event_roundButton3ActionPerformed
+
+    private void roundButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton4ActionPerformed
+
+        new Dashboard_inventoryManager().setVisible(true);
+
+    }//GEN-LAST:event_roundButton4ActionPerformed
+
+    private void roundButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton1ActionPerformed
+
+        new Dashboard_Finance().setVisible(true);
+
+    }//GEN-LAST:event_roundButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +185,10 @@ public class Main_Dashbord extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private component.RoundButton roundButton1;
+    private component.RoundButton roundButton2;
+    private component.RoundButton roundButton3;
+    private component.RoundButton roundButton4;
     // End of variables declaration//GEN-END:variables
 }

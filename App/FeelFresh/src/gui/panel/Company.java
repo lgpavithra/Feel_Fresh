@@ -69,7 +69,7 @@ public class Company extends javax.swing.JPanel {
         if (filter == 0) {
             loadCompany_ps("company_name", "ASC", jTextField1.getText(), jTextField1.getText());
         } else if (filter == 1) {
-            loadCompany_ps("company_name", "ASC", jTextField1.getText(), jTextField1.getText());
+            loadCompany_ps("company_name", "DESC", jTextField1.getText(), jTextField1.getText());
         }
 
     }

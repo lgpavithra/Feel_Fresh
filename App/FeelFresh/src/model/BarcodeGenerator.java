@@ -17,6 +17,8 @@ import javax.imageio.ImageIO;
 
 public class BarcodeGenerator {
 
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(BarcodeGenerator.class);    
+    
     public static String generateProductBarcode() throws Exception {
         String query = "SELECT MAX(id) AS last_id FROM product";
         int nextId = 1;
@@ -55,10 +57,12 @@ public class BarcodeGenerator {
             ImageIO.write(image, "png", outputFile);
             
             System.out.println("Barcode generated successfully: " + outputFile.getAbsolutePath());
+            logger.trace("A New Barcode is generated");
 
         } catch (WriterException | IOException e) {
             e.printStackTrace();            
             System.err.println("Error generating barcode: " + e.getMessage());
+            logger.trace("An Error occured when generating the barcode");
         }
         
         return filePath;

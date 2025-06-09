@@ -15,12 +15,14 @@ import gui.panel.Welcome;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import model.system.SystemStatus;
 
 /**
  *
@@ -34,7 +36,10 @@ public class Dashboard_Finance extends javax.swing.JFrame {
 //    public static String emp_Username;
     public Dashboard_Finance() {
         initComponents();
-//        jLabel6.setText(SystemStatus.getUser().getUserName()); // ************
+                setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/icon/Cherryicon.png")));
+
+        setExtendedState(Dashboard_hR_Manager.MAXIMIZED_BOTH);
+        jLabel6.setText(SystemStatus.getUser().getUserName()); // ************
         jLabel6.setText("Joni");
         changePanel_vp(new Welcome());
         this.setLocationRelativeTo(null);
@@ -325,6 +330,7 @@ public class Dashboard_Finance extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed

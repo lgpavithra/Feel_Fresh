@@ -24,6 +24,7 @@ import gui.panel.order.OrderPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -45,8 +46,10 @@ public class Dashboard_inventoryManager extends javax.swing.JFrame {
 //    public static String emp_Username;
     public Dashboard_inventoryManager() {
         initComponents();
-//        jLabel6.setText(SystemStatus.getUser().getUserName()); // ************
-        jLabel6.setText("Joni");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/icon/Cherryicon.png")));
+
+        setExtendedState(Dashboard_hR_Manager.MAXIMIZED_BOTH);
+        jLabel6.setText(SystemStatus.getUser().getUserName()); // ************        
         changePanel_vp(new Welcome());
         this.setLocationRelativeTo(null);
         

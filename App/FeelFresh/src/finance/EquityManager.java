@@ -6,6 +6,8 @@ import model.dto.FinanceDTO;
 
 public class EquityManager implements FinanceManager {
 
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(EquityManager.class);
+    
     @Override
     public String create(FinanceDTO dto) {
         try {
@@ -31,7 +33,7 @@ public class EquityManager implements FinanceManager {
     public String update(String name, double value) {        
         String q = "UPDATE finance "
                 + "SET value = '" + value + "' "
-                + "WHERE type = 'Liability' AND name = '" + name + "'";
+                + "WHERE type = 'Equity' AND name = '" + name + "'";
 
         try {
             MYSQL.executeIUD(q);
@@ -47,7 +49,7 @@ public class EquityManager implements FinanceManager {
         try {
             return MYSQL.executeSearch(q);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }
@@ -76,7 +78,7 @@ public class EquityManager implements FinanceManager {
             }
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }
@@ -89,7 +91,7 @@ public class EquityManager implements FinanceManager {
         try {
             MYSQL.executeIUD(q);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
     }
 
@@ -101,7 +103,7 @@ public class EquityManager implements FinanceManager {
         try {
             MYSQL.executeIUD(q);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
     }
 

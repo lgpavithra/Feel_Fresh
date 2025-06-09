@@ -733,7 +733,7 @@ public class MakeOrder extends javax.swing.JPanel {
                                     this.parentFrame_vp.jLabelProgress.setText(text + "|||");
                                     try {
                                         Thread.sleep(35);
-                                    } catch (InterruptedException ex) {
+                                    } catch (InterruptedException ex) {                                        
                                         ex.printStackTrace();
                                     }
 

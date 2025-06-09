@@ -1,14 +1,21 @@
 package inventory_process;
 
+import finance.FinanceDepartment;
 import model.dto.GrnDTO;
 import model.dto.InvoiceDTO;
 import model.dto.ProductDTO;
 import inventory_process.inventory.InventoryManager;
 import java.util.ArrayList;
 import model.dto.DTOGenerator;
+import java.sql.ResultSet;
 import inventory_process.inventory.InvoiceProcessor;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class test {
+
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(test.class);
 
     public static void main(String[] args) {
         InventoryManager manager = InventoryManager.getInstance();
@@ -40,21 +47,38 @@ public class test {
 //        } else {
 //            System.out.println("Null is returned when creating grnDTO");
 //        }
-
         // invoice creation
-        InvoiceDTO invoiceDTO = dTOGenerator.generateInvoiceDTO(productList, 1800, 1000, 0, "200312568946");
-        if (invoiceDTO != null) {
-            //manager.issueProducts(invoiceDTO);
-            new InvoiceProcessor().process(invoiceDTO);
-        } else {
-            System.out.println("Null is returned when creating invoice DTO");
-        }
+//        InvoiceDTO invoiceDTO = dTOGenerator.generateInvoiceDTO(productList, 1800, 1000, 0, "200312568946");
+//        if (invoiceDTO != null) {
+//            //manager.issueProducts(invoiceDTO);
+//            new InvoiceProcessor().process(invoiceDTO);
+//        } else {
+//            System.out.println("Null is returned when creating invoice DTO");
+//        }
 //
 //        // to load products (format:- product_name , category , brand_name)...
 //        for (ProductDTO productDTO : manager.loadProducts()) {
 //            System.out.println(productDTO.getPname());
 //            System.out.println(productDTO.getCategoryName());
 //            System.out.println(productDTO.getBrandName());
+
+//        }       
+        try {
+
+            System.out.println(1 / 0);
+        } catch (Exception e) {
+            logger.error("EXCEPTION",e);
+        }
+
 //        }
+        ResultSet rs = FinanceDepartment.getTransactionManager().getTodayExpenses();
+        try {            
+            if (rs.next()) {
+                System.out.println("ok");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
     }
 }
