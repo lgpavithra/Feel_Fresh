@@ -41,7 +41,7 @@ public class Dashboard_cashier extends javax.swing.JFrame {
 
     public Dashboard_cashier(String Username) {
         initComponents();
-//       this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+       this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jLabel6.setText(SystemStatus.getUser().getUserName());
         emp_Username = Username;
 

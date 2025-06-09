@@ -71,6 +71,11 @@ public class Log_in extends javax.swing.JFrame {
     private void initComponents() {
 
         panalRound1 = new desingcode.PanalRound();
+        jPanel1 = new javax.swing.JPanel();
+        panalRound4 = new desingcode.PanalRound();
+        jButton3 = new javax.swing.JButton();
+        panalRound3 = new desingcode.PanalRound();
+        jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -83,8 +88,6 @@ public class Log_in extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
-        panalRound3 = new desingcode.PanalRound();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -96,6 +99,89 @@ public class Log_in extends javax.swing.JFrame {
         panalRound1.setRoundTopLeft(40);
         panalRound1.setRoundTopRight(40);
         panalRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        panalRound4.setBackground(new java.awt.Color(108, 140, 161));
+        panalRound4.setRoundBottomLeft(40);
+        panalRound4.setRoundTopRight(40);
+
+        jButton3.setBackground(new java.awt.Color(108, 140, 161));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-close-20.png"))); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-rclose-20.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panalRound4Layout = new javax.swing.GroupLayout(panalRound4);
+        panalRound4.setLayout(panalRound4Layout);
+        panalRound4Layout.setHorizontalGroup(
+            panalRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panalRound4Layout.setVerticalGroup(
+            panalRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 4, Short.MAX_VALUE)
+                .addComponent(panalRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(panalRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 4, Short.MAX_VALUE))
+        );
+
+        panalRound1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, 50, 50));
+
+        panalRound3.setBackground(new java.awt.Color(108, 140, 161));
+        panalRound3.setRoundBottomLeft(40);
+        panalRound3.setRoundTopRight(40);
+
+        jButton2.setBackground(new java.awt.Color(108, 140, 161));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-close-20.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-rclose-20.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panalRound3Layout = new javax.swing.GroupLayout(panalRound3);
+        panalRound3.setLayout(panalRound3Layout);
+        panalRound3Layout.setHorizontalGroup(
+            panalRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panalRound3Layout.setVerticalGroup(
+            panalRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        panalRound1.add(panalRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1263, 0, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(153, 153, 153));
         jLabel3.setFont(new java.awt.Font("MS PGothic", 1, 36)); // NOI18N
@@ -135,7 +221,7 @@ public class Log_in extends javax.swing.JFrame {
         panalRound2.setRoundTopLeft(130);
 
         jLabel6.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
-        jLabel6.setText("Username");
+        jLabel6.setText("NIC");
 
         jLabel7.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 16)); // NOI18N
         jLabel7.setText("Password");
@@ -184,7 +270,7 @@ public class Log_in extends javax.swing.JFrame {
                             .addComponent(jLabel6)))
                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         panalRound2Layout.setVerticalGroup(
             panalRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,40 +288,7 @@ public class Log_in extends javax.swing.JFrame {
                 .addGap(65, 65, 65))
         );
 
-        panalRound1.add(panalRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
-
-        panalRound3.setBackground(new java.awt.Color(108, 140, 161));
-        panalRound3.setRoundBottomLeft(40);
-        panalRound3.setRoundTopRight(40);
-
-        jButton2.setBackground(new java.awt.Color(108, 140, 161));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-close-20.png"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-rclose-20.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panalRound3Layout = new javax.swing.GroupLayout(panalRound3);
-        panalRound3.setLayout(panalRound3Layout);
-        panalRound3Layout.setHorizontalGroup(
-            panalRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        panalRound3Layout.setVerticalGroup(
-            panalRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panalRound3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        panalRound1.add(panalRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1263, 0, -1, -1));
+        panalRound1.add(panalRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, 370, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -319,7 +372,7 @@ public class Log_in extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(this, "Your user status is " + resultSet.getString("status"), "Warning ", JOptionPane.WARNING_MESSAGE);
                     }
-                    setUsername(Username);
+                    setUsername(Username);                                        
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid Username or Passwors", "Warning", JOptionPane.WARNING_MESSAGE);
                     jTextField1.grabFocus();
@@ -360,6 +413,10 @@ public class Log_in extends javax.swing.JFrame {
         System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -383,6 +440,7 @@ public class Log_in extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -391,10 +449,12 @@ public class Log_in extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private desingcode.PanalRound panalRound1;
     private desingcode.PanalRound panalRound2;
     private desingcode.PanalRound panalRound3;
+    private desingcode.PanalRound panalRound4;
     // End of variables declaration//GEN-END:variables
 }
