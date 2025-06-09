@@ -8,11 +8,17 @@ import finance.FinanceDepartment;
 import gui.dialog.SelectProduct;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import model.jasper.Report;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 
 /**
  *
@@ -435,13 +441,76 @@ public class Home extends javax.swing.JPanel {
 
     private void roundButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton5ActionPerformed
 
-        SelectProduct selectProduct = new SelectProduct(this, true);
-        selectProduct.setLocationRelativeTo(this);
-        selectProduct.setVisible(true);
+//        SelectProduct selectProduct = new SelectProduct(this, true);
+//        selectProduct.setLocationRelativeTo(this);
+//        selectProduct.setVisible(true);
+        String[] columns = {"Name", "value"};
+        DefaultTableModel model1 = new DefaultTableModel(columns, 0);
+        DefaultTableModel model2 = new DefaultTableModel(columns, 0);
+        DefaultTableModel model3 = new DefaultTableModel(columns, 0);
+        try {
+            ResultSet rs1 = FinanceDepartment.getAssetManager().read();
+            while (rs1.next()) {
+                Vector<String> v = new Vector();
+                v.add(rs1.getString("name"));
+                v.add(rs1.getString("value"));
+                model1.addRow(v);
+            }
+
+            ResultSet rs12 = FinanceDepartment.getLiabilityManager().read();
+            while (rs12.next()) {
+                Vector<String> v = new Vector();
+                v.add(rs12.getString("name"));
+                v.add(rs12.getString("value"));
+                model2.addRow(v);
+            }
+
+            ResultSet rs13 = FinanceDepartment.getEquityManager().read();
+            while (rs13.next()) {
+                Vector<String> v = new Vector();
+                v.add(rs13.getString("name"));
+                v.add(rs13.getString("value"));
+                model3.addRow(v);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("NetProfit", "33");
+        map.put("TotalExpense", "33");
+        map.put("TotalRevenue", "33");
+        
+        System.out.println(model1.getRowCount());
+        System.out.println(model2.getRowCount());
+        System.out.println(model3.getRowCount());
+        
+        //Sub
+        map.put("RevenueSource", new JRTableModelDataSource(model1));
+        map.put("ExpenseSource", new JRTableModelDataSource(model2));
+        //Sub
+
+//        FinanceDepartment.getEquityManager().read()
+        double total = 0;
+
+        map.put("TotalLlandOwE", String.valueOf(total));
+//                map.put("Parameter5", jLabelBalance.getText());
+
+        try {
+            Report.execute(JasperFillManager.fillReport("src/reports/income_statement/balance_sheet.jasper", map, new JREmptyDataSource()));
+//            Report.execute(JasperFillManager.fillReport("src/reports/Balance/BalanceSheet.jasper", map, dataSource2));
+//            Report.execute(JasperFillManager.fillReport("src/reports/Balance/LiabilitiesBalance.jasper", map, dataSource3));
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+
     }//GEN-LAST:event_roundButton5ActionPerformed
 
     private void roundButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton6ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_roundButton6ActionPerformed
 
     private void roundButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton7ActionPerformed
@@ -514,7 +583,7 @@ public class Home extends javax.swing.JPanel {
         // Center align all columns
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        
+
         for (int i = 0; i < jTable1.getColumnCount(); i++) {
             jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
