@@ -1,5 +1,8 @@
 package inventory_process.inventory;
 
+import finance.FinanceDepartment;
+import gui.Flag;
+import gui.Type;
 import model.dto.GrnDTO;
 import model.dto.InvoiceDTO;
 import java.util.ArrayList;
@@ -9,6 +12,8 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.MYSQL;
+import model.dto.DTOGenerator;
+import model.dto.TransactionDTO;
 
 public class InventoryManager {
 
@@ -132,11 +137,18 @@ public class InventoryManager {
                 + "    '" + dto.getPaid() + "',"
                 + "    '" + dto.getOutstanding() + "'"
                 + ")";
+
         logger.trace("Creating a new GRN");
+
         try {
             MYSQL.executeIUD(grn);
-//            ResultSet rs = MYSQL.executeSearch("SELECT * FROM grn "
-//                    + "WHERE po_id = '" + dto.getPo_id() + "'");
+            //=============== comment this if error occured =============
+            TransactionDTO dTO = DTOGenerator.getInstance().generateTransactionDTO("Supplier", "Inventory", dto.getTotal(), Flag.credit.toString(), Type.AssetBuying.toString(), "Buying products for inventory");
+            FinanceDepartment.getTransactionManager().create(dTO);
+            FinanceDepartment.getAssetManager().debit("Money", dto.getTotal());
+            FinanceDepartment.getAssetManager().credit("Inventory", dto.getTotal());
+            //=============== comment this if error occured =============
+            
             ResultSet rs = MYSQL.executeSearch("SELECT LAST_INSERT_ID()");
             int lastId = -1;
 

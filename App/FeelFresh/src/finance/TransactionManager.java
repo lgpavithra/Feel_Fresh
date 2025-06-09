@@ -98,4 +98,44 @@ public class TransactionManager {
         }
         return null;
     }
+
+    public ResultSet getTodayTransactions(String flag) {
+        String q = "SELECT * "
+                + "FROM transactions "
+                + "WHERE debit_credit_flag = '" + flag + "' "
+                + "AND DATE(created_at) = CURDATE()";
+        try {
+            ResultSet rs = MYSQL.executeSearch(q);
+            return rs;
+        } catch (Exception ex) {
+            return null;
+        }        
+    }
+
+    public ResultSet getTodayIncomes() {
+        String q = "SELECT * "
+                + "FROM transactions "
+                + "WHERE type = 'Income' "
+                + "AND DATE(created_at) = CURDATE()";
+        try {
+            ResultSet rs = MYSQL.executeSearch(q);
+            return rs;
+        } catch (Exception ex) {
+            return null;
+        }       
+    }
+
+    public ResultSet getTodayExpenses() {
+        String q = "SELECT * "
+                + "FROM transactions "
+                + "WHERE type = 'Expense' "
+                + "AND DATE(created_at) = CURDATE()";
+        try {
+            ResultSet rs = MYSQL.executeSearch(q);
+            return rs;
+        } catch (Exception ex) {
+            return null;
+        }        
+    }
+
 }

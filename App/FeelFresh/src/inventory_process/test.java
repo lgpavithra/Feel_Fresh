@@ -1,12 +1,17 @@
 package inventory_process;
 
+import finance.FinanceDepartment;
 import model.dto.GrnDTO;
 import model.dto.InvoiceDTO;
 import model.dto.ProductDTO;
 import inventory_process.inventory.InventoryManager;
 import java.util.ArrayList;
 import model.dto.DTOGenerator;
+import java.sql.ResultSet;
 import inventory_process.inventory.InvoiceProcessor;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class test {
 
@@ -56,12 +61,23 @@ public class test {
 //            System.out.println(productDTO.getPname());
 //            System.out.println(productDTO.getCategoryName());
 //            System.out.println(productDTO.getBrandName());
+
 //        }       
         try {
 
             System.out.println(1 / 0);
         } catch (Exception e) {
             logger.error("EXCEPTION",e);
+        }
+
+//        }
+        ResultSet rs = FinanceDepartment.getTransactionManager().getTodayExpenses();
+        try {            
+            if (rs.next()) {
+                System.out.println("ok");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
 
     }
