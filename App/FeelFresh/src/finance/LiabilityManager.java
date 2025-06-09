@@ -6,6 +6,8 @@ import model.dto.FinanceDTO;
 
 public class LiabilityManager implements FinanceManager{
 
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(LiabilityManager.class);    
+    
     @Override
     public String create(FinanceDTO dto) {
         try {            
@@ -46,7 +48,7 @@ public class LiabilityManager implements FinanceManager{
         try {
             return MYSQL.executeSearch(q);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }
@@ -63,7 +65,7 @@ public class LiabilityManager implements FinanceManager{
             }
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }
@@ -76,7 +78,7 @@ public class LiabilityManager implements FinanceManager{
         try {
             MYSQL.executeIUD(q);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
     }
 
@@ -88,7 +90,7 @@ public class LiabilityManager implements FinanceManager{
         try {
             MYSQL.executeIUD(q);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
     }
 

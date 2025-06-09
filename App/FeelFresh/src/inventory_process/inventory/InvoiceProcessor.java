@@ -7,9 +7,10 @@ import java.sql.ResultSet;
 import model.MYSQL;
 
 public class InvoiceProcessor {
+    
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(InvoiceProcessor.class);
 
-    public void process(InvoiceDTO dto) {
-        System.out.println("INVOICE PROCESSOR: creating an invoice...");
+    public void process(InvoiceDTO dto) {        
         //insert into the invoice table
         String invoice = "INSERT INTO invoice ("
                 + "    cus_nic,"
@@ -22,6 +23,7 @@ public class InvoiceProcessor {
                 + "    '" + dto.getDiscount() + "',"
                 + "    '" + dto.getPaid() + "'"
                 + ")";
+        logger.trace("Creating a new Invoice");
         try {
             MYSQL.executeIUD(invoice);
 
@@ -49,7 +51,7 @@ public class InvoiceProcessor {
             }
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
 
         RecieptDTO reciept = new RecieptDTO();

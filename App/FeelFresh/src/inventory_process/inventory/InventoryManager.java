@@ -13,6 +13,7 @@ import model.MYSQL;
 public class InventoryManager {
 
     private static InventoryManager inventoryManager;
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(InventoryManager.class);
 
     public static InventoryManager getInstance() {
         if (inventoryManager == null) {
@@ -131,6 +132,7 @@ public class InventoryManager {
                 + "    '" + dto.getPaid() + "',"
                 + "    '" + dto.getOutstanding() + "'"
                 + ")";
+        logger.trace("Creating a new GRN");
         try {
             MYSQL.executeIUD(grn);
 //            ResultSet rs = MYSQL.executeSearch("SELECT * FROM grn "
@@ -175,7 +177,7 @@ public class InventoryManager {
 
             //stock level update
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
     }
 
@@ -202,7 +204,7 @@ public class InventoryManager {
             }
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return Inventory.getInstance().getProductList();
     }
@@ -214,8 +216,7 @@ public class InventoryManager {
         1. CRUD - products
         2.
      */
-    public void issueProducts(ProductDTO productDTO) {
-        System.out.println("INVENTORY MANAGER:updating stock levels after the generation of INVOICES...");
+    public void issueProducts(ProductDTO productDTO) {        
         try {
             //getting stock details
             String stockQ = "SELECT "
@@ -243,6 +244,7 @@ public class InventoryManager {
                             + "SET qty = '" + 0 + "' "
                             + "WHERE id = '" + stockDetails.getString("id") + "'";
                     MYSQL.executeIUD(query);
+                    logger.trace("Updating stock levels for the invoice");
                 } else {
                     currentQTY = currentQTY - productDTO.getQty();
                     String query = "UPDATE stock "
@@ -253,7 +255,7 @@ public class InventoryManager {
                 }
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
     }
 
@@ -273,7 +275,7 @@ public class InventoryManager {
                 return rs;
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }
@@ -294,7 +296,7 @@ public class InventoryManager {
             ResultSet rs = MYSQL.executeSearch(q);
             return rs;  // Return ResultSet directly without calling rs.next()
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }

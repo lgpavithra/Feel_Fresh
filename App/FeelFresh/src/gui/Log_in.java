@@ -23,6 +23,8 @@ import model.system.SystemStatus;
  */
 public class Log_in extends javax.swing.JFrame {
 
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(Log_in.class);    
+    
     /**
      * @return the username
      */
@@ -312,6 +314,7 @@ public class Log_in extends javax.swing.JFrame {
                             SystemStatus.setUser(userBean);
                             Dashboaed_Fram_HS = new Dashboard_inventoryManager();
                             Dashboaed_Fram_HS.setVisible(true);
+                            logger.trace("Inventory manager Logged In");
 
                         }
                         if (resultSet.getString("user_type").equals("Cashiers")) {
@@ -319,6 +322,7 @@ public class Log_in extends javax.swing.JFrame {
                             SystemStatus.setUser(userBean);
                             Dashboaed_Fram_HS = new Dashboard_cashier(Username);
                             Dashboaed_Fram_HS.setVisible(true);
+                            logger.trace("Cashier Logged In");
 
                         }
                         if (resultSet.getString("user_type").equals("HR Manager")) {
@@ -326,13 +330,14 @@ public class Log_in extends javax.swing.JFrame {
                             SystemStatus.setUser(userBean);
                             Dashboaed_Fram_HS = new Dashboard_hR_Manager();
                             Dashboaed_Fram_HS.setVisible(true);
+                            logger.trace("HR Manager Logged In");
 
                         }
                         if (resultSet.getString("user_type").equals("Admin")) {
                             userBean.setUserType("1");
                             SystemStatus.setUser(userBean);
                             new Main_Dashbord().setVisible(true);
-
+                            logger.trace("Admin Logged In");
                         }
                         this.dispose();
 
@@ -343,11 +348,12 @@ public class Log_in extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Invalid Username or Passwors", "Warning", JOptionPane.WARNING_MESSAGE);
                     jTextField1.grabFocus();
-
+                    logger.warn("User with invalid username and password trying to log in");
                 }
             }
 
         } catch (Exception e) {
+            logger.error("EXCEPTION",e);
             e.printStackTrace();
         }
 

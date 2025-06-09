@@ -4,6 +4,7 @@
  */
 package model;
 
+import finance.TransactionManager;
 import gui.dialog.ConnectionDialog;
 import java.awt.Frame;
 import java.io.File;
@@ -21,6 +22,8 @@ import model.system.SystemStatus;
  */
 public class MYSQL {
 
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(MYSQL.class);    
+    
     public static Connection connection;
     private static DbInfoBean bean;
     private static ConnectionDialog conDialog_vp;
@@ -45,6 +48,7 @@ public class MYSQL {
             return "Success";
         } catch (SQLException ex) {
 
+            logger.error("EXCEPTION",ex);
             ex.printStackTrace();
 
             showDBInfoDialog();//if error found , collect details again
@@ -53,6 +57,7 @@ public class MYSQL {
             return "MYSQL.createConnection();.... \n" + ex;
 
         } catch (ClassNotFoundException ex) {
+            logger.error("EXCEPTION",ex);
             ex.printStackTrace();
             return "MYSQL.createConnection();.... \n" + ex;
         }
@@ -85,22 +90,23 @@ public class MYSQL {
                     bean = (DbInfoBean) BeanReader.getInstance().read(file);
                 } catch (ClassCastException ex) {
                     showDBInfoDialog();
-
-                    ex.printStackTrace();
+                    logger.error("EXCEPTION",ex);
+                    ex.printStackTrace();                    
                 }
             } catch (IOException ex) {
                 showDBInfoDialog();
-
+                logger.error("EXCEPTION",ex);
                 ex.printStackTrace();
             } catch (ClassNotFoundException ex) {
                 showDBInfoDialog();
-
+                logger.error("EXCEPTION",ex);
                 ex.printStackTrace();
             }
 
             //
         } catch (IOException e) {
             System.out.println("dbInfo.ser couldn't be created.");
+            logger.error("EXCEPTION",e);
             e.printStackTrace();
         }
 
