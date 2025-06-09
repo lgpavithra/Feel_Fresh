@@ -474,27 +474,32 @@ public class Home extends javax.swing.JPanel {
             }
 
         } catch (Exception e) {
-e.printStackTrace();
+            e.printStackTrace();
         }
 
         HashMap<String, Object> map = new HashMap<>();
-//        map.put("subrepor", new JRTableModelDataSource(model));        
 
+        map.put("NetProfit", "33");
+        map.put("TotalExpense", "33");
+        map.put("TotalRevenue", "33");
+        
+        System.out.println(model1.getRowCount());
+        System.out.println(model2.getRowCount());
+        System.out.println(model3.getRowCount());
+        
         //Sub
-        map.put("AssetsBalance", new JRTableModelDataSource(model1));
-        map.put("LiabilitiesBalance", new JRTableModelDataSource(model2));
-        map.put("OEquityBalance", new JRTableModelDataSource(model3));
+        map.put("RevenueSource", new JRTableModelDataSource(model1));
+        map.put("ExpenseSource", new JRTableModelDataSource(model2));
         //Sub
 
-        map.put("TotalLlandOwE", FinanceDepartment.getEquityManager().read());
+//        FinanceDepartment.getEquityManager().read()
+        double total = 0;
+
+        map.put("TotalLlandOwE", String.valueOf(total));
 //                map.put("Parameter5", jLabelBalance.getText());
 
-        JRTableModelDataSource dataSource1 = new JRTableModelDataSource(model1);
-        JRTableModelDataSource dataSource2 = new JRTableModelDataSource(model2);
-        JRTableModelDataSource dataSource3 = new JRTableModelDataSource(model3);
-
         try {
-            Report.execute(JasperFillManager.fillReport("src/reports//Balance/BalanceSheet.jasper", map, new JREmptyDataSource()));
+            Report.execute(JasperFillManager.fillReport("src/reports/income_statement/balance_sheet.jasper", map, new JREmptyDataSource()));
 //            Report.execute(JasperFillManager.fillReport("src/reports/Balance/BalanceSheet.jasper", map, dataSource2));
 //            Report.execute(JasperFillManager.fillReport("src/reports/Balance/LiabilitiesBalance.jasper", map, dataSource3));
         } catch (JRException ex) {
