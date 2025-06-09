@@ -68,7 +68,7 @@ public class employee extends javax.swing.JPanel {
         }
     }
 
-    private void LoadEmployee_HS(String column, String orderby, String fname_HS, String nic) {
+    private void LoadEmployee_HS(String column, String orderby, String nic, String FName_HS) {
         try {
             ResultSet resultSet_HS = MYSQL.executeSearch("SELECT \n"
                     + "    e.nic,\n"
@@ -89,7 +89,7 @@ public class employee extends javax.swing.JPanel {
                     + "    ON e.nic = em.employee_nic\n"
                     + "LEFT JOIN position p\n"
                     + "    ON e.position_id = p.id\n"
-                    + "GROUP BY e.nic;");
+                    + " WHERE `nic` LIKE '" + nic + "%' OR `fname` LIKE '" + FName_HS + "%'  ORDER BY `" + column + "` " + orderby + "GROUP BY e.nic;");
 
             DefaultTableModel Tablemodel_HS = (DefaultTableModel) jTable2.getModel();
             Tablemodel_HS.setRowCount(0);
@@ -127,9 +127,9 @@ public class employee extends javax.swing.JPanel {
         } else if (filter == 1) {
             LoadEmployee_HS("fname", "DESC", jTextField1.getText(), jTextField1.getText());
         } else if (filter == 2) {
-            LoadEmployee_HS("fname", "ASC", jTextField1.getText(), jTextField1.getText());
+            LoadEmployee_HS("lname", "ASC", jTextField1.getText(), jTextField1.getText());
         } else if (filter == 3) {
-            LoadEmployee_HS("fname", "DESC", jTextField1.getText(), jTextField1.getText());
+            LoadEmployee_HS("lname", "DESC", jTextField1.getText(), jTextField1.getText());
         }
 
     }
@@ -177,6 +177,7 @@ public class employee extends javax.swing.JPanel {
         jTable2 = new javax.swing.JTable();
         jComboBox4 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
+        roundButton2 = new component.RoundButton();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -184,13 +185,8 @@ public class employee extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-      
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        
-
-
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Employee");
@@ -458,6 +454,13 @@ public class employee extends javax.swing.JPanel {
             }
         });
 
+        roundButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/print-26.png"))); // NOI18N
+        roundButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roundButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -467,7 +470,8 @@ public class employee extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(roundButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -476,12 +480,14 @@ public class employee extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1))
+                    .addComponent(roundButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
@@ -523,7 +529,7 @@ public class employee extends javax.swing.JPanel {
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -532,7 +538,7 @@ public class employee extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(9, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -888,7 +894,7 @@ public class employee extends javax.swing.JPanel {
 
     private void roundButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton2ActionPerformed
         try {
-            HashMap<String, Object> map = new HashMap<>();
+            HashMap <String, Object> map = new HashMap<>();
             JRTableModelDataSource dataSource = new JRTableModelDataSource(jTable2.getModel());
             JasperPrint print = JasperFillManager.fillReport("src/reports/employee/EmployeeReport.jasper", map, dataSource);
             Report.execute(print);
@@ -934,6 +940,7 @@ public class employee extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
+    private component.RoundButton roundButton2;
     private component.UJTextfield uJTextfield1;
     private component.UJTextfield uJTextfield2;
     private component.UJTextfield uJTextfield3;

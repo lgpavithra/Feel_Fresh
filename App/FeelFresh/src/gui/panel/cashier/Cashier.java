@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.dto.DTOGenerator;
 import model.dto.InvoiceDTO;
@@ -986,6 +987,7 @@ public class Cashier extends javax.swing.JPanel {
             if (invoiceDTO != null) {
 
                 new InvoiceProcessor().process(invoiceDTO);
+
 
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("Parameter1", String.valueOf(grossTotal));
