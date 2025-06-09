@@ -94,7 +94,7 @@ public class Dashboard_cashier extends javax.swing.JFrame {
         ControllerLoaderRight = new javax.swing.JPanel();
         ControllerLoaderLeft = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(0, 470));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
