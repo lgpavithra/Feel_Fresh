@@ -42,7 +42,7 @@ public class addProduct extends javax.swing.JPanel {
 
         loadCategories();
         loadBrand();
-        loadProducts_PS("product`.`name", "ASC");
+        loadProducts_PS("product`.`name", "ASC", "");
 
     }
 
@@ -92,11 +92,22 @@ public class addProduct extends javax.swing.JPanel {
     }
 //   
 
-    private void loadProducts_PS(String column, String orderby) {
+    private void loadProducts_PS(String column, String orderby, String keyWord) {
         try {
 
-            ResultSet resultSet = MYSQL.executeSearch("SELECT * FROM `product` INNER JOIN `category` ON `product`.`category_id`=`category`.`id` "
-                    + "LEFT JOIN `brand` ON `brand`.`id`=`product`.`brand_id`  ORDER BY `" + column + "` " + orderby + "");
+            String query = "SELECT * FROM `product` INNER JOIN `category` ON `product`.`category_id`=`category`.`id` "
+                    + "LEFT JOIN `brand` ON `brand`.`id`=`product`.`brand_id` ";
+                    
+            
+            if (!keyWord.isBlank()) {
+                query += " WHERE `product`.`name` LIKE '%"+keyWord+"%'"
+                        + " OR `brand`.`name` LIKE '%"+keyWord+"%'  "                                
+                        + " OR `category`.`name` LIKE '%"+keyWord+"%'  ";
+            }
+            
+            query +=  " ORDER BY `" + column + "` " + orderby + "";
+            
+            ResultSet resultSet = MYSQL.executeSearch(query);
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
@@ -133,10 +144,10 @@ public class addProduct extends javax.swing.JPanel {
         int filter = jComboBox3.getSelectedIndex();
 
         if (filter == 0) {
-            loadProducts_PS("product`.`name", "ASC");
+            loadProducts_PS("product`.`name", "ASC","");
 
         } else if (filter == 1) {
-            loadProducts_PS("product`.`name", "DESC");
+            loadProducts_PS("product`.`name", "DESC","");
 
         }
 
@@ -331,7 +342,7 @@ public class addProduct extends javax.swing.JPanel {
         });
 
         jComboBox3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name ASC", "Name DESC", " " }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name ASC", "Name DESC" }));
         jComboBox3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox3ItemStateChanged(evt);
@@ -340,6 +351,17 @@ public class addProduct extends javax.swing.JPanel {
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox3ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
             }
         });
 
@@ -432,7 +454,7 @@ public class addProduct extends javax.swing.JPanel {
                 MYSQL.executeIUD("INSERT INTO `product`(`name`,`brand_id`,`category_id`,`barcode`,`file_path`)"
                         + "VALUES('" + name + "','" + brandMap.get(brand) + "',"
                         + "'" + categoryMap.get(category) + "', '" + barcode + "','" + filePath + "'  )");
-                loadProducts_PS("product`.`name", "ASC");
+                loadProducts_PS("product`.`name", "ASC" ,"");
 
                 reset_PS();
 
@@ -526,7 +548,7 @@ public class addProduct extends javax.swing.JPanel {
 
             ResultSet rs = InventoryManager.getInstance().getProductDetails(String.valueOf(jTable1.getValueAt(row, 8)));
 
-            new ProductcInfoDialog((JFrame) frames[frames.length - 1], true, String.valueOf(jTable1.getValueAt(row, 7)),rs  ).setVisible(true);
+            new ProductcInfoDialog((JFrame) frames[frames.length - 1], true, String.valueOf(jTable1.getValueAt(row, 7)), rs).setVisible(true);
 
         } else {
             Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "Please Select a product in table");
@@ -534,6 +556,16 @@ public class addProduct extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+
+        loadProducts_PS("product`.`name", "ASC" , jTextField1.getText());
+
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -563,7 +595,7 @@ private void reset_PS() {
         jComboBox1.setSelectedIndex(0);
         uJTextfield1.grabFocus();
         uJTextfield1.setEditable(true);
-        loadProducts_PS("product`.`name", "ASC");
+        loadProducts_PS("product`.`name", "ASC" ,"");
 
     }
 
