@@ -143,10 +143,10 @@ public class InventoryManager {
         try {
             MYSQL.executeIUD(grn);
             //=============== comment this if error occured =============
-            TransactionDTO dTO = DTOGenerator.getInstance().generateTransactionDTO("Supplier", "Inventory", dto.getTotal(), Flag.credit.toString(), Type.AssetBuying.toString(), "Buying products for inventory");
+            TransactionDTO dTO = DTOGenerator.getInstance().generateTransactionDTO("Supplier", "Inventory", dto.getPaid(), Flag.debit.toString(), Type.AssetBuying.toString(), "Buying products for inventory");
             FinanceDepartment.getTransactionManager().create(dTO);
-            FinanceDepartment.getAssetManager().debit("Money", dto.getTotal());
-            FinanceDepartment.getAssetManager().credit("Inventory", dto.getTotal());
+            FinanceDepartment.getAssetManager().debit("Money", dto.getPaid());
+            FinanceDepartment.getAssetManager().credit("Inventory", dto.getPaid());
             //=============== comment this if error occured =============
             
             ResultSet rs = MYSQL.executeSearch("SELECT LAST_INSERT_ID()");

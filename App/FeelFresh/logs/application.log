@@ -1,2 +1,505 @@
 2025-06-09 08:42:51 TRACE Log_in - Admin Logged In
 2025-06-09 08:44:32 TRACE Log_in - Admin Logged In
+2025-06-09 11:47:51 TRACE InventoryManager - Creating a new GRN
+2025-06-09 11:47:52 DEBUG BaseReportFiller - Fill 1: created for grn
+2025-06-09 11:47:52 DEBUG CompiledClassesLoader - loading compiled class grn_af5038a70b51f8ccca7c04a3358d949868080be2f7c34b5936a570c948e74cdf
+2025-06-09 11:47:52 DEBUG BaseReportFiller - created delayed actions 1 for filler 1
+2025-06-09 11:47:52 DEBUG ExtensionsEnvironment - Instantiating extensions registry class net.sf.jasperreports.extensions.DefaultExtensionsRegistry
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Loading registries for cache key jdk.internal.loader.ClassLoaders$AppClassLoader@18ef96
+2025-06-09 11:47:52 DEBUG JRLoader - Found resource jasperreports_extension.properties at jar:file:/D:/my%20projects/java%20-%20projects/final%20project%20last/Feel_Fresh/App/FeelFresh/lib/jasperreports-6.21.3.jar!/jasperreports_extension.properties in classloader jdk.internal.loader.ClassLoaders$AppClassLoader@18ef96
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Loading JasperReports extension properties resource jar:file:/D:/my%20projects/java%20-%20projects/final%20project%20last/Feel_Fresh/App/FeelFresh/lib/jasperreports-6.21.3.jar!/jasperreports_extension.properties
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.engine.style.PropertyStyleProviderExtensionFactory for property net.sf.jasperreports.extension.registry.factory.property.style.provider
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for property.style.provider using factory class net.sf.jasperreports.engine.style.PropertyStyleProviderExtensionFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.components.headertoolbar.HeaderToolbarConditionalStyleProviderExtensionFactory for property net.sf.jasperreports.extension.registry.factory.header.toolbar.style.provider
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for header.toolbar.style.provider using factory class net.sf.jasperreports.components.headertoolbar.HeaderToolbarConditionalStyleProviderExtensionFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.engine.export.MatcherExportFilterMappingExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.matcher.exporter.filter.mapping
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for matcher.exporter.filter.mapping using factory class net.sf.jasperreports.engine.export.MatcherExportFilterMappingExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.components.headertoolbar.HeaderToolbarParameterContributorExtensionFactory for property net.sf.jasperreports.extension.registry.factory.header.toolbar.parameter.contributor
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for header.toolbar.parameter.contributor using factory class net.sf.jasperreports.components.headertoolbar.HeaderToolbarParameterContributorExtensionFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.governors.GovernorExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.governor
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for governor using factory class net.sf.jasperreports.governors.GovernorExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.web.util.ContentTypeMappingExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.content.type.mapping
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for content.type.mapping using factory class net.sf.jasperreports.web.util.ContentTypeMappingExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.engine.fonts.SimpleFontExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.simple.font.families
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for simple.font.families using factory class net.sf.jasperreports.engine.fonts.SimpleFontExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.data.DefaultDataAdapterServiceExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.data.adapter.services
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for data.adapter.services using factory class net.sf.jasperreports.data.DefaultDataAdapterServiceExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.parts.PartComponentsExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.parts
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for parts using factory class net.sf.jasperreports.parts.PartComponentsExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.util.JacksonMappingExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.jackson.mapping
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for jackson.mapping using factory class net.sf.jasperreports.util.JacksonMappingExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.web.util.WebResourceHandlersExtensionRegistryFactory for property net.sf.jasperreports.extension.registry.factory.jive.web.resource.handlers
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for jive.web.resource.handlers using factory class net.sf.jasperreports.web.util.WebResourceHandlersExtensionRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.engine.query.SQLQueryClauseFunctionsExtensions for property net.sf.jasperreports.extension.registry.factory.sql.clause.functions
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for sql.clause.functions using factory class net.sf.jasperreports.engine.query.SQLQueryClauseFunctionsExtensions
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.data.DataAdapterParameterContributorExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.parameter.contributor.data.adapter
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for parameter.contributor.data.adapter using factory class net.sf.jasperreports.data.DataAdapterParameterContributorExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.components.ComponentsExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.components
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for components using factory class net.sf.jasperreports.components.ComponentsExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.extensions.DefaultExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.default
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for default using factory class net.sf.jasperreports.extensions.DefaultExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.repo.DefaultRepositoryExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.repository
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for repository using factory class net.sf.jasperreports.repo.DefaultRepositoryExtensionsRegistryFactory
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.types.date.DateRangeQueryClauseExtensions for property net.sf.jasperreports.extension.registry.factory.date.range.clause.functions
+2025-06-09 11:47:52 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for date.range.clause.functions using factory class net.sf.jasperreports.types.date.DateRangeQueryClauseExtensions
+2025-06-09 11:47:52 DEBUG FontExtensionsRegistry - Loading font extensions from net/sf/jasperreports/fonts/jasperreports-fonts.xml
+2025-06-09 11:47:52 DEBUG SimpleFontExtensionHelper - Parsing font family JasperReports Icons
+2025-06-09 11:47:52 DEBUG SimpleFontFace - Loading font net/sf/jasperreports/fonts/icons/icons.ttf
+2025-06-09 11:47:52 DEBUG AwtFontManager - created font file C:\Users\senad\AppData\Local\Temp\jr-font16094155297866171789.ttf for net/sf/jasperreports/fonts/icons/icons.ttf
+2025-06-09 11:47:52 DEBUG SimpleFontExtensionHelper - Parsing font family Pictonic
+2025-06-09 11:47:52 DEBUG SimpleFontFace - Loading font net/sf/jasperreports/fonts/icons/icons.ttf
+2025-06-09 11:47:52 DEBUG AwtFontManager - created font file C:\Users\senad\AppData\Local\Temp\jr-font8604663159338225719.ttf for net/sf/jasperreports/fonts/icons/icons.ttf
+2025-06-09 11:47:52 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: BACKGROUND} for band 2019027085
+2025-06-09 11:47:52 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: TITLE} for band 1383606435
+2025-06-09 11:47:52 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: PAGE_HEADER} for band 799825023
+2025-06-09 11:47:52 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: COLUMN_HEADER} for band 2143041952
+2025-06-09 11:47:52 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: DETAIL} for band 1125194211
+2025-06-09 11:47:52 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: COLUMN_FOOTER} for band 1029923981
+2025-06-09 11:47:52 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: PAGE_FOOTER} for band 238093554
+2025-06-09 11:47:52 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: SUMMARY} for band 1648252421
+2025-06-09 11:47:52 DEBUG JRVerticalFiller - Filler 1 - pageHeight: 842, columnFooterOffsetY: 800, lastPageColumnFooterOffsetY: 803
+2025-06-09 11:47:52 DEBUG JRBaseFiller - Fill 1: filling report
+2025-06-09 11:47:52 DEBUG JRBaseFiller - max page width is 2097152000
+2025-06-09 11:47:52 DEBUG JRBaseFiller - Fill 1: adding page 1
+2025-06-09 11:47:52 DEBUG JRVerticalFiller - Fill 1: title at 20
+2025-06-09 11:47:52 DEBUG JRResourcesUtil - resolved location /src/resources/logo/500pxFeel-Fresh-logo.png relative to the context .
+2025-06-09 11:47:52 DEBUG JRFillImage - image /src/resources/logo/500pxFeel-Fresh-logo.png resolved to D:\my projects\java - projects\final project last\Feel_Fresh\App\FeelFresh\src\resources\logo\500pxFeel-Fresh-logo.png
+2025-06-09 11:47:52 DEBUG SimpleTextLineWrapper - creating element font infos cache of size 2000
+2025-06-09 12:05:31 TRACE InventoryManager - Creating a new GRN
+2025-06-09 12:05:32 DEBUG BaseReportFiller - Fill 1: created for grn
+2025-06-09 12:05:32 DEBUG CompiledClassesLoader - loading compiled class grn_af5038a70b51f8ccca7c04a3358d949868080be2f7c34b5936a570c948e74cdf
+2025-06-09 12:05:32 DEBUG BaseReportFiller - created delayed actions 1 for filler 1
+2025-06-09 12:05:32 DEBUG ExtensionsEnvironment - Instantiating extensions registry class net.sf.jasperreports.extensions.DefaultExtensionsRegistry
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Loading registries for cache key jdk.internal.loader.ClassLoaders$AppClassLoader@18ef96
+2025-06-09 12:05:32 DEBUG JRLoader - Found resource jasperreports_extension.properties at jar:file:/D:/my%20projects/java%20-%20projects/final%20project%20last/Feel_Fresh/App/FeelFresh/lib/jasperreports-6.21.3.jar!/jasperreports_extension.properties in classloader jdk.internal.loader.ClassLoaders$AppClassLoader@18ef96
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Loading JasperReports extension properties resource jar:file:/D:/my%20projects/java%20-%20projects/final%20project%20last/Feel_Fresh/App/FeelFresh/lib/jasperreports-6.21.3.jar!/jasperreports_extension.properties
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.engine.style.PropertyStyleProviderExtensionFactory for property net.sf.jasperreports.extension.registry.factory.property.style.provider
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for property.style.provider using factory class net.sf.jasperreports.engine.style.PropertyStyleProviderExtensionFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.components.headertoolbar.HeaderToolbarConditionalStyleProviderExtensionFactory for property net.sf.jasperreports.extension.registry.factory.header.toolbar.style.provider
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for header.toolbar.style.provider using factory class net.sf.jasperreports.components.headertoolbar.HeaderToolbarConditionalStyleProviderExtensionFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.engine.export.MatcherExportFilterMappingExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.matcher.exporter.filter.mapping
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for matcher.exporter.filter.mapping using factory class net.sf.jasperreports.engine.export.MatcherExportFilterMappingExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.components.headertoolbar.HeaderToolbarParameterContributorExtensionFactory for property net.sf.jasperreports.extension.registry.factory.header.toolbar.parameter.contributor
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for header.toolbar.parameter.contributor using factory class net.sf.jasperreports.components.headertoolbar.HeaderToolbarParameterContributorExtensionFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.governors.GovernorExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.governor
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for governor using factory class net.sf.jasperreports.governors.GovernorExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.web.util.ContentTypeMappingExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.content.type.mapping
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for content.type.mapping using factory class net.sf.jasperreports.web.util.ContentTypeMappingExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.engine.fonts.SimpleFontExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.simple.font.families
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for simple.font.families using factory class net.sf.jasperreports.engine.fonts.SimpleFontExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.data.DefaultDataAdapterServiceExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.data.adapter.services
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for data.adapter.services using factory class net.sf.jasperreports.data.DefaultDataAdapterServiceExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.parts.PartComponentsExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.parts
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for parts using factory class net.sf.jasperreports.parts.PartComponentsExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.util.JacksonMappingExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.jackson.mapping
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for jackson.mapping using factory class net.sf.jasperreports.util.JacksonMappingExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.web.util.WebResourceHandlersExtensionRegistryFactory for property net.sf.jasperreports.extension.registry.factory.jive.web.resource.handlers
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for jive.web.resource.handlers using factory class net.sf.jasperreports.web.util.WebResourceHandlersExtensionRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.engine.query.SQLQueryClauseFunctionsExtensions for property net.sf.jasperreports.extension.registry.factory.sql.clause.functions
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for sql.clause.functions using factory class net.sf.jasperreports.engine.query.SQLQueryClauseFunctionsExtensions
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.data.DataAdapterParameterContributorExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.parameter.contributor.data.adapter
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for parameter.contributor.data.adapter using factory class net.sf.jasperreports.data.DataAdapterParameterContributorExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.components.ComponentsExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.components
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for components using factory class net.sf.jasperreports.components.ComponentsExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.extensions.DefaultExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.default
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for default using factory class net.sf.jasperreports.extensions.DefaultExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.repo.DefaultRepositoryExtensionsRegistryFactory for property net.sf.jasperreports.extension.registry.factory.repository
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for repository using factory class net.sf.jasperreports.repo.DefaultRepositoryExtensionsRegistryFactory
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating registry of type net.sf.jasperreports.types.date.DateRangeQueryClauseExtensions for property net.sf.jasperreports.extension.registry.factory.date.range.clause.functions
+2025-06-09 12:05:32 DEBUG DefaultExtensionsRegistry - Instantiating extensions registry for date.range.clause.functions using factory class net.sf.jasperreports.types.date.DateRangeQueryClauseExtensions
+2025-06-09 12:05:32 DEBUG FontExtensionsRegistry - Loading font extensions from net/sf/jasperreports/fonts/jasperreports-fonts.xml
+2025-06-09 12:05:32 DEBUG SimpleFontExtensionHelper - Parsing font family JasperReports Icons
+2025-06-09 12:05:32 DEBUG SimpleFontFace - Loading font net/sf/jasperreports/fonts/icons/icons.ttf
+2025-06-09 12:05:32 DEBUG AwtFontManager - created font file C:\Users\senad\AppData\Local\Temp\jr-font14254569302087926736.ttf for net/sf/jasperreports/fonts/icons/icons.ttf
+2025-06-09 12:05:32 DEBUG SimpleFontExtensionHelper - Parsing font family Pictonic
+2025-06-09 12:05:32 DEBUG SimpleFontFace - Loading font net/sf/jasperreports/fonts/icons/icons.ttf
+2025-06-09 12:05:32 DEBUG AwtFontManager - created font file C:\Users\senad\AppData\Local\Temp\jr-font5008699847841519587.ttf for net/sf/jasperreports/fonts/icons/icons.ttf
+2025-06-09 12:05:32 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: BACKGROUND} for band 815245021
+2025-06-09 12:05:32 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: TITLE} for band 560529393
+2025-06-09 12:05:32 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: PAGE_HEADER} for band 683041211
+2025-06-09 12:05:32 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: COLUMN_HEADER} for band 1726405237
+2025-06-09 12:05:32 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: DETAIL} for band 1145499489
+2025-06-09 12:05:32 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: COLUMN_FOOTER} for band 1155630596
+2025-06-09 12:05:32 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: PAGE_FOOTER} for band 761045664
+2025-06-09 12:05:32 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: SUMMARY} for band 3641749
+2025-06-09 12:05:32 DEBUG JRVerticalFiller - Filler 1 - pageHeight: 842, columnFooterOffsetY: 800, lastPageColumnFooterOffsetY: 803
+2025-06-09 12:05:32 DEBUG JRBaseFiller - Fill 1: filling report
+2025-06-09 12:05:32 DEBUG JRBaseFiller - max page width is 2097152000
+2025-06-09 12:05:32 DEBUG JRBaseFiller - Fill 1: adding page 1
+2025-06-09 12:05:32 DEBUG JRVerticalFiller - Fill 1: title at 20
+2025-06-09 12:05:32 DEBUG JRResourcesUtil - resolved location /src/resources/logo/500pxFeel-Fresh-logo.png relative to the context .
+2025-06-09 12:05:32 DEBUG JRFillImage - image /src/resources/logo/500pxFeel-Fresh-logo.png resolved to D:\my projects\java - projects\final project last\Feel_Fresh\App\FeelFresh\src\resources\logo\500pxFeel-Fresh-logo.png
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font infos cache of size 2000
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - font java.awt.Font[family=Poppins SemiBold,name=Poppins SemiBold,style=plain,size=29] has complex layout false, leading 2.9000034
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins SemiBold}, size: 29.0, style: 0} and element ab9c9c80-7b4f-4583-af99-fdfab705bdae
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 6 in width 370.0 with font java.awt.Font[family=Poppins SemiBold,name=Poppins SemiBold,style=plain,size=29]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - exact line break index measured at 6
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 6 at width 113.82518005371094
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateImage@6225d6e1
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateRectangle@4cf89c19
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@7ff4bf50
+2025-06-09 12:05:32 DEBUG DelayedFillActions - 1 running delayed actions on {type: BAND, group: null, band: 560529393}
+2025-06-09 12:05:32 DEBUG JRVerticalFiller - Fill 1: page header at 80
+2025-06-09 12:05:32 DEBUG JRFillTextField - 2347ff33-e4c9-4f7e-a501-cddb53877512: pattern timezone property net.sf.jasperreports.pattern.timezone is null, resolved to null
+2025-06-09 12:05:32 DEBUG JRFillTextField - 2347ff33-e4c9-4f7e-a501-cddb53877512: formatted value Mon Jun 09 12:05:32 IST 2025 (java.util.Date/1749450932355) to June 09, 2025
+2025-06-09 12:05:32 DEBUG JRFillTextField - 04380636-fc9d-47b5-a5a1-4c488b96d133: pattern timezone property net.sf.jasperreports.pattern.timezone is null, resolved to null
+2025-06-09 12:05:32 DEBUG JRFillTextField - 04380636-fc9d-47b5-a5a1-4c488b96d133: formatted value Mon Jun 09 12:05:32 IST 2025 (java.util.Date/1749450932363) to 12:05:32 PM
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=16] has complex layout false, leading 1.6000047
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 16.0, style: 0} and element 2347ff33-e4c9-4f7e-a501-cddb53877512
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 13 in width 130.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=16]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - exact line break index measured at 13
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 13 at width 109.21617126464844
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 16.0, style: 0} and element 04380636-fc9d-47b5-a5a1-4c488b96d133
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 11 in width 145.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=16]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 11 at width 87.16816711425781
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@3a00bee8
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@3a00bee8 for (null, {java.util.Date, MMMMM dd, yyyy,null,null,null})
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@74adcf80
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@74adcf80 for (null, {java.util.Date, hh:mm:ss a,null,null,null})
+2025-06-09 12:05:32 DEBUG DelayedFillActions - 1 running delayed actions on {type: BAND, group: null, band: 683041211}
+2025-06-09 12:05:32 DEBUG JRVerticalFiller - Fill 1: column header at 122
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15] has complex layout false, leading 1.5000091
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 15.0, style: 1} and element 28b837b9-b7f3-48d1-ad4a-394993b0411b
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 5 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - exact line break index measured at 5
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 5 at width 54.7803955078125
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 15.0, style: 1} and element 6767821f-3eed-4f8f-a819-713c284a1d41
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 3 in width 88.0 with font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 3 at width 30.750213623046875
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 15.0, style: 1} and element b447ebb5-d7d7-4cfb-9228-a1bd9e9f9514
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 12 in width 123.0 with font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 12 at width 95.89569091796875
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 15.0, style: 1} and element 2d1b80d5-5c8a-4304-993e-48e8a38b631b
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 13 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 13 at width 93.73567199707031
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 15.0, style: 1} and element 54848b24-acb0-4b6c-a2a7-04c1f6769f97
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 3 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 3 at width 29.745208740234375
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@33e04391
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@33e04391 for object net.sf.jasperreports.engine.fill.JRTemplateText@4ed2455c
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@33e04391 for object net.sf.jasperreports.engine.fill.JRTemplateText@3659e705
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@33e04391 for object net.sf.jasperreports.engine.fill.JRTemplateText@c7dab10
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@33e04391 for object net.sf.jasperreports.engine.fill.JRTemplateText@3db08dc5
+2025-06-09 12:05:32 DEBUG DelayedFillActions - 1 running delayed actions on {type: BAND, group: null, band: 1726405237}
+2025-06-09 12:05:32 DEBUG JRVerticalFiller - Fill 1: detail at 163
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12] has complex layout false, leading 1.2000084
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 12.0, style: 0} and element 163774a7-6038-4a3d-ab40-0261e7650a4e
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 8 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - exact line break index measured at 8
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 8 at width 54.612396240234375
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 12.0, style: 0} and element 7273fae8-271a-4669-9f52-3347ad6eb187
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 2 in width 87.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 2 at width 11.376083374023438
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 12.0, style: 0} and element 50f689ca-9d86-49c2-822a-e2a8cdc402be
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 5 in width 123.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 5 at width 32.02824401855469
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 12.0, style: 0} and element a7078d3b-a2ff-46d7-9aba-caae1a6d74a7
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 5 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 5 at width 32.19624328613281
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 12.0, style: 0} and element 18dc52ff-b4f8-4ac2-afb0-2ba31ad497ec
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 10 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 10 at width 68.65251159667969
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@638972c3
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@638972c3 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@638972c3 for object net.sf.jasperreports.engine.fill.JRTemplateText@47a50a5b
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@638972c3 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@638972c3 for object net.sf.jasperreports.engine.fill.JRTemplateText@61e2cc45
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@638972c3 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@638972c3 for object net.sf.jasperreports.engine.fill.JRTemplateText@32ebc94e
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@638972c3 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@638972c3 for object net.sf.jasperreports.engine.fill.JRTemplateText@1a5cbaba
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@638972c3 for (null, null)
+2025-06-09 12:05:32 DEBUG DelayedFillActions - 1 running delayed actions on {type: BAND, group: null, band: 1145499489}
+2025-06-09 12:05:32 DEBUG JRVerticalFiller - Fill 1: summary at 191
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10] has complex layout false, leading 0.32714844
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 884969de-9235-4101-9ac6-398170fc1071
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 1 in width 110.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - exact line break index measured at 1
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 1 at width 5.5615234375
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 22282ad4-822d-44d3-8bf2-abb8012187a8
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 8 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 8 at width 36.689453125
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element d1c03edc-e55a-40eb-9602-620bd937e69d
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 8 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 8 at width 42.802734375
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element a6a8a585-bcf3-432f-b51f-8a6b171612df
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 12 in width 174.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 12 at width 66.73828125
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 90b47b99-1166-4708-bdb6-b5bcbf970bba
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 11 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 11 at width 51.6796875
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 533ecc1b-d032-44e9-afe7-b90534aaabe7
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 7 in width 122.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 7 at width 36.1474609375
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element ba5c2b36-f937-4ce0-b2b6-b620f793cd26
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 3 in width 122.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 3 at width 16.6845703125
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 1c46f409-01e6-44e0-b2c2-5817418052bd
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 8 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 8 at width 38.90625
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 4022b972-0900-405c-9d58-98fbe67d3207
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 9 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 9 at width 40.5712890625
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 82c9e92a-bdc8-4180-b29d-0dbee184fcbc
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 7 in width 122.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 7 at width 36.1474609375
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 60c55293-a389-4e32-8c60-98a241cbf6cf
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 11 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 11 at width 57.255859375
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 378c7a73-6333-4ea5-a1f7-a119dd406bc7
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 4 in width 122.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 4 at width 22.24609375
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 8d2c9513-497b-403e-a396-4fb90cc4e6ce
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 11 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 11 at width 53.92578125
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 02925ebd-27ba-4779-9c86-2f5d87e35e55
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 4 in width 122.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:05:32 DEBUG SimpleTextLineWrapper - measured to index 4 at width 19.462890625
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@d8e3336
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@d8e3336 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateRectangle@3c0e66a2
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@d8e3336 for object net.sf.jasperreports.engine.fill.JRTemplateText@24242e29
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@d8e3336 for object net.sf.jasperreports.engine.fill.JRTemplateText@4d75ccea
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@311e41f1
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@311e41f1 for object net.sf.jasperreports.engine.fill.JRTemplateText@7e6a1a06
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@311e41f1 for object net.sf.jasperreports.engine.fill.JRTemplateText@7bba3684
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@d8e3336 for object net.sf.jasperreports.engine.fill.JRTemplateText@18cbb785
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@d8e3336 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@5b996ca4
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@5b996ca4 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@5b996ca4 for object net.sf.jasperreports.engine.fill.JRTemplateText@758df7fb
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@5b996ca4 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@5b996ca4 for object net.sf.jasperreports.engine.fill.JRTemplateText@5f29f1d8
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@5b996ca4 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateRectangle@1a1b1227
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@311e41f1 for object net.sf.jasperreports.engine.fill.JRTemplateText@a77a18c
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@311e41f1 for object net.sf.jasperreports.engine.fill.JRTemplateText@10dfad16
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@5b996ca4 for object net.sf.jasperreports.engine.fill.JRTemplateText@6839e4
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@5b996ca4 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@5b996ca4 for object net.sf.jasperreports.engine.fill.JRTemplateText@422099e4
+2025-06-09 12:05:32 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@5b996ca4 for (null, null)
+2025-06-09 12:05:32 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateRectangle@1a1b1227 for object net.sf.jasperreports.engine.fill.JRTemplateRectangle@756c3bed
+2025-06-09 12:05:32 DEBUG JRVerticalFiller - Fill 1: column footer at 389
+2025-06-09 12:07:06 TRACE InventoryManager - Creating a new GRN
+2025-06-09 12:07:06 DEBUG BaseReportFiller - Fill 1: created for grn
+2025-06-09 12:07:06 DEBUG BaseReportFiller - created delayed actions 1 for filler 1
+2025-06-09 12:07:06 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: BACKGROUND} for band 1293938311
+2025-06-09 12:07:06 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: TITLE} for band 1596246584
+2025-06-09 12:07:06 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: PAGE_HEADER} for band 1961295496
+2025-06-09 12:07:06 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: COLUMN_HEADER} for band 401258356
+2025-06-09 12:07:06 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: DETAIL} for band 1033656504
+2025-06-09 12:07:06 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: COLUMN_FOOTER} for band 1481344153
+2025-06-09 12:07:06 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: PAGE_FOOTER} for band 1302950979
+2025-06-09 12:07:06 DEBUG JRFillBand - Origin {reportName: null, groupName: null,bandType: SUMMARY} for band 68850591
+2025-06-09 12:07:06 DEBUG JRVerticalFiller - Filler 1 - pageHeight: 842, columnFooterOffsetY: 800, lastPageColumnFooterOffsetY: 803
+2025-06-09 12:07:06 DEBUG JRBaseFiller - Fill 1: filling report
+2025-06-09 12:07:06 DEBUG JRBaseFiller - max page width is 2097152000
+2025-06-09 12:07:06 DEBUG JRBaseFiller - Fill 1: adding page 1
+2025-06-09 12:07:06 DEBUG JRVerticalFiller - Fill 1: title at 20
+2025-06-09 12:07:06 DEBUG JRResourcesUtil - resolved location /src/resources/logo/500pxFeel-Fresh-logo.png relative to the context .
+2025-06-09 12:07:06 DEBUG JRFillImage - image /src/resources/logo/500pxFeel-Fresh-logo.png resolved to D:\my projects\java - projects\final project last\Feel_Fresh\App\FeelFresh\src\resources\logo\500pxFeel-Fresh-logo.png
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font infos cache of size 2000
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - font java.awt.Font[family=Poppins SemiBold,name=Poppins SemiBold,style=plain,size=29] has complex layout false, leading 2.9000034
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins SemiBold}, size: 29.0, style: 0} and element ab9c9c80-7b4f-4583-af99-fdfab705bdae
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 6 in width 370.0 with font java.awt.Font[family=Poppins SemiBold,name=Poppins SemiBold,style=plain,size=29]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - exact line break index measured at 6
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 6 at width 113.82518005371094
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateImage@24fd5fd6
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateRectangle@3c9ab935
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@6c4c5352
+2025-06-09 12:07:06 DEBUG DelayedFillActions - 1 running delayed actions on {type: BAND, group: null, band: 1596246584}
+2025-06-09 12:07:06 DEBUG JRVerticalFiller - Fill 1: page header at 80
+2025-06-09 12:07:06 DEBUG JRFillTextField - 2347ff33-e4c9-4f7e-a501-cddb53877512: pattern timezone property net.sf.jasperreports.pattern.timezone is null, resolved to null
+2025-06-09 12:07:06 DEBUG JRFillTextField - 2347ff33-e4c9-4f7e-a501-cddb53877512: formatted value Mon Jun 09 12:07:06 IST 2025 (java.util.Date/1749451026569) to June 09, 2025
+2025-06-09 12:07:06 DEBUG JRFillTextField - 04380636-fc9d-47b5-a5a1-4c488b96d133: pattern timezone property net.sf.jasperreports.pattern.timezone is null, resolved to null
+2025-06-09 12:07:06 DEBUG JRFillTextField - 04380636-fc9d-47b5-a5a1-4c488b96d133: formatted value Mon Jun 09 12:07:06 IST 2025 (java.util.Date/1749451026569) to 12:07:06 PM
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=16] has complex layout false, leading 1.6000047
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 16.0, style: 0} and element 2347ff33-e4c9-4f7e-a501-cddb53877512
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 13 in width 130.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=16]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - exact line break index measured at 13
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 13 at width 109.21617126464844
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 16.0, style: 0} and element 04380636-fc9d-47b5-a5a1-4c488b96d133
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 11 in width 145.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=16]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 11 at width 87.44017028808594
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@3e86f632
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@3e86f632 for (null, {java.util.Date, MMMMM dd, yyyy,null,null,null})
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@70cb1ddb
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@70cb1ddb for (null, {java.util.Date, hh:mm:ss a,null,null,null})
+2025-06-09 12:07:06 DEBUG DelayedFillActions - 1 running delayed actions on {type: BAND, group: null, band: 1961295496}
+2025-06-09 12:07:06 DEBUG JRVerticalFiller - Fill 1: column header at 122
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15] has complex layout false, leading 1.5000091
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 15.0, style: 1} and element 28b837b9-b7f3-48d1-ad4a-394993b0411b
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 5 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - exact line break index measured at 5
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 5 at width 54.7803955078125
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 15.0, style: 1} and element 6767821f-3eed-4f8f-a819-713c284a1d41
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 3 in width 88.0 with font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 3 at width 30.750213623046875
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 15.0, style: 1} and element b447ebb5-d7d7-4cfb-9228-a1bd9e9f9514
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 12 in width 123.0 with font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 12 at width 95.89569091796875
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 15.0, style: 1} and element 2d1b80d5-5c8a-4304-993e-48e8a38b631b
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 13 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 13 at width 93.73567199707031
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 15.0, style: 1} and element 54848b24-acb0-4b6c-a2a7-04c1f6769f97
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 3 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=bold,size=15]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 3 at width 29.745208740234375
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@197151e6
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@197151e6 for object net.sf.jasperreports.engine.fill.JRTemplateText@17a95759
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@197151e6 for object net.sf.jasperreports.engine.fill.JRTemplateText@1e9714f8
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@197151e6 for object net.sf.jasperreports.engine.fill.JRTemplateText@369ae734
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@197151e6 for object net.sf.jasperreports.engine.fill.JRTemplateText@25776e60
+2025-06-09 12:07:06 DEBUG DelayedFillActions - 1 running delayed actions on {type: BAND, group: null, band: 401258356}
+2025-06-09 12:07:06 DEBUG JRVerticalFiller - Fill 1: detail at 163
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12] has complex layout false, leading 1.2000084
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 12.0, style: 0} and element 163774a7-6038-4a3d-ab40-0261e7650a4e
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 8 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - exact line break index measured at 8
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 8 at width 54.612396240234375
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 12.0, style: 0} and element 7273fae8-271a-4669-9f52-3347ad6eb187
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 2 in width 87.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 2 at width 11.376083374023438
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 12.0, style: 0} and element 50f689ca-9d86-49c2-822a-e2a8cdc402be
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 5 in width 123.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 5 at width 32.02824401855469
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 12.0, style: 0} and element a7078d3b-a2ff-46d7-9aba-caae1a6d74a7
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 5 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 5 at width 32.19624328613281
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: Poppins}, size: 12.0, style: 0} and element 18dc52ff-b4f8-4ac2-afb0-2ba31ad497ec
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 10 in width 111.0 with font java.awt.Font[family=Poppins,name=Poppins,style=plain,size=12]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 10 at width 68.65251159667969
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@78b9f608
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@78b9f608 for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@78b9f608 for object net.sf.jasperreports.engine.fill.JRTemplateText@5eaf1d33
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@78b9f608 for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@78b9f608 for object net.sf.jasperreports.engine.fill.JRTemplateText@3f6df295
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@78b9f608 for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@78b9f608 for object net.sf.jasperreports.engine.fill.JRTemplateText@21779f76
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@78b9f608 for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@78b9f608 for object net.sf.jasperreports.engine.fill.JRTemplateText@16c924e6
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@78b9f608 for (null, null)
+2025-06-09 12:07:06 DEBUG DelayedFillActions - 1 running delayed actions on {type: BAND, group: null, band: 1033656504}
+2025-06-09 12:07:06 DEBUG JRVerticalFiller - Fill 1: summary at 191
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10] has complex layout false, leading 0.32714844
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 884969de-9235-4101-9ac6-398170fc1071
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 1 in width 110.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - exact line break index measured at 1
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 1 at width 5.5615234375
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 22282ad4-822d-44d3-8bf2-abb8012187a8
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 8 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 8 at width 36.689453125
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element d1c03edc-e55a-40eb-9602-620bd937e69d
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 8 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 8 at width 42.802734375
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element a6a8a585-bcf3-432f-b51f-8a6b171612df
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 12 in width 174.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 12 at width 66.73828125
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 90b47b99-1166-4708-bdb6-b5bcbf970bba
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 11 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 11 at width 51.6796875
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 533ecc1b-d032-44e9-afe7-b90534aaabe7
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 7 in width 122.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 7 at width 36.1474609375
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element ba5c2b36-f937-4ce0-b2b6-b620f793cd26
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 3 in width 122.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 3 at width 16.6845703125
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 1c46f409-01e6-44e0-b2c2-5817418052bd
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 8 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 8 at width 38.90625
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 4022b972-0900-405c-9d58-98fbe67d3207
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 9 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 9 at width 40.5712890625
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 82c9e92a-bdc8-4180-b29d-0dbee184fcbc
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 7 in width 122.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 7 at width 36.1474609375
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 60c55293-a389-4e32-8c60-98a241cbf6cf
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 11 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 11 at width 57.255859375
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 378c7a73-6333-4ea5-a1f7-a119dd406bc7
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 4 in width 122.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 4 at width 22.24609375
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 8d2c9513-497b-403e-a396-4fb90cc4e6ce
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 11 in width 100.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 11 at width 53.92578125
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - creating element font info for {font: {family: SansSerif}, size: 10.0, style: 0} and element 02925ebd-27ba-4779-9c86-2f5d87e35e55
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - paragraph start at 0, truncate at char false, LTR true, exact measure false
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - simple line measurement at 0 to 4 in width 122.0 with font java.awt.Font[family=SansSerif,name=SansSerif,style=plain,size=10]
+2025-06-09 12:07:06 DEBUG SimpleTextLineWrapper - measured to index 4 at width 19.462890625
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@30a9f589
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@30a9f589 for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateRectangle@60004053
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@30a9f589 for object net.sf.jasperreports.engine.fill.JRTemplateText@7d11ff0a
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@30a9f589 for object net.sf.jasperreports.engine.fill.JRTemplateText@22200a5a
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@5ddaa62a
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@5ddaa62a for object net.sf.jasperreports.engine.fill.JRTemplateText@3f3a771a
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@5ddaa62a for object net.sf.jasperreports.engine.fill.JRTemplateText@4d212658
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@30a9f589 for object net.sf.jasperreports.engine.fill.JRTemplateText@6ff1877c
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@30a9f589 for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateText@6792875e
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@6792875e for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@6792875e for object net.sf.jasperreports.engine.fill.JRTemplateText@b7cae11
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@6792875e for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@6792875e for object net.sf.jasperreports.engine.fill.JRTemplateText@4f2b5ac0
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@6792875e for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Added object net.sf.jasperreports.engine.fill.JRTemplateRectangle@2c82fe3e
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@5ddaa62a for object net.sf.jasperreports.engine.fill.JRTemplateText@5fd92487
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@5ddaa62a for object net.sf.jasperreports.engine.fill.JRTemplateText@313b154b
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@6792875e for object net.sf.jasperreports.engine.fill.JRTemplateText@24d3b4f6
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@6792875e for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateText@6792875e for object net.sf.jasperreports.engine.fill.JRTemplateText@1f9bcd5c
+2025-06-09 12:07:06 DEBUG JRFillTextField - created net.sf.jasperreports.engine.fill.JRTemplateText@6792875e for (null, null)
+2025-06-09 12:07:06 DEBUG DeduplicableRegistry - Found existing instance net.sf.jasperreports.engine.fill.JRTemplateRectangle@2c82fe3e for object net.sf.jasperreports.engine.fill.JRTemplateRectangle@9702f34
+2025-06-09 12:07:06 DEBUG JRVerticalFiller - Fill 1: column footer at 389
