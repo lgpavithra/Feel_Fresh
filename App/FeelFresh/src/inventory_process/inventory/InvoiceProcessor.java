@@ -41,14 +41,14 @@ public class InvoiceProcessor {
             totalBuyingPrice = totalBuyingPrice + buyingPrice * qty;
         }
 
-        double profit = dto.getTotal() - totalBuyingPrice;
+        double profit = dto.getPaid()- totalBuyingPrice;
 
 
         try {
             MYSQL.executeIUD(invoice);
             
             //=============== comment this if error occured =============
-            FinanceDepartment.getAssetManager().credit("Money", dto.getTotal());
+            FinanceDepartment.getAssetManager().credit("Money", dto.getPaid());
             FinanceDepartment.getAssetManager().debit("Inventory", totalBuyingPrice);
             FinanceDepartment.getEquityManager().credit("Profit", profit);
             FinanceDepartment.getTransactionManager().create(dTO);
