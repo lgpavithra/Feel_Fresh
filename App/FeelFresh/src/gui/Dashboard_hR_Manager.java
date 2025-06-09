@@ -14,6 +14,7 @@ import gui.panel.attendance;
 import gui.panel.employee;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -33,6 +34,8 @@ public class Dashboard_hR_Manager extends javax.swing.JFrame {
      */
     public Dashboard_hR_Manager() {
         initComponents();
+                setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/icon/Cherryicon.png")));
+
         jLabel6.setText(SystemStatus.getUser().getUserName());
         setExtendedState(Dashboard_hR_Manager.MAXIMIZED_BOTH);
         changePanel_vp(new Welcome());

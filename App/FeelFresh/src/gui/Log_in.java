@@ -9,6 +9,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import gui.panel.attendance;
 import java.awt.Color;
 import java.awt.Frame;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import model.MYSQL;
 import model.UserBean;
@@ -47,6 +48,9 @@ public class Log_in extends javax.swing.JFrame {
      */
     public Log_in() {
         initComponents();
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/icon/Cherryicon.png")));
+        
         setBackground(new Color(0, 0, 0, 0));
         OtherinitComponents();
     }

@@ -15,6 +15,7 @@ import gui.panel.Welcome;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -35,6 +36,8 @@ public class Dashboard_Finance extends javax.swing.JFrame {
 //    public static String emp_Username;
     public Dashboard_Finance() {
         initComponents();
+                setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/icon/Cherryicon.png")));
+
         setExtendedState(Dashboard_hR_Manager.MAXIMIZED_BOTH);
         jLabel6.setText(SystemStatus.getUser().getUserName()); // ************
         jLabel6.setText("Joni");

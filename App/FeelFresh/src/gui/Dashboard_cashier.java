@@ -18,6 +18,7 @@ import gui.panel.employee;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -41,6 +42,8 @@ public class Dashboard_cashier extends javax.swing.JFrame {
 
     public Dashboard_cashier(String Username) {
         initComponents();
+                setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/icon/Cherryicon.png")));
+
        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jLabel6.setText(SystemStatus.getUser().getUserName());
         emp_Username = Username;

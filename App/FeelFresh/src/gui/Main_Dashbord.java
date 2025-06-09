@@ -5,6 +5,7 @@
 package gui;
 
 import gui.panel.cashier.Cashier;
+import java.awt.Toolkit;
 import model.system.SystemStatus;
 
 /**
@@ -18,6 +19,8 @@ public class Main_Dashbord extends javax.swing.JFrame {
      */
     public Main_Dashbord() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/icon/Cherryicon.png")));
+
     }
 
     /**
@@ -131,19 +134,19 @@ public class Main_Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_roundButton2ActionPerformed
 
     private void roundButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton3ActionPerformed
-new Dashboard_hR_Manager().setVisible(true);
+        new Dashboard_hR_Manager().setVisible(true);
     }//GEN-LAST:event_roundButton3ActionPerformed
 
     private void roundButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton4ActionPerformed
 
         new Dashboard_inventoryManager().setVisible(true);
-        
+
     }//GEN-LAST:event_roundButton4ActionPerformed
 
     private void roundButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roundButton1ActionPerformed
-        
+
         new Dashboard_Finance().setVisible(true);
-        
+
     }//GEN-LAST:event_roundButton1ActionPerformed
 
     /**
