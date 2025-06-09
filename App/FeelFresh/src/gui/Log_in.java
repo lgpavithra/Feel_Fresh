@@ -24,8 +24,8 @@ import model.system.SystemStatus;
  */
 public class Log_in extends javax.swing.JFrame {
 
-    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(Log_in.class);    
-    
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(Log_in.class);
+
     /**
      * @return the username
      */
@@ -48,16 +48,15 @@ public class Log_in extends javax.swing.JFrame {
      */
     public Log_in() {
         initComponents();
-        
+
         setIconImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/resources/icon/Cherryicon.png")));
-        
+
         setBackground(new Color(0, 0, 0, 0));
         OtherinitComponents();
     }
 
     private void OtherinitComponents() {
 
-     
         jTextField1.putClientProperty("JComponent.roundRect", true);
         jTextField1.putClientProperty(FlatClientProperties.STYLE, "margin:0,16,0,10");
         jPasswordField1.putClientProperty("JComponent.roundRect", true);
@@ -340,21 +339,27 @@ public class Log_in extends javax.swing.JFrame {
                             new Main_Dashbord().setVisible(true);
                             logger.trace("Admin Logged In");
                         }
+                        if (resultSet.getString("user_type").equals("Finance")) {
+                            userBean.setUserType("5");
+                            SystemStatus.setUser(userBean);
+                            new Dashboard_Finance().setVisible(true);
+                            logger.trace("Finance Manager Logged In");
+                        }
                         this.dispose();
 
                     } else {
                         JOptionPane.showMessageDialog(this, "Your user status is " + resultSet.getString("status"), "Warning ", JOptionPane.WARNING_MESSAGE);
                     }
-                    setUsername(Username);                                        
+                    setUsername(Username);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Invalid Username or Passwors", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Warning", JOptionPane.WARNING_MESSAGE);
                     jTextField1.grabFocus();
                     logger.warn("User with invalid username and password trying to log in");
                 }
             }
 
         } catch (Exception e) {
-            logger.error("EXCEPTION",e);
+            logger.error("EXCEPTION", e);
             e.printStackTrace();
         }
 
@@ -384,7 +389,7 @@ public class Log_in extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField1KeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-          System.exit(0);     
+        System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

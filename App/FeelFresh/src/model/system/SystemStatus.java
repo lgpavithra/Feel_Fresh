@@ -50,6 +50,7 @@ public class SystemStatus {
     public static final int HR_MANAGER = 2;
     public static final int INVENTORY_MANAGER = 3;
     public static final int CASHIER = 4;
+    public static final int Finance = 5;
 
     private static UserBean user;
 

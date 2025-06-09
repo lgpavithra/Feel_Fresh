@@ -40,7 +40,7 @@ public class Dashboard_Finance extends javax.swing.JFrame {
 
         setExtendedState(Dashboard_hR_Manager.MAXIMIZED_BOTH);
         jLabel6.setText(SystemStatus.getUser().getUserName()); // ************
-        jLabel6.setText("Joni");
+//        jLabel6.setText("Joni");
         changePanel_vp(new Welcome());
         this.setLocationRelativeTo(null);
         
