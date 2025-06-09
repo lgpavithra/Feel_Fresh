@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 
 public class test {
 
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(test.class);
+
     public static void main(String[] args) {
         InventoryManager manager = InventoryManager.getInstance();
 
@@ -59,6 +61,15 @@ public class test {
 //            System.out.println(productDTO.getPname());
 //            System.out.println(productDTO.getCategoryName());
 //            System.out.println(productDTO.getBrandName());
+
+//        }       
+        try {
+
+            System.out.println(1 / 0);
+        } catch (Exception e) {
+            logger.error("EXCEPTION",e);
+        }
+
 //        }
         ResultSet rs = FinanceDepartment.getTransactionManager().getTodayExpenses();
         try {            
@@ -68,5 +79,6 @@ public class test {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
     }
 }

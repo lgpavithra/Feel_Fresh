@@ -8,13 +8,15 @@ import java.util.logging.Logger;
 
 public class TransactionManager {
 
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(TransactionManager.class);    
+    
     public void create(TransactionDTO dTO) {
         String q = "INSERT INTO transactions (source, beneficiary, amount, debit_credit_flag, type, remark) "
                 + "VALUES ('" + dTO.getSource() + "', '" + dTO.getBeneficiary() + "', " + dTO.getAmount() + ", '" + dTO.getFlag() + "', '" + dTO.getType() + "', '" + dTO.getRemark() + "')";
         try {
             MYSQL.executeIUD(q);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
     }
 
@@ -24,7 +26,7 @@ public class TransactionManager {
             ResultSet rs = MYSQL.executeSearch(q);
             return rs;
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }
@@ -37,7 +39,7 @@ public class TransactionManager {
             ResultSet rs = MYSQL.executeSearch(q);
             return rs;
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }
@@ -50,7 +52,7 @@ public class TransactionManager {
             ResultSet rs = MYSQL.executeSearch(q);
             return rs;
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }
@@ -65,7 +67,7 @@ public class TransactionManager {
             return rs;
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }
@@ -76,7 +78,7 @@ public class TransactionManager {
             MYSQL.executeIUD(q);
             return "Deleted Successfully";
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }
@@ -92,7 +94,7 @@ public class TransactionManager {
                 return String.valueOf(rs.getString("total_value_today"));
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
         return null;
     }

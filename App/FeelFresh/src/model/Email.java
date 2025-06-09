@@ -31,6 +31,8 @@ import javax.mail.internet.MimeMultipart;
  * @author PC
  */
 public class Email {
+    
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(Email.class);    
 
     /**
      * @return the sender
@@ -187,12 +189,13 @@ public class Email {
         setup();
         composeEmail();
         
-        
+        logger.trace("Email has been sent");
 
         try {
             Transport.send(message);
             return 0;
         } catch (MessagingException ex) {
+            logger.error("EXCEPTION",ex);
             ex.printStackTrace();
             return 1;
         }

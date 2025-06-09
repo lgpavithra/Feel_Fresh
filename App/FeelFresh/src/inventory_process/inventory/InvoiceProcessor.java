@@ -12,9 +12,10 @@ import model.dto.DTOGenerator;
 import model.dto.TransactionDTO;
 
 public class InvoiceProcessor {
+    
+    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(InvoiceProcessor.class);
 
-    public void process(InvoiceDTO dto) {
-        System.out.println("INVOICE PROCESSOR: creating an invoice...");
+    public void process(InvoiceDTO dto) {        
         //insert into the invoice table
         String invoice = "INSERT INTO invoice ("
                 + "    cus_nic,"
@@ -28,6 +29,9 @@ public class InvoiceProcessor {
                 + "    '" + dto.getPaid() + "'"
                 + ")";
 
+        logger.trace("Creating a new Invoice");
+
+
         TransactionDTO dTO = DTOGenerator.getInstance().generateTransactionDTO("Customer", "Finance", dto.getTotal(), Flag.credit.toString(), Type.Income.toString(), "Recieving cash from a invoice");
         FinanceDepartment.getTransactionManager().create(dTO);
         double totalBuyingPrice = 0;
@@ -38,6 +42,7 @@ public class InvoiceProcessor {
         }
 
         double profit = dto.getTotal() - totalBuyingPrice;
+
 
         try {
             MYSQL.executeIUD(invoice);
@@ -73,7 +78,7 @@ public class InvoiceProcessor {
             }
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.error("EXCEPTION",ex);
         }
 
         RecieptDTO reciept = new RecieptDTO();
