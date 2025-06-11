@@ -451,10 +451,10 @@
                       <Component id="jScrollPane2" pref="726" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="roundButton2" min="-2" pref="48" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jComboBox4" min="-2" pref="171" max="-2" attributes="0"/>
+                          <EmptySpace pref="322" max="32767" attributes="0"/>
+                          <Component id="jComboBox4" min="-2" pref="119" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" min="-2" pref="179" max="-2" attributes="0"/>
+                          <Component id="jTextField1" min="-2" pref="231" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -586,11 +586,9 @@
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="First Name ASC"/>
-                <StringItem index="1" value="First Name DESC"/>
-                <StringItem index="2" value="Last Name ASC"/>
-                <StringItem index="3" value="Last Name DESC"/>
+              <StringArray count="2">
+                <StringItem index="0" value="ASC"/>
+                <StringItem index="1" value="DESC"/>
               </StringArray>
             </Property>
           </Properties>

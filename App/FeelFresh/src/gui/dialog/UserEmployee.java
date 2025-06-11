@@ -98,7 +98,6 @@ public class UserEmployee extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(345, 447));
         setMinimumSize(new java.awt.Dimension(345, 447));
 
         panalRound1.setBackground(new java.awt.Color(252, 252, 252));
@@ -122,7 +121,7 @@ public class UserEmployee extends javax.swing.JDialog {
 
         jLabel5.setText("User Type");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Type", "Cashiers", "HR Manager", "Inventory manager" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Type", "Cashiers", "HR Manager", "Inventory manager", "Finance" }));
 
         jLabel6.setText("Registered : ");
 
