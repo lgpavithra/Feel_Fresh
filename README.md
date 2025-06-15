@@ -9,19 +9,19 @@
 # Feel_Fresh 
 
 
-# Technologies, Libraries, and Tools Used in Feel_Fresh
+## Technologies, Libraries, and Tools Used in Feel_Fresh
 
-## Programming Languages & Core Technologies
+### Programming Languages & Core Technologies
 - **Java** — Main application and backend logic.
 - **SQL (MySQL)** — Database queries and backups/dumps.
 
-## Database
+### Database
 - **MySQL** — Primary database system.
   - Accessed via JDBC driver: `com.mysql.cj.jdbc.Driver`
   - SQL queries embedded in Java code (CRUD operations, data retrieval, etc.)
   - `.sql` files present in `/Database/dump/` for database backups.
 
-## Java Libraries & Frameworks
+### Java Libraries & Frameworks
 - **JDBC** — Java Database Connectivity (for MySQL connections).
 - **Swing** / **javax.swing** — For building GUI panels (e.g., `javax.swing.JPanel`).
 - **JasperReports** — Reporting engine for generating reports.
