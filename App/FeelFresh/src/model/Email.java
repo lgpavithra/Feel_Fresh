@@ -62,16 +62,16 @@ public class Email {
 
 //    Varables
     //emails
-    private String sender = "lgpavithra148@gmail.com";
-    private String recipients = "lgpavithra148@gmail.com";
+    private String sender = "test@gmail.com";
+    private String recipients = "test@gmail.com";
 
     private String subject;
     private String body;
 
     //credentials
     private String host = "smtp.gmail.com";
-    private String username = "lgpavithra148@gmail.com";
-    private String password = "hngp cvov pueh izzl";
+    private String username = "test@gmail.com";
+    private String password = "test test test test";
 
     public void setupCredentials() {
         //check that saved file is avaliable
